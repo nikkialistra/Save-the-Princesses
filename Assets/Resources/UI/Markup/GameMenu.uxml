@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UI/Styles/Menus.uss?fileID=7433441132597879392&amp;guid=7c4983a86c2665d48a1e628b6921ec6d&amp;type=3#Menus" />
+    <ui:VisualElement name="game-menu" picking-mode="Ignore" class="background-shadow menu">
+        <ui:Button text="Resume" display-tooltip-when-elided="true" name="resume" focusable="false" class="button button-medium-accented" />
+        <ui:Button text="Save" display-tooltip-when-elided="true" name="save" focusable="false" class="button button-medium-normal" style="display: none;" />
+        <ui:Button text="Save As" display-tooltip-when-elided="true" name="save-as" focusable="false" class="button button-medium-normal" style="display: none;" />
+        <ui:Button text="Load" display-tooltip-when-elided="true" name="load" focusable="false" class="button button-medium-normal" style="display: none;" />
+        <ui:Button text="Settings" display-tooltip-when-elided="true" name="settings" focusable="false" class="button button-medium-normal" />
+        <ui:Button text="Main Menu" display-tooltip-when-elided="true" name="main-menu" focusable="false" class="button button-medium-normal" />
+        <ui:Button text="Exit Game" display-tooltip-when-elided="true" name="exit-game" focusable="false" class="button button-medium-normal" />
+    </ui:VisualElement>
+</ui:UXML>

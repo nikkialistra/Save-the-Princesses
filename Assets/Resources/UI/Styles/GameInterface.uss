@@ -1,0 +1,200 @@
+.screen {
+    width: 640px;
+    height: 480px;
+    flex-direction: row;
+}
+
+.top-left-elements {
+    margin-left: 8px;
+    margin-top: 8px;
+    width: 70%;
+}
+
+.top-right-elements {
+    margin-right: 8px;
+    margin-top: 8px;
+    width: 30%;
+    flex-direction: row-reverse;
+}
+
+.text {
+    -unity-font: resource('Fonts/ChronoType');
+    -unity-font-definition: none;
+    font-size: 10px;
+    height: 10px;
+    -unity-text-align: lower-left;
+    color: rgb(255, 255, 255);
+    -unity-background-image-tint-color: rgb(236, 236, 236);
+    margin: 0;
+    padding: 0;
+    margin-right: 1px;
+}
+
+.text-small {
+    font-size: 7px;
+    height: 8px;
+}
+
+.health {
+    flex-direction: row;
+}
+
+.health-bar-border {
+    width: 3px;
+    height: 12px;
+}
+
+.health-bar-border {
+}
+
+.health-bar-border-left {
+    background-image: resource('UI/HealthBar/HealthBar_Frame_BorderLeft');
+}
+
+.health-bar-border-right {
+    background-image: resource('UI/HealthBar/HealthBar_Frame_BorderRight');
+}
+
+.health-bar {
+    width: 50px;
+    height: 12px;
+    margin-bottom: 5px;
+    background-image: resource('UI/HealthBar/HealthBar_Empty');
+    -unity-slice-left: 6;
+    -unity-slice-right: 6;
+    overflow: hidden;
+}
+
+.health-bar__fill {
+    height: 12px;
+    width: 50px;
+    background-image: resource('UI/HealthBar/HealthBar_Fills');
+}
+
+.health-bar__fill-white {
+    background-image: resource('UI/HealthBar/HealthBar_FillWhite');
+    height: 12px;
+}
+
+.health-bar__digits {
+    width: 50px;
+    height: 12px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.health-bar__digit {
+    width: 6px;
+    height: 8px;
+}
+
+.health-bar__frame {
+    width: 50px;
+    height: 12px;
+    background-image: resource('UI/HealthBar/HealthBar_Frame');
+}
+
+.ammo {
+    flex-direction: row;
+    width: 52px;
+    margin-bottom: 5px;
+}
+
+.charge {
+    width: 11px;
+    height: 11px;
+    margin: 1px;
+}
+
+.charge-filled {
+    background-image: resource('UI/Ammo/Charge_Filled');
+}
+
+.charge-empty {
+    background-image: resource('UI/Ammo/Charge_Empty');
+}
+
+.stats {
+    width: 100px;
+}
+
+.stat {
+    flex-direction: row;
+    margin-bottom: 4px;
+    margin-left: 1px;
+    height: 10px;
+    align-items: center;
+}
+
+.icon {
+    width: 8px;
+    height: 8px;
+    margin-right: 3px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+.modifier-positive {
+    color: rgb(83, 233, 41);
+}
+
+.modifier-negative {
+    color: rgb(233, 41, 54);
+}
+
+.icon-max-health {
+    background-image: resource('UI/Icons/Icon_Stat_MaxHealth');
+}
+
+.icon-melee-damage {
+    background-image: resource('UI/Icons/Icon_Stat_MeleeDamage');
+}
+
+.icon-ranged-damage {
+    background-image: resource('UI/Icons/Icon_Stat_RangedDamage');
+}
+
+.icon-melee-speed {
+    background-image: resource('UI/Icons/Icon_Stat_MeleeSpeed');
+}
+
+.icon-ranged-speed {
+    background-image: resource('UI/Icons/Icon_Stat_RangedSpeed');
+}
+
+.icon-movement-speed {
+    background-image: resource('UI/Icons/Icon_Stat_MovementSpeed');
+}
+
+.icon-armor {
+    background-image: resource('UI/Icons/Icon_Stat_Armor');
+}
+
+.icon-vampirism {
+    background-image: resource('UI/Icons/Icon_Stat_Vampirism');
+}
+
+.icon-luck {
+    background-image: resource('UI/Icons/Icon_Stat_Luck');
+}
+
+.resource {
+    flex-direction: row;
+    height: 10px;
+    align-items: center;
+}
+
+.icon-gold {
+    background-image: resource('UI/Icons/Icon_Gold');
+}
+
+.hidden {
+    display: none;
+}
+
+.top-left {
+    top: 0;
+    left: 0;
+    position: absolute;
+}

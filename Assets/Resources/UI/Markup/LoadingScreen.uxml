@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="loading-screen" style="width: 640px; height: 480px; background-image: resource(&apos;UI/Menus/LoadingScreen&apos;);" />
+</ui:UXML>

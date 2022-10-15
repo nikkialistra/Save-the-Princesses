@@ -1,0 +1,80 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UI/Styles/GameLookStyles.uss?fileID=7433441132597879392&amp;guid=40c330ca5ce78b946bf44e8fdb741a42&amp;type=3#GameLookStyles" />
+    <ui:VisualElement name="screen" class="screen">
+        <ui:VisualElement name="top-left-elements" class="top-left-elements">
+            <ui:VisualElement name="health" class="health">
+                <ui:VisualElement name="health-bar-border-left" class="health-bar-border health-bar-border-left" />
+                <ui:VisualElement name="health-bar" class="health-bar">
+                    <ui:VisualElement name="health-bar__fill" class="top-left health-bar__fill" style="background-image: resource(&apos;UI/HealthBar/HealthBar_Fills&apos;);" />
+                    <ui:VisualElement name="health-bar__fill-white" class="top-left hidden health-bar__fill-white" />
+                    <ui:VisualElement name="health-bar__digits" class="top-left health-bar__digits ">
+                        <ui:Image name="digit1" class="health-bar__digit" />
+                        <ui:Image name="digit2" class="health-bar__digit" />
+                        <ui:Image name="digit3" class="health-bar__digit" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="health-bar__frame" class="top-left health-bar__frame" />
+                </ui:VisualElement>
+                <ui:VisualElement name="health-bar-border-right" class="health-bar-border health-bar-border-right" />
+            </ui:VisualElement>
+            <ui:VisualElement name="ammo" class="ammo">
+                <ui:VisualElement name="charge1" class="charge charge-empty" />
+                <ui:VisualElement name="charge2" class="charge charge-empty" />
+                <ui:VisualElement name="charge3" class="charge charge-empty" />
+                <ui:VisualElement name="charge4" class="charge charge-empty" />
+            </ui:VisualElement>
+            <ui:VisualElement name="stat-icons" class="stats">
+                <ui:VisualElement name="max-health" class="stat">
+                    <ui:VisualElement name="max-health__icon" class="icon icon-max-health" />
+                    <ui:Label text="0" display-tooltip-when-elided="true" name="max-health__value" class="text margin-small-right" />
+                    <ui:Label display-tooltip-when-elided="true" name="max-health__modifier" class="text text-small" />
+                </ui:VisualElement>
+                <ui:VisualElement name="melee-damage" class="stat">
+                    <ui:VisualElement name="melee-damage__icon" class="icon icon-melee-damage" />
+                    <ui:Label text="0" display-tooltip-when-elided="true" name="melee-damage__value" class="text margin-small-right" />
+                    <ui:Label display-tooltip-when-elided="true" name="melee-damage__modifier" class="text text-small" />
+                </ui:VisualElement>
+                <ui:VisualElement name="ranged-damage" class="stat">
+                    <ui:VisualElement name="ranged-damage__icon" class="icon icon-ranged-damage" />
+                    <ui:Label text="0" display-tooltip-when-elided="true" name="ranged-damage__value" class="text margin-small-right" />
+                    <ui:Label display-tooltip-when-elided="true" name="ranged-damage__modifier" class="text text-small" />
+                </ui:VisualElement>
+                <ui:VisualElement name="melee-speed" class="stat">
+                    <ui:VisualElement name="melee-speed__icon" class="icon icon-melee-speed" />
+                    <ui:Label text="0" display-tooltip-when-elided="true" name="melee-speed__value" class="text margin-small-right" />
+                    <ui:Label display-tooltip-when-elided="true" name="melee-speed__modifier" class="text text-small" />
+                </ui:VisualElement>
+                <ui:VisualElement name="ranged-speed" class="stat">
+                    <ui:VisualElement name="ranged-speed__icon" class="icon icon-ranged-speed" />
+                    <ui:Label text="0" display-tooltip-when-elided="true" name="ranged-speed__value" class="text margin-small-right" />
+                    <ui:Label display-tooltip-when-elided="true" name="ranged-speed__modifier" class="text text-small" />
+                </ui:VisualElement>
+                <ui:VisualElement name="movement-speed" class="stat">
+                    <ui:VisualElement name="movement-speed__icon" class="icon icon-movement-speed" />
+                    <ui:Label text="0" display-tooltip-when-elided="true" name="movement-speed__value" class="text margin-small-right" />
+                    <ui:Label display-tooltip-when-elided="true" name="movement-speed__modifier" class="text text-small" />
+                </ui:VisualElement>
+                <ui:VisualElement name="armor" class="stat">
+                    <ui:VisualElement name="armor__icon" class="icon icon-armor" />
+                    <ui:Label text="0" display-tooltip-when-elided="true" name="armor__value" class="text margin-small-right" />
+                    <ui:Label display-tooltip-when-elided="true" name="armor__modifier" class="text text-small" />
+                </ui:VisualElement>
+                <ui:VisualElement name="vampirism" class="stat">
+                    <ui:VisualElement name="vampirism__icon" class="icon icon-vampirism" />
+                    <ui:Label text="0" display-tooltip-when-elided="true" name="vampirism__value" class="text margin-small-right" />
+                    <ui:Label display-tooltip-when-elided="true" name="vampirism__modifier" class="text text-small" />
+                </ui:VisualElement>
+                <ui:VisualElement name="luck" class="stat">
+                    <ui:VisualElement name="luck__icon" class="icon icon-luck" />
+                    <ui:Label text="0" display-tooltip-when-elided="true" name="luck__value" class="text margin-small-right" />
+                    <ui:Label display-tooltip-when-elided="true" name="luck__modifier" class="text text-small" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="top-right-elements" class="top-right-elements">
+            <ui:VisualElement name="gold" class="resource">
+                <ui:VisualElement name="gold__icon" class="icon icon-gold" />
+                <ui:Label text="0" display-tooltip-when-elided="true" name="gold__quantity" class="text margin-small-right" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

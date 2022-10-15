@@ -1,0 +1,49 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Entities.Containers;
+using Zenject;
+
+namespace Princesses.Services.Repositories
+{
+    public class PrincessRoomRepository
+    {
+        public event Action<Princess> Adding;
+        public event Action<Princess> Removing;
+
+        public int Count => _container.Count;
+
+        public IEnumerable<Princess> Princesses => _container.Entities;
+        public IEnumerable<Princess> UntiedFreePrincesses => _container.Entities.Where(princess => princess.Free);
+
+        private PrincessContainer _container;
+
+        [Inject]
+        public void Construct(PrincessContainer container)
+        {
+            _container = container;
+        }
+
+        public void Initialize()
+        {
+            _container.Initialize();
+        }
+
+        public void Dispose()
+        {
+            _container.Dispose();
+        }
+
+        public void Add(Princess princess)
+        {
+            _container.Add(princess);
+            Adding?.Invoke(princess);
+        }
+
+        public void Remove(Princess princess)
+        {
+            _container.Remove(princess);
+            Removing?.Invoke(princess);
+        }
+    }
+}

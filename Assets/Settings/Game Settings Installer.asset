@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96792933c21341b9bb420a3bbe6ac514, type: 3}
+  m_Name: Game Settings Installer
+  m_EditorClassIdentifier: 
+  _characterSettings:
+    _accelerationTime: 0.3
+    _decelerationTime: 0.25
+    _velocityDelta: 0.1
+    _directionChangeTime: 0.1
+    _directionChangeTimeAlternative: 0.03
+    _timeAtKnockback: 0.4
+    _invulnerabilityTimeAfterHit: 0.3
+    _destinationDistanceDelta: 0.2
+    _destinationDistanceDeltaPathfinding: 0.6
+    _repathRate: 0.07
+    _destinationSearchTriesCount: 6
+    _hitBlinkingTime: 0.18
+  _heroSettings:
+    _inversionAngle: 90
+    _minTimeToChangeInversion: 0.02
+    _inversionFlickeringDelta: 0.5
+    _invulnerabilityTimeAfterHit: 1
+    _buttonPressToleranceTime: 0.05
+    _rescanRate: 0.1
+    _distanceToGather: 1.5
+  _princessSettings:
+    _hitsToUntie: 3
+    _distanceToHero: 0.8
+    _distanceBetweenPrincesses: 0.8
+    _additionalDistanceBeforeStop: 0.4
+    _distancePercentForRegularSpeed: 0.85
+    _distancePercentForHeroSpeed: 0.9
+    _distancePercentForElevatedSpeed: 0.99
+    _accelerationTime: 0.12
+    _decelerationTime: 0.25
+    _trainRepathRate: 0.05
+    _distanceToFinishLinking: 0.8
