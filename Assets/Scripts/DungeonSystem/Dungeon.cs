@@ -37,9 +37,10 @@ namespace DungeonSystem
             _activeRoom = _roomGenerator.CreateFirstRoom();
 
             _hero.Dying += FinishRun;
-            _activeRoom.Spawn += StartRun;
 
             _hero.Activate();
+
+            StartRun();
         }
 
         public void Dispose()
@@ -47,15 +48,12 @@ namespace DungeonSystem
             _roomGenerator.Dispose();
 
             _hero.Dying -= FinishRun;
-            _activeRoom.Spawn -= StartRun;
 
             _hero.Deactivate();
         }
 
-        public void StartRun()
+        private void StartRun()
         {
-            _activeRoom.Spawn -= StartRun;
-
             _activeRepositories.SetStartRepositories(_activeRoom.Repositories);
         }
 

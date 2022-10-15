@@ -11,6 +11,9 @@ namespace HubSystem
     public class Hub : MonoBehaviour, IInitializable, IDisposable
     {
         [SerializeField] private Room _hubRoom;
+        [SerializeField] private RoomKind _hubRoomKind;
+
+        [Space]
         [SerializeField] private Transform _heroSpawnPoint;
         [SerializeField] private ZoneTrigger _exitHubTrigger;
 
@@ -30,11 +33,14 @@ namespace HubSystem
 
         public void Initialize()
         {
+            _hubRoom.Initialize(_hubRoomKind);
+
             _hero.PlaceAt(_heroSpawnPoint.position);
             _hero.Activate();
 
             _exitHubTrigger.Enter += EnterDungeon;
-            _hubRoom.Spawn += StartHub;
+
+            StartHub();
         }
 
         public void Dispose()
@@ -42,7 +48,6 @@ namespace HubSystem
             _hero.Deactivate();
 
             _exitHubTrigger.Enter -= EnterDungeon;
-            _hubRoom.Spawn -= StartHub;
         }
 
         private void StartHub()

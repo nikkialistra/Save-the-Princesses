@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1cb5f14534f4b9ba1f1ac86605794ef, type: 3}
   m_Name: Room Kind 1
   m_EditorClassIdentifier: 
-  Map: {fileID: 0}
+  Map: {fileID: -2339067563465324232, guid: 1c8011f1a38dffb40a1cfc30bd7ea05e, type: 3}
