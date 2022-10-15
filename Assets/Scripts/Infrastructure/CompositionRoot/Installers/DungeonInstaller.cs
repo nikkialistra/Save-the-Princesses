@@ -1,7 +1,7 @@
 ﻿using DungeonSystem;
 using Enemies.Services;
 using Infrastructure.Bootstrap;
-using Medium.Rooms;
+using Surrounding.Rooms;
 using Princesses.Services;
 using Princesses.Services.Repositories;
 using Sirenix.OdinInspector;

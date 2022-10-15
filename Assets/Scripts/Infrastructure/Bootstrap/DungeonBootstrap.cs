@@ -1,7 +1,7 @@
 ﻿using System;
 using DungeonSystem;
-using Medium;
-using Medium.Rooms;
+using Surrounding;
+using Surrounding.Rooms;
 using UI;
 using Zenject;
 

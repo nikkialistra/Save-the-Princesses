@@ -1,6 +1,6 @@
 ﻿using Infrastructure.CompositionRoot.Settings;
-using Medium.Stages;
-using Medium.Stages.Content;
+using Surrounding.Stages;
+using Surrounding.Stages.Content;
 using NodeCanvas.Framework;
 using ParadoxNotion;
 using ParadoxNotion.Design;

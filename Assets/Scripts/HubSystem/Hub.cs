@@ -1,8 +1,8 @@
 ﻿using System;
 using Heroes;
 using Infrastructure;
-using Medium;
-using Medium.Rooms;
+using Surrounding;
+using Surrounding.Rooms;
 using UnityEngine;
 using Zenject;
 

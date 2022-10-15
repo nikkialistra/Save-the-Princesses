@@ -3,7 +3,7 @@ using Characters.Common;
 using Characters.Traits;
 using Combat.Weapons;
 using Infrastructure.CompositionRoot.Settings;
-using Medium.Rooms;
+using Surrounding.Rooms;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;

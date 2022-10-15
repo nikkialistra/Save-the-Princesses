@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Medium.Rooms
+namespace Surrounding.Rooms
 {
     public class RoomGenerator : MonoBehaviour
     {

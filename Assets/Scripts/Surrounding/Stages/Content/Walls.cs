@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Medium.Stages.Content
+namespace Surrounding.Stages.Content
 {
     public class Walls : MonoBehaviour { }
 }

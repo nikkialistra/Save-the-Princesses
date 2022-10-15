@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Medium
+namespace Surrounding
 {
     public class ZoneTrigger : MonoBehaviour
     {

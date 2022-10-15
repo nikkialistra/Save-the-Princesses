@@ -1,4 +1,4 @@
-﻿namespace Medium.Stages
+﻿namespace Surrounding.Stages
 {
     public enum Stage
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Medium.Stages
+namespace Surrounding.Stages
 {
     public static class StageExtensions
     {

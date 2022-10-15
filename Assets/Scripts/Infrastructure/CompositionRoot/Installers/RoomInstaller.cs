@@ -1,7 +1,7 @@
 ﻿using Enemies.Services.Repositories;
 using Entities.Containers;
 using Infrastructure.Bootstrap;
-using Medium.Rooms;
+using Surrounding.Rooms;
 using Princesses.Services.Repositories;
 using UnityEngine;
 using Zenject;

@@ -5,7 +5,7 @@ using Characters.Traits;
 using Entities;
 using Heroes;
 using Infrastructure.CompositionRoot.Settings;
-using Medium.Rooms;
+using Surrounding.Rooms;
 using Princesses.Types;
 using Trains;
 using Trains.Characters;
