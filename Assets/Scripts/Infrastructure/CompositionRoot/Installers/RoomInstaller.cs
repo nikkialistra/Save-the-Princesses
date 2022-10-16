@@ -1,6 +1,8 @@
-﻿using Enemies.Services.Repositories;
+﻿using Enemies.Services;
+using Enemies.Services.Repositories;
 using Entities.Containers;
 using Infrastructure.Bootstrap;
+using Princesses.Services;
 using Surrounding.Rooms;
 using Princesses.Services.Repositories;
 using UnityEngine;
@@ -21,6 +23,7 @@ namespace Infrastructure.CompositionRoot.Installers
 
             BindContainers();
             BindAreaRepositories();
+            BindGenerators();
 
             BindBootstrap();
         }
@@ -36,6 +39,12 @@ namespace Infrastructure.CompositionRoot.Installers
             Container.Bind<PrincessRoomRepository>().AsSingle();
             Container.Bind<EnemyRoomRepository>().AsSingle();
             Container.Bind<RoomRepositories>().AsSingle();
+        }
+
+        private void BindGenerators()
+        {
+            Container.Bind<PrincessGenerator>().AsSingle();
+            Container.Bind<EnemyGenerator>().AsSingle();
         }
 
         private void BindBootstrap()

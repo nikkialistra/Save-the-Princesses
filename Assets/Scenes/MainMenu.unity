@@ -215,6 +215,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f06a4f57b741e4a998fd75de5a0ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &432077243
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8000943832243508973, guid: 1c8011f1a38dffb40a1cfc30bd7ea05e, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8000943832243508973, guid: 1c8011f1a38dffb40a1cfc30bd7ea05e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -30.921833
+      objectReference: {fileID: 0}
+    - target: {fileID: -8000943832243508973, guid: 1c8011f1a38dffb40a1cfc30bd7ea05e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -17.17584
+      objectReference: {fileID: 0}
+    - target: {fileID: -8000943832243508973, guid: 1c8011f1a38dffb40a1cfc30bd7ea05e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8000943832243508973, guid: 1c8011f1a38dffb40a1cfc30bd7ea05e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8000943832243508973, guid: 1c8011f1a38dffb40a1cfc30bd7ea05e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8000943832243508973, guid: 1c8011f1a38dffb40a1cfc30bd7ea05e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8000943832243508973, guid: 1c8011f1a38dffb40a1cfc30bd7ea05e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8000943832243508973, guid: 1c8011f1a38dffb40a1cfc30bd7ea05e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8000943832243508973, guid: 1c8011f1a38dffb40a1cfc30bd7ea05e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8000943832243508973, guid: 1c8011f1a38dffb40a1cfc30bd7ea05e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5281764085203108595, guid: 1c8011f1a38dffb40a1cfc30bd7ea05e, type: 3}
+      propertyPath: m_Name
+      value: RuinedDungeom_Room1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: -2695619058785784247, guid: 1c8011f1a38dffb40a1cfc30bd7ea05e, type: 3}
 --- !u!1 &894407148
 GameObject:
   m_ObjectHideFlags: 0
