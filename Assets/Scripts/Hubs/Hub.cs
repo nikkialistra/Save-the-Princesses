@@ -6,7 +6,7 @@ using Surrounding.Rooms;
 using UnityEngine;
 using Zenject;
 
-namespace HubSystem
+namespace Hubs
 {
     public class Hub : MonoBehaviour, IInitializable, IDisposable
     {

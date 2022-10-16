@@ -6,15 +6,13 @@ using Surrounding.Rooms;
 using UnityEngine;
 using Zenject;
 
-namespace DungeonSystem
+namespace Dungeons
 {
     public class Dungeon : MonoBehaviour
     {
-        public Room ActiveRoom => _activeRoom;
+        public Room ActiveRoom { get; private set; }
 
         [SerializeField] private float _timeToFinishRun = 1.5f;
-        
-        private Room _activeRoom;
 
         private Hero _hero;
         private RoomGenerator _roomGenerator;
@@ -24,7 +22,8 @@ namespace DungeonSystem
         private ActiveRepositories _activeRepositories;
 
         [Inject]
-        public void Construct(Hero hero, RoomGenerator roomGenerator, GameRun gameRun, ActiveRepositories activeRepositories)
+        public void Construct(Hero hero, RoomGenerator roomGenerator,
+            GameRun gameRun, ActiveRepositories activeRepositories)
         {
             _hero = hero;
             _roomGenerator = roomGenerator;
@@ -36,7 +35,7 @@ namespace DungeonSystem
 
         public void Initialize()
         {
-            _activeRoom = _roomGenerator.CreateFirstRoom();
+            ActiveRoom = _roomGenerator.CreateFirstRoom();
 
             _hero.Dying += FinishRun;
 
@@ -56,14 +55,14 @@ namespace DungeonSystem
 
         private void StartRun()
         {
-            _activeRepositories.FillRepositories(_activeRoom.Repositories);
+            _activeRepositories.FillRepositories(ActiveRoom.Repositories);
         }
 
         public void ChangeActiveRoomTo(Room room)
         {
             _activeRepositories.ChangeRepositories(room.Repositories);
 
-            _activeRoom = room;
+            ActiveRoom = room;
         }
 
         private void FinishRun()

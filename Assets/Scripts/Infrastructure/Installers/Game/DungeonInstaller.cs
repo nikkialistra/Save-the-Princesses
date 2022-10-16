@@ -1,4 +1,4 @@
-﻿using DungeonSystem;
+﻿using Dungeons;
 using Infrastructure.Bootstrap;
 using Sirenix.OdinInspector;
 using Surrounding.Rooms;

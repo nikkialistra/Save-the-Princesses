@@ -1,5 +1,5 @@
 ﻿using System;
-using DungeonSystem;
+using Dungeons;
 using Surrounding.Rooms;
 using UI;
 using Zenject;

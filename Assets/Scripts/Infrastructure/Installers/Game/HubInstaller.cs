@@ -1,4 +1,4 @@
-﻿using HubSystem;
+﻿using Hubs;
 using Infrastructure.Bootstrap;
 using UnityEngine;
 using Zenject;

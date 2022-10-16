@@ -1,9 +1,8 @@
 ﻿using Heroes;
-using Surrounding.Rooms;
 using UnityEngine;
 using Zenject;
 
-namespace DungeonSystem
+namespace Dungeons
 {
     public class DungeonControl : MonoBehaviour
     {
