@@ -41,13 +41,13 @@ namespace Entities.Containers
             _entities.Clear();
         }
 
-        public void Add(E entity)
+        public void Add(E entity, Vector3 position)
         {
             if (!_entities.Contains(entity))
                 throw new InvalidOperationException("Cannot add alerady contained entity");
 
+            entity.SetPosition(position, transform);
             entity.PlaceInRoom(_room);
-            entity.SetParent(transform);
 
             _entities.Add(entity);
         }

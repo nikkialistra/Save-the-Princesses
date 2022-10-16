@@ -8,6 +8,6 @@ namespace Entities
     public interface IEntity : IInitializable, IDisposable
     {
         public void PlaceInRoom(Room room);
-        public void SetParent(Transform parent);
+        public void SetPosition(Vector3 position, Transform parent);
     }
 }

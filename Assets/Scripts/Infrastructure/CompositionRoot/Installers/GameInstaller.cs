@@ -1,9 +1,11 @@
 ﻿using Controls;
+using Enemies;
 using Enemies.Services.Repositories;
 using Heroes;
 using Infrastructure.Bootstrap;
 using Infrastructure.Controls;
 using Infrastructure.CoroutineRunners;
+using Princesses;
 using Surrounding;
 using Surrounding.Rooms;
 using Princesses.Services.Elements;
@@ -30,6 +32,10 @@ namespace Infrastructure.CompositionRoot.Installers
         [SerializeField] private Camera _camera;
         [SerializeField] private Hero _hero;
         [SerializeField] private Room _room;
+
+        [Title("Characters Spawning")]
+        [SerializeField] private Princess _princessPrefab;
+        [SerializeField] private Enemy _enemyPrefab;
 
         [Title("Train System")]
         [SerializeField] private Train _train;
@@ -67,6 +73,7 @@ namespace Infrastructure.CompositionRoot.Installers
             Container.BindInterfacesAndSelfTo<Hero>().FromInstance(_hero);
             Container.BindInstance(_room);
 
+            BindCharactersSpawning();
             BindTrainSystem();
             BindPrincesses();
             BindRepositories();
@@ -77,6 +84,17 @@ namespace Infrastructure.CompositionRoot.Installers
 
             BindProgress();
             BindBootstrap();
+        }
+
+        private void BindCharactersSpawning()
+        {
+            Container.BindFactory<Princess, Princess.Factory>()
+                .FromSubContainerResolve()
+                .ByNewContextPrefab(_princessPrefab);
+
+            Container.BindFactory<Enemy, Enemy.Factory>()
+                .FromSubContainerResolve()
+                .ByNewContextPrefab(_enemyPrefab);
         }
 
         private void BindTrainSystem()

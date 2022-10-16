@@ -108,9 +108,10 @@ namespace Princesses
             _character.PlaceInRoom(room);
         }
 
-        public void SetParent(Transform parent)
+        public void SetPosition(Vector3 position, Transform parent)
         {
             transform.parent = parent;
+            transform.position = position;
         }
 
         public void ShowGatherWish()
@@ -250,5 +251,7 @@ namespace Princesses
 
             TrainCharacter.TrainLeave += ResetGathering;
         }
+
+        public class Factory : PlaceholderFactory<Princess> { }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Entities.Containers;
 using Surrounding.Rooms;
+using UnityEngine;
 using Zenject;
 
 namespace Princesses.Services.Repositories
@@ -35,9 +36,9 @@ namespace Princesses.Services.Repositories
             _container.Dispose();
         }
 
-        public void Add(Princess princess)
+        public void Add(Princess princess, Vector3 position)
         {
-            _container.Add(princess);
+            _container.Add(princess, position);
             Adding?.Invoke(princess);
         }
 

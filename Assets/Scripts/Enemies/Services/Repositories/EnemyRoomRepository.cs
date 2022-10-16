@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Entities.Containers;
 using Surrounding.Rooms;
+using UnityEngine;
 using Zenject;
 
 namespace Enemies.Services.Repositories
@@ -33,9 +34,9 @@ namespace Enemies.Services.Repositories
             _container.Dispose();
         }
 
-        public void Add(Enemy enemy)
+        public void Add(Enemy enemy, Vector3 position)
         {
-            _container.Add(enemy);
+            _container.Add(enemy, position);
             Adding?.Invoke(enemy);
         }
 

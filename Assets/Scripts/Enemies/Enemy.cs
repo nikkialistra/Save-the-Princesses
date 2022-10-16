@@ -57,9 +57,10 @@ namespace Enemies
             _character.PlaceInRoom(room);
         }
 
-        public void SetParent(Transform parent)
+        public void SetPosition(Vector3 position, Transform parent)
         {
             transform.parent = parent;
+            transform.position = position;
         }
 
         private void OnDying()
@@ -90,5 +91,7 @@ namespace Enemies
             Moving.Dispose();
             Attacker.Dispose();
         }
+
+        public class Factory : PlaceholderFactory<Enemy> { }
     }
 }

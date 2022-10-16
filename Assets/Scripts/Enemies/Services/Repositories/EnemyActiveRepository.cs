@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Enemies.Services.Repositories
 {
@@ -29,9 +30,9 @@ namespace Enemies.Services.Repositories
             _roomRepository = newRepository;
         }
 
-        public void Add(Enemy enemy)
+        public void Add(Enemy enemy, Vector3 position)
         {
-            _roomRepository.Add(enemy);
+            _roomRepository.Add(enemy, position);
             Adding?.Invoke(enemy);
         }
 
