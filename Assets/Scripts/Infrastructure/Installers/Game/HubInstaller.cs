@@ -3,7 +3,7 @@ using Infrastructure.Bootstrap;
 using UnityEngine;
 using Zenject;
 
-namespace Infrastructure.CompositionRoot.Installers
+namespace Infrastructure.Installers.Game
 {
     public class HubInstaller : MonoInstaller
     {

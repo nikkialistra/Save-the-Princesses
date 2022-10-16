@@ -1,14 +1,11 @@
 ﻿using DungeonSystem;
-using Enemies.Services;
 using Infrastructure.Bootstrap;
-using Surrounding.Rooms;
-using Princesses.Services;
-using Princesses.Services.Repositories;
 using Sirenix.OdinInspector;
+using Surrounding.Rooms;
 using UnityEngine;
 using Zenject;
 
-namespace Infrastructure.CompositionRoot.Installers
+namespace Infrastructure.Installers.Game
 {
     public class DungeonInstaller : MonoInstaller
     {

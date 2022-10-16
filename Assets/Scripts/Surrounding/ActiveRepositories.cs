@@ -6,31 +6,41 @@ namespace Surrounding
 {
     public class ActiveRepositories
     {
-        private readonly PrincessActiveRepository _princessRepository;
-        private readonly EnemyActiveRepository _enemyRepository;
+        public PrincessActiveRepository Princesses { get; }
+        public EnemyActiveRepository Enemies { get; }
+
+        private bool _filled;
 
         public ActiveRepositories(PrincessActiveRepository princessRepository, EnemyActiveRepository enemyRepository)
         {
-            _princessRepository = princessRepository;
-            _enemyRepository = enemyRepository;
+            Princesses = princessRepository;
+            Enemies = enemyRepository;
         }
 
-        public void SetStartRepositories(RoomRepositories repositories)
+        public void FillRepositories(RoomRepositories repositories)
         {
-            _princessRepository.Initialize(repositories.Princesses);
-            _enemyRepository.Initialize(repositories.Enemies);
+            if (_filled)
+            {
+                ChangeRepositories(repositories);
+                return;
+            }
+
+            _filled = true;
+
+            Princesses.Initialize(repositories.Princesses);
+            Enemies.Initialize(repositories.Enemies);
         }
 
         public void ChangeRepositories(RoomRepositories newRepositories)
         {
-            _princessRepository.ReplaceRoomRepository(newRepositories.Princesses);
-            _enemyRepository.ReplaceRoomRepository(newRepositories.Enemies);
+            Princesses.ReplaceRoomRepository(newRepositories.Princesses);
+            Enemies.ReplaceRoomRepository(newRepositories.Enemies);
         }
 
         public void Dispose()
         {
-            _princessRepository.Dispose();
-            _enemyRepository.Dispose();
+            Princesses.Dispose();
+            Enemies.Dispose();
         }
     }
 }

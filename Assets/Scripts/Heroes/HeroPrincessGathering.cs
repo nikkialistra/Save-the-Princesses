@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Infrastructure.CompositionRoot.Settings;
+using Infrastructure.Installers.Game.Settings;
 using Princesses;
 using Princesses.Services;
 using Princesses.Services.Repositories;

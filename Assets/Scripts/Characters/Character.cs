@@ -2,7 +2,7 @@
 using Characters.Common;
 using Characters.Traits;
 using Combat.Weapons;
-using Infrastructure.CompositionRoot.Settings;
+using Infrastructure.Installers.Game.Settings;
 using Surrounding.Rooms;
 using Sirenix.OdinInspector;
 using UnityEngine;

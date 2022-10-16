@@ -43,8 +43,8 @@ namespace Entities.Containers
 
         public void Add(E entity, Vector3 position)
         {
-            if (!_entities.Contains(entity))
-                throw new InvalidOperationException("Cannot add alerady contained entity");
+            if (_entities.Contains(entity))
+                throw new InvalidOperationException("Cannot add already contained entity");
 
             entity.SetPosition(position, transform);
             entity.PlaceInRoom(_room);

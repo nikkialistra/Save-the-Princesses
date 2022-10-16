@@ -1888,7 +1888,7 @@ MonoBehaviour:
   _hero: {fileID: 1683786886}
   _room: {fileID: 5731957735619916329, guid: 93b0589ff82ac6d45be8a028c4becc10, type: 3}
   _princessPrefab: {fileID: 2453188263931797200, guid: 094c5447a4b7f7c4e8e20c66751280d3, type: 3}
-  _enemyPrefab: {fileID: 0}
+  _enemyPrefab: {fileID: 6877760913545033272, guid: 7ceb2cd6530529e41a39631f0d1eb73b, type: 3}
   _train: {fileID: 121481525}
   _handsSprites: {fileID: 1058244649}
   _princessPalettesRegistry: {fileID: 926162203}

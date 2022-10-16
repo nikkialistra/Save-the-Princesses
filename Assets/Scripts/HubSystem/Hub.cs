@@ -52,7 +52,7 @@ namespace HubSystem
 
         private void StartHub()
         {
-            _activeRepositories.SetStartRepositories(_hubRoom.Repositories);
+            _activeRepositories.FillRepositories(_hubRoom.Repositories);
         }
 
         private void EnterDungeon()

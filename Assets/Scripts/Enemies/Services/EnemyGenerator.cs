@@ -1,5 +1,6 @@
 ﻿using Enemies.Services.Repositories;
 using SuperTiled2Unity;
+using Surrounding;
 using Surrounding.Rooms;
 using UnityEngine;
 
@@ -7,15 +8,18 @@ namespace Enemies.Services
 {
     public class EnemyGenerator
     {
-        private readonly Enemy.Factory _enemyFactory;
+        private EnemyActiveRepository EnemyActiveRepository => _activeRepositories.Enemies;
+
         private SpawnPoints _spawnPoints;
 
-        private readonly EnemyActiveRepository _activeRepository;
+        private readonly Enemy.Factory _enemyFactory;
 
-        public EnemyGenerator(Enemy.Factory enemyFactory, EnemyActiveRepository activeRepository)
+        private readonly ActiveRepositories _activeRepositories;
+
+        public EnemyGenerator(Enemy.Factory enemyFactory, ActiveRepositories activeRepositories)
         {
             _enemyFactory = enemyFactory;
-            _activeRepository = activeRepository;
+            _activeRepositories = activeRepositories;
         }
 
         public void Initialize(SuperObjectLayer spawnPointsLayer)
@@ -41,7 +45,7 @@ namespace Enemies.Services
         {
             var enemy = _enemyFactory.Create();
 
-            _activeRepository.Add(enemy, position);
+            EnemyActiveRepository.Add(enemy, position);
         }
     }
 }

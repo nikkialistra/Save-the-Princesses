@@ -1,7 +1,7 @@
 ﻿using Characters;
 using Characters.Stats;
 using Characters.Stats.Character;
-using Infrastructure.CompositionRoot.Settings;
+using Infrastructure.Installers.Game.Settings;
 using Trains.Characters;
 using UnityEngine;
 using Zenject;

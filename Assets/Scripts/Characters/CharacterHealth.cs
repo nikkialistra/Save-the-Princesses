@@ -1,6 +1,6 @@
 ﻿using System;
 using Characters.Stats.Character;
-using Infrastructure.CompositionRoot.Settings;
+using Infrastructure.Installers.Game.Settings;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;

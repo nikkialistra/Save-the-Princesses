@@ -56,7 +56,7 @@ namespace DungeonSystem
 
         private void StartRun()
         {
-            _activeRepositories.SetStartRepositories(_activeRoom.Repositories);
+            _activeRepositories.FillRepositories(_activeRoom.Repositories);
         }
 
         public void ChangeActiveRoomTo(Room room)

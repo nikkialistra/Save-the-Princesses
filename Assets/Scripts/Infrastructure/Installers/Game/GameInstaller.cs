@@ -4,17 +4,15 @@ using Enemies.Services.Repositories;
 using Heroes;
 using Infrastructure.Bootstrap;
 using Infrastructure.Controls;
-using Infrastructure.CoroutineRunners;
 using Princesses;
-using Surrounding;
-using Surrounding.Rooms;
 using Princesses.Services.Elements;
 using Princesses.Services.Palettes;
 using Princesses.Services.Repositories;
 using Saving.Progress;
 using Saving.Saves;
-using Saving.Settings;
 using Sirenix.OdinInspector;
+using Surrounding;
+using Surrounding.Rooms;
 using Trains;
 using Trains.HandConnections;
 using UI;
@@ -25,7 +23,7 @@ using UnityEngine.InputSystem;
 using Zenject;
 using InputControl = Controls.InputControl;
 
-namespace Infrastructure.CompositionRoot.Installers
+namespace Infrastructure.Installers.Game
 {
     public class GameInstaller : MonoInstaller
     {

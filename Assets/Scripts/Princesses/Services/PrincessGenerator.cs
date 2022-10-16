@@ -1,5 +1,6 @@
 ﻿using Princesses.Services.Repositories;
 using SuperTiled2Unity;
+using Surrounding;
 using Surrounding.Rooms;
 using UnityEngine;
 
@@ -7,19 +8,23 @@ namespace Princesses.Services
 {
     public class PrincessGenerator
     {
-        private readonly Princess.Factory _princessFactory;
+        private PrincessActiveRepository PrincessActiveRepository => _activeRepositories.Princesses;
+
         private SpawnPoints _spawnPoints;
 
-        private readonly PrincessActiveRepository _activeRepository;
+        private readonly Princess.Factory _princessFactory;
 
-        public PrincessGenerator(PrincessActiveRepository activeRepository)
+        private readonly ActiveRepositories _activeRepositories;
+
+        public PrincessGenerator(Princess.Factory princessFactory, ActiveRepositories activeRepositories)
         {
-            _activeRepository = activeRepository;
+            _princessFactory = princessFactory;
+            _activeRepositories = activeRepositories;
         }
 
         public void Initialize(SuperObjectLayer spawnPointsLayer)
         {
-            var spawnPoints = spawnPointsLayer.GetComponents<SuperObject>();
+            var spawnPoints = spawnPointsLayer.GetComponentsInChildren<SuperObject>();
             _spawnPoints = new SpawnPoints(spawnPoints);
         }
 
@@ -38,9 +43,9 @@ namespace Princesses.Services
 
         private void SpawnAt(Vector3 position)
         {
-            var enemy = _princessFactory.Create();
+            var princess = _princessFactory.Create();
 
-            _activeRepository.Add(enemy, position);
+            PrincessActiveRepository.Add(princess, position);
         }
     }
 }

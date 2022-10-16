@@ -7,7 +7,7 @@ using Characters.Stats.Ranged;
 using Characters.Traits;
 using Combat.Attacks;
 using Heroes.Attacks;
-using Infrastructure.CompositionRoot.Settings;
+using Infrastructure.Installers.Game.Settings;
 using Trains.Characters;
 using UnityEngine;
 using Zenject;

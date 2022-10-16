@@ -3,12 +3,12 @@ using Enemies.Services.Repositories;
 using Entities.Containers;
 using Infrastructure.Bootstrap;
 using Princesses.Services;
-using Surrounding.Rooms;
 using Princesses.Services.Repositories;
+using Surrounding.Rooms;
 using UnityEngine;
 using Zenject;
 
-namespace Infrastructure.CompositionRoot.Installers
+namespace Infrastructure.Installers.Game
 {
     public class RoomInstaller : MonoInstaller
     {

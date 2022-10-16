@@ -4,7 +4,7 @@ using Saving.Settings;
 using UnityEngine;
 using Zenject;
 
-namespace Infrastructure.CompositionRoot.Installers
+namespace Infrastructure.Installers
 {
     public class ProjectInstaller : MonoInstaller
     {
