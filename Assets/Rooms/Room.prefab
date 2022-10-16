@@ -98,6 +98,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8326844373072877508}
   - component: {fileID: 8326844373072877511}
+  - component: {fileID: 8436445449689692951}
   - component: {fileID: 8326844373072877509}
   - component: {fileID: 5731957735619916329}
   m_Layer: 0
@@ -141,7 +142,19 @@ MonoBehaviour:
   - {fileID: 8326844373072877509}
   _installerPrefabs: []
   _autoRun: 1
-  _kernel: {fileID: 0}
+  _kernel: {fileID: 8436445449689692951}
+--- !u!114 &8436445449689692951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8326844373072877510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c47912ae4e51a84d92f1acf689997c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8326844373072877509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105856441e8e4f36ac99a30b3499c400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _room: {fileID: 5731957735619916329}
   _princessContainer: {fileID: 8326844371926771960}
   _enemyContainer: {fileID: 8326844373007417609}
 --- !u!114 &5731957735619916329

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Entities.Containers;
+using Surrounding.Rooms;
 using Zenject;
 
 namespace Princesses.Services.Repositories
@@ -24,9 +25,9 @@ namespace Princesses.Services.Repositories
             _container = container;
         }
 
-        public void Initialize()
+        public void Initialize(Room room)
         {
-            _container.Initialize();
+            _container.Initialize(room);
         }
 
         public void Dispose()

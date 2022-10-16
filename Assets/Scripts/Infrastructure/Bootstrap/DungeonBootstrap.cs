@@ -10,6 +10,7 @@ namespace Infrastructure.Bootstrap
     public class DungeonBootstrap : IInitializable, IDisposable
     {
         private DungeonControl _dungeonControl;
+        private Dungeon _dungeon;
 
         private ActiveRepositories _activeRepositories;
 
@@ -17,9 +18,11 @@ namespace Infrastructure.Bootstrap
         private Room _firstRoom;
 
         [Inject]
-        public void Construct(DungeonControl dungeonControl, ActiveRepositories activeRepositories, LoadingScreen loadingScreen)
+        public void Construct(DungeonControl dungeonControl, Dungeon dungeon,
+            ActiveRepositories activeRepositories, LoadingScreen loadingScreen)
         {
             _dungeonControl = dungeonControl;
+            _dungeon = dungeon;
 
             _activeRepositories = activeRepositories;
 
@@ -29,7 +32,7 @@ namespace Infrastructure.Bootstrap
         public void Initialize()
         {
             _dungeonControl.Initialize();
-            _activeRepositories.SetStartRepositories(_firstRoom.Repositories);
+            _activeRepositories.SetStartRepositories(_dungeon.ActiveRoom.Repositories);
 
             _loadingScreen.Hide();
         }

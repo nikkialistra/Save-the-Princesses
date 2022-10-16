@@ -10,11 +10,15 @@ namespace Infrastructure.CompositionRoot.Installers
 {
     public class RoomInstaller : MonoInstaller
     {
+        [SerializeField] private Room _room;
+
         [SerializeField] private PrincessContainer _princessContainer;
         [SerializeField] private EnemyContainer _enemyContainer;
 
         public override void InstallBindings()
         {
+            Container.BindInstance(_room);
+
             BindContainers();
             BindAreaRepositories();
 

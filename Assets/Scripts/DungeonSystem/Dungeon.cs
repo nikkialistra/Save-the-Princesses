@@ -10,6 +10,8 @@ namespace DungeonSystem
 {
     public class Dungeon : MonoBehaviour
     {
+        public Room ActiveRoom => _activeRoom;
+
         [SerializeField] private float _timeToFinishRun = 1.5f;
         
         private Room _activeRoom;

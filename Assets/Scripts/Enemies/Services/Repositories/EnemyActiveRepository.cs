@@ -26,11 +26,7 @@ namespace Enemies.Services.Repositories
 
         public void ReplaceRoomRepository(EnemyRoomRepository newRepository)
         {
-            _roomRepository.Dispose();
-
             _roomRepository = newRepository;
-
-            _roomRepository.Initialize();
         }
 
         public void Add(Enemy enemy)

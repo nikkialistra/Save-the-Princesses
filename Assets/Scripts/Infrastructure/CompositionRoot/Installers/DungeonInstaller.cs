@@ -36,7 +36,8 @@ namespace Infrastructure.CompositionRoot.Installers
             Container.BindInstance(_roomGenerator);
 
             Container.BindFactory<Room, Room.Factory>()
-                .FromComponentInNewPrefab(_roomPrefab)
+                .FromSubContainerResolve()
+                .ByNewContextPrefab(_roomPrefab)
                 .UnderTransform(_roomGenerator.transform);
         }
 

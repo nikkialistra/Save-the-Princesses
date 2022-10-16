@@ -1,13 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
 namespace Surrounding.Rooms
 {
     public class Room : MonoBehaviour
     {
-        public event Action Spawn;
-
         public RoomRepositories Repositories => _repositories;
 
         [SerializeField] private LayerMask _foreground;
@@ -25,8 +22,6 @@ namespace Surrounding.Rooms
         public void Initialize(RoomKind roomKind)
         {
             Instantiate(roomKind.Map, transform);
-
-            Spawn?.Invoke();
         }
 
         public void Dispose()

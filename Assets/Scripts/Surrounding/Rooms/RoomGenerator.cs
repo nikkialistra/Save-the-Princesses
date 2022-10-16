@@ -8,7 +8,7 @@ namespace Surrounding.Rooms
     {
         [SerializeField] private List<RoomKind> _roomKinds;
 
-        private List<Room> _rooms;
+        private readonly List<Room> _rooms = new();
 
         private Room.Factory _roomFactory;
 

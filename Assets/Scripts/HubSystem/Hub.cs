@@ -52,8 +52,6 @@ namespace HubSystem
 
         private void StartHub()
         {
-            _hubRoom.Spawn -= StartHub;
-
             _activeRepositories.SetStartRepositories(_hubRoom.Repositories);
         }
 

@@ -3,6 +3,7 @@ using Enemies.Services.Repositories;
 using Heroes;
 using Infrastructure.Bootstrap;
 using Infrastructure.Controls;
+using Infrastructure.CoroutineRunners;
 using Surrounding;
 using Surrounding.Rooms;
 using Princesses.Services.Elements;
@@ -10,6 +11,7 @@ using Princesses.Services.Palettes;
 using Princesses.Services.Repositories;
 using Saving.Progress;
 using Saving.Saves;
+using Saving.Settings;
 using Sirenix.OdinInspector;
 using Trains;
 using Trains.HandConnections;
@@ -125,7 +127,7 @@ namespace Infrastructure.CompositionRoot.Installers
 
         private void BindProgress()
         {
-            var progress = _gameSaves.CurrentSave.Progress;
+            var progress = _gameSaves?.CurrentSave.Progress;
 
             Container.Bind<GameProgress>().FromInstance(progress);
         }

@@ -27,11 +27,7 @@ namespace Princesses.Services.Repositories
 
         public void ReplaceRoomRepository(PrincessRoomRepository newRepository)
         {
-            _roomRepository.Dispose();
-
             _roomRepository = newRepository;
-
-            _roomRepository.Initialize();
         }
 
         public void Add(Princess princess)

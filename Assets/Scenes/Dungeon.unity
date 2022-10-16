@@ -1078,7 +1078,6 @@ MonoBehaviour:
   _dungeon: {fileID: 1136062867}
   _roomGenerator: {fileID: 1857883144}
   _roomPrefab: {fileID: 1348876137}
-  _roomsParent: {fileID: 1857883143}
 --- !u!1001 &1469857124
 PrefabInstance:
   m_ObjectHideFlags: 0
