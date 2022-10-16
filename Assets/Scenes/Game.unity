@@ -1546,6 +1546,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734eb43f80274d91ab2f932dd3d8d62f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1683786887 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3517064352616132721, guid: dd2807e49e089614f82d4c9e3c2a3b91, type: 3}
+  m_PrefabInstance: {fileID: 1683786885}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1827701608
 GameObject:
   m_ObjectHideFlags: 0
@@ -2022,7 +2027,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1683786887}
   m_Lens:
     FieldOfView: 34
     OrthographicSize: 5.945313
@@ -2032,7 +2037,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.8915973, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2207,7 +2212,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5.75
+  orthographic size: 6.734375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

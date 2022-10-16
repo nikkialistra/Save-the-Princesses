@@ -145,13 +145,13 @@ namespace Heroes
         {
             _character.Initialize();
 
-            CharacterHealth.Initialize();
-            Attacker.Initialize();
-            TrainCharacter.Initialize();
-
             _characterStats.Initialize();
             _meleeStats.Initialize();
             _rangedStats.Initialize();
+
+            CharacterHealth.Initialize();
+            Attacker.Initialize();
+            TrainCharacter.Initialize();
 
             _trainStatEffects.Initialize();
             _animator.Initialize();
