@@ -57,7 +57,7 @@ namespace Localizations
         /// This function will try to reload all packages. If they files was removed, loaded package will not be unloaded and reloaded at all!
         /// </summary>
         /// <returns>If everything is ok, you`ll get TRUE.</returns>
-        public static bool ReloadAllPackages()
+        public static bool TryToReloadAllPackages()
         {
             throw new System.NotImplementedException($"{System.Reflection.MethodBase.GetCurrentMethod().Name} not implemented!");
         }
