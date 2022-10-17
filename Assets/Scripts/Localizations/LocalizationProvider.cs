@@ -5,9 +5,9 @@ namespace Localizations
 {
     public static class LocalizationProvider
     {
-        private static string _PackageName = "Default";
-        private static string _PackageCode = "en_US";
-        private static string _PackageAuthor = "Default";
+        private static string _packageName = "Default";
+        private static string _packageCode = "en_US";
+        private static string _packageAuthor = "Default";
 
         private static LocalizationPackage _loadedPackage = null;
 
@@ -38,9 +38,9 @@ namespace Localizations
             try
             {
                 _loadedPackage = LocalizationLoader.GetPackageByCode(languageCode);
-                _PackageName = _loadedPackage.PackageName;
-                _PackageCode = _loadedPackage.PackageLanguageCode;
-                _PackageAuthor = _loadedPackage.PackageAuthor;
+                _packageName = _loadedPackage.PackageName;
+                _packageCode = _loadedPackage.PackageLanguageCode;
+                _packageAuthor = _loadedPackage.PackageAuthor;
 
                 Debug.Log($"LOCALIZATION_PROVIDER: Language package with language code {languageCode} was loaded into provider.");
                 return true;
