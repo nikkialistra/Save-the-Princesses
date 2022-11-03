@@ -22,7 +22,7 @@ namespace Enemies.Services
 
         public void Initialize(SuperObjectLayer spawnPointsLayer)
         {
-            var spawnPoints = spawnPointsLayer.GetComponents<SuperObject>();
+            var spawnPoints = spawnPointsLayer.GetComponentsInChildren<SuperObject>();
             _spawnPoints = new SpawnPoints(spawnPoints);
         }
 
@@ -42,6 +42,7 @@ namespace Enemies.Services
         private void SpawnAt(Vector3 position)
         {
             var enemy = _enemyFactory.Create();
+            enemy.Initialize();
 
             _repository.Add(enemy, position);
         }
