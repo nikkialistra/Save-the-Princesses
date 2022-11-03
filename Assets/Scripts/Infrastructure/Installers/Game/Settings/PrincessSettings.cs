@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Infrastructure.CompositionRoot.Settings
+namespace Infrastructure.Installers.Game.Settings
 {
     [Serializable]
     public class PrincessSettings

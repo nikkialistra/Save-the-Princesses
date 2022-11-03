@@ -1,12 +1,14 @@
-﻿using Enemies.Services.Repositories;
+﻿using Enemies.Services;
+using Enemies.Services.Repositories;
 using Entities.Containers;
 using Infrastructure.Bootstrap;
-using Surrounding.Rooms;
+using Princesses.Services;
 using Princesses.Services.Repositories;
+using Surrounding.Rooms;
 using UnityEngine;
 using Zenject;
 
-namespace Infrastructure.CompositionRoot.Installers
+namespace Infrastructure.Installers.Game
 {
     public class RoomInstaller : MonoInstaller
     {
@@ -21,6 +23,7 @@ namespace Infrastructure.CompositionRoot.Installers
 
             BindContainers();
             BindAreaRepositories();
+            BindGenerators();
 
             BindBootstrap();
         }
@@ -36,6 +39,12 @@ namespace Infrastructure.CompositionRoot.Installers
             Container.Bind<PrincessRoomRepository>().AsSingle();
             Container.Bind<EnemyRoomRepository>().AsSingle();
             Container.Bind<RoomRepositories>().AsSingle();
+        }
+
+        private void BindGenerators()
+        {
+            Container.Bind<PrincessGenerator>().AsSingle();
+            Container.Bind<EnemyGenerator>().AsSingle();
         }
 
         private void BindBootstrap()

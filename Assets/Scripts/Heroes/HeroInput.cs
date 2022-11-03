@@ -1,4 +1,4 @@
-﻿using Infrastructure.CompositionRoot.Settings;
+﻿using Infrastructure.Installers.Game.Settings;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;

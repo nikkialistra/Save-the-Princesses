@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using Entities.Containers;
 using Surrounding.Rooms;
+using UnityEngine;
 using Zenject;
 
 namespace Enemies.Services.Repositories
 {
     public class EnemyRoomRepository
     {
-        public event Action<Enemy> Adding;
-        public event Action<Enemy> Removing;
+        public event Action<Enemy> Added;
+        public event Action<Enemy> Removed;
 
         public int Count => _container.Count;
 
@@ -33,16 +34,16 @@ namespace Enemies.Services.Repositories
             _container.Dispose();
         }
 
-        public void Add(Enemy enemy)
+        public void Add(Enemy enemy, Vector3 position)
         {
-            _container.Add(enemy);
-            Adding?.Invoke(enemy);
+            _container.Add(enemy, position);
+            Added?.Invoke(enemy);
         }
 
         public void Remove(Enemy enemy)
         {
             _container.Remove(enemy);
-            Removing?.Invoke(enemy);
+            Removed?.Invoke(enemy);
         }
     }
 }

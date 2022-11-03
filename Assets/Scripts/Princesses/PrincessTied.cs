@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Combat.Attacks;
 using Combat.Attacks.Specs;
-using Infrastructure.CompositionRoot.Settings;
+using Infrastructure.Installers.Game.Settings;
 using UnityEngine;
 using Zenject;
 using static Combat.Attacks.Specs.AttackOrigin;

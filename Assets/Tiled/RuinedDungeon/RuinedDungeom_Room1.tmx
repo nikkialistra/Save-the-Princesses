@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.1" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="38">
+<map version="1.9" tiledversion="1.9.1" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="51">
  <tileset firstgid="1" source="RuinedDungeon_Tileset_Room.tsx"/>
  <layer id="1" name="Floor" width="30" height="20">
   <properties>
@@ -167,5 +167,48 @@
   <object id="35" x="160" y="64" width="128" height="32"/>
   <object id="36" x="160" y="160" width="128" height="128"/>
   <object id="37" x="160" y="352" width="128" height="32"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" id="11" name="PrincessSpawnPoints" opacity="0.5" tintcolor="#000000">
+  <object id="38" x="879.778" y="85.3186">
+   <point/>
+  </object>
+  <object id="39" x="340.166" y="290.859">
+   <point/>
+  </object>
+  <object id="40" x="438.781" y="349.03">
+   <point/>
+  </object>
+  <object id="41" x="177.285" y="499.723">
+   <point/>
+  </object>
+  <object id="42" x="718.006" y="530.748">
+   <point/>
+  </object>
+  <object id="43" x="592.798" y="108.033">
+   <point/>
+  </object>
+  <object id="44" x="878.67" y="182.825">
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff0000" id="13" name="EnemySpawnPoints">
+  <object id="45" x="101.385" y="443.767">
+   <point/>
+  </object>
+  <object id="46" x="153.463" y="540.166">
+   <point/>
+  </object>
+  <object id="47" x="218.837" y="127.978">
+   <point/>
+  </object>
+  <object id="48" x="778.393" y="119.668">
+   <point/>
+  </object>
+  <object id="49" x="813.296" y="188.366">
+   <point/>
+  </object>
+  <object id="50" x="733.518" y="381.717">
+   <point/>
+  </object>
  </objectgroup>
 </map>

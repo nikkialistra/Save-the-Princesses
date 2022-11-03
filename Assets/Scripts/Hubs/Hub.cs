@@ -6,7 +6,7 @@ using Surrounding.Rooms;
 using UnityEngine;
 using Zenject;
 
-namespace HubSystem
+namespace Hubs
 {
     public class Hub : MonoBehaviour, IInitializable, IDisposable
     {
@@ -52,7 +52,7 @@ namespace HubSystem
 
         private void StartHub()
         {
-            _activeRepositories.SetStartRepositories(_hubRoom.Repositories);
+            _activeRepositories.FillRepositories(_hubRoom.Repositories);
         }
 
         private void EnterDungeon()

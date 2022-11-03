@@ -1,6 +1,6 @@
 ﻿using System;
 using Characters.Common;
-using Infrastructure.CompositionRoot.Settings;
+using Infrastructure.Installers.Game.Settings;
 using UnityEngine;
 using Zenject;
 

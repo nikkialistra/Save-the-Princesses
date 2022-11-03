@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Princesses.Services.Repositories
 {
@@ -30,9 +31,9 @@ namespace Princesses.Services.Repositories
             _roomRepository = newRepository;
         }
 
-        public void Add(Princess princess)
+        public void Add(Princess princess, Vector3 position)
         {
-            _roomRepository.Add(princess);
+            _roomRepository.Add(princess, position);
             Adding?.Invoke(princess);
         }
 

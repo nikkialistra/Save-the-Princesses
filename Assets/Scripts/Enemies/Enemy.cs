@@ -13,8 +13,8 @@ namespace Enemies
     [RequireComponent(typeof(EnemyAttacker))]
     public class Enemy : MonoBehaviour, IEntity
     {
-        public event Action Spawn;
-        public event Action Dying;
+        public event Action Spawned;
+        public event Action Slain;
 
         public Vector2 Position => transform.position;
 
@@ -40,16 +40,16 @@ namespace Enemies
             FillComponents();
             InitializeComponents();
 
-            _character.Dying += OnDying;
+            _character.Slain += OnSlain;
 
-            Spawn?.Invoke();
+            Spawned?.Invoke();
         }
 
         public void Dispose()
         {
             DisposeComponents();
 
-            _character.Dying -= OnDying;
+            _character.Slain -= OnSlain;
         }
 
         public void PlaceInRoom(Room room)
@@ -57,14 +57,15 @@ namespace Enemies
             _character.PlaceInRoom(room);
         }
 
-        public void SetParent(Transform parent)
+        public void SetPosition(Vector3 position, Transform parent)
         {
             transform.parent = parent;
+            transform.position = position;
         }
 
-        private void OnDying()
+        private void OnSlain()
         {
-            Dying?.Invoke();
+            Slain?.Invoke();
         }
 
         private void FillComponents()
@@ -90,5 +91,7 @@ namespace Enemies
             Moving.Dispose();
             Attacker.Dispose();
         }
+
+        public class Factory : PlaceholderFactory<Enemy> { }
     }
 }

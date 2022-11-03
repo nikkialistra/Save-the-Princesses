@@ -7,7 +7,7 @@ using Characters.Stats.Ranged;
 using Characters.Traits;
 using Combat.Attacks;
 using Heroes.Attacks;
-using Infrastructure.CompositionRoot.Settings;
+using Infrastructure.Installers.Game.Settings;
 using Trains.Characters;
 using UnityEngine;
 using Zenject;
@@ -28,7 +28,7 @@ namespace Heroes
     [RequireComponent(typeof(RangedStats))]
     public class Hero : MonoBehaviour, ITickable
     {
-        public event Action Dying;
+        public event Action Slain;
 
         public Attack Attack => _attack;
 
@@ -75,12 +75,12 @@ namespace Heroes
             TrainCharacter.SetAsHero();
             CharacterHealth.SetCustomHitInvulnerabilityTime(_settings.HitInvulnerabilityTime);
 
-            _character.Dying += OnDying;
+            _character.Slain += OnSlain;
         }
 
         public void Dispose()
         {
-            _character.Dying -= OnDying;
+            _character.Slain -= OnSlain;
 
             DisposeComponents();
         }
@@ -117,9 +117,9 @@ namespace Heroes
             _trainStatEffects.RemovePrincessStatEffects(effects);
         }
 
-        private void OnDying()
+        private void OnSlain()
         {
-            Dying?.Invoke();
+            Slain?.Invoke();
         }
 
         private void FillComponents()

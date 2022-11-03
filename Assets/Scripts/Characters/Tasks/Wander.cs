@@ -1,4 +1,4 @@
-﻿using Infrastructure.CompositionRoot.Settings;
+﻿using Infrastructure.Installers.Game.Settings;
 using Surrounding.Stages;
 using Surrounding.Stages.Content;
 using NodeCanvas.Framework;

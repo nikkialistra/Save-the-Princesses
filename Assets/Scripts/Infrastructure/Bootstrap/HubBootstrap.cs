@@ -1,6 +1,6 @@
 ﻿using System;
 using Heroes;
-using HubSystem;
+using Hubs;
 using Surrounding;
 using UI;
 using Zenject;

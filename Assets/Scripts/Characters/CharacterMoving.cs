@@ -1,6 +1,6 @@
 ﻿using Characters.Stats.Character;
 using DG.Tweening;
-using Infrastructure.CompositionRoot.Settings;
+using Infrastructure.Installers.Game.Settings;
 using UnityEngine;
 using Zenject;
 

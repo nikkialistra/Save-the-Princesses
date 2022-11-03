@@ -4,7 +4,7 @@ using Characters.Stats.Character;
 using Characters.Traits;
 using Entities;
 using Heroes;
-using Infrastructure.CompositionRoot.Settings;
+using Infrastructure.Installers.Game.Settings;
 using Surrounding.Rooms;
 using Princesses.Types;
 using Trains;
@@ -28,8 +28,8 @@ namespace Princesses
     [RequireComponent(typeof(Rigidbody2D))]
     public class Princess : MonoBehaviour, IEntity
     {
-        public event Action Spawn;
-        public event Action Dying;
+        public event Action Spawned;
+        public event Action Slain;
 
         public Train Train { get; private set; }
 
@@ -92,8 +92,6 @@ namespace Princesses
             InitializeComponents();
 
             SubscribeToEvents();
-
-            Spawn?.Invoke();
         }
 
         public void Dispose()
@@ -106,11 +104,14 @@ namespace Princesses
         public void PlaceInRoom(Room room)
         {
             _character.PlaceInRoom(room);
+
+            Spawned?.Invoke();
         }
 
-        public void SetParent(Transform parent)
+        public void SetPosition(Vector3 position, Transform parent)
         {
             transform.parent = parent;
+            transform.position = position;
         }
 
         public void ShowGatherWish()
@@ -186,9 +187,9 @@ namespace Princesses
             _character.AddTrait(_slowMoving);
         }
 
-        private void OnDying()
+        private void OnSlain()
         {
-            Dying?.Invoke();
+            Slain?.Invoke();
         }
 
         private void FillComponents()
@@ -235,7 +236,7 @@ namespace Princesses
 
         private void SubscribeToEvents()
         {
-            _character.Dying += OnDying;
+            _character.Slain += OnSlain;
 
             _tied.Hit += TiedHit;
             _tied.Untie += Untie;
@@ -243,12 +244,14 @@ namespace Princesses
 
         private void UnsubscribeFromEvents()
         {
-            _character.Dying -= OnDying;
+            _character.Slain -= OnSlain;
 
             _tied.Hit -= TiedHit;
             _tied.Untie -= Untie;
 
             TrainCharacter.TrainLeave += ResetGathering;
         }
+
+        public class Factory : PlaceholderFactory<Princess> { }
     }
 }
