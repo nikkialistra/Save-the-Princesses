@@ -9,8 +9,8 @@ namespace Enemies.Services.Repositories
 {
     public class EnemyRoomRepository
     {
-        public event Action<Enemy> Adding;
-        public event Action<Enemy> Removing;
+        public event Action<Enemy> Added;
+        public event Action<Enemy> Removed;
 
         public int Count => _container.Count;
 
@@ -37,13 +37,13 @@ namespace Enemies.Services.Repositories
         public void Add(Enemy enemy, Vector3 position)
         {
             _container.Add(enemy, position);
-            Adding?.Invoke(enemy);
+            Added?.Invoke(enemy);
         }
 
         public void Remove(Enemy enemy)
         {
             _container.Remove(enemy);
-            Removing?.Invoke(enemy);
+            Removed?.Invoke(enemy);
         }
     }
 }

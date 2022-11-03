@@ -19,7 +19,7 @@ namespace Characters
     [RequireComponent(typeof(CharacterPathfinding))]
     public class Character : MonoBehaviour
     {
-        public event Action Dying;
+        public event Action Slain;
 
         public event Action AtStun;
         public event Action AtStunEnd;
@@ -65,7 +65,7 @@ namespace Characters
             InitializeComponents();
             InitializeWeapon();
 
-            _healthHandling.Die += OnDie;
+            _healthHandling.Slay += OnSlay;
         }
 
         public void Dispose()
@@ -73,7 +73,7 @@ namespace Characters
             DisposeComponents();
             DisposeWeapon();
 
-            _healthHandling.Die -= OnDie;
+            _healthHandling.Slay -= OnSlay;
         }
 
         public void PlaceInRoom(Room room)
@@ -99,9 +99,9 @@ namespace Characters
             _traits.Remove(trait);
         }
 
-        private void OnDie()
+        private void OnSlay()
         {
-            Dying?.Invoke();
+            Slain?.Invoke();
 
             if (_characterType != CharacterType.Hero)
                 Destroy(gameObject);

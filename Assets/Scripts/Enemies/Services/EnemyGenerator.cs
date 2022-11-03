@@ -8,18 +8,16 @@ namespace Enemies.Services
 {
     public class EnemyGenerator
     {
-        private EnemyActiveRepository EnemyActiveRepository => _activeRepositories.Enemies;
-
         private SpawnPoints _spawnPoints;
 
         private readonly Enemy.Factory _enemyFactory;
 
-        private readonly ActiveRepositories _activeRepositories;
+        private readonly EnemyRoomRepository _repository;
 
-        public EnemyGenerator(Enemy.Factory enemyFactory, ActiveRepositories activeRepositories)
+        public EnemyGenerator(Enemy.Factory enemyFactory, EnemyRoomRepository repository)
         {
             _enemyFactory = enemyFactory;
-            _activeRepositories = activeRepositories;
+            _repository = repository;
         }
 
         public void Initialize(SuperObjectLayer spawnPointsLayer)
@@ -45,7 +43,7 @@ namespace Enemies.Services
         {
             var enemy = _enemyFactory.Create();
 
-            EnemyActiveRepository.Add(enemy, position);
+            _repository.Add(enemy, position);
         }
     }
 }

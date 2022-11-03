@@ -20,18 +20,20 @@ namespace Surrounding
         public void FillRepositories(RoomRepositories repositories)
         {
             if (_filled)
-            {
                 ChangeRepositories(repositories);
-                return;
-            }
-
-            _filled = true;
-
-            Princesses.Initialize(repositories.Princesses);
-            Enemies.Initialize(repositories.Enemies);
+            else
+                InitializeRepositories(repositories);
         }
 
-        public void ChangeRepositories(RoomRepositories newRepositories)
+        private void InitializeRepositories(RoomRepositories repositories)
+        {
+            Princesses.Initialize(repositories.Princesses);
+            Enemies.Initialize(repositories.Enemies);
+
+            _filled = true;
+        }
+
+        private void ChangeRepositories(RoomRepositories newRepositories)
         {
             Princesses.ReplaceRoomRepository(newRepositories.Princesses);
             Enemies.ReplaceRoomRepository(newRepositories.Enemies);

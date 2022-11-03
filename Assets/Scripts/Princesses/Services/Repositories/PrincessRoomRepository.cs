@@ -10,8 +10,8 @@ namespace Princesses.Services.Repositories
 {
     public class PrincessRoomRepository
     {
-        public event Action<Princess> Adding;
-        public event Action<Princess> Removing;
+        public event Action<Princess> Added;
+        public event Action<Princess> Removed;
 
         public int Count => _container.Count;
 
@@ -39,13 +39,13 @@ namespace Princesses.Services.Repositories
         public void Add(Princess princess, Vector3 position)
         {
             _container.Add(princess, position);
-            Adding?.Invoke(princess);
+            Added?.Invoke(princess);
         }
 
         public void Remove(Princess princess)
         {
             _container.Remove(princess);
-            Removing?.Invoke(princess);
+            Removed?.Invoke(princess);
         }
     }
 }

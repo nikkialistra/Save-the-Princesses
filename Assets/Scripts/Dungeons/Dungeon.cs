@@ -37,7 +37,7 @@ namespace Dungeons
         {
             ActiveRoom = _roomGenerator.CreateFirstRoom();
 
-            _hero.Dying += FinishRun;
+            _hero.Slain += FinishRun;
 
             _hero.Activate();
 
@@ -48,7 +48,7 @@ namespace Dungeons
         {
             _roomGenerator.Dispose();
 
-            _hero.Dying -= FinishRun;
+            _hero.Slain -= FinishRun;
 
             _hero.Deactivate();
         }
@@ -60,7 +60,7 @@ namespace Dungeons
 
         public void ChangeActiveRoomTo(Room room)
         {
-            _activeRepositories.ChangeRepositories(room.Repositories);
+            _activeRepositories.FillRepositories(room.Repositories);
 
             ActiveRoom = room;
         }

@@ -28,8 +28,8 @@ namespace Princesses
     [RequireComponent(typeof(Rigidbody2D))]
     public class Princess : MonoBehaviour, IEntity
     {
-        public event Action Spawn;
-        public event Action Dying;
+        public event Action Spawned;
+        public event Action Slain;
 
         public Train Train { get; private set; }
 
@@ -92,8 +92,6 @@ namespace Princesses
             InitializeComponents();
 
             SubscribeToEvents();
-
-            Spawn?.Invoke();
         }
 
         public void Dispose()
@@ -106,6 +104,8 @@ namespace Princesses
         public void PlaceInRoom(Room room)
         {
             _character.PlaceInRoom(room);
+
+            Spawned?.Invoke();
         }
 
         public void SetPosition(Vector3 position, Transform parent)
@@ -187,9 +187,9 @@ namespace Princesses
             _character.AddTrait(_slowMoving);
         }
 
-        private void OnDying()
+        private void OnSlain()
         {
-            Dying?.Invoke();
+            Slain?.Invoke();
         }
 
         private void FillComponents()
@@ -236,7 +236,7 @@ namespace Princesses
 
         private void SubscribeToEvents()
         {
-            _character.Dying += OnDying;
+            _character.Slain += OnSlain;
 
             _tied.Hit += TiedHit;
             _tied.Untie += Untie;
@@ -244,7 +244,7 @@ namespace Princesses
 
         private void UnsubscribeFromEvents()
         {
-            _character.Dying -= OnDying;
+            _character.Slain -= OnSlain;
 
             _tied.Hit -= TiedHit;
             _tied.Untie -= Untie;
