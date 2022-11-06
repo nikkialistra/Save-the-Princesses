@@ -1314,8 +1314,9 @@ GameObject:
   - component: {fileID: 1470453272}
   - component: {fileID: 1470453271}
   - component: {fileID: 1470453270}
+  - component: {fileID: 1470453273}
   m_Layer: 0
-  m_Name: Pathfinder
+  m_Name: Pathfinding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1354,7 +1355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAYIexVN9SglwIAAIcFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VMtu2zAQ/BWD5yaQDMeP3lrZcVogiRG3yKHKgSFXFmGKFPiI7QT+9y4pOVLcBjAgenZ2OTtc8o0IZWtgTpulEfxWcyBfBySsyZdBF7yBPd1otRavcOI8Cu7KQKKR80Cd0IinIc3qCpwR7JvayEBOEPRKFNpUC76BTFtnES6otIAho13IVgi9DcgePxezkHLA1XASVq+4miWDIy4ZKAemo56IJ1rD8opJWtXAg+SOnE5bdtrQFDbTMpLLq1BdSylsq4W4Qx17zWhtPXaCBC4o9hYFJJdjBEoQm9IFpf30+6Kw4FpZhh7mwqBJTV3yXTfOVdRuG20vVHqIskbTq8k4amsK3/7DuUhjuDC6ujntnSZhH1cKtn2gB0at69nbh+ed/DTatKNyS58lPJag7vTSaK84Bp3xIdVbGM67v+/tZSWwbYc3Us9AX39+SKGHY3Rgn0lRPUc3Rw2wljq6HkcADJ7QDxQcB8S2JRANKn5b+EU3/UlqA9fCWIehtksV5D1rbwKVLKJnoRvvMm0UmH6FGhSV7rDCOu78HM9in2dd03Bp2t3b2OkunKVEuOMnyVlopXfdaVn46at6pYVya6CGlb16ttS7W7DlvXdSKOjOIQTu0MVMK9XMoP1P2tqbgrJemoO98wbm1NF4F1ATjgnvp6KjMUN5KcNExi5C8T/YRfg9BZdLivvKCJM7reIt+vB9CpOw8YJ/nHOSTtgsTSmw6XTCx6PpxXBMi/EomU1mY2Cjq5TEiyAUek7lqjGtPSocIdX1onDoT+/aYGloHa8fN3S3FK+Vth1TqEKvmQFQ902F92bB4Cb4VPAFF9jmGpwTKg4fecuJ1GwLPH8vlEdjF3tnaN5VyUktXrQLSE6y+JDl5EiOfwFQSwMEFAAACAgAABgh7DQkc2ptAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTVUVBKL0osyCgGihiCOKWZKSB2tJKhebKloWFiarKFhXmKmYmFrpFZYpqZiYGluaVZarKJqaFSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAABgh7FU31KCXAgAAhwUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAABgh7DQkc2ptAAAAeAAAAAkAJAAAAAAAAAAAAAAA5AIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAACcAwAAAAA=
+    dataString: UEsDBBQAAAgIAAAYIey5M5ZnOQAAAEYAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM01VFQSi9KLMgoBooYgjilmSkgdnReaU5OLFCgpLIg1S8xNxUhWAsAUEsBAi0AFAAACAgAABgh7Lkzlmc5AAAARgAAAAkAJAAAAAAAAAAAAAAAAAAAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAQABAFsAAACEAAAAAAA=
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -1442,6 +1443,21 @@ Transform:
   m_Father: {fileID: 814525032}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1470453273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470453269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df5abc95ecf74d5ab2937735a6cc36a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collisionMask:
+    serializedVersion: 2
+    m_Bits: 86048768
 --- !u!1 &1636495293
 GameObject:
   m_ObjectHideFlags: 0
@@ -1887,6 +1903,7 @@ MonoBehaviour:
   _camera: {fileID: 7217504656796712229}
   _hero: {fileID: 1683786886}
   _room: {fileID: 5731957735619916329, guid: 93b0589ff82ac6d45be8a028c4becc10, type: 3}
+  _navigation: {fileID: 1470453273}
   _princessPrefab: {fileID: 2453188263931797200, guid: 094c5447a4b7f7c4e8e20c66751280d3, type: 3}
   _enemyPrefab: {fileID: 6877760913545033272, guid: 7ceb2cd6530529e41a39631f0d1eb73b, type: 3}
   _train: {fileID: 121481525}
@@ -2039,7 +2056,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8915972, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2214,7 +2231,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 6.734375
+  orthographic size: 8.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Enemies.Services;
+using Pathfinding;
 using Princesses.Services;
 using SuperTiled2Unity;
 using UnityEngine;
@@ -18,14 +19,19 @@ namespace Surrounding.Rooms
 
         private readonly Collider2D[] _boundHits = new Collider2D[10];
 
+        private Navigation _navigation;
+
         private PrincessGenerator _princessGenerator;
         private EnemyGenerator _enemyGenerator;
 
         private SuperMap _superMap;
 
         [Inject]
-        public void Construct(RoomRepositories repositories, PrincessGenerator princessGenerator, EnemyGenerator enemyGenerator)
+        public void Construct(Navigation navigation, RoomRepositories repositories,
+            PrincessGenerator princessGenerator, EnemyGenerator enemyGenerator)
         {
+            _navigation = navigation;
+
             Repositories = repositories;
 
             _princessGenerator = princessGenerator;
@@ -39,6 +45,8 @@ namespace Surrounding.Rooms
             CenterSuperMap();
 
             InitializeGenerators();
+            InitializeNavigation();
+
             GenerateCharacters();
         }
 
@@ -76,6 +84,11 @@ namespace Surrounding.Rooms
 
             _princessGenerator.Initialize(princessSpawnPointsLayer);
             _enemyGenerator.Initialize(enemySpawnPointsLayer);
+        }
+
+        private void InitializeNavigation()
+        {
+            _navigation.AddGridForRoom(_superMap.name, _superMap.transform.position, _superMap.m_Width, _superMap.m_Height);
         }
 
         private void GenerateCharacters()

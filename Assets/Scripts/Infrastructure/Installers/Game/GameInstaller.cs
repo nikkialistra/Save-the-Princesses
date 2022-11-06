@@ -31,6 +31,9 @@ namespace Infrastructure.Installers.Game
         [SerializeField] private Hero _hero;
         [SerializeField] private Room _room;
 
+        [Title("Surroundings")]
+        [SerializeField] private Navigation _navigation;
+
         [Title("Characters Spawning")]
         [SerializeField] private Princess _princessPrefab;
         [SerializeField] private Enemy _enemyPrefab;
@@ -70,6 +73,7 @@ namespace Infrastructure.Installers.Game
             Container.BindInstance(_camera);
             Container.BindInterfacesAndSelfTo<Hero>().FromInstance(_hero);
             Container.BindInstance(_room);
+            Container.BindInstance(_navigation);
 
             BindCharactersSpawning();
             BindTrainSystem();
