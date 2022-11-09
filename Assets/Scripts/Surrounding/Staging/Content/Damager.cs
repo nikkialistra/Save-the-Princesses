@@ -1,7 +1,7 @@
 ﻿using Combat;
 using UnityEngine;
 
-namespace Surrounding.Stages.Content
+namespace Surrounding.Staging.Content
 {
     public class Damager : MonoBehaviour
     {

@@ -1,4 +1,5 @@
-﻿using Pathfinding;
+﻿using System.Collections;
+using Pathfinding;
 using UnityEngine;
 
 namespace Surrounding
@@ -10,20 +11,32 @@ namespace Surrounding
 
         [SerializeField] private LayerMask _collisionMask;
 
-        public void AddGridForRoom(string roomName, Vector3 position, int width, int height)
+        private static AstarData Data => AstarPath.active.data;
+
+        public NavGraph AddNavGraphForRoom(string roomName, Vector3 position, int width, int height)
         {
-            var data = AstarPath.active.data;
+            var gridGraph = Data.AddGraph(typeof(GridGraph)) as GridGraph;
 
-            var gridGraph = data.AddGraph(typeof(GridGraph)) as GridGraph;
+            FillGraphParameters(roomName, position, width, height, gridGraph);
 
+            AstarPath.active.Scan(gridGraph);
+
+            return gridGraph;
+        }
+
+        public void RemoveRoomNavGraph(NavGraph navGraph)
+        {
+            Data.RemoveGraph(navGraph);
+        }
+
+        private void FillGraphParameters(string roomName, Vector3 position, int width, int height, GridGraph gridGraph)
+        {
             FillGridDefaultParameters(gridGraph);
 
             gridGraph!.name = roomName;
             gridGraph!.center = GetRoomCenter(position, width, height);
 
             gridGraph.SetDimensions(width * DimensionMultiplier, height * DimensionMultiplier, CellSize);
-
-            AstarPath.active.Scan();
         }
 
         private void FillGridDefaultParameters(GridGraph gridGraph)

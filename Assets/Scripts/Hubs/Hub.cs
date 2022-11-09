@@ -45,6 +45,8 @@ namespace Hubs
 
         public void Dispose()
         {
+            _hubRoom.Dispose();
+
             _hero.Deactivate();
 
             _exitHubTrigger.Enter -= EnterDungeon;
@@ -57,7 +59,8 @@ namespace Hubs
 
         private void EnterDungeon()
         {
-            Dispose();
+            _exitHubTrigger.Enter -= EnterDungeon;
+
             _gameRun.EnterDungeon();
         }
     }

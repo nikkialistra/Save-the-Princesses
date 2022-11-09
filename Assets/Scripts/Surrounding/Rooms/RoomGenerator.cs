@@ -8,8 +8,6 @@ namespace Surrounding.Rooms
     {
         [SerializeField] private List<RoomKind> _roomKinds;
 
-        private readonly List<Room> _rooms = new();
-
         private Room.Factory _roomFactory;
 
         [Inject]
@@ -18,22 +16,12 @@ namespace Surrounding.Rooms
             _roomFactory = roomFactory;
         }
 
-        public Room CreateFirstRoom()
+        public Room Create()
         {
             var room = _roomFactory.Create();
             room.Initialize(_roomKinds[0]);
 
-            _rooms.Add(room);
-
             return room;
-        }
-
-        public void Dispose()
-        {
-            foreach (var room in _rooms)
-                room.Dispose();
-
-            _rooms.Clear();
         }
     }
 }

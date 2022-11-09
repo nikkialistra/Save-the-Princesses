@@ -26,6 +26,8 @@ namespace Surrounding.Rooms
 
         private SuperMap _superMap;
 
+        private NavGraph _navGraph;
+
         [Inject]
         public void Construct(Navigation navigation, RoomRepositories repositories,
             PrincessGenerator princessGenerator, EnemyGenerator enemyGenerator)
@@ -52,7 +54,7 @@ namespace Surrounding.Rooms
 
         public void Dispose()
         {
-
+            _navigation.RemoveRoomNavGraph(_navGraph);
         }
 
         public bool InBounds(Vector2 point)
@@ -64,6 +66,11 @@ namespace Surrounding.Rooms
                     return true;
 
             return false;
+        }
+
+        public void PlaceUnder(Transform parent)
+        {
+            transform.parent = parent;
         }
 
         private void CenterSuperMap()
@@ -88,7 +95,7 @@ namespace Surrounding.Rooms
 
         private void InitializeNavigation()
         {
-            _navigation.AddGridForRoom(_superMap.name, _superMap.transform.position, _superMap.m_Width, _superMap.m_Height);
+            _navGraph = _navigation.AddNavGraphForRoom(_superMap.name, _superMap.transform.position, _superMap.m_Width, _superMap.m_Height);
         }
 
         private void GenerateCharacters()

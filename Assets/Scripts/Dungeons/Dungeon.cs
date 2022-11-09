@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using Heroes;
 using Infrastructure;
-using Surrounding;
-using Surrounding.Rooms;
+using Surrounding.Staging;
 using UnityEngine;
 using Zenject;
 
@@ -10,33 +9,24 @@ namespace Dungeons
 {
     public class Dungeon : MonoBehaviour
     {
-        public Room ActiveRoom { get; private set; }
-
         [SerializeField] private float _timeToFinishRun = 1.5f;
 
         private Hero _hero;
-        private RoomGenerator _roomGenerator;
+        private Stages _stages;
 
         private GameRun _gameRun;
 
-        private ActiveRepositories _activeRepositories;
-
         [Inject]
-        public void Construct(Hero hero, RoomGenerator roomGenerator,
-            GameRun gameRun, ActiveRepositories activeRepositories)
+        public void Construct(Hero hero, Stages stages, GameRun gameRun)
         {
             _hero = hero;
-            _roomGenerator = roomGenerator;
+            _stages = stages;
 
             _gameRun = gameRun;
-
-            _activeRepositories = activeRepositories;
         }
 
         public void Initialize()
         {
-            ActiveRoom = _roomGenerator.CreateFirstRoom();
-
             _hero.Slain += FinishRun;
 
             _hero.Activate();
@@ -46,7 +36,7 @@ namespace Dungeons
 
         public void Dispose()
         {
-            _roomGenerator.Dispose();
+            _stages.Dispose();
 
             _hero.Slain -= FinishRun;
 
@@ -55,19 +45,11 @@ namespace Dungeons
 
         private void StartRun()
         {
-            _activeRepositories.FillRepositories(ActiveRoom.Repositories);
-        }
-
-        public void ChangeActiveRoomTo(Room room)
-        {
-            _activeRepositories.FillRepositories(room.Repositories);
-
-            ActiveRoom = room;
+            _stages.StartFirstStage();
         }
 
         private void FinishRun()
         {
-            Dispose();
             StartCoroutine(CFinishRunAfterSomeTime());
         }
 

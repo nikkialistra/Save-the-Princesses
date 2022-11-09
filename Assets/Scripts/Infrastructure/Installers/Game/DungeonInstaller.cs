@@ -2,6 +2,7 @@
 using Infrastructure.Bootstrap;
 using Sirenix.OdinInspector;
 using Surrounding.Rooms;
+using Surrounding.Staging;
 using UnityEngine;
 using Zenject;
 
@@ -24,6 +25,7 @@ namespace Infrastructure.Installers.Game
             Container.BindInstance(_dungeon);
 
             BindRooms();
+            BindStages();
 
             BindBootstrap();
         }
@@ -36,6 +38,14 @@ namespace Infrastructure.Installers.Game
                 .FromSubContainerResolve()
                 .ByNewContextPrefab(_roomPrefab)
                 .UnderTransform(_roomGenerator.transform);
+        }
+
+        private void BindStages()
+        {
+            Container.Bind<Stages>().AsSingle();
+
+            Container.BindFactory<Stage, Stage.Factory>()
+                .FromNewComponentOnNewGameObject();
         }
 
         private void BindBootstrap()
