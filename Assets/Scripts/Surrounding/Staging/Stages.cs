@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 
 namespace Surrounding.Staging
 {
@@ -15,12 +16,12 @@ namespace Surrounding.Staging
             _stageFactory = stageFactory;
         }
 
-        public void StartFirstStage()
+        public async UniTask StartFirstStage()
         {
             var stage = _stageFactory.Create();
             _stages.Add(stage);
 
-            stage.Initialize(StageType.RuinedDungeon);
+            await stage.Initialize(StageType.RuinedDungeon);
 
             CurrentStage = stage;
         }

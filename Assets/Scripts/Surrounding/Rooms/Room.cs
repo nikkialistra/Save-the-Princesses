@@ -46,13 +46,9 @@ namespace Surrounding.Rooms
             transform.parent = parent;
 
             _superMap = Instantiate(roomKind.Map, transform);
-
             CenterSuperMap();
 
             InitializeGenerators();
-            SetupNavigation();
-
-            GenerateCharacters();
         }
 
         public void SetupNavigation()

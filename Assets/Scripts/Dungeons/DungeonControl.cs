@@ -1,4 +1,6 @@
-﻿using Heroes;
+﻿using System;
+using Cysharp.Threading.Tasks;
+using Heroes;
 using UnityEngine;
 using Zenject;
 
@@ -18,11 +20,13 @@ namespace Dungeons
             _hero = hero;
         }
 
-        public void Initialize()
+        public async UniTaskVoid Initialize(Action onFinish)
         {
-            _dungeon.Initialize();
+            await _dungeon.Initialize();
 
             _hero.PlaceAt(_heroSpawnPoint.position);
+
+            onFinish();
         }
 
         public void Dispose()

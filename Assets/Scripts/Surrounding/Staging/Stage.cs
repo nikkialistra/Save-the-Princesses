@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Surrounding.Rooms;
 using UnityEngine;
 using Zenject;
@@ -23,12 +24,13 @@ namespace Surrounding.Staging
             _activeRepositories = activeRepositories;
         }
 
-        public void Initialize(StageType stageType)
+        public async UniTask Initialize(StageType stageType)
         {
             name = stageType.GetName();
 
             GenerateRooms();
-            SetupNavigation();
+
+            await SetupNavigation();
 
             GenerateCharacters();
         }
@@ -41,8 +43,10 @@ namespace Surrounding.Staging
             ChangeActiveRoomTo(room);
         }
 
-        private void SetupNavigation()
+        private async UniTask SetupNavigation()
         {
+            await UniTask.NextFrame();
+
             foreach (var room in _rooms)
                 room.SetupNavigation();
         }

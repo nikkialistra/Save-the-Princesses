@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Cysharp.Threading.Tasks;
 using Heroes;
 using Infrastructure;
 using Surrounding.Staging;
@@ -25,13 +26,13 @@ namespace Dungeons
             _gameRun = gameRun;
         }
 
-        public void Initialize()
+        public async UniTask Initialize()
         {
+            await _stages.StartFirstStage();
+
             _hero.Slain += FinishRun;
 
             _hero.Activate();
-
-            StartRun();
         }
 
         public void Dispose()
@@ -41,11 +42,6 @@ namespace Dungeons
             _hero.Slain -= FinishRun;
 
             _hero.Deactivate();
-        }
-
-        private void StartRun()
-        {
-            _stages.StartFirstStage();
         }
 
         private void FinishRun()

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using Pathfinding;
+﻿using Pathfinding;
 using UnityEngine;
 
 namespace Surrounding
