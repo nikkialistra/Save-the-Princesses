@@ -20,7 +20,7 @@ namespace Surrounding.Staging
             var stage = _stageFactory.Create();
             _stages.Add(stage);
 
-            stage.Initialize();
+            stage.Initialize(StageType.RuinedDungeon);
 
             CurrentStage = stage;
         }

@@ -23,8 +23,10 @@ namespace Surrounding.Staging
             _activeRepositories = activeRepositories;
         }
 
-        public void Initialize()
+        public void Initialize(StageType stageType)
         {
+            name = stageType.GetName();
+
             var room = _roomGenerator.Create();
             AddRoom(room);
             ChangeActiveRoomTo(room);

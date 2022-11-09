@@ -1,5 +1,8 @@
 ﻿using System;
 using Characters;
+using Characters.Stats.Character;
+using Characters.Stats.Melee;
+using Characters.Stats.Ranged;
 using Entities;
 using Heroes;
 using Surrounding.Rooms;
@@ -10,6 +13,9 @@ namespace Enemies
 {
     [RequireComponent(typeof(Character))]
     [RequireComponent(typeof(CharacterMoving))]
+    [RequireComponent(typeof(CharacterStats))]
+    [RequireComponent(typeof(MeleeStats))]
+    [RequireComponent(typeof(RangedStats))]
     [RequireComponent(typeof(EnemyAttacker))]
     public class Enemy : MonoBehaviour, IEntity
     {
@@ -28,6 +34,10 @@ namespace Enemies
         [SerializeField] private float _viewDistance = 7;
 
         private Character _character;
+
+        private CharacterStats _characterStats;
+        private MeleeStats _meleeStats;
+        private RangedStats _rangedStats;
 
         [Inject]
         public void Construct(Hero hero)
@@ -72,6 +82,10 @@ namespace Enemies
         {
             _character = GetComponent<Character>();
 
+            _characterStats = GetComponent<CharacterStats>();
+            _meleeStats = GetComponent<MeleeStats>();
+            _rangedStats = GetComponent<RangedStats>();
+
             Moving = GetComponent<CharacterMoving>();
             Attacker = GetComponent<EnemyAttacker>();
         }
@@ -79,6 +93,10 @@ namespace Enemies
         private void InitializeComponents()
         {
             _character.Initialize();
+
+            _characterStats.Initialize();
+            _meleeStats.Initialize();
+            _rangedStats.Initialize();
 
             Moving.Initialize();
             Attacker.Initialize();

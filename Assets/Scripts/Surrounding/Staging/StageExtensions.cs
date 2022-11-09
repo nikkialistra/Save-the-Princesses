@@ -8,7 +8,7 @@ namespace Surrounding.Staging
         {
             return stageType switch
             {
-                StageType.RuinedDungeon => "RuinedDungeon",
+                StageType.RuinedDungeon => "Ruined Dungeon",
                 _ => throw new ArgumentOutOfRangeException()
             };
         }

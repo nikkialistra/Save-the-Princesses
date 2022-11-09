@@ -42,6 +42,8 @@ namespace Surrounding.Rooms
 
         public void Initialize(RoomKind roomKind)
         {
+            name = roomKind.Map.name;
+
             _superMap = Instantiate(roomKind.Map, transform);
 
             CenterSuperMap();

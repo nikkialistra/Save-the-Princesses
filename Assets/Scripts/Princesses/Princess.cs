@@ -75,6 +75,7 @@ namespace Princesses
         private PrincessActualVelocity _actualVelocity;
 
         private Character _character;
+
         private CharacterStats _characterStats;
 
         [Inject]
