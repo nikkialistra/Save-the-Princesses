@@ -40,18 +40,31 @@ namespace Surrounding.Rooms
             _enemyGenerator = enemyGenerator;
         }
 
-        public void Initialize(RoomKind roomKind)
+        public void Initialize(RoomKind roomKind, Transform parent)
         {
             name = roomKind.Map.name;
+            transform.parent = parent;
 
             _superMap = Instantiate(roomKind.Map, transform);
 
             CenterSuperMap();
 
             InitializeGenerators();
-            InitializeNavigation();
+            SetupNavigation();
 
             GenerateCharacters();
+        }
+
+        public void SetupNavigation()
+        {
+            _navGraph = _navigation.AddNavGraphForRoom(_superMap.name, _superMap.transform.position,
+                _superMap.m_Width, _superMap.m_Height);
+        }
+
+        public void GenerateCharacters()
+        {
+            _princessGenerator.Generate();
+            _enemyGenerator.Generate();
         }
 
         public void Dispose()
@@ -68,11 +81,6 @@ namespace Surrounding.Rooms
                     return true;
 
             return false;
-        }
-
-        public void PlaceUnder(Transform parent)
-        {
-            transform.parent = parent;
         }
 
         private void CenterSuperMap()
@@ -93,17 +101,6 @@ namespace Surrounding.Rooms
 
             _princessGenerator.Initialize(princessSpawnPointsLayer);
             _enemyGenerator.Initialize(enemySpawnPointsLayer);
-        }
-
-        private void InitializeNavigation()
-        {
-            _navGraph = _navigation.AddNavGraphForRoom(_superMap.name, _superMap.transform.position, _superMap.m_Width, _superMap.m_Height);
-        }
-
-        private void GenerateCharacters()
-        {
-            _princessGenerator.Generate();
-            _enemyGenerator.Generate();
         }
 
         public class Factory : PlaceholderFactory<Room> { }

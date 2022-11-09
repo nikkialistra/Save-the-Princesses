@@ -33,7 +33,8 @@ namespace Hubs
 
         public void Initialize()
         {
-            _hubRoom.Initialize(_hubRoomKind);
+            _hubRoom.Initialize(_hubRoomKind, transform);
+            _hubRoom.SetupNavigation();
 
             _hero.PlaceAt(_heroSpawnPoint.position);
             _hero.Activate();

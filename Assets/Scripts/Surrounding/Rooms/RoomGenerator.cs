@@ -16,10 +16,10 @@ namespace Surrounding.Rooms
             _roomFactory = roomFactory;
         }
 
-        public Room Create()
+        public Room Create(Transform parent)
         {
             var room = _roomFactory.Create();
-            room.Initialize(_roomKinds[0]);
+            room.Initialize(_roomKinds[0], parent);
 
             return room;
         }

@@ -27,9 +27,30 @@ namespace Surrounding.Staging
         {
             name = stageType.GetName();
 
-            var room = _roomGenerator.Create();
+            GenerateRooms();
+            SetupNavigation();
+
+            GenerateCharacters();
+        }
+
+        private void GenerateRooms()
+        {
+            var room = _roomGenerator.Create(transform);
+
             AddRoom(room);
             ChangeActiveRoomTo(room);
+        }
+
+        private void SetupNavigation()
+        {
+            foreach (var room in _rooms)
+                room.SetupNavigation();
+        }
+
+        private void GenerateCharacters()
+        {
+            foreach (var room in _rooms)
+                room.GenerateCharacters();
         }
 
         public void Dispose()
@@ -41,8 +62,6 @@ namespace Surrounding.Staging
         private void AddRoom(Room room)
         {
             _rooms.Add(room);
-
-            room.PlaceUnder(transform);
         }
 
         private void ChangeActiveRoomTo(Room room)
