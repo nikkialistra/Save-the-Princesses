@@ -1,4 +1,7 @@
 ﻿using Controls;
+using Data.Enemies;
+using Data.Princesses.Elements;
+using Data.Princesses.Palettes;
 using Enemies;
 using Enemies.Services;
 using Enemies.Services.Repositories;
@@ -6,8 +9,6 @@ using Heroes;
 using Infrastructure.Bootstrap;
 using Infrastructure.Controls;
 using Princesses;
-using Princesses.Services.Elements;
-using Princesses.Services.Palettes;
 using Princesses.Services.Repositories;
 using Saving.Progress;
 using Saving.Saves;
@@ -35,17 +36,20 @@ namespace Infrastructure.Installers.Game
         [Title("Surroundings")]
         [SerializeField] private Navigation _navigation;
 
-        [Title("Characters Spawning")]
+        [Title("Character Factories")]
         [SerializeField] private Princess _princessPrefab;
         [SerializeField] private EnemyFactory _enemyFactory;
+
+        [Title("Enemies Data")]
+        [SerializeField] private EnemyFrequencies _enemyFrequencies;
+
+        [Title("Princesses Data")]
+        [SerializeField] private PrincessPalettesRegistry _princessPalettesRegistry;
+        [SerializeField] private PrincessElementControllersRegistry _princessElementControllersRegistry;
 
         [Title("Train System")]
         [SerializeField] private Train _train;
         [SerializeField] private HandsSprites _handsSprites;
-
-        [Title("Princesses")]
-        [SerializeField] private PrincessPalettesRegistry _princessPalettesRegistry;
-        [SerializeField] private PrincessElementControllersRegistry _princessElementControllersRegistry;
 
         [Title("Input")]
         [SerializeField] private PlayerInput _playerInput;
@@ -76,9 +80,10 @@ namespace Infrastructure.Installers.Game
             Container.BindInstance(_room);
             Container.BindInstance(_navigation);
 
-            BindCharactersSpawning();
+            BindCharacterFactories();
+            BindEnemiesData();
+            BindPrincessesData();
             BindTrainSystem();
-            BindPrincesses();
             BindRepositories();
             BindInput();
             BindUI();
@@ -89,7 +94,7 @@ namespace Infrastructure.Installers.Game
             BindBootstrap();
         }
 
-        private void BindCharactersSpawning()
+        private void BindCharacterFactories()
         {
             Container.BindFactory<Princess, Princess.Factory>()
                 .FromSubContainerResolve()
@@ -104,7 +109,12 @@ namespace Infrastructure.Installers.Game
             Container.BindInstance(_handsSprites);
         }
 
-        private void BindPrincesses()
+        private void BindEnemiesData()
+        {
+            Container.BindInstance(_enemyFrequencies);
+        }
+
+        private void BindPrincessesData()
         {
             Container.BindInstance(_princessPalettesRegistry);
             Container.BindInstance(_princessElementControllersRegistry);

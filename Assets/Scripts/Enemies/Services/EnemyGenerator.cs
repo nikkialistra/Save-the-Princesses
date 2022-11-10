@@ -1,7 +1,8 @@
-﻿using Enemies.Services.Repositories;
+﻿using Data.Enemies;
+using Enemies.Services.Repositories;
 using SuperTiled2Unity;
-using Surrounding;
 using Surrounding.Rooms;
+using Surrounding.Staging;
 using UnityEngine;
 
 namespace Enemies.Services
@@ -10,13 +11,16 @@ namespace Enemies.Services
     {
         private SpawnPoints _spawnPoints;
 
-        private readonly EnemyFactory _enemyFactory;
+        private readonly EnemyFrequencies _frequencies;
+
+        private readonly EnemyFactory _factory;
 
         private readonly EnemyRoomRepository _repository;
 
-        public EnemyGenerator(EnemyFactory enemyFactory, EnemyRoomRepository repository)
+        public EnemyGenerator(EnemyFrequencies frequencies, EnemyFactory factory, EnemyRoomRepository repository)
         {
-            _enemyFactory = enemyFactory;
+            _frequencies = frequencies;
+            _factory = factory;
             _repository = repository;
         }
 
@@ -26,12 +30,12 @@ namespace Enemies.Services
             _spawnPoints = new SpawnPoints(spawnPoints);
         }
 
-        public void Generate()
+        public void GenerateFor(StageType stageType)
         {
             var count = ComputeCount();
 
             foreach (var spawnPoint in _spawnPoints.TakeSome(count))
-                SpawnAt(EnemyType.Apostate, spawnPoint);
+                SpawnFor(stageType, spawnPoint);
         }
 
         private static int ComputeCount()
@@ -39,9 +43,11 @@ namespace Enemies.Services
             return Random.Range(0, 4);
         }
 
-        private void SpawnAt(EnemyType enemyType, Vector3 position)
+        private void SpawnFor(StageType stageType, Vector3 position)
         {
-            var enemy = _enemyFactory.Create(enemyType);
+            var enemyType = _frequencies.GetRandomEnemyTypeFor(stageType);
+
+            var enemy = _factory.Create(enemyType);
             enemy.Initialize();
 
             _repository.Add(enemy, position);

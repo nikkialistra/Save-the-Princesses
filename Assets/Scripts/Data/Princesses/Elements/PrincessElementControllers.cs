@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Princesses.Services.Elements
+namespace Data.Princesses.Elements
 {
     [Serializable]
     public class PrincessElementControllers

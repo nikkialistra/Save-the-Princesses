@@ -3,6 +3,7 @@ using Enemies.Services;
 using Pathfinding;
 using Princesses.Services;
 using SuperTiled2Unity;
+using Surrounding.Staging;
 using UnityEngine;
 using Zenject;
 
@@ -16,6 +17,8 @@ namespace Surrounding.Rooms
         public RoomRepositories Repositories { get; private set; }
 
         [SerializeField] private LayerMask _foreground;
+
+        private StageType _stageType;
 
         private readonly Collider2D[] _boundHits = new Collider2D[10];
 
@@ -45,6 +48,8 @@ namespace Surrounding.Rooms
             name = roomKind.Map.name;
             transform.parent = parent;
 
+            _stageType = roomKind.StageType;
+
             _superMap = Instantiate(roomKind.Map, transform);
             CenterSuperMap();
 
@@ -60,7 +65,7 @@ namespace Surrounding.Rooms
         public void GenerateCharacters()
         {
             _princessGenerator.Generate();
-            _enemyGenerator.Generate();
+            _enemyGenerator.GenerateFor(_stageType);
         }
 
         public void Dispose()

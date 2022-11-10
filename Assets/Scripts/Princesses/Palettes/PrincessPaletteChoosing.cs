@@ -1,5 +1,5 @@
-﻿using Princesses.Palettes.Types;
-using Princesses.Services.Palettes;
+﻿using Data.Princesses.Palettes;
+using Princesses.Palettes.Types;
 using UnityEngine;
 using Zenject;
 

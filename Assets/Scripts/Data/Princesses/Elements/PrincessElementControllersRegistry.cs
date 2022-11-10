@@ -6,7 +6,7 @@ using UnityEngine;
 using static Princesses.Types.ElementType;
 using static Princesses.Types.PrincessType;
 
-namespace Princesses.Services.Elements
+namespace Data.Princesses.Elements
 {
     public class PrincessElementControllersRegistry : SerializedMonoBehaviour
     {

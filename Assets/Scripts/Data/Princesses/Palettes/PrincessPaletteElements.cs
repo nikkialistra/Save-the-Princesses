@@ -1,7 +1,7 @@
 ﻿using System;
 using Princesses.Palettes.Types;
 
-namespace Princesses.Services.Palettes
+namespace Data.Princesses.Palettes
 {
     [Serializable]
     public class PrincessPaletteElements

@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using static Princesses.Types.PrincessType;
 
-namespace Princesses.Services.Palettes
+namespace Data.Princesses.Palettes
 {
     public class PrincessPalettesRegistry : SerializedMonoBehaviour
     {

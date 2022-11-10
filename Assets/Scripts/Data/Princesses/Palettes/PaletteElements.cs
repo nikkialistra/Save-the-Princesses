@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Princesses.Services.Palettes
+namespace Data.Princesses.Palettes
 {
     [Serializable]
     public class PaletteElements<T> where T : ScriptableObject

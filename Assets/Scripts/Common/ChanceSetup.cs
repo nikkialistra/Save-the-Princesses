@@ -7,11 +7,11 @@ namespace Common
     [Serializable]
     public class ChanceSetup
     {
-        [VerticalGroup("Split/Right")]
+        [VerticalGroup("Split/Right", order: 1)]
         [LabelWidth(110)]
         public float RelativeChance = 1;
 
-        [VerticalGroup("Split/Right")]
+        [VerticalGroup("Split/Right", order: 1)]
         [LabelWidth(110)]
         [ReadOnly]
         public string PercentChance = "100%";
