@@ -13,11 +13,31 @@ MonoBehaviour:
   m_Name: Knight
   m_EditorClassIdentifier: 
   Heads:
-    _elementControllers: []
+    _elementControllers:
+    - RelativeChance: 1
+      PercentChance: 33.33%
+      _chance: 0.33333334
+      Controller: {fileID: 22100000, guid: 11cbb3cb50b639342a2283ea2a93b589, type: 2}
+    - RelativeChance: 1
+      PercentChance: 33.33%
+      _chance: 0.33333334
+      Controller: {fileID: 22100000, guid: 27ef700dfefe88d47b6e3b23f246a4fe, type: 2}
+    - RelativeChance: 1
+      PercentChance: 33.33%
+      _chance: 0.33333334
+      Controller: {fileID: 22100000, guid: 97eda2bde7ef87f449287fea1572194b, type: 2}
   Garments:
-    _elementControllers: []
+    _elementControllers:
+    - RelativeChance: 1
+      PercentChance: 100%
+      _chance: 0
+      Controller: {fileID: 22100000, guid: 9a92a1d779403d5449cc33525497d24d, type: 2}
   Hairs:
-    _elementControllers: []
+    _elementControllers:
+    - RelativeChance: 1
+      PercentChance: 100%
+      _chance: 0
+      Controller: {fileID: 22100000, guid: 59cbdb2029045504bb38d9fe21126b85, type: 2}
   BodyAccessories:
     _elementControllers: []
   HeadAccessories:

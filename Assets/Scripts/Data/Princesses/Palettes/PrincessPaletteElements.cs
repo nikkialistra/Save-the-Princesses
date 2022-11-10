@@ -1,10 +1,10 @@
-﻿using System;
-using Princesses.Palettes.Types;
+﻿using Princesses.Palettes.Types;
+using UnityEngine;
 
 namespace Data.Princesses.Palettes
 {
-    [Serializable]
-    public class PrincessPaletteElements
+    [CreateAssetMenu(fileName = "(Palette Name)", menuName = "Data/Palettes/Palette")]
+    public class PrincessPaletteElements : ScriptableObject
     {
         public PaletteElements<SkinPalette> SkinPaletteElements = new();
         public PaletteElements<HairPalette> HairPaletteElements = new();

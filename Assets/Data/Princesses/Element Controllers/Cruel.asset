@@ -15,10 +15,30 @@ MonoBehaviour:
   Heads:
     _elementControllers: []
   Garments:
-    _elementControllers: []
+    _elementControllers:
+    - RelativeChance: 1
+      PercentChance: 100%
+      _chance: 0
+      Controller: {fileID: 22100000, guid: 679b11df115b2d141ab4a6e505ea49e6, type: 2}
   Hairs:
     _elementControllers: []
   BodyAccessories:
-    _elementControllers: []
+    _elementControllers:
+    - RelativeChance: 7
+      PercentChance: 70%
+      _chance: 0.7
+      Controller: {fileID: 22100000, guid: 596a79c2925e9784887054733d8dd01d, type: 2}
+    - RelativeChance: 3
+      PercentChance: 30%
+      _chance: 0.3
+      Controller: {fileID: 22100000, guid: 70be6c0bec8a2494c9c8303b0c8def2f, type: 2}
   HeadAccessories:
-    _elementControllers: []
+    _elementControllers:
+    - RelativeChance: 7
+      PercentChance: 70%
+      _chance: 0.7
+      Controller: {fileID: 22100000, guid: 48c13d248fc66554db53ca9c45e5177a, type: 2}
+    - RelativeChance: 3
+      PercentChance: 30%
+      _chance: 0.3
+      Controller: {fileID: 22100000, guid: 394f9754c8d15f7458b44474ddafa22b, type: 2}

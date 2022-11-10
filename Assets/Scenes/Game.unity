@@ -482,11 +482,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: fd6eb26601f49224abcd899d24dc2bfa, type: 2}
-    - {fileID: 11400000, guid: c6e7c8b597b2fd742937d3f16a4277a2, type: 2}
-    - {fileID: 11400000, guid: c9ea275ce341f1d4db49be8ac76b3092, type: 2}
-    - {fileID: 11400000, guid: b7fbf38ecd3a0b84b8ab32375a67968e, type: 2}
-    - {fileID: 11400000, guid: 0847a81d822a7ef4ba461d355cccded2, type: 2}
+    - {fileID: 11400000, guid: a5d68a5c6fc8ce8478d799993037e433, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -519,166 +515,8 @@ MonoBehaviour:
       Entry: 3
       Data: 2
     - Name: $v
-      Entry: 7
-      Data: 2|Data.Princesses.Palettes.PrincessPaletteElements, Scripts
-    - Name: SkinPaletteElements
-      Entry: 7
-      Data: 3|Data.Princesses.Palettes.PaletteElements`1[[Princesses.Palettes.Types.SkinPalette,
-        Scripts]], Scripts
-    - Name: _paletteElements
-      Entry: 7
-      Data: 4|System.Collections.Generic.List`1[[Data.Princesses.Palettes.PaletteElement`1[[Princesses.Palettes.Types.SkinPalette,
-        Scripts]], Scripts]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 5
-    - Name: 
-      Entry: 7
-      Data: 5|Data.Princesses.Palettes.PaletteElement`1[[Princesses.Palettes.Types.SkinPalette,
-        Scripts]], Scripts
-    - Name: RelativeChance
-      Entry: 4
-      Data: 1
-    - Name: PercentChance
-      Entry: 1
-      Data: 20%
-    - Name: _chance
-      Entry: 4
-      Data: 0.2
-    - Name: Palette
       Entry: 10
       Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 6|Data.Princesses.Palettes.PaletteElement`1[[Princesses.Palettes.Types.SkinPalette,
-        Scripts]], Scripts
-    - Name: RelativeChance
-      Entry: 4
-      Data: 1
-    - Name: PercentChance
-      Entry: 1
-      Data: 20%
-    - Name: _chance
-      Entry: 4
-      Data: 0.2
-    - Name: Palette
-      Entry: 10
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 7|Data.Princesses.Palettes.PaletteElement`1[[Princesses.Palettes.Types.SkinPalette,
-        Scripts]], Scripts
-    - Name: RelativeChance
-      Entry: 4
-      Data: 1
-    - Name: PercentChance
-      Entry: 1
-      Data: 20%
-    - Name: _chance
-      Entry: 4
-      Data: 0.2
-    - Name: Palette
-      Entry: 10
-      Data: 2
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 8|Data.Princesses.Palettes.PaletteElement`1[[Princesses.Palettes.Types.SkinPalette,
-        Scripts]], Scripts
-    - Name: RelativeChance
-      Entry: 4
-      Data: 1
-    - Name: PercentChance
-      Entry: 1
-      Data: 20%
-    - Name: _chance
-      Entry: 4
-      Data: 0.2
-    - Name: Palette
-      Entry: 10
-      Data: 3
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 9|Data.Princesses.Palettes.PaletteElement`1[[Princesses.Palettes.Types.SkinPalette,
-        Scripts]], Scripts
-    - Name: RelativeChance
-      Entry: 4
-      Data: 1
-    - Name: PercentChance
-      Entry: 1
-      Data: 20%
-    - Name: _chance
-      Entry: 4
-      Data: 0.2
-    - Name: Palette
-      Entry: 10
-      Data: 4
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: HairPaletteElements
-      Entry: 7
-      Data: 10|Data.Princesses.Palettes.PaletteElements`1[[Princesses.Palettes.Types.HairPalette,
-        Scripts]], Scripts
-    - Name: _paletteElements
-      Entry: 7
-      Data: 11|System.Collections.Generic.List`1[[Data.Princesses.Palettes.PaletteElement`1[[Princesses.Palettes.Types.HairPalette,
-        Scripts]], Scripts]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: GarmentPaletteElements
-      Entry: 7
-      Data: 12|Data.Princesses.Palettes.PaletteElements`1[[Princesses.Palettes.Types.GarmentPalette,
-        Scripts]], Scripts
-    - Name: _paletteElements
-      Entry: 7
-      Data: 13|System.Collections.Generic.List`1[[Data.Princesses.Palettes.PaletteElement`1[[Princesses.Palettes.Types.GarmentPalette,
-        Scripts]], Scripts]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -691,85 +529,7 @@ MonoBehaviour:
   _originalSkinPalette: {fileID: 11400000, guid: ef38ccf23da2a944bb892b9bf0f79b18, type: 2}
   _originalHairPalette: {fileID: 11400000, guid: 6f894dec8dc45224d80143aaa83eade4, type: 2}
   _originalGarmentPalette: {fileID: 11400000, guid: 684e4c4f8e77a7141b8c97582bc3bf05, type: 2}
-  _defaultPaletteElements:
-    SkinPaletteElements:
-      _paletteElements:
-      - RelativeChance: 1
-        PercentChance: 20%
-        _chance: 0.2
-        Palette: {fileID: 11400000, guid: fab9190da93fa2841bcbb3458d8384a0, type: 2}
-      - RelativeChance: 1
-        PercentChance: 20%
-        _chance: 0.2
-        Palette: {fileID: 11400000, guid: ef38ccf23da2a944bb892b9bf0f79b18, type: 2}
-      - RelativeChance: 1
-        PercentChance: 20%
-        _chance: 0.2
-        Palette: {fileID: 11400000, guid: f1b928e2f79b06f4e95af7f31eac865f, type: 2}
-      - RelativeChance: 1
-        PercentChance: 20%
-        _chance: 0.2
-        Palette: {fileID: 11400000, guid: 2ca3b4a8f83115446b5d09f73c1b76e9, type: 2}
-      - RelativeChance: 1
-        PercentChance: 20%
-        _chance: 0.2
-        Palette: {fileID: 11400000, guid: c596388920a4b2746a2773ad76b7583a, type: 2}
-    HairPaletteElements:
-      _paletteElements:
-      - RelativeChance: 1
-        PercentChance: 25%
-        _chance: 0.25
-        Palette: {fileID: 11400000, guid: 6f894dec8dc45224d80143aaa83eade4, type: 2}
-      - RelativeChance: 1
-        PercentChance: 25%
-        _chance: 0.25
-        Palette: {fileID: 11400000, guid: 5cb424584f2788449b22e1181083f879, type: 2}
-      - RelativeChance: 1
-        PercentChance: 25%
-        _chance: 0.25
-        Palette: {fileID: 11400000, guid: 544f79bbe88fc794ca48f798bb472b6c, type: 2}
-      - RelativeChance: 1
-        PercentChance: 25%
-        _chance: 0.25
-        Palette: {fileID: 11400000, guid: 3651a5d0942e6a044a7625d0c19ad694, type: 2}
-    GarmentPaletteElements:
-      _paletteElements:
-      - RelativeChance: 1
-        PercentChance: 11.11%
-        _chance: 0.11111111
-        Palette: {fileID: 11400000, guid: 013e591238982d7469cdef45ae3118b1, type: 2}
-      - RelativeChance: 1
-        PercentChance: 11.11%
-        _chance: 0.11111111
-        Palette: {fileID: 11400000, guid: ca409134cf6551d448730b2572754ebf, type: 2}
-      - RelativeChance: 1
-        PercentChance: 11.11%
-        _chance: 0.11111111
-        Palette: {fileID: 11400000, guid: 1d21ba5bafe77d045ae78dc62444581c, type: 2}
-      - RelativeChance: 1
-        PercentChance: 11.11%
-        _chance: 0.11111111
-        Palette: {fileID: 11400000, guid: eb49411cf4dd55443a1e9cf2c5454075, type: 2}
-      - RelativeChance: 1
-        PercentChance: 11.11%
-        _chance: 0.11111111
-        Palette: {fileID: 11400000, guid: 373b56ed71aefe045b80ffbe1fe03a27, type: 2}
-      - RelativeChance: 1
-        PercentChance: 11.11%
-        _chance: 0.11111111
-        Palette: {fileID: 11400000, guid: 7b3316f13937cfb4e9dd3e08bb3480ce, type: 2}
-      - RelativeChance: 1
-        PercentChance: 11.11%
-        _chance: 0.11111111
-        Palette: {fileID: 11400000, guid: 2b042abdba7ad3942b8faee8e525704f, type: 2}
-      - RelativeChance: 1
-        PercentChance: 11.11%
-        _chance: 0.11111111
-        Palette: {fileID: 11400000, guid: 684e4c4f8e77a7141b8c97582bc3bf05, type: 2}
-      - RelativeChance: 1
-        PercentChance: 11.11%
-        _chance: 0.11111111
-        Palette: {fileID: 11400000, guid: afd7917c035b50241bb1382803bd4309, type: 2}
+  _defaultPaletteElements: {fileID: 11400000, guid: 6bd350f0c78a7d8479cff3cd8fcde973, type: 2}
 --- !u!114 &926162204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -786,8 +546,8 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 11400000, guid: efb377fb200916c42a60ac8e82132e72, type: 2}
+    - {fileID: 11400000, guid: a5e05cadd504be140aff6cbf3a4ec767, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -844,7 +604,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  _defaultControllers: {fileID: 0}
+  _defaultControllers: {fileID: 11400000, guid: 2cd7de09c9698534dbea4607b8904539, type: 2}
 --- !u!4 &926162205
 Transform:
   m_ObjectHideFlags: 0
@@ -1795,9 +1555,9 @@ MonoBehaviour:
   _camera: {fileID: 7217504656796712229}
   _hero: {fileID: 1683786886}
   _room: {fileID: 5731957735619916329, guid: 93b0589ff82ac6d45be8a028c4becc10, type: 3}
-  _navigation: {fileID: 1470453273}
+  _navigation: {fileID: 0}
   _princessPrefab: {fileID: 2453188263931797200, guid: 094c5447a4b7f7c4e8e20c66751280d3, type: 3}
-  _enemyFactory: {fileID: 224152724}
+  _enemyFactory: {fileID: 0}
   _enemyFrequenciesRegistry: {fileID: 0}
   _princessPalettesRegistry: {fileID: 926162203}
   _princessElementControllersRegistry: {fileID: 926162204}
@@ -2124,7 +1884,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.4375
+  orthographic size: 7.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
