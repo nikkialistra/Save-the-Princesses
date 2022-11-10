@@ -10,11 +10,11 @@ namespace Enemies.Services
     {
         private SpawnPoints _spawnPoints;
 
-        private readonly Enemy.Factory _enemyFactory;
+        private readonly EnemyFactory _enemyFactory;
 
         private readonly EnemyRoomRepository _repository;
 
-        public EnemyGenerator(Enemy.Factory enemyFactory, EnemyRoomRepository repository)
+        public EnemyGenerator(EnemyFactory enemyFactory, EnemyRoomRepository repository)
         {
             _enemyFactory = enemyFactory;
             _repository = repository;
@@ -31,7 +31,7 @@ namespace Enemies.Services
             var count = ComputeCount();
 
             foreach (var spawnPoint in _spawnPoints.TakeSome(count))
-                SpawnAt(spawnPoint);
+                SpawnAt(EnemyType.Apostate, spawnPoint);
         }
 
         private static int ComputeCount()
@@ -39,9 +39,9 @@ namespace Enemies.Services
             return Random.Range(0, 4);
         }
 
-        private void SpawnAt(Vector3 position)
+        private void SpawnAt(EnemyType enemyType, Vector3 position)
         {
-            var enemy = _enemyFactory.Create();
+            var enemy = _enemyFactory.Create(enemyType);
             enemy.Initialize();
 
             _repository.Add(enemy, position);

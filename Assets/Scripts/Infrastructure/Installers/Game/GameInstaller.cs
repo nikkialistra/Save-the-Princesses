@@ -1,5 +1,6 @@
 ﻿using Controls;
 using Enemies;
+using Enemies.Services;
 using Enemies.Services.Repositories;
 using Heroes;
 using Infrastructure.Bootstrap;
@@ -36,7 +37,7 @@ namespace Infrastructure.Installers.Game
 
         [Title("Characters Spawning")]
         [SerializeField] private Princess _princessPrefab;
-        [SerializeField] private Enemy _enemyPrefab;
+        [SerializeField] private EnemyFactory _enemyFactory;
 
         [Title("Train System")]
         [SerializeField] private Train _train;
@@ -94,9 +95,7 @@ namespace Infrastructure.Installers.Game
                 .FromSubContainerResolve()
                 .ByNewContextPrefab(_princessPrefab);
 
-            Container.BindFactory<Enemy, Enemy.Factory>()
-                .FromSubContainerResolve()
-                .ByNewContextPrefab(_enemyPrefab);
+            Container.BindInstance(_enemyFactory);
         }
 
         private void BindTrainSystem()

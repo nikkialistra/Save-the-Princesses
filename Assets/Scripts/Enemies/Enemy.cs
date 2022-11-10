@@ -109,7 +109,5 @@ namespace Enemies
             Moving.Dispose();
             Attacker.Dispose();
         }
-
-        public class Factory : PlaceholderFactory<Enemy> { }
     }
 }
