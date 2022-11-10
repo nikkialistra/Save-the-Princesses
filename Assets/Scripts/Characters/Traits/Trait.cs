@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Characters.Traits
 {
-    [CreateAssetMenu(fileName = "Trait", menuName = "Trait")]
+    [CreateAssetMenu(fileName = "(Trait Name)", menuName = "Data/Trait")]
     public class Trait : ScriptableObject
     {
         public IReadOnlyCollection<StatModifier<CharacterStat>> CharacterStatModifiers => _characterStatModifiers;

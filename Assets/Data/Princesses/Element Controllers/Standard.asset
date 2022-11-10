@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29fffec227f24feaa6b0919f96494d01, type: 3}
+  m_Name: Standard
+  m_EditorClassIdentifier: 
+  Heads:
+    _elementControllers:
+    - RelativeChance: 1
+      PercentChance: 100%
+      _chance: 1
+      Controller: {fileID: 22100000, guid: 684b6b63304b5284fae542fe15cd0c0d, type: 2}
+  Garments:
+    _elementControllers:
+    - RelativeChance: 1
+      PercentChance: 100%
+      _chance: 0
+      Controller: {fileID: 0}
+  Hairs:
+    _elementControllers: []
+  BodyAccessories:
+    _elementControllers: []
+  HeadAccessories:
+    _elementControllers: []

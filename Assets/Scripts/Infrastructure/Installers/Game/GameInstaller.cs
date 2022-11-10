@@ -41,7 +41,7 @@ namespace Infrastructure.Installers.Game
         [SerializeField] private EnemyFactory _enemyFactory;
 
         [Title("Enemies Data")]
-        [SerializeField] private EnemyFrequencies _enemyFrequencies;
+        [SerializeField] private EnemyFrequenciesRegistry _enemyFrequenciesRegistry;
 
         [Title("Princesses Data")]
         [SerializeField] private PrincessPalettesRegistry _princessPalettesRegistry;
@@ -111,7 +111,7 @@ namespace Infrastructure.Installers.Game
 
         private void BindEnemiesData()
         {
-            Container.BindInstance(_enemyFrequencies);
+            Container.BindInstance(_enemyFrequenciesRegistry);
         }
 
         private void BindPrincessesData()

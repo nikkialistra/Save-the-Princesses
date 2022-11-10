@@ -1,9 +1,9 @@
-﻿using System;
+﻿using UnityEngine;
 
 namespace Data.Princesses.Elements
 {
-    [Serializable]
-    public class PrincessElementControllers
+    [CreateAssetMenu(fileName = "(Princess Name)", menuName = "Data/Princess Element Controllers")]
+    public class PrincessElementControllers : ScriptableObject
     {
         public ElementControllers Heads = new();
         public ElementControllers Garments = new();

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Surrounding.Rooms
 {
-    [CreateAssetMenu(fileName = "Room Kind", menuName = "Room Kind")]
+    [CreateAssetMenu(fileName = "(Room Kind Name)", menuName = "Game Elements/Room Kind")]
     public class RoomKind : ScriptableObject
     {
         public StageType StageType;

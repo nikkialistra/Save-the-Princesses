@@ -11,15 +11,15 @@ namespace Enemies.Services
     {
         private SpawnPoints _spawnPoints;
 
-        private readonly EnemyFrequencies _frequencies;
+        private readonly EnemyFrequenciesRegistry _frequenciesRegistry;
 
         private readonly EnemyFactory _factory;
 
         private readonly EnemyRoomRepository _repository;
 
-        public EnemyGenerator(EnemyFrequencies frequencies, EnemyFactory factory, EnemyRoomRepository repository)
+        public EnemyGenerator(EnemyFrequenciesRegistry frequenciesRegistry, EnemyFactory factory, EnemyRoomRepository repository)
         {
-            _frequencies = frequencies;
+            _frequenciesRegistry = frequenciesRegistry;
             _factory = factory;
             _repository = repository;
         }
@@ -45,7 +45,7 @@ namespace Enemies.Services
 
         private void SpawnFor(StageType stageType, Vector3 position)
         {
-            var enemyType = _frequencies.GetRandomEnemyTypeFor(stageType);
+            var enemyType = _frequenciesRegistry.GetRandomEnemyTypeFor(stageType);
 
             var enemy = _factory.Create(enemyType);
             enemy.Initialize();

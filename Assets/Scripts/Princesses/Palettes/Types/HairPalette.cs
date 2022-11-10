@@ -2,7 +2,7 @@
 
 namespace Princesses.Palettes.Types
 {
-    [CreateAssetMenu(fileName = "Hair Palette", menuName = "Palettes/Hair")]
+    [CreateAssetMenu(fileName = "(Hair Palette Name)", menuName = "Data/Palettes/Hair")]
     public class HairPalette : ScriptableObject
     {
         public Color First;

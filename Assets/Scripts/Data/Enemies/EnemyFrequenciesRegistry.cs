@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Data.Enemies
 {
-    public class EnemyFrequencies : SerializedMonoBehaviour
+    public class EnemyFrequenciesRegistry : SerializedMonoBehaviour
     {
         [SerializeField] private Dictionary<StageType, StageEnemyFrequencies> _stageFrequencies;
 

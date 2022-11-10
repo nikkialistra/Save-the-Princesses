@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 namespace Data.Enemies
 {
-    [CreateAssetMenu(fileName = "Stage Enemy Frequencies", menuName = "Data/Stage Enemy Frequencies")]
+    [CreateAssetMenu(fileName = "(Stage Type)", menuName = "Data/Stage Enemy Frequencies")]
     public class StageEnemyFrequencies : SerializedScriptableObject
     {
         public Dictionary<EnemyType, EnemyFrequency> Map;
