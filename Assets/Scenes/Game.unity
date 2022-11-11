@@ -1517,10 +1517,10 @@ MonoBehaviour:
   _camera: {fileID: 7217504656796712229}
   _hero: {fileID: 1683786886}
   _room: {fileID: 5731957735619916329, guid: 93b0589ff82ac6d45be8a028c4becc10, type: 3}
-  _navigation: {fileID: 0}
+  _navigation: {fileID: 1470453273}
   _princessPrefab: {fileID: 2453188263931797200, guid: 094c5447a4b7f7c4e8e20c66751280d3, type: 3}
-  _enemyFactory: {fileID: 0}
-  _enemyFrequenciesRegistry: {fileID: 0}
+  _enemyFactory: {fileID: 224152724}
+  _enemyFrequenciesRegistry: {fileID: 1305467790}
   _princessPalettesRegistry: {fileID: 926162203}
   _princessElementControllersRegistry: {fileID: 926162204}
   _train: {fileID: 121481525}
