@@ -13,52 +13,52 @@ MonoBehaviour:
   m_Name: Standard
   m_EditorClassIdentifier: 
   Heads:
-    _elementControllers:
-    - RelativeChance: 1
+    _elements:
+    - Element: {fileID: 22100000, guid: 684b6b63304b5284fae542fe15cd0c0d, type: 2}
+      RelativeChance: 1
       PercentChance: 100%
       _chance: 1
-      Controller: {fileID: 22100000, guid: 684b6b63304b5284fae542fe15cd0c0d, type: 2}
   Garments:
-    _elementControllers:
-    - RelativeChance: 1
+    _elements:
+    - Element: {fileID: 22100000, guid: f54171acbbe232d45bbb00d1fe88b401, type: 2}
+      RelativeChance: 1
       PercentChance: 50%
       _chance: 0.5
-      Controller: {fileID: 22100000, guid: f54171acbbe232d45bbb00d1fe88b401, type: 2}
-    - RelativeChance: 1
+    - Element: {fileID: 22100000, guid: e6937be12ccf0e74bb8695498f4c2ae2, type: 2}
+      RelativeChance: 1
       PercentChance: 50%
       _chance: 0.5
-      Controller: {fileID: 22100000, guid: e6937be12ccf0e74bb8695498f4c2ae2, type: 2}
   Hairs:
-    _elementControllers:
-    - RelativeChance: 1
+    _elements:
+    - Element: {fileID: 22100000, guid: 628a8df296687d14d9305a0f30341e2e, type: 2}
+      RelativeChance: 1
       PercentChance: 20%
       _chance: 0.2
-      Controller: {fileID: 22100000, guid: 628a8df296687d14d9305a0f30341e2e, type: 2}
-    - RelativeChance: 1
+    - Element: {fileID: 22100000, guid: 236e1bf177b2810499c38f5fb58252fa, type: 2}
+      RelativeChance: 1
       PercentChance: 20%
       _chance: 0.2
-      Controller: {fileID: 22100000, guid: 236e1bf177b2810499c38f5fb58252fa, type: 2}
-    - RelativeChance: 1
+    - Element: {fileID: 22100000, guid: 59178e59b47c71d43a714a6342654848, type: 2}
+      RelativeChance: 1
       PercentChance: 20%
       _chance: 0.2
-      Controller: {fileID: 22100000, guid: 59178e59b47c71d43a714a6342654848, type: 2}
-    - RelativeChance: 1
+    - Element: {fileID: 22100000, guid: 11b79f65486cc704eb6627bc1e37ce28, type: 2}
+      RelativeChance: 1
       PercentChance: 20%
       _chance: 0.2
-      Controller: {fileID: 22100000, guid: 11b79f65486cc704eb6627bc1e37ce28, type: 2}
-    - RelativeChance: 1
+    - Element: {fileID: 22100000, guid: c39c159e94da7c14ab927a3128f931a2, type: 2}
+      RelativeChance: 1
       PercentChance: 20%
       _chance: 0.2
-      Controller: {fileID: 22100000, guid: c39c159e94da7c14ab927a3128f931a2, type: 2}
   BodyAccessories:
-    _elementControllers:
-    - RelativeChance: 1
+    _elements:
+    - Element: {fileID: 22100000, guid: 70be6c0bec8a2494c9c8303b0c8def2f, type: 2}
+      RelativeChance: 1
       PercentChance: 100%
       _chance: 1
-      Controller: {fileID: 22100000, guid: 70be6c0bec8a2494c9c8303b0c8def2f, type: 2}
   HeadAccessories:
-    _elementControllers:
-    - RelativeChance: 1
+    _elements:
+    - Element: {fileID: 22100000, guid: 394f9754c8d15f7458b44474ddafa22b, type: 2}
+      RelativeChance: 1
       PercentChance: 100%
       _chance: 1
-      Controller: {fileID: 22100000, guid: 394f9754c8d15f7458b44474ddafa22b, type: 2}

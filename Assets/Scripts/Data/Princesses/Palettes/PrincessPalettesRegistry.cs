@@ -25,7 +25,7 @@ namespace Data.Princesses.Palettes
         [Button(ButtonSizes.Medium), GUIColor(0.4f, 0.8f, 1)]
         private void AddNewElement()
         {
-            _customPaletteElementsMap.Add(Standard, new PrincessPaletteElements());
+            _customPaletteElementsMap.Add(Standard, ScriptableObject.CreateInstance<PrincessPaletteElements>());
         }
 
         public SkinPalette GetRandomSkinPalette(PrincessType princessType)

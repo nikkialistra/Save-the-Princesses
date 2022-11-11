@@ -2,16 +2,21 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Common
+namespace Data.Chances
 {
     [Serializable]
-    public class ChanceSetup
+    public class ChanceSetup<TElement>
     {
-        [VerticalGroup("Split/Right", order: 1)]
+        [HorizontalGroup("Split", 150, MarginRight = 20)]
+        [VerticalGroup("Split/Left", PaddingTop = 11)]
+        [HideLabel]
+        public TElement Element;
+
+        [VerticalGroup("Split/Right")]
         [LabelWidth(110)]
         public float RelativeChance = 1;
 
-        [VerticalGroup("Split/Right", order: 1)]
+        [VerticalGroup("Split/Right")]
         [LabelWidth(110)]
         [ReadOnly]
         public string PercentChance = "100%";

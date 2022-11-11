@@ -9,27 +9,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a03d8f6668c64d948dbda7a951ed0f9f, type: 3}
-  m_Name: RuinedDungeon
+  m_Script: {fileID: 11500000, guid: ec2d9e42f6a441009d6ad4d66a259ae1, type: 3}
+  m_Name: Enemy Stage Frequencies
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 6877760913545033272, guid: 7ceb2cd6530529e41a39631f0d1eb73b, type: 3}
-    - {fileID: 824360411594953427, guid: 527e99cc7fd3d254386c1a74a3c3a914, type: 3}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: Map
+    - Name: Frequencies
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[Enemies.EnemyType, Scripts],[Data.Enemies.EnemyFrequency,
-        Scripts]], mscorlib
+      Data: 0|System.Collections.Generic.Dictionary`2[[Surrounding.Staging.StageType,
+        Scripts],[Data.Enemies.EnemyFrequencies, Scripts]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[Enemies.EnemyType,
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[Surrounding.Staging.StageType,
         Scripts]], mscorlib
     - Name: 
       Entry: 12
@@ -42,16 +40,29 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 2|Data.Enemies.EnemyFrequencies, Scripts
+    - Name: _elements
+      Entry: 7
+      Data: 3|System.Collections.Generic.List`1[[Data.Enemies.EnemyFrequency, Scripts]],
+        mscorlib
+    - Name: 
+      Entry: 12
       Data: 2
     - Name: 
       Entry: 7
-      Data: 
-    - Name: $k
+      Data: 4|Data.Enemies.EnemyFrequency, Scripts
+    - Name: Element
       Entry: 3
       Data: 0
-    - Name: $v
-      Entry: 7
-      Data: 2|Data.Enemies.EnemyFrequency, Scripts
     - Name: RelativeChance
       Entry: 4
       Data: 1
@@ -61,24 +72,15 @@ MonoBehaviour:
     - Name: _chance
       Entry: 4
       Data: 0.5
-    - Name: Enemy
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 
-    - Name: $k
+      Data: 5|Data.Enemies.EnemyFrequency, Scripts
+    - Name: Element
       Entry: 3
       Data: 1
-    - Name: $v
-      Entry: 7
-      Data: 3|Data.Enemies.EnemyFrequency, Scripts
     - Name: RelativeChance
       Entry: 4
       Data: 1
@@ -88,9 +90,15 @@ MonoBehaviour:
     - Name: _chance
       Entry: 4
       Data: 0.5
-    - Name: Enemy
-      Entry: 10
-      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 

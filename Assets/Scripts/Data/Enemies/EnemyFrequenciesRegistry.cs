@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Enemies;
+﻿using Enemies;
 using Sirenix.OdinInspector;
 using Surrounding.Staging;
 using UnityEngine;
@@ -8,13 +7,13 @@ namespace Data.Enemies
 {
     public class EnemyFrequenciesRegistry : SerializedMonoBehaviour
     {
-        [SerializeField] private Dictionary<StageType, StageEnemyFrequencies> _stageFrequencies;
+        [SerializeField] private EnemyStageFrequencies _enemyStageFrequencies;
 
         public EnemyType GetRandomEnemyTypeFor(StageType stageType)
         {
-            var stageEnemyFrequencies = _stageFrequencies[stageType];
+            var frequencies = _enemyStageFrequencies.Frequencies[stageType];
 
-            return stageEnemyFrequencies.GetRandom();
+            return frequencies.GetRandom();
         }
     }
 }

@@ -5,5 +5,5 @@ using Enemies;
 namespace Data.Enemies
 {
     [Serializable]
-    public class EnemyFrequency : ChanceSetup<EnemyType> { }
+    public class EnemyFrequencies : ChanceList<EnemyFrequency, EnemyType> { }
 }

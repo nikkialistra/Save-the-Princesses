@@ -18,7 +18,7 @@ namespace Data.Princesses.Elements
         [Button(ButtonSizes.Medium), GUIColor(0.4f, 0.8f, 1)]
         private void AddNewElement()
         {
-            _customControllerMap.Add(Standard, new PrincessElementControllers());
+            _customControllerMap.Add(Standard, ScriptableObject.CreateInstance<PrincessElementControllers>());
         }
 
         public RuntimeAnimatorController GetRandomFor(PrincessType princessType, ElementType elementType)
@@ -60,10 +60,7 @@ namespace Data.Princesses.Elements
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-            if (elementControllers.Empty)
-                return GetDefaultRandomFor(elementType);
-
-            return elementControllers.GetRandom();
+            return elementControllers.Empty ? GetDefaultRandomFor(elementType) : elementControllers.GetRandom();
         }
     }
 }
