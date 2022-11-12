@@ -1,51 +1,43 @@
 ﻿using Data.Enemies;
 using Enemies.Services.Repositories;
 using SuperTiled2Unity;
-using Surrounding.Rooms;
-using Surrounding.Staging;
 using UnityEngine;
 
 namespace Enemies.Services
 {
     public class EnemyGenerator
     {
-        private SpawnPoints _spawnPoints;
+        private SuperObject[] _spawnPoints;
 
-        private readonly EnemyFrequenciesRegistry _frequenciesRegistry;
+        private readonly EnemyPicking _picking;
 
         private readonly EnemyFactory _factory;
 
         private readonly EnemyRoomRepository _repository;
 
-        public EnemyGenerator(EnemyFrequenciesRegistry frequenciesRegistry, EnemyFactory factory, EnemyRoomRepository repository)
+        public EnemyGenerator(EnemyPicking picking, EnemyFactory factory, EnemyRoomRepository repository)
         {
-            _frequenciesRegistry = frequenciesRegistry;
+            _picking = picking;
             _factory = factory;
             _repository = repository;
         }
 
         public void Initialize(SuperObjectLayer spawnPointsLayer)
         {
-            var spawnPoints = spawnPointsLayer.GetComponentsInChildren<SuperObject>();
-            _spawnPoints = new SpawnPoints(spawnPoints);
+            _spawnPoints = spawnPointsLayer.GetComponentsInChildren<SuperObject>();
         }
 
-        public void GenerateFor(StageType stageType)
+        public void Generate(EnemyRoomFrequencies enemyRoomFrequencies)
         {
-            var count = ComputeCount();
-
-            foreach (var spawnPoint in _spawnPoints.TakeSome(count))
-                SpawnFor(stageType, spawnPoint);
+            foreach (var spawnPoint in _spawnPoints)
+                SpawnFor(spawnPoint.transform.position, enemyRoomFrequencies);
         }
 
-        private static int ComputeCount()
+        private void SpawnFor(Vector3 position, EnemyRoomFrequencies enemyRoomFrequencies)
         {
-            return Random.Range(0, 4);
-        }
+            var enemyType = _picking.GetRandomEnemyType(enemyRoomFrequencies);
 
-        private void SpawnFor(StageType stageType, Vector3 position)
-        {
-            var enemyType = _frequenciesRegistry.GetRandomEnemyTypeFor(stageType);
+            if (enemyType == EnemyType.None) return;
 
             var enemy = _factory.Create(enemyType);
             enemy.Initialize();

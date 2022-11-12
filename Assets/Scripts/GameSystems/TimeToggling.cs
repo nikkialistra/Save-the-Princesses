@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Surrounding
+namespace GameSystems
 {
     public class TimeToggling : MonoBehaviour
     {

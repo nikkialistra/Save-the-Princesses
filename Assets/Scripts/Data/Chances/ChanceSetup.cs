@@ -10,7 +10,7 @@ namespace Data.Chances
         [HorizontalGroup("Split", 150, MarginRight = 20)]
         [VerticalGroup("Split/Left", PaddingTop = 11)]
         [HideLabel]
-        public TElement Element;
+        public TElement Element = default;
 
         [VerticalGroup("Split/Right")]
         [LabelWidth(110)]

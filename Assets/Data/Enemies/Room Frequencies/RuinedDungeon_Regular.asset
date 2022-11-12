@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec2d9e42f6a441009d6ad4d66a259ae1, type: 3}
-  m_Name: Enemy Stage Frequencies
+  m_Name: RuinedDungeon_Regular
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -23,11 +23,11 @@ MonoBehaviour:
     SerializationNodes:
     - Name: Frequencies
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[Surrounding.Staging.StageType,
+      Data: 0|System.Collections.Generic.Dictionary`2[[GameSystems.GameDifficulty,
         Scripts],[Data.Enemies.EnemyFrequencies, Scripts]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[Surrounding.Staging.StageType,
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[GameSystems.GameDifficulty,
         Scripts]], mscorlib
     - Name: 
       Entry: 12
@@ -40,7 +40,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 
@@ -56,7 +56,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 7
       Data: 4|Data.Enemies.EnemyFrequency, Scripts
@@ -65,7 +65,7 @@ MonoBehaviour:
       Data: 0
     - Name: RelativeChance
       Entry: 4
-      Data: 1
+      Data: 3
     - Name: PercentChance
       Entry: 1
       Data: 50%
@@ -83,13 +83,113 @@ MonoBehaviour:
       Data: 1
     - Name: RelativeChance
       Entry: 4
+      Data: 2
+    - Name: PercentChance
+      Entry: 1
+      Data: 33.33%
+    - Name: _chance
+      Entry: 4
+      Data: 0.333333343
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 6|Data.Enemies.EnemyFrequency, Scripts
+    - Name: Element
+      Entry: 3
+      Data: 2
+    - Name: RelativeChance
+      Entry: 4
       Data: 1
     - Name: PercentChance
       Entry: 1
-      Data: 50%
+      Data: 16.67%
     - Name: _chance
       Entry: 4
-      Data: 0.5
+      Data: 0.166666672
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 7|Data.Enemies.EnemyFrequencies, Scripts
+    - Name: _elements
+      Entry: 7
+      Data: 8|System.Collections.Generic.List`1[[Data.Enemies.EnemyFrequency, Scripts]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 9|Data.Enemies.EnemyFrequency, Scripts
+    - Name: Element
+      Entry: 3
+      Data: 0
+    - Name: RelativeChance
+      Entry: 4
+      Data: 2
+    - Name: PercentChance
+      Entry: 1
+      Data: 20%
+    - Name: _chance
+      Entry: 4
+      Data: 0.2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 10|Data.Enemies.EnemyFrequency, Scripts
+    - Name: Element
+      Entry: 3
+      Data: 0
+    - Name: RelativeChance
+      Entry: 4
+      Data: 6
+    - Name: PercentChance
+      Entry: 1
+      Data: 60%
+    - Name: _chance
+      Entry: 4
+      Data: 0.6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 11|Data.Enemies.EnemyFrequency, Scripts
+    - Name: Element
+      Entry: 3
+      Data: 0
+    - Name: RelativeChance
+      Entry: 4
+      Data: 2
+    - Name: PercentChance
+      Entry: 1
+      Data: 20%
+    - Name: _chance
+      Entry: 4
+      Data: 0.2
     - Name: 
       Entry: 8
       Data: 

@@ -2,9 +2,9 @@
 using Data.Enemies;
 using Data.Princesses.Elements;
 using Data.Princesses.Palettes;
-using Enemies;
 using Enemies.Services;
 using Enemies.Services.Repositories;
+using GameSystems;
 using Heroes;
 using Infrastructure.Bootstrap;
 using Infrastructure.Controls;
@@ -40,9 +40,6 @@ namespace Infrastructure.Installers.Game
         [SerializeField] private Princess _princessPrefab;
         [SerializeField] private EnemyFactory _enemyFactory;
 
-        [Title("Enemies Data")]
-        [SerializeField] private EnemyFrequenciesRegistry _enemyFrequenciesRegistry;
-
         [Title("Princesses Data")]
         [SerializeField] private PrincessPalettesRegistry _princessPalettesRegistry;
         [SerializeField] private PrincessElementControllersRegistry _princessElementControllersRegistry;
@@ -75,23 +72,38 @@ namespace Infrastructure.Installers.Game
 
         public override void InstallBindings()
         {
-            Container.BindInstance(_camera);
-            Container.BindInterfacesAndSelfTo<Hero>().FromInstance(_hero);
-            Container.BindInstance(_room);
-            Container.BindInstance(_navigation);
+            BindGameBase();
 
+            BindCharactersPicking();
             BindCharacterFactories();
-            BindEnemiesData();
+            BindRepositories();
+
             BindPrincessesData();
             BindTrainSystem();
-            BindRepositories();
+
             BindInput();
             BindUI();
             BindControls();
+
             BindGameRun();
 
             BindProgress();
             BindBootstrap();
+        }
+
+        private void BindGameBase()
+        {
+            Container.Bind<GameControl>().AsSingle();
+
+            Container.BindInstance(_camera);
+            Container.BindInterfacesAndSelfTo<Hero>().FromInstance(_hero);
+            Container.BindInstance(_room);
+            Container.BindInstance(_navigation);
+        }
+
+        private void BindCharactersPicking()
+        {
+            Container.Bind<EnemyPicking>().AsSingle();
         }
 
         private void BindCharacterFactories()
@@ -107,11 +119,6 @@ namespace Infrastructure.Installers.Game
         {
             Container.BindInstance(_train);
             Container.BindInstance(_handsSprites);
-        }
-
-        private void BindEnemiesData()
-        {
-            Container.BindInstance(_enemyFrequenciesRegistry);
         }
 
         private void BindPrincessesData()

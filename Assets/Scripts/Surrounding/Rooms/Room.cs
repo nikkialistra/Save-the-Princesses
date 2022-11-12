@@ -18,8 +18,6 @@ namespace Surrounding.Rooms
 
         [SerializeField] private LayerMask _foreground;
 
-        private StageType _stageType;
-
         private readonly Collider2D[] _boundHits = new Collider2D[10];
 
         private Navigation _navigation;
@@ -30,6 +28,7 @@ namespace Surrounding.Rooms
         private SuperMap _superMap;
 
         private NavGraph _navGraph;
+        private RoomKind _roomKind;
 
         [Inject]
         public void Construct(Navigation navigation, RoomRepositories repositories,
@@ -45,12 +44,12 @@ namespace Surrounding.Rooms
 
         public void Initialize(RoomKind roomKind, Transform parent)
         {
-            name = roomKind.Map.name;
+            _roomKind = roomKind;
+
+            name = _roomKind.Map.name;
             transform.parent = parent;
 
-            _stageType = roomKind.StageType;
-
-            _superMap = Instantiate(roomKind.Map, transform);
+            _superMap = Instantiate(_roomKind.Map, transform);
             CenterSuperMap();
 
             InitializeGenerators();
@@ -65,7 +64,7 @@ namespace Surrounding.Rooms
         public void GenerateCharacters()
         {
             _princessGenerator.Generate();
-            _enemyGenerator.GenerateFor(_stageType);
+            _enemyGenerator.Generate(_roomKind.EnemyRoomFrequencies);
         }
 
         public void Dispose()
