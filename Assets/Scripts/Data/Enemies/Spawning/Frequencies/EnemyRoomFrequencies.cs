@@ -3,7 +3,7 @@ using GameSystems;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Data.Enemies
+namespace Data.Enemies.Spawning.Frequencies
 {
     [CreateAssetMenu(fileName = "(Room Type)", menuName = "Data/Enemy Room Frequencies")]
     public class EnemyRoomFrequencies : SerializedScriptableObject

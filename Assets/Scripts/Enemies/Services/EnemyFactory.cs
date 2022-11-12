@@ -7,7 +7,7 @@ namespace Enemies.Services
 {
     public class EnemyFactory : SerializedMonoBehaviour
     {
-        [SerializeField] private Dictionary<EnemyType, Enemy> _enemiesMap;
+        [SerializeField] private Dictionary<EnemyType, Enemy> _enemiesMap = new();
 
         private DiContainer _diContainer;
 

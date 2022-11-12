@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Data.Princesses.Elements
+namespace Data.Princesses.Appearance.Elements
 {
     [CreateAssetMenu(fileName = "(Princess Name)", menuName = "Data/Princess Element Controllers")]
     public class PrincessElementControllers : ScriptableObject

@@ -1,4 +1,4 @@
-﻿using Data.Princesses.Palettes;
+﻿using Data.Princesses.Appearance.Palettes;
 using Princesses.Palettes.Types;
 using UnityEngine;
 using Zenject;

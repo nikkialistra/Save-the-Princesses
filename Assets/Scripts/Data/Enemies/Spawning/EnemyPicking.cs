@@ -1,7 +1,8 @@
-﻿using Enemies;
+﻿using Data.Enemies.Spawning.Frequencies;
+using Enemies;
 using GameSystems;
 
-namespace Data.Enemies
+namespace Data.Enemies.Spawning
 {
     public class EnemyPicking
     {

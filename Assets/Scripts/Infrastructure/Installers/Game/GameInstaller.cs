@@ -1,7 +1,9 @@
 ﻿using Controls;
 using Data.Enemies;
-using Data.Princesses.Elements;
-using Data.Princesses.Palettes;
+using Data.Enemies.Spawning;
+using Data.Princesses.Appearance.Elements;
+using Data.Princesses.Appearance.Palettes;
+using Data.Princesses.Spawning;
 using Enemies.Services;
 using Enemies.Services.Repositories;
 using GameSystems;
@@ -9,6 +11,7 @@ using Heroes;
 using Infrastructure.Bootstrap;
 using Infrastructure.Controls;
 using Princesses;
+using Princesses.Services;
 using Princesses.Services.Repositories;
 using Saving.Progress;
 using Saving.Saves;
@@ -37,7 +40,7 @@ namespace Infrastructure.Installers.Game
         [SerializeField] private Navigation _navigation;
 
         [Title("Character Factories")]
-        [SerializeField] private Princess _princessPrefab;
+        [SerializeField] private PrincessFactory _princessFactory;
         [SerializeField] private EnemyFactory _enemyFactory;
 
         [Title("Princesses Data")]
@@ -103,15 +106,13 @@ namespace Infrastructure.Installers.Game
 
         private void BindCharactersPicking()
         {
+            Container.Bind<PrincessPicking>().AsSingle();
             Container.Bind<EnemyPicking>().AsSingle();
         }
 
         private void BindCharacterFactories()
         {
-            Container.BindFactory<Princess, Princess.Factory>()
-                .FromSubContainerResolve()
-                .ByNewContextPrefab(_princessPrefab);
-
+            Container.BindInstance(_princessFactory);
             Container.BindInstance(_enemyFactory);
         }
 

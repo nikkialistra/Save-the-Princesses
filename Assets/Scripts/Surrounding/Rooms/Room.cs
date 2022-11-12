@@ -3,7 +3,6 @@ using Enemies.Services;
 using Pathfinding;
 using Princesses.Services;
 using SuperTiled2Unity;
-using Surrounding.Staging;
 using UnityEngine;
 using Zenject;
 
@@ -63,7 +62,7 @@ namespace Surrounding.Rooms
 
         public void GenerateCharacters()
         {
-            _princessGenerator.Generate();
+            _princessGenerator.Generate(_roomKind.PrincessCategoryRoomFrequencies);
             _enemyGenerator.Generate(_roomKind.EnemyRoomFrequencies);
         }
 

@@ -1,9 +1,8 @@
 ﻿using System;
 using Data.Chances;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Data.Princesses.Elements
+namespace Data.Princesses.Appearance.Elements
 {
     [Serializable]
     public class ElementController : ChanceSetup<RuntimeAnimatorController> { }

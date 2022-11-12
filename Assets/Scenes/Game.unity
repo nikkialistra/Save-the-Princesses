@@ -190,6 +190,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224152723}
+  - component: {fileID: 224152725}
   - component: {fileID: 224152724}
   m_Layer: 0
   m_Name: Characters Spawning
@@ -277,6 +278,92 @@ MonoBehaviour:
     - Name: $v
       Entry: 10
       Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+--- !u!114 &224152725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224152722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079db8c11c0f4695b6603d71e354dd58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 2453188263931797200, guid: 094c5447a4b7f7c4e8e20c66751280d3, type: 3}
+    - {fileID: 1062006250087838606, guid: d0e48a2e6df3ae54da6154966fd905c9, type: 3}
+    - {fileID: 7695758724357967985, guid: d43ee85c61fb2b6429680e3a1e605fc0, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _princessesMap
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[Princesses.Types.PrincessType,
+        Scripts],[Princesses.Princess, Scripts]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[Princesses.Types.PrincessType,
+        Scripts]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 10
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -459,7 +546,8 @@ MonoBehaviour:
     - Name: _customPaletteElementsMap
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[Princesses.Types.PrincessType,
-        Scripts],[Data.Princesses.Palettes.PrincessPaletteElements, Scripts]], mscorlib
+        Scripts],[Data.Princesses.Appearance.Palettes.PrincessPaletteElements, Scripts]],
+        mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[Princesses.Types.PrincessType,
@@ -524,8 +612,8 @@ MonoBehaviour:
     - Name: _customControllerMap
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[Princesses.Types.PrincessType,
-        Scripts],[Data.Princesses.Elements.PrincessElementControllers, Scripts]],
-        mscorlib
+        Scripts],[Data.Princesses.Appearance.Elements.PrincessElementControllers,
+        Scripts]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[Princesses.Types.PrincessType,
@@ -1367,7 +1455,7 @@ MonoBehaviour:
   _hero: {fileID: 1683786886}
   _room: {fileID: 5731957735619916329, guid: 93b0589ff82ac6d45be8a028c4becc10, type: 3}
   _navigation: {fileID: 1470453273}
-  _princessPrefab: {fileID: 2453188263931797200, guid: 094c5447a4b7f7c4e8e20c66751280d3, type: 3}
+  _princessFactory: {fileID: 224152725}
   _enemyFactory: {fileID: 224152724}
   _princessPalettesRegistry: {fileID: 926162203}
   _princessElementControllersRegistry: {fileID: 926162204}

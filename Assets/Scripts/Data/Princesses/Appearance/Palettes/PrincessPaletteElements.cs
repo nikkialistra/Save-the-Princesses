@@ -1,7 +1,7 @@
 ﻿using Princesses.Palettes.Types;
 using UnityEngine;
 
-namespace Data.Princesses.Palettes
+namespace Data.Princesses.Appearance.Palettes
 {
     [CreateAssetMenu(fileName = "(Palette Name)", menuName = "Data/Palettes/Palette")]
     public class PrincessPaletteElements : ScriptableObject

@@ -252,7 +252,5 @@ namespace Princesses
 
             TrainCharacter.TrainLeave += ResetGathering;
         }
-
-        public class Factory : PlaceholderFactory<Princess> { }
     }
 }

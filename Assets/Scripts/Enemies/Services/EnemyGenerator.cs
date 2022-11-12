@@ -1,4 +1,6 @@
 ﻿using Data.Enemies;
+using Data.Enemies.Spawning;
+using Data.Enemies.Spawning.Frequencies;
 using Enemies.Services.Repositories;
 using SuperTiled2Unity;
 using UnityEngine;
@@ -27,15 +29,15 @@ namespace Enemies.Services
             _spawnPoints = spawnPointsLayer.GetComponentsInChildren<SuperObject>();
         }
 
-        public void Generate(EnemyRoomFrequencies enemyRoomFrequencies)
+        public void Generate(EnemyRoomFrequencies roomFrequencies)
         {
             foreach (var spawnPoint in _spawnPoints)
-                SpawnFor(spawnPoint.transform.position, enemyRoomFrequencies);
+                SpawnFor(spawnPoint.transform.position, roomFrequencies);
         }
 
-        private void SpawnFor(Vector3 position, EnemyRoomFrequencies enemyRoomFrequencies)
+        private void SpawnFor(Vector3 position, EnemyRoomFrequencies roomFrequencies)
         {
-            var enemyType = _picking.GetRandomEnemyType(enemyRoomFrequencies);
+            var enemyType = _picking.GetRandomEnemyType(roomFrequencies);
 
             if (enemyType == EnemyType.None) return;
 
