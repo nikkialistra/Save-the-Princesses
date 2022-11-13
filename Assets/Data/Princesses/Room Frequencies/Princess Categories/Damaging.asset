@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1cb5f14534f4b9ba1f1ac86605794ef, type: 3}
-  m_Name: Room Kind 1
+  m_Script: {fileID: 11500000, guid: cbacfc11127e42899bf9f89b8f097a78, type: 3}
+  m_Name: Damaging
   m_EditorClassIdentifier: 
-  EnemyRoomFrequencies: {fileID: 11400000, guid: 876150fdc4cb9094497d35e0b2e20d0e, type: 2}
-  Map: {fileID: -9203159321856273046, guid: 1c8011f1a38dffb40a1cfc30bd7ea05e, type: 3}
+  PrincessTypes: 0200000003000000

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2633febd65994408bbe787a2cc4394de, type: 3}
+  m_Name: RuinedDungeon
+  m_EditorClassIdentifier: 
+  Frequencies:
+  - _elements:
+    - Element: {fileID: 11400000, guid: 65e05a1d2b42ad0459d4c053e9731f44, type: 2}
+      RelativeChance: 1
+      PercentChance: 33.33%
+      _chance: 0.33333334
+    - Element: {fileID: 11400000, guid: b327ea2793944d44ea45a64a1d98879e, type: 2}
+      RelativeChance: 1
+      PercentChance: 33.33%
+      _chance: 0.33333334
+    - Element: {fileID: 11400000, guid: 9d516730f77848747b3cba97a34c3c0a, type: 2}
+      RelativeChance: 1
+      PercentChance: 33.33%
+      _chance: 0.33333334

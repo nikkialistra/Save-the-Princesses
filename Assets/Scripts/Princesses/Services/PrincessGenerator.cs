@@ -37,7 +37,7 @@ namespace Princesses.Services
 
         private void SpawnFor(Vector3 position, PrincessCategoryRoomFrequencies categoryRoomFrequencies)
         {
-            var princessType = PrincessPicking.GetRandomPrincessType(categoryRoomFrequencies);
+            var princessType = _picking.GetRandomPrincessType(categoryRoomFrequencies);
 
             if (princessType == PrincessType.None) return;
 

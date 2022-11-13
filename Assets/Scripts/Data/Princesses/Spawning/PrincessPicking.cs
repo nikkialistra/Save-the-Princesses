@@ -7,7 +7,7 @@ namespace Data.Princesses.Spawning
 {
     public class PrincessPicking
     {
-        public static PrincessType GetRandomPrincessType(PrincessCategoryRoomFrequencies categoryRoomFrequencies)
+        public PrincessType GetRandomPrincessType(PrincessCategoryRoomFrequencies categoryRoomFrequencies)
         {
             var frequenciesList = categoryRoomFrequencies.Frequencies;
 
