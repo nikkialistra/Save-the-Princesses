@@ -16,7 +16,7 @@ namespace Infrastructure.Bootstrap
 
         private readonly SceneLoader _sceneLoader;
         private readonly GameProgress _gameProgress;
-        private Train _train;
+        private readonly Train _train;
 
         public GameBootstrap(Hero hero, Train train, GameControls gameControls,
             SceneLoader sceneLoader, GameProgress gameProgress)

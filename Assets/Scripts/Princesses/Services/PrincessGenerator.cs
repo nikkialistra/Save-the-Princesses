@@ -1,5 +1,5 @@
-﻿using Data.Princesses.Spawning;
-using Data.Princesses.Spawning.Frequencies;
+﻿using GameData.Princesses.Spawning;
+using GameData.Princesses.Spawning.Frequencies;
 using Princesses.Services.Repositories;
 using Princesses.Types;
 using SuperTiled2Unity;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace StatSystem
@@ -12,16 +13,14 @@ namespace StatSystem
         public float Value { get; private set; }
         public float BaseValue => _baseValue;
 
-        public IReadOnlyList<StatModifier<T>> StatModifiers;
-
+        [ReadOnly]
         [SerializeField] private float _baseValue;
 
         private readonly List<StatModifier<T>> _statModifiers = new();
 
-        public void Initialize()
+        public Stat(float baseValue)
         {
-            StatModifiers = _statModifiers.AsReadOnly();
-
+            _baseValue = baseValue;
             RecalculateValue();
         }
 

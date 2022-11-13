@@ -1,30 +1,28 @@
 ﻿using System;
+using GameData.Stats.Types;
 using StatSystem;
-using UnityEngine;
 
 namespace Characters.Stats.Character
 {
-    public class CharacterStats : MonoBehaviour
+    public class CharacterStats
     {
-        public Stat<CharacterStat> MaxHealth => _maxHealth;
-        public Stat<CharacterStat> MovementSpeed => _movementSpeed;
-        public Stat<CharacterStat> Armor => _armor;
-        public Stat<CharacterStat> Vampirism => _vampirism;
-        public Stat<CharacterStat> Luck => _luck;
-        public Stat<CharacterStat> KnockbackStand => _knockbackStand;
-        public Stat<CharacterStat> StunResistance => _stunResistance;
+        public Stat<CharacterStat> MaxHealth { get; }
+        public Stat<CharacterStat> MovementSpeed { get; }
+        public Stat<CharacterStat> Armor { get; }
+        public Stat<CharacterStat> Vampirism { get; }
+        public Stat<CharacterStat> Luck { get; }
+        public Stat<CharacterStat> KnockbackStand { get; }
+        public Stat<CharacterStat> StunResistance { get; }
 
-        [SerializeField] private Stat<CharacterStat> _maxHealth;
-        [SerializeField] private Stat<CharacterStat> _movementSpeed;
-        [SerializeField] private Stat<CharacterStat> _armor;
-        [SerializeField] private Stat<CharacterStat> _vampirism;
-        [SerializeField] private Stat<CharacterStat> _luck;
-        [SerializeField] private Stat<CharacterStat> _knockbackStand;
-        [SerializeField] private Stat<CharacterStat> _stunResistance;
-
-        public void Initialize()
+        public CharacterStats(InitialCharacterStats initialStats)
         {
-            InitializeStats();
+            MaxHealth = new Stat<CharacterStat>(initialStats.MaxHealth);
+            MovementSpeed = new Stat<CharacterStat>(initialStats.MovementSpeed);
+            Armor = new Stat<CharacterStat>(initialStats.Armor);
+            Vampirism = new Stat<CharacterStat>(initialStats.Vampirism);
+            Luck = new Stat<CharacterStat>(initialStats.Luck);
+            KnockbackStand = new Stat<CharacterStat>(initialStats.KnockbackStand);
+            StunResistance = new Stat<CharacterStat>(initialStats.StunResistance);
         }
 
         public void AddStatModifier(StatModifier<CharacterStat> statModifier)
@@ -41,28 +39,17 @@ namespace Characters.Stats.Character
             stat.RemoveModifier(statModifier);
         }
 
-        private void InitializeStats()
-        {
-            _maxHealth.Initialize();
-            _movementSpeed.Initialize();
-            _armor.Initialize();
-            _vampirism.Initialize();
-            _luck.Initialize();
-            _knockbackStand.Initialize();
-            _stunResistance.Initialize();
-        }
-
         private Stat<CharacterStat> ChooseStat(StatModifier<CharacterStat> statModifier)
         {
             var stat = statModifier.StatType switch
             {
-                CharacterStat.MovementSpeed => _movementSpeed,
-                CharacterStat.MaxHealth => _maxHealth,
-                CharacterStat.Armor => _armor,
-                CharacterStat.Vampirism => _vampirism,
-                CharacterStat.Luck => _luck,
-                CharacterStat.KnockbackStand => _knockbackStand,
-                CharacterStat.StunResistance => _stunResistance,
+                CharacterStat.MovementSpeed => MovementSpeed,
+                CharacterStat.MaxHealth => MaxHealth,
+                CharacterStat.Armor => Armor,
+                CharacterStat.Vampirism => Vampirism,
+                CharacterStat.Luck => Luck,
+                CharacterStat.KnockbackStand => KnockbackStand,
+                CharacterStat.StunResistance => StunResistance,
                 _ => throw new ArgumentOutOfRangeException()
             };
             return stat;

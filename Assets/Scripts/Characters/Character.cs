@@ -1,7 +1,9 @@
 ﻿using System;
 using Characters.Common;
+using Characters.Stats;
 using Characters.Traits;
 using Combat.Weapons;
+using GameData.Stats;
 using Infrastructure.Installers.Game.Settings;
 using Surrounding.Rooms;
 using Sirenix.OdinInspector;
@@ -26,6 +28,8 @@ namespace Characters
         public event Action AtStunEnd;
 
         public Room Room { get; private set; }
+
+        public AllStats Stats { get; private set; }
 
         public CharacterHealth Health { get; private set; }
         public CharacterMoving Moving { get; private set; }
@@ -61,10 +65,10 @@ namespace Characters
             Settings = settings;
         }
 
-        public void Initialize()
+        public void Initialize(InitialStats initialStats)
         {
             FillComponents();
-            InitializeComponents();
+            InitializeComponents(initialStats);
             InitializeWeapon();
 
             _healthHandling.Slay += OnSlay;
@@ -129,8 +133,10 @@ namespace Characters
             _pathfinding = GetComponent<CharacterPathfinding>();
         }
 
-        private void InitializeComponents()
+        private void InitializeComponents(InitialStats initialStats)
         {
+            Stats = new AllStats(initialStats);
+
             Health.Initialize();
             Moving.Initialize();
             Animator.Initialize();

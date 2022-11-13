@@ -1,5 +1,5 @@
-﻿using Data.Enemies.Spawning.Frequencies;
-using Data.Princesses.Spawning.Frequencies;
+﻿using GameData.Enemies.Spawning.Frequencies;
+using GameData.Princesses.Spawning.Frequencies;
 using SuperTiled2Unity;
 using UnityEngine;
 

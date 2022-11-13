@@ -1,8 +1,8 @@
 ﻿using System;
 using Characters;
-using Characters.Stats.Character;
 using Characters.Traits;
 using Entities;
+using GameData.Stats;
 using Heroes;
 using Infrastructure.Installers.Game.Settings;
 using Surrounding.Rooms;
@@ -17,7 +17,6 @@ namespace Princesses
 {
     [RequireComponent(typeof(Character))]
     [RequireComponent(typeof(CharacterMoving))]
-    [RequireComponent(typeof(CharacterStats))]
     [RequireComponent(typeof(TrainCharacter))]
     [RequireComponent(typeof(PrincessAnimators))]
     [RequireComponent(typeof(PrincessElementControllers))]
@@ -75,8 +74,6 @@ namespace Princesses
 
         private Character _character;
 
-        private CharacterStats _characterStats;
-
         [Inject]
         public void Construct(Hero hero, Train train, PrincessSettings settings)
         {
@@ -86,10 +83,10 @@ namespace Princesses
             Settings = settings;
         }
 
-        public void Initialize()
+        public void Initialize(InitialStats initialStats)
         {
             FillComponents();
-            InitializeComponents();
+            InitializeComponents(initialStats);
 
             SubscribeToEvents();
         }
@@ -142,12 +139,12 @@ namespace Princesses
 
         public void ChangeToRegularSpeed()
         {
-            _characterStats.MovementSpeed.ChangeBaseValue(_hero.Speed);
+            _character.Stats.MovementSpeedStat.ChangeBaseValue(_hero.Stats.MovementSpeed);
         }
 
         public void ChangeToHeroSpeed()
         {
-            _characterStats.MovementSpeed.ChangeBaseValue(_regularSpeed);
+            _character.Stats.MovementSpeedStat.ChangeBaseValue(_regularSpeed);
         }
 
         public void ElevateSpeed()
@@ -192,8 +189,6 @@ namespace Princesses
 
         private void FillComponents()
         {
-            _characterStats = GetComponent<CharacterStats>();
-
             _character = GetComponent<Character>();
 
             TrainCharacter = GetComponent<TrainCharacter>();
@@ -207,11 +202,9 @@ namespace Princesses
             _actualVelocity = GetComponent<PrincessActualVelocity>();
         }
 
-        private void InitializeComponents()
+        private void InitializeComponents(InitialStats initialStats)
         {
-            _characterStats.Initialize();
-
-            _character.Initialize();
+            _character.Initialize(initialStats);
 
             TrainCharacter.Initialize();
             Moving.Initialize();

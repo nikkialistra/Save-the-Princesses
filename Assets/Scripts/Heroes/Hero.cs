@@ -1,11 +1,10 @@
 ﻿using System;
 using Characters;
 using Characters.Stats;
-using Characters.Stats.Character;
-using Characters.Stats.Melee;
-using Characters.Stats.Ranged;
 using Characters.Traits;
 using Combat.Attacks;
+using GameData.Heroes;
+using GameData.Stats;
 using Heroes.Attacks;
 using Infrastructure.Installers.Game.Settings;
 using Trains.Characters;
@@ -23,9 +22,6 @@ namespace Heroes
     [RequireComponent(typeof(TrainCharacter))]
     [RequireComponent(typeof(CharacterHealth))]
     [RequireComponent(typeof(Character))]
-    [RequireComponent(typeof(CharacterStats))]
-    [RequireComponent(typeof(MeleeStats))]
-    [RequireComponent(typeof(RangedStats))]
     public class Hero : MonoBehaviour, ITickable
     {
         public event Action Slain;
@@ -36,20 +32,15 @@ namespace Heroes
         public HeroAttacker Attacker { get; private set; }
         public TrainCharacter TrainCharacter { get; private set; }
 
-        public AllStats AllStats => new(_characterStats, _meleeStats, _rangedStats);
+        public AllStats Stats => _character.Stats;
 
         public Vector2 Position => _character.Position;
         public Vector2 PositionCenter => _character.PositionCenter;
         public Vector2 PositionCenterOffset => _character.PositionCenterOffset;
-        public float Speed => _characterStats.MovementSpeed.Value;
 
         [SerializeField] private Attack _attack;
 
         private bool _active;
-
-        private CharacterStats _characterStats;
-        private MeleeStats _meleeStats;
-        private RangedStats _rangedStats;
 
         private HeroTrainStatEffects _trainStatEffects;
         private HeroAnimator _animator;
@@ -59,11 +50,14 @@ namespace Heroes
 
         private Character _character;
 
+        private InitialStats _initialStats;
+
         private HeroSettings _settings;
 
         [Inject]
-        public void Construct(HeroSettings settings)
+        public void Construct(InitialStats initialStats, HeroSettings settings)
         {
+            _initialStats = initialStats;
             _settings = settings;
         }
 
@@ -124,10 +118,6 @@ namespace Heroes
 
         private void FillComponents()
         {
-            _characterStats = GetComponent<CharacterStats>();
-            _meleeStats = GetComponent<MeleeStats>();
-            _rangedStats = GetComponent<RangedStats>();
-
             _character = GetComponent<Character>();
 
             Attacker = GetComponent<HeroAttacker>();
@@ -142,11 +132,7 @@ namespace Heroes
 
         private void InitializeComponents()
         {
-            _characterStats.Initialize();
-            _meleeStats.Initialize();
-            _rangedStats.Initialize();
-
-            _character.Initialize();
+            _character.Initialize(_initialStats);
 
             Attacker.Initialize();
             TrainCharacter.Initialize();

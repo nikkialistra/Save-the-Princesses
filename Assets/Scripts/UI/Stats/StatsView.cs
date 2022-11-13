@@ -1,4 +1,5 @@
-﻿using Characters.Stats.Character;
+﻿using Characters.Stats;
+using Characters.Stats.Character;
 using Characters.Stats.Melee;
 using Characters.Stats.Ranged;
 using Heroes;
@@ -25,10 +26,10 @@ namespace UI.Stats
         {
             _root = GetComponent<UIDocument>().rootVisualElement;
 
-            var allStats = hero.AllStats;
+            var allStats = hero.Stats;
 
             BindStatsUi();
-            BindStats(allStats.CharacterStats, allStats.MeleeStats, allStats.RangedStats);
+            BindStats(hero.Stats);
         }
 
         public void Dispose()
@@ -36,20 +37,20 @@ namespace UI.Stats
             UnbindStats();
         }
 
-        private void BindStats(CharacterStats characterStats, MeleeStats meleeStats, RangedStats rangedStats)
+        private void BindStats(AllStats stats)
         {
-            _maxHealth.BindStat(characterStats.MaxHealth);
+            _maxHealth.BindStat(stats.MaxHealthStat);
 
-            _meleeDamage.BindStat(meleeStats.DamageMultiplier);
-            _meleeSpeed.BindStat(meleeStats.AttackSpeed);
+            _meleeDamage.BindStat(stats.MeleeDamageMultiplierStat);
+            _meleeSpeed.BindStat(stats.MeleeAttackSpeedStat);
 
-            _rangedDamage.BindStat(rangedStats.DamageMultiplier);
-            _rangedSpeed.BindStat(rangedStats.AttackSpeed);
+            _rangedDamage.BindStat(stats.RangedDamageMultiplierStat);
+            _rangedSpeed.BindStat(stats.RangedAttackSpeedStat);
 
-            _movementSpeed.BindStat(characterStats.MovementSpeed);
-            _armor.BindStat(characterStats.Armor);
-            _vampirism.BindStat(characterStats.Vampirism);
-            _luck.BindStat(characterStats.Luck);
+            _movementSpeed.BindStat(stats.MovementSpeedStat);
+            _armor.BindStat(stats.ArmorStat);
+            _vampirism.BindStat(stats.VampirismStat);
+            _luck.BindStat(stats.LuckStat);
         }
 
         private void UnbindStats()

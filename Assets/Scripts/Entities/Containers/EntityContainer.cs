@@ -26,10 +26,7 @@ namespace Entities.Containers
             _entities = GetComponentsInChildren<E>().ToList();
 
             foreach (var entity in _entities)
-            {
-                entity.Initialize();
                 entity.PlaceInRoom(room);
-            }
         }
 
         public void Dispose()

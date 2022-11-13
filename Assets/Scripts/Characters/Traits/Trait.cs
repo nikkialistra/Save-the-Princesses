@@ -10,9 +10,9 @@ namespace Characters.Traits
     [CreateAssetMenu(fileName = "(Trait Name)", menuName = "GameData/Character Trait")]
     public class Trait : ScriptableObject
     {
-        public IReadOnlyCollection<StatModifier<CharacterStat>> CharacterStatModifiers => _characterStatModifiers;
-        public IReadOnlyCollection<StatModifier<MeleeStat>> MeleeStatModifiers => _meleeStatModifiers;
-        public IReadOnlyCollection<StatModifier<RangedStat>> RangedStatModifiers => _rangedStatModifiers;
+        public IEnumerable<StatModifier<CharacterStat>> CharacterStatModifiers => _characterStatModifiers;
+        public IEnumerable<StatModifier<MeleeStat>> MeleeStatModifiers => _meleeStatModifiers;
+        public IEnumerable<StatModifier<RangedStat>> RangedStatModifiers => _rangedStatModifiers;
 
         [SerializeField] private List<StatModifier<CharacterStat>> _characterStatModifiers;
         [SerializeField] private List<StatModifier<MeleeStat>> _meleeStatModifiers;

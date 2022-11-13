@@ -4,6 +4,7 @@ using Characters.Stats.Character;
 using Characters.Stats.Melee;
 using Characters.Stats.Ranged;
 using Entities;
+using GameData.Stats;
 using Heroes;
 using Surrounding.Rooms;
 using UnityEngine;
@@ -13,9 +14,6 @@ namespace Enemies
 {
     [RequireComponent(typeof(Character))]
     [RequireComponent(typeof(CharacterMoving))]
-    [RequireComponent(typeof(CharacterStats))]
-    [RequireComponent(typeof(MeleeStats))]
-    [RequireComponent(typeof(RangedStats))]
     [RequireComponent(typeof(EnemyAttacker))]
     public class Enemy : MonoBehaviour, IEntity
     {
@@ -44,10 +42,10 @@ namespace Enemies
             Hero = hero;
         }
 
-        public void Initialize()
+        public void Initialize(InitialStats initialStats)
         {
             FillComponents();
-            InitializeComponents();
+            InitializeComponents(initialStats);
 
             _character.Slain += OnSlain;
         }
@@ -77,23 +75,15 @@ namespace Enemies
 
         private void FillComponents()
         {
-            _characterStats = GetComponent<CharacterStats>();
-            _meleeStats = GetComponent<MeleeStats>();
-            _rangedStats = GetComponent<RangedStats>();
-
             _character = GetComponent<Character>();
 
             Moving = GetComponent<CharacterMoving>();
             Attacker = GetComponent<EnemyAttacker>();
         }
 
-        private void InitializeComponents()
+        private void InitializeComponents(InitialStats initialStats)
         {
-            _characterStats.Initialize();
-            _meleeStats.Initialize();
-            _rangedStats.Initialize();
-
-            _character.Initialize();
+            _character.Initialize(initialStats);
 
             Moving.Initialize();
             Attacker.Initialize();

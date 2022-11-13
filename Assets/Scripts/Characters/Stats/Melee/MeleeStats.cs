@@ -1,26 +1,18 @@
 ﻿using System;
+using GameData.Stats.Types;
 using StatSystem;
-using UnityEngine;
 
 namespace Characters.Stats.Melee
 {
-    public class MeleeStats : MonoBehaviour
+    public class MeleeStats
     {
-        public Stat<MeleeStat> AttackSpeed => _attackSpeed;
-        public Stat<MeleeStat> DamageMultiplier => _damageMultiplier;
+        public Stat<MeleeStat> AttackSpeed { get; }
+        public Stat<MeleeStat> DamageMultiplier { get; }
 
-        [SerializeField] private Stat<MeleeStat> _attackSpeed;
-        [SerializeField] private Stat<MeleeStat> _damageMultiplier;
-
-        public void Initialize()
+        public MeleeStats(InitialMeleeStats initialStats)
         {
-            InitializeStats();
-        }
-
-        private void InitializeStats()
-        {
-            _attackSpeed.Initialize();
-            _damageMultiplier.Initialize();
+            AttackSpeed = new Stat<MeleeStat>(initialStats.AttackSpeed);
+            DamageMultiplier = new Stat<MeleeStat>(initialStats.DamageMultiplier);
         }
 
         public void AddStatModifier(StatModifier<MeleeStat> statModifier)
@@ -42,8 +34,8 @@ namespace Characters.Stats.Melee
             var stat = statModifier.StatType switch
             {
 
-                MeleeStat.AttackSpeed => _attackSpeed,
-                MeleeStat.DamageMultiplier => _damageMultiplier,
+                MeleeStat.AttackSpeed => AttackSpeed,
+                MeleeStat.DamageMultiplier => DamageMultiplier,
                 _ => throw new ArgumentOutOfRangeException()
             };
             return stat;

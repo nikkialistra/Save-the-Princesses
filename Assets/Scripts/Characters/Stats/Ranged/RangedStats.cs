@@ -1,29 +1,20 @@
 ﻿using System;
+using GameData.Stats.Types;
 using StatSystem;
-using UnityEngine;
 
 namespace Characters.Stats.Ranged
 {
-    public class RangedStats : MonoBehaviour
+    public class RangedStats
     {
-        public Stat<RangedStat> AttackSpeed => _attackSpeed;
-        public Stat<RangedStat> AttackRange => _attackRange;
-        public Stat<RangedStat> DamageMultiplier => _damageMultiplier;
+        public Stat<RangedStat> AttackSpeed { get; }
+        public Stat<RangedStat> AttackRange { get; }
+        public Stat<RangedStat> DamageMultiplier { get; }
 
-        [SerializeField] private Stat<RangedStat> _attackSpeed;
-        [SerializeField] private Stat<RangedStat> _attackRange;
-        [SerializeField] private Stat<RangedStat> _damageMultiplier;
-
-        public void Initialize()
+        public RangedStats(InitialRangedStats initialStats)
         {
-            InitializeStats();
-        }
-
-        private void InitializeStats()
-        {
-            _attackSpeed.Initialize();
-            _attackRange.Initialize();
-            _damageMultiplier.Initialize();
+            AttackSpeed = new Stat<RangedStat>(initialStats.AttackSpeed);
+            AttackRange = new Stat<RangedStat>(initialStats.AttackRange);
+            DamageMultiplier = new Stat<RangedStat>(initialStats.DamageMultiplier);
         }
 
         public void AddStatModifier(StatModifier<RangedStat> statModifier)
@@ -44,9 +35,9 @@ namespace Characters.Stats.Ranged
         {
             var stat = statModifier.StatType switch
             {
-                RangedStat.AttackSpeed => _attackSpeed,
-                RangedStat.AttackRange => _attackRange,
-                RangedStat.DamageMultiplier => _damageMultiplier,
+                RangedStat.AttackSpeed => AttackSpeed,
+                RangedStat.AttackRange => AttackRange,
+                RangedStat.DamageMultiplier => DamageMultiplier,
                 _ => throw new ArgumentOutOfRangeException()
             };
             return stat;
