@@ -1,4 +1,6 @@
 ﻿using Characters;
+using Characters.Moving;
+using Characters.Moving.Elements;
 using Characters.Stats;
 using Characters.Stats.Character;
 using Infrastructure.Installers.Game.Settings;

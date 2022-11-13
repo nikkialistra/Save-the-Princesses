@@ -1,4 +1,6 @@
 ﻿using Characters;
+using Characters.Moving;
+using Characters.Moving.Elements;
 using Infrastructure.Installers.Game.Settings;
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
@@ -31,14 +33,14 @@ namespace Princesses.Tasks
 
         protected override void OnExecute()
         {
-            _moving.enabled = false;
+            _moving.Active = false;
             _movingInTrain.enabled = true;
             _trainCharacter.TrainLeave += OnTrainLeave;
         }
 
         protected override void OnStop()
         {
-            _moving.enabled = true;
+            _moving.Active = true;
             _movingInTrain.enabled = false;
             _trainCharacter.TrainLeave -= OnTrainLeave;
         }

@@ -1,4 +1,4 @@
-﻿using Characters;
+﻿using Characters.Moving;
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
 using Trains;

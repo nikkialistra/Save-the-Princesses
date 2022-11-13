@@ -1,32 +1,32 @@
 ﻿using System;
 using Characters.Common;
+using Characters.Moving;
 using Characters.Stats;
 using Characters.Traits;
+using Combat.Attacks;
 using Combat.Weapons;
 using GameData.Stats;
 using Infrastructure.Installers.Game.Settings;
-using Surrounding.Rooms;
 using Sirenix.OdinInspector;
+using Surrounding.Rooms;
 using UnityEngine;
 using Zenject;
 
 namespace Characters
 {
-    [RequireComponent(typeof(CharacterHealth))]
-    [RequireComponent(typeof(CharacterHealthHandling))]
-    [RequireComponent(typeof(CharacterMoving))]
     [RequireComponent(typeof(CharacterAnimator))]
     [RequireComponent(typeof(CharacterTraits))]
-    [RequireComponent(typeof(CharacterBlinking))]
-    [RequireComponent(typeof(CharacterMovement))]
-    [RequireComponent(typeof(CharacterPathfinding))]
-    public class Character : MonoBehaviour
+    [RequireComponent(typeof(CharacterMoving))]
+    [RequireComponent(typeof(SpriteRenderer))]
+    public class Character : MonoBehaviour, ITickable, IFixedTickable
     {
+        public event Action Hit;
         public event Action Slain;
 
         public event Action AtStun;
         public event Action AtStunEnd;
 
+        public bool Active { get; set; }
         public Room Room { get; private set; }
 
         public AllStats Stats { get; private set; }
@@ -44,6 +44,8 @@ namespace Characters
         public Vector2 PositionCenterOffset => new(0, _yPosition);
         public Vector2 PositionCenter => (Vector2)transform.position + new Vector2(0, _yPosition);
 
+        public bool HasImpact => HitsImpact.HasImpact;
+
         [SerializeField] private CharacterType _characterType;
 
         [Space]
@@ -52,12 +54,14 @@ namespace Characters
         [Title("Fighting")]
         [SerializeField] private Weapon _weapon;
 
+        private bool _active;
+
         private CharacterHealthHandling _healthHandling;
         private CharacterTraits _traits;
 
         private CharacterBlinking _blinking;
-        private CharacterMovement _movement;
-        private CharacterPathfinding _pathfinding;
+
+        private SpriteRenderer _spriteRenderer;
 
         [Inject]
         public void Construct(CharacterSettings settings)
@@ -71,7 +75,18 @@ namespace Characters
             InitializeComponents(initialStats);
             InitializeWeapon();
 
+            _healthHandling.Hit += OnHit;
             _healthHandling.Slay += OnSlay;
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            TakeIfAttack(other);
+        }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            TakeIfAttack(other);
         }
 
         public void Dispose()
@@ -79,7 +94,22 @@ namespace Characters
             DisposeComponents();
             DisposeWeapon();
 
+            _healthHandling.Hit -= OnHit;
             _healthHandling.Slay -= OnSlay;
+        }
+
+        public void Tick()
+        {
+            if (!Active) return;
+
+            Moving.Tick();
+        }
+
+        public void FixedTick()
+        {
+            if (!Active) return;
+
+            Moving.FixedTick();
         }
 
         public void PlaceInRoom(Room room)
@@ -110,44 +140,39 @@ namespace Characters
             Health.SetCustomHitInvulnerabilityTime(value);
         }
 
-        private void OnSlay()
+        private void TakeIfAttack(Collider2D other)
         {
-            Slain?.Invoke();
+            var attack = other.GetComponentInParent<Attack>();
 
-            if (_characterType != CharacterType.Hero)
-                Destroy(gameObject);
+            if (attack != null)
+                _healthHandling.TakeAttack(attack);
         }
 
         private void FillComponents()
         {
-            Health = GetComponent<CharacterHealth>();
             Moving = GetComponent<CharacterMoving>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+
             Animator = GetComponent<CharacterAnimator>();
-            HitsImpact = GetComponent<CharacterHitsImpact>();
 
-            _healthHandling = GetComponent<CharacterHealthHandling>();
             _traits = GetComponent<CharacterTraits>();
-
-            _blinking = GetComponent<CharacterBlinking>();
-            _movement = GetComponent<CharacterMovement>();
-            _pathfinding = GetComponent<CharacterPathfinding>();
         }
 
         private void InitializeComponents(InitialStats initialStats)
         {
             Stats = new AllStats(initialStats);
 
-            Health.Initialize(Stats);
-            Moving.Initialize(Stats);
-            Animator.Initialize();
-            HitsImpact.Initialize(Stats);
+            Moving.Initialize(this, Settings);
 
-            _healthHandling.Initialize();
+            Animator.Initialize();
+
+            Health = new CharacterHealth(Stats, Settings);
+            HitsImpact = new CharacterHitsImpact(Stats);
+            _healthHandling = new CharacterHealthHandling(this, Health, HitsImpact);
+
             _traits.Initialize();
 
-            _blinking.Initialize();
-            _movement.Initialize();
-            _pathfinding.Initialize();
+            _blinking = new CharacterBlinking(this, _spriteRenderer, Settings);
         }
 
         private void DisposeComponents()
@@ -157,6 +182,8 @@ namespace Characters
 
             _healthHandling.Dispose();
             _traits.Dispose();
+
+            _blinking.Dispose();
         }
 
         private void InitializeWeapon()
@@ -169,6 +196,19 @@ namespace Characters
         {
             if (_weapon != null)
                 _weapon.Dispose();
+        }
+
+        private void OnHit()
+        {
+            Hit?.Invoke();
+        }
+
+        private void OnSlay()
+        {
+            Slain?.Invoke();
+
+            if (_characterType != CharacterType.Hero)
+                Destroy(gameObject);
         }
     }
 }

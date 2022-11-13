@@ -1,31 +1,24 @@
 ﻿using Infrastructure.Installers.Game.Settings;
 using UnityEngine;
-using Zenject;
 
-namespace Characters
+namespace Characters.Moving.Elements
 {
-    [RequireComponent(typeof(Rigidbody2D))]
-    public class CharacterMovement : MonoBehaviour
+    public class CharacterMovement
     {
         public Vector2 TargetVelocity { get; private set; }
-        public bool Stopped => _rigidBody2d.velocity.magnitude <= _settings.VelocityDelta;
+        public bool Stopped => _rigidBody2D.velocity.magnitude <= _settings.VelocityDelta;
 
         private float _currentSpeed;
         private Vector2 _direction;
 
-        private Rigidbody2D _rigidBody2d;
+        private readonly Rigidbody2D _rigidBody2D;
 
-        private CharacterSettings _settings;
+        private readonly CharacterSettings _settings;
 
-        [Inject]
-        public void Construct(CharacterSettings settings)
+        public CharacterMovement(Rigidbody2D rigidbody2D, CharacterSettings settings)
         {
+            _rigidBody2D = rigidbody2D;
             _settings = settings;
-        }
-
-        public void Initialize()
-        {
-            _rigidBody2d = GetComponent<Rigidbody2D>();
         }
 
         public void UpdateVelocity(float accelerationAmount, float decelerationAmount, float movementSpeed)
@@ -36,7 +29,7 @@ namespace Characters
 
             _currentSpeed = Mathf.Clamp(_currentSpeed, 0, movementSpeed);
 
-            _rigidBody2d.velocity = _direction * _currentSpeed;
+            _rigidBody2D.velocity = _direction * _currentSpeed;
         }
 
         public void MoveWithSpeed(Vector2 direction, float speed)

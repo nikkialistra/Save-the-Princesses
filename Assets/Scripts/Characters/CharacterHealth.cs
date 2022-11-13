@@ -1,13 +1,11 @@
 ﻿using System;
 using Characters.Stats;
 using Infrastructure.Installers.Game.Settings;
-using Sirenix.OdinInspector;
 using UnityEngine;
-using Zenject;
 
 namespace Characters
 {
-    public class CharacterHealth : MonoBehaviour
+    public class CharacterHealth
     {
         public event Action Hit;
         public event Action Slay;
@@ -33,17 +31,12 @@ namespace Characters
         private float _invulnerabilityTimeAfterHit;
         private float _lastHitTime;
 
-        private AllStats _stats;
+        private readonly AllStats _stats;
 
-        [Inject]
-        public void Construct(CharacterSettings settings)
-        {
-            _invulnerabilityTimeAfterHit = settings.InvulnerabilityTimeAfterHit;
-        }
-
-        public void Initialize(AllStats stats)
+        public CharacterHealth(AllStats stats, CharacterSettings settings)
         {
             _stats = stats;
+            _invulnerabilityTimeAfterHit = settings.InvulnerabilityTimeAfterHit;
 
             SetInitialValues();
 
@@ -55,7 +48,6 @@ namespace Characters
             _stats.MaxHealthStat.ValueChange -= OnMaxHealthChange;
         }
 
-        [Button]
         public void TakeDamage(int value)
         {
             if (!CheckDamageAllowConditions(value)) return;
@@ -66,7 +58,6 @@ namespace Characters
             _lastHitTime = Time.time;
         }
 
-        [Button]
         public void TakeHealing(int value)
         {
             if (value <= 0)

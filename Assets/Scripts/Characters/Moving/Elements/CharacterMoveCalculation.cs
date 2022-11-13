@@ -1,22 +1,16 @@
-﻿using Characters.Stats;
-using DG.Tweening;
+﻿using DG.Tweening;
 using Infrastructure.Installers.Game.Settings;
 using UnityEngine;
-using Zenject;
 
-namespace Characters
+namespace Characters.Moving.Elements
 {
-    [RequireComponent(typeof(CharacterPathfinding))]
-    [RequireComponent(typeof(CharacterMovement))]
-    [RequireComponent(typeof(Character))]
-    [RequireComponent(typeof(Rigidbody2D))]
-    public class CharacterMoving : MonoBehaviour
+    public class CharacterMoveCalculation
     {
         public Vector2 TargetVelocity => _movement.TargetVelocity;
 
         public bool Stopped => _movement.Stopped;
 
-        public float MovementSpeed => _stats.MovementSpeed;
+        public float MovementSpeed => _moving.MovementSpeed;
 
         private float AccelerationAmount => (MovementSpeed / _settings.AccelerationTime) * Time.fixedDeltaTime;
         private float DecelerationAmount => (MovementSpeed / _settings.DecelerationTime) * Time.fixedDeltaTime;
@@ -26,27 +20,20 @@ namespace Characters
         private bool _atKnockback;
         private bool _stunned;
 
-        private CharacterPathfinding _pathfinding;
-        private CharacterMovement _movement;
-        private Character _character;
-        private Rigidbody2D _rigidBody2d;
+        private readonly CharacterMoving _moving;
+        private readonly CharacterMovement _movement;
+        private readonly CharacterPathfinding _pathfinding;
+        private readonly Rigidbody2D _rigidBody2d;
+        private readonly CharacterSettings _settings;
 
-        private CharacterSettings _settings;
-        private AllStats _stats;
-
-        [Inject]
-        public void Construct(CharacterSettings settings)
+        public CharacterMoveCalculation(CharacterMoving moving, CharacterMovement movement,
+            CharacterPathfinding pathfinding, Rigidbody2D rigidbody2D, CharacterSettings settings)
         {
+            _moving = moving;
+            _movement = movement;
+            _pathfinding = pathfinding;
+            _rigidBody2d = rigidbody2D;
             _settings = settings;
-        }
-
-        public void Initialize(AllStats stats)
-        {
-            _stats = stats;
-
-            FillComponents();
-
-            _pathfinding.RepathRate = _settings.RepathRate;
 
             SubscribeToEvents();
         }
@@ -56,7 +43,7 @@ namespace Characters
             UnsubscribeFromEvents();
         }
 
-        private void FixedUpdate()
+        public void FixedTick()
         {
             _movement.UpdateVelocity(AccelerationAmount, DecelerationAmount, MovementSpeed);
         }
@@ -111,7 +98,7 @@ namespace Characters
 
         private void MoveTo(Vector2 destination)
         {
-            var delta = destination - (Vector2)transform.position;
+            var delta = destination - (Vector2)_moving.transform.position;
 
             if (delta.magnitude <= _settings.DestinationDistanceDelta)
             {
@@ -143,18 +130,10 @@ namespace Characters
             _stunned = false;
         }
 
-        private void FillComponents()
-        {
-            _pathfinding = GetComponent<CharacterPathfinding>();
-            _movement = GetComponent<CharacterMovement>();
-            _character = GetComponent<Character>();
-            _rigidBody2d = GetComponent<Rigidbody2D>();
-        }
-
         private void SubscribeToEvents()
         {
-            _character.AtStun += OnAtStun;
-            _character.AtStunEnd += OnAtStunEnd;
+            _moving.AtStun += OnAtStun;
+            _moving.AtStunEnd += OnAtStunEnd;
 
             _pathfinding.MoveWith += MoveWith;
             _pathfinding.MoveTo += MoveTo;
@@ -163,8 +142,8 @@ namespace Characters
 
         private void UnsubscribeFromEvents()
         {
-            _character.AtStun -= OnAtStun;
-            _character.AtStunEnd -= OnAtStunEnd;
+            _moving.AtStun -= OnAtStun;
+            _moving.AtStunEnd -= OnAtStunEnd;
 
             _pathfinding.MoveWith += MoveWith;
             _pathfinding.MoveTo -= MoveTo;

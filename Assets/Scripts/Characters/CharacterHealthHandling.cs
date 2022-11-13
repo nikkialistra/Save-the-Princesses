@@ -1,33 +1,31 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using Combat;
 using Combat.Attacks;
 using Combat.Attacks.Specs;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Characters
 {
-    [RequireComponent(typeof(Character))]
-    [RequireComponent(typeof(CharacterHealth))]
-    [RequireComponent(typeof(CharacterHitsImpact))]
-    public class CharacterHealthHandling : MonoBehaviour, IDamageable
+    public class CharacterHealthHandling : IDamageable
     {
         public event Action Hit;
         public event Action Slay;
 
         private readonly HashSet<AttackSpecs> _damagedAttacks = new();
 
-        private readonly CancellationTokenSource _takingDamageToken = new();
+        private readonly Character _character;
+        private readonly CharacterHealth _health;
+        private readonly CharacterHitsImpact _hitsImpact;
 
-        private Character _character;
-        private CharacterHealth _health;
-        private CharacterHitsImpact _hitsImpact;
+        private Coroutine _takingDamageCoroutine;
 
-        public void Initialize()
+        public CharacterHealthHandling(Character character, CharacterHealth health, CharacterHitsImpact hitsImpact)
         {
-            FillComponents();
+            _character = character;
+            _health = health;
+            _hitsImpact = hitsImpact;
 
             _health.Hit += OnHit;
             _health.Slay += OnSlay;
@@ -35,51 +33,27 @@ namespace Characters
 
         public void Dispose()
         {
-            _takingDamageToken.Dispose();
-
             _health.Hit += OnHit;
             _health.Slay -= OnSlay;
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        public void TakeAttack(Attack attack)
         {
-            HandleIfAttack(other);
-        }
+            var attackSpecs = attack.Specs;
 
-        private void OnTriggerStay2D(Collider2D other)
-        {
-            HandleIfAttack(other);
-        }
-
-        private void HandleIfAttack(Collider2D other)
-        {
-            var attack = other.GetComponentInParent<Attack>();
-
-            if (attack == null) return;
-
-            Handle(attack, attack.Specs);
-        }
-
-        private void Handle(Attack attack, AttackSpecs attackSpecs)
-        {
             if (attackSpecs.Origin.IsFriendlyFor(_character.Type)) return;
 
             if (!attackSpecs.IsPenetrable && IsTakenOnce(attackSpecs)) return;
 
+            ConsumeAttack(attack, attackSpecs);
+        }
+
+        private void ConsumeAttack(Attack attack, AttackSpecs attackSpecs)
+        {
             var attackDirection = (_character.PositionCenter - attack.Position).normalized;
 
             TakeAttackDamage(attackSpecs.Damage);
             _hitsImpact.Take(attackDirection, attackSpecs.Knockback, attackSpecs.Stun);
-        }
-
-        private void OnHit()
-        {
-            Hit?.Invoke();
-        }
-
-        private void OnSlay()
-        {
-            Slay?.Invoke();
         }
 
         public void TakeDamage(int value)
@@ -89,22 +63,25 @@ namespace Characters
 
         public void TakeDamageContinuously(int value, float interval)
         {
-            _takingDamageToken.Cancel();
-
-            TakingDamage(value, interval).AttachExternalCancellation(_takingDamageToken.Token);
+            _takingDamageCoroutine = _character.StartCoroutine(CTakingDamage(value, interval));
         }
 
-        public void StopTakingDamage()
-        {
-            _takingDamageToken.Cancel();
-        }
-
-        private async UniTask TakingDamage(int value, float interval)
+        private IEnumerator CTakingDamage(int value, float interval)
         {
             while (true)
             {
                 TakeDamage(value);
-                await UniTask.Delay(TimeSpan.FromSeconds(interval));
+
+                yield return new WaitForSeconds(interval);
+            }
+        }
+
+        public void StopTakingDamage()
+        {
+            if (_takingDamageCoroutine != null)
+            {
+                _character.StopCoroutine(_takingDamageCoroutine);
+                _takingDamageCoroutine = null;
             }
         }
 
@@ -124,11 +101,14 @@ namespace Characters
             _health.TakeDamage(value);
         }
 
-        private void FillComponents()
+        private void OnHit()
         {
-            _character = GetComponent<Character>();
-            _health = GetComponent<CharacterHealth>();
-            _hitsImpact = GetComponent<CharacterHitsImpact>();
+            Hit?.Invoke();
+        }
+
+        private void OnSlay()
+        {
+            Slay?.Invoke();
         }
     }
 }

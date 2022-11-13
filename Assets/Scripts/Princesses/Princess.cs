@@ -1,5 +1,7 @@
 ﻿using System;
 using Characters;
+using Characters.Moving;
+using Characters.Moving.Elements;
 using Characters.Traits;
 using Entities;
 using GameData.Stats;

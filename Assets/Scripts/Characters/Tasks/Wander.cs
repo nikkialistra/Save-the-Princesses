@@ -1,4 +1,6 @@
-﻿using Infrastructure.Installers.Game.Settings;
+﻿using Characters.Moving;
+using Characters.Moving.Elements;
+using Infrastructure.Installers.Game.Settings;
 using NodeCanvas.Framework;
 using ParadoxNotion;
 using ParadoxNotion.Design;

@@ -1,5 +1,7 @@
 ﻿using System;
 using Characters;
+using Characters.Moving;
+using Characters.Moving.Elements;
 using Characters.Stats.Character;
 using Characters.Stats.Melee;
 using Characters.Stats.Ranged;

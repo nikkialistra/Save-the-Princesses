@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace Characters
 {
-    public class CharacterHitsImpact : MonoBehaviour
+    public class CharacterHitsImpact
     {
         public bool HasImpact { get; private set; }
 
-        private AllStats _stats;
+        private readonly AllStats _stats;
 
         private Vector2 _knockback;
         private float _stun;
 
-        public void Initialize(AllStats stats)
+        public CharacterHitsImpact(AllStats stats)
         {
             _stats = stats;
         }

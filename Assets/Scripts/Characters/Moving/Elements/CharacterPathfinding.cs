@@ -4,13 +4,9 @@ using Pathfinding;
 using Pathfinding.RVO;
 using UnityEngine;
 
-namespace Characters
+namespace Characters.Moving.Elements
 {
-    [RequireComponent(typeof(Seeker))]
-    [RequireComponent(typeof(RVOController))]
-    [RequireComponent(typeof(LineRenderer))]
-    [RequireComponent(typeof(CharacterMoving))]
-    public class CharacterPathfinding : MonoBehaviour
+    public class CharacterPathfinding
     {
         public event Action<Vector2> MoveWith;
         public event Action<Vector2> MoveTo;
@@ -18,30 +14,27 @@ namespace Characters
 
         public float RepathRate { private get; set; }
 
-        [SerializeField] private bool _shouldLocallyAvoid;
-        [Space]
-        [SerializeField] private bool _showPath;
-
         private bool ShouldRepath => Time.time - _lastRepath >= RepathRate;
 
         private float _lastRepath = float.NegativeInfinity;
 
         private Vector2 _destination = Vector2.negativeInfinity;
 
-        private Seeker _seeker;
-        private RVOController _rvoController;
-        private LineRenderer _lineRenderer;
-        private CharacterMoving _moving;
+        private readonly CharacterMoving _moving;
+        private readonly Seeker _seeker;
+        private readonly RVOController _rvoController;
+        private readonly LineRenderer _lineRenderer;
 
-        public void Initialize()
+        public CharacterPathfinding(CharacterMoving moving, Seeker seeker,
+            RVOController rvoController, LineRenderer lineRenderer)
         {
-            _seeker = GetComponent<Seeker>();
-            _rvoController = GetComponent<RVOController>();
-            _lineRenderer = GetComponent<LineRenderer>();
-            _moving = GetComponent<CharacterMoving>();
+            _moving = moving;
+            _seeker = seeker;
+            _rvoController = rvoController;
+            _lineRenderer = lineRenderer;
         }
 
-        private void Update()
+        public void Tick()
         {
             if (float.IsNegativeInfinity(_destination.x) || !ShouldRepath) return;
 
@@ -60,7 +53,7 @@ namespace Characters
 
         private void SearchPath()
         {
-            _seeker.StartPath(transform.position, _destination, OnFinish);
+            _seeker.StartPath(_seeker.transform.position, _destination, OnFinish);
             _lastRepath = Time.time;
         }
 
@@ -75,13 +68,13 @@ namespace Characters
             else
                 Stop?.Invoke();
 
-            if (_showPath)
+            if (_moving.ShowPath)
                 ShowPathLine(vectorPath);
         }
 
         private void UpdateMove(List<Vector3> vectorPath)
         {
-            if (_shouldLocallyAvoid)
+            if (_moving.ShouldLocallyAvoid)
                 UpdateRvo(vectorPath[1]);
             else
                 MoveTo?.Invoke(vectorPath[1]);

@@ -1,12 +1,14 @@
 ﻿using System;
 using Characters.Common;
+using Characters.Moving;
+using Characters.Moving.Elements;
 using Infrastructure.Installers.Game.Settings;
 using UnityEngine;
 using Zenject;
 
 namespace Characters
 {
-    [RequireComponent(typeof(CharacterMoving))]
+    [RequireComponent(typeof(CharacterMoveCalculation))]
     [RequireComponent(typeof(Animator))]
     public class CharacterAnimator : MonoBehaviour
     {
@@ -22,9 +24,9 @@ namespace Characters
 
         [SerializeField] private bool _ignoreChangeDirectionTime;
 
-        private bool IsMoving => !_moving.Stopped && TargetDirection.magnitude >= _settings.VelocityDelta;
+        private bool IsMoving => !_moveCalculation.Stopped && TargetDirection.magnitude >= _settings.VelocityDelta;
 
-        private Vector2 TargetDirection => Direction9Utils.AnyDirectionToSnappedVector2(_moving.TargetVelocity);
+        private Vector2 TargetDirection => Direction9Utils.AnyDirectionToSnappedVector2(_moveCalculation.TargetVelocity);
 
         private float TimeToChangeDirection => ChangeDirectionTimeAlternative == false
             ? _settings.DirectionChangeTime
@@ -42,7 +44,7 @@ namespace Characters
         private Vector2 _lookDirection;
 
         private Animator _animator;
-        private CharacterMoving _moving;
+        private CharacterMoveCalculation _moveCalculation;
 
         private CharacterSettings _settings;
 
@@ -55,7 +57,7 @@ namespace Characters
         public void Initialize()
         {
             _animator = GetComponent<Animator>();
-            _moving = GetComponent<CharacterMoving>();
+            _moveCalculation = GetComponent<CharacterMoveCalculation>();
         }
 
         private void Update()

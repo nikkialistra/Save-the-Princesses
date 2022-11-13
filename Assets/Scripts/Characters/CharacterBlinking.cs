@@ -1,14 +1,11 @@
 ﻿using System;
-using Cysharp.Threading.Tasks;
+using System.Collections;
 using Infrastructure.Installers.Game.Settings;
 using UnityEngine;
-using Zenject;
 
 namespace Characters
 {
-    [RequireComponent(typeof(CharacterHealthHandling))]
-    [RequireComponent(typeof(SpriteRenderer))]
-    public class CharacterBlinking : MonoBehaviour
+    public class CharacterBlinking
     {
         private static readonly int BlinkId = Shader.PropertyToID("_Blink");
 
@@ -17,54 +14,45 @@ namespace Characters
 
         private bool _active;
 
-        private CharacterHealthHandling _healthHandling;
-        private SpriteRenderer _spriteRenderer;
+        private readonly SpriteRenderer _spriteRenderer;
 
-        private CharacterSettings _settings;
+        private readonly Character _character;
 
-        [Inject]
-        public void Construct(CharacterSettings settings)
+        private readonly CharacterSettings _settings;
+
+        public CharacterBlinking(Character character, SpriteRenderer spriteRenderer, CharacterSettings settings)
         {
+            _character = character;
+            _spriteRenderer = spriteRenderer;
             _settings = settings;
-        }
 
-        public void Initialize()
-        {
-            FillComponents();
-
-            _healthHandling.Hit += OnHit;
+            _character.Hit += OnHit;
         }
 
         public void Dispose()
         {
-            _healthHandling.Hit += OnHit;
+            _character.Hit += OnHit;
         }
 
         private void OnHit()
         {
             if (!_active)
-                Blink().AttachExternalCancellation(this.GetCancellationTokenOnDestroy()).Forget();
+                _character.StartCoroutine(Blink());
         }
 
-        private async UniTask Blink()
+        private IEnumerator Blink()
         {
             _active = true;
 
             _spriteRenderer.materials[0].SetInt(BlinkId, 1);
             Blinking?.Invoke();
 
-            await UniTask.Delay(TimeSpan.FromSeconds(_settings.HitBlinkingTime));
+            yield return new WaitForSeconds(_settings.HitBlinkingTime);
 
             _spriteRenderer.materials[0].SetInt(BlinkId, 0);
             BlinkingEnd?.Invoke();
 
             _active = false;
-        }
-
-        private void FillComponents()
-        {
-            _healthHandling = GetComponent<CharacterHealthHandling>();
-            _spriteRenderer = GetComponent<SpriteRenderer>();
         }
     }
 }

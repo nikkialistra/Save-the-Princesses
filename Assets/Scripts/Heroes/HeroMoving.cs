@@ -1,4 +1,4 @@
-using Characters;
+using Characters.Moving;
 using UnityEngine;
 
 namespace Heroes
@@ -6,20 +6,20 @@ namespace Heroes
     public class HeroMoving
     {
         private readonly HeroInput _input;
-        private readonly CharacterMoving _moving;
+        private readonly CharacterMoving _characterMoving;
 
-        public HeroMoving(HeroInput input, CharacterMoving moving)
+        public HeroMoving(HeroInput input, CharacterMoving characterMoving)
         {
             _input = input;
-            _moving = moving;
+            _characterMoving = characterMoving;
         }
 
         public void Tick()
         {
             if (_input.MoveInput != Vector2.zero)
-                _moving.Move(_input.DirectionNormalized);
+                _characterMoving.Move(_input.DirectionNormalized);
             else
-                _moving.Stop();
+                _characterMoving.Stop();
         }
     }
 }

@@ -31,8 +31,6 @@ namespace Heroes
         public Vector2 PositionCenter => _character.PositionCenter;
         public Vector2 PositionCenterOffset => _character.PositionCenterOffset;
 
-        private bool _active;
-
         private HeroInput _input;
         private HeroMoving _moving;
         private HeroAnimator _animator;
@@ -65,7 +63,6 @@ namespace Heroes
 
         public void Initialize()
         {
-            FillComponents();
             InitializeComponents();
 
             TrainCharacter.SetAsHero();
@@ -90,17 +87,17 @@ namespace Heroes
 
         public void Activate()
         {
-            _active = true;
+            _character.Active = true;
         }
 
         public void Deactivate()
         {
-            _active = false;
+            _character.Active = false;
         }
 
         public void Tick()
         {
-            if (!_active) return;
+            if (!_character.Active) return;
 
             _input.Tick();
             _moving.Tick();
@@ -139,9 +136,10 @@ namespace Heroes
             Slain?.Invoke();
         }
 
-        private void FillComponents()
+        private void InitializeComponents()
         {
             _character = GetComponent<Character>();
+            _character.Initialize(_initialStats);
 
             _input = new HeroInput(_playerInput, _settings);
             _moving = new HeroMoving(_input, _character.Moving);
@@ -149,15 +147,10 @@ namespace Heroes
             _attacker = new HeroAttacker(_playerInput);
 
             TrainCharacter = GetComponent<TrainCharacter>();
+            TrainCharacter.Initialize();
 
             _trainStatEffects = new HeroTrainStatEffects(_character);
             _princessGathering = new HeroPrincessGathering(_activePrincesses, transform, _playerInput, _settings);
-        }
-
-        private void InitializeComponents()
-        {
-            _character.Initialize(_initialStats);
-            TrainCharacter.Initialize();
         }
 
         private void DisposeComponents()

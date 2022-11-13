@@ -2,11 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using Characters;
+using Characters.Moving;
+using Characters.Moving.Elements;
 using UnityEngine;
 
 namespace Princesses
 {
-    [RequireComponent(typeof(CharacterMoving))]
+    [RequireComponent(typeof(CharacterMoveCalculation))]
     public class PrincessAnimators : MonoBehaviour
     {
         private static readonly int TiedId = Animator.StringToHash("tied");
