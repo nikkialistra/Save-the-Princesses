@@ -1,14 +1,13 @@
 ﻿using System;
 using GameData.Stats.Types;
-using UnityEngine;
 
 namespace GameData.Stats
 {
     [Serializable]
-    public class InitialStats : ScriptableObject
+    public class InitialStats
     {
-        public InitialCharacterStats Character;
-        public InitialMeleeStats Melee;
-        public InitialRangedStats Ranged;
+        public InitialCharacterStats Character = new();
+        public InitialMeleeStats Melee = new();
+        public InitialRangedStats Ranged = new();
     }
 }

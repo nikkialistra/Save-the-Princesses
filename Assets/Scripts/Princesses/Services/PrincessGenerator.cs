@@ -3,13 +3,14 @@ using GameData.Princesses.Spawning.Frequencies;
 using Princesses.Services.Repositories;
 using Princesses.Types;
 using SuperTiled2Unity;
+using Surrounding.Staging;
 using UnityEngine;
 
 namespace Princesses.Services
 {
     public class PrincessGenerator
     {
-        private SuperObject[] _spawnPoints;
+        private Transform[] _spawnPoints;
 
         private readonly PrincessPicking _picking;
 
@@ -26,24 +27,22 @@ namespace Princesses.Services
 
         public void Initialize(SuperObjectLayer spawnPointsLayer)
         {
-            _spawnPoints = spawnPointsLayer.GetComponentsInChildren<SuperObject>();
+            _spawnPoints = spawnPointsLayer.GetComponentsInChildren<Transform>();
         }
 
-        public void Generate(PrincessCategoryRoomFrequencies categoryRoomFrequencies)
+        public void Generate(PrincessCategoryRoomFrequencies categoryRoomFrequencies, StageType stageType)
         {
             foreach (var spawnPoint in _spawnPoints)
-                SpawnFor(spawnPoint.transform.position, categoryRoomFrequencies);
+                SpawnFor(spawnPoint.position, categoryRoomFrequencies, stageType);
         }
 
-        private void SpawnFor(Vector3 position, PrincessCategoryRoomFrequencies categoryRoomFrequencies)
+        private void SpawnFor(Vector3 position, PrincessCategoryRoomFrequencies categoryRoomFrequencies, StageType stageType)
         {
             var princessType = _picking.GetRandomPrincessType(categoryRoomFrequencies);
 
             if (princessType == PrincessType.None) return;
 
-            var princess = _factory.Create(princessType);
-
-            princess.Initialize();
+            var princess = _factory.Create(princessType, stageType);
 
             _repository.Add(princess, position);
         }

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using GameData.Princesses;
 using Princesses.Types;
 using Sirenix.OdinInspector;
+using Surrounding.Staging;
 using UnityEngine;
 using Zenject;
 
@@ -8,7 +10,7 @@ namespace Princesses.Services
 {
     public class PrincessFactory : SerializedMonoBehaviour
     {
-        [SerializeField] private Dictionary<PrincessType, Princess> _princessesMap = new();
+        [SerializeField] private Dictionary<PrincessType, PrincessData> _princessesMap = new();
 
         private DiContainer _diContainer;
 
@@ -18,13 +20,15 @@ namespace Princesses.Services
             _diContainer = diContainer;
         }
 
-        public Princess Create(PrincessType princessType)
+        public Princess Create(PrincessType princessType, StageType stageType)
         {
-            var princessPrefab = _princessesMap[princessType];
+            var princessData = _princessesMap[princessType];
 
-            var pri = _diContainer.InstantiatePrefabForComponent<Princess>(princessPrefab);
+            var princess = _diContainer.InstantiatePrefabForComponent<Princess>(princessData.Prefab);
 
-            return pri;
+            princess.Initialize(princessData.InitialStats.For(stageType));
+
+            return princess;
         }
     }
 }

@@ -62,7 +62,7 @@ namespace Surrounding.Rooms
 
         public void GenerateCharacters()
         {
-            _princessGenerator.Generate(_roomKind.PrincessCategoryRoomFrequencies);
+            _princessGenerator.Generate(_roomKind.PrincessCategoryRoomFrequencies, _roomKind.StageType);
             _enemyGenerator.Generate(_roomKind.EnemyRoomFrequencies);
         }
 

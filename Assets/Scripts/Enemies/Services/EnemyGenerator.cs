@@ -2,13 +2,14 @@
 using GameData.Enemies.Spawning;
 using GameData.Enemies.Spawning.Frequencies;
 using SuperTiled2Unity;
+using Surrounding.Staging;
 using UnityEngine;
 
 namespace Enemies.Services
 {
     public class EnemyGenerator
     {
-        private SuperObject[] _spawnPoints;
+        private Transform[] _spawnPoints;
 
         private readonly EnemyPicking _picking;
 
@@ -25,13 +26,13 @@ namespace Enemies.Services
 
         public void Initialize(SuperObjectLayer spawnPointsLayer)
         {
-            _spawnPoints = spawnPointsLayer.GetComponentsInChildren<SuperObject>();
+            _spawnPoints = spawnPointsLayer.GetComponentsInChildren<Transform>();
         }
 
         public void Generate(EnemyRoomFrequencies roomFrequencies)
         {
             foreach (var spawnPoint in _spawnPoints)
-                SpawnFor(spawnPoint.transform.position, roomFrequencies);
+                SpawnFor(spawnPoint.position, roomFrequencies);
         }
 
         private void SpawnFor(Vector3 position, EnemyRoomFrequencies roomFrequencies)
@@ -41,7 +42,6 @@ namespace Enemies.Services
             if (enemyType == EnemyType.None) return;
 
             var enemy = _factory.Create(enemyType);
-            enemy.Initialize();
 
             _repository.Add(enemy, position);
         }

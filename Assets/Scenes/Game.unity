@@ -230,8 +230,10 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 824360411594953427, guid: 527e99cc7fd3d254386c1a74a3c3a914, type: 3}
     - {fileID: 6877760913545033272, guid: 7ceb2cd6530529e41a39631f0d1eb73b, type: 3}
+    - {fileID: 11400000, guid: 2e19e4ae7f3650d43b9e3eda3150c7d5, type: 2}
+    - {fileID: 824360411594953427, guid: 527e99cc7fd3d254386c1a74a3c3a914, type: 3}
+    - {fileID: 11400000, guid: c0d4c561e9d63e2409672c8bc8c167fc, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -239,7 +241,7 @@ MonoBehaviour:
     SerializationNodes:
     - Name: _enemiesMap
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[Enemies.EnemyType, Scripts],[Enemies.Enemy,
+      Data: 0|System.Collections.Generic.Dictionary`2[[Enemies.EnemyType, Scripts],[GameData.Enemies.EnemyData,
         Scripts]], mscorlib
     - Name: comparer
       Entry: 7
@@ -262,10 +264,19 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
-      Data: 2
+      Data: 1
     - Name: $v
+      Entry: 7
+      Data: 2|GameData.Enemies.EnemyData, Scripts
+    - Name: Prefab
       Entry: 10
       Data: 0
+    - Name: InitialStats
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -274,10 +285,19 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
-      Data: 1
+      Data: 2
     - Name: $v
+      Entry: 7
+      Data: 3|GameData.Enemies.EnemyData, Scripts
+    - Name: Prefab
       Entry: 10
-      Data: 1
+      Data: 2
+    - Name: InitialStats
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -304,8 +324,11 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 2453188263931797200, guid: 094c5447a4b7f7c4e8e20c66751280d3, type: 3}
+    - {fileID: 11400000, guid: 19336cfcc31368e4e812056dd5ba56e0, type: 2}
     - {fileID: 1062006250087838606, guid: d0e48a2e6df3ae54da6154966fd905c9, type: 3}
+    - {fileID: 11400000, guid: 8ff660aa7e97eaa4ba97c7835dba255f, type: 2}
     - {fileID: 7695758724357967985, guid: d43ee85c61fb2b6429680e3a1e605fc0, type: 3}
+    - {fileID: 11400000, guid: a131dd1a326556c49a8f4e7b5b74dd9d, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -314,7 +337,7 @@ MonoBehaviour:
     - Name: _princessesMap
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[Princesses.Types.PrincessType,
-        Scripts],[Princesses.Princess, Scripts]], mscorlib
+        Scripts],[GameData.Princesses.PrincessData, Scripts]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[Princesses.Types.PrincessType,
@@ -338,8 +361,17 @@ MonoBehaviour:
       Entry: 3
       Data: 1
     - Name: $v
+      Entry: 7
+      Data: 2|GameData.Princesses.PrincessData, Scripts
+    - Name: Prefab
       Entry: 10
       Data: 0
+    - Name: InitialStats
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -350,8 +382,17 @@ MonoBehaviour:
       Entry: 3
       Data: 2
     - Name: $v
+      Entry: 7
+      Data: 3|GameData.Princesses.PrincessData, Scripts
+    - Name: Prefab
       Entry: 10
-      Data: 1
+      Data: 2
+    - Name: InitialStats
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -362,8 +403,17 @@ MonoBehaviour:
       Entry: 3
       Data: 3
     - Name: $v
+      Entry: 7
+      Data: 4|GameData.Princesses.PrincessData, Scripts
+    - Name: Prefab
       Entry: 10
-      Data: 2
+      Data: 4
+    - Name: InitialStats
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -546,8 +596,8 @@ MonoBehaviour:
     - Name: _customPaletteElementsMap
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[Princesses.Types.PrincessType,
-        Scripts],[Data.Princesses.Appearance.Palettes.PrincessPaletteElements, Scripts]],
-        mscorlib
+        Scripts],[GameData.Princesses.Appearance.Palettes.PrincessPaletteElements,
+        Scripts]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[Princesses.Types.PrincessType,
@@ -612,7 +662,7 @@ MonoBehaviour:
     - Name: _customControllerMap
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[Princesses.Types.PrincessType,
-        Scripts],[Data.Princesses.Appearance.Elements.PrincessElementControllers,
+        Scripts],[GameData.Princesses.Appearance.Elements.PrincessElementControllers,
         Scripts]], mscorlib
     - Name: comparer
       Entry: 7
@@ -1782,7 +1832,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 7.6875
+  orthographic size: 7.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

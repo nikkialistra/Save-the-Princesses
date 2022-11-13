@@ -1,0 +1,187 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f655ac43c9b2433a8c8476e24e432d72, type: 3}
+  m_Name: Stealer
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: InitialStatsMap
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[GameSystems.GameDifficulty,
+        Scripts],[GameData.Stats.InitialStats, Scripts]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[GameSystems.GameDifficulty,
+        Scripts]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 2|GameData.Stats.InitialStats, Scripts
+    - Name: Character
+      Entry: 7
+      Data: 3|GameData.Stats.Types.InitialCharacterStats, Scripts
+    - Name: MaxHealth
+      Entry: 4
+      Data: 70
+    - Name: MovementSpeed
+      Entry: 4
+      Data: 2
+    - Name: Armor
+      Entry: 4
+      Data: 0.2
+    - Name: Vampirism
+      Entry: 4
+      Data: 0
+    - Name: Luck
+      Entry: 4
+      Data: 0
+    - Name: KnockbackStand
+      Entry: 4
+      Data: 0
+    - Name: StunResistance
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Melee
+      Entry: 7
+      Data: 4|GameData.Stats.Types.InitialMeleeStats, Scripts
+    - Name: AttackSpeed
+      Entry: 4
+      Data: 0
+    - Name: DamageMultiplier
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Ranged
+      Entry: 7
+      Data: 5|GameData.Stats.Types.InitialRangedStats, Scripts
+    - Name: AttackSpeed
+      Entry: 4
+      Data: 0
+    - Name: AttackRange
+      Entry: 4
+      Data: 0
+    - Name: DamageMultiplier
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 6|GameData.Stats.InitialStats, Scripts
+    - Name: Character
+      Entry: 7
+      Data: 7|GameData.Stats.Types.InitialCharacterStats, Scripts
+    - Name: MaxHealth
+      Entry: 4
+      Data: 90
+    - Name: MovementSpeed
+      Entry: 4
+      Data: 2.2
+    - Name: Armor
+      Entry: 4
+      Data: 0.4
+    - Name: Vampirism
+      Entry: 4
+      Data: 0
+    - Name: Luck
+      Entry: 4
+      Data: 0
+    - Name: KnockbackStand
+      Entry: 4
+      Data: 0
+    - Name: StunResistance
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Melee
+      Entry: 7
+      Data: 8|GameData.Stats.Types.InitialMeleeStats, Scripts
+    - Name: AttackSpeed
+      Entry: 4
+      Data: 0
+    - Name: DamageMultiplier
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Ranged
+      Entry: 7
+      Data: 9|GameData.Stats.Types.InitialRangedStats, Scripts
+    - Name: AttackSpeed
+      Entry: 4
+      Data: 0
+    - Name: AttackRange
+      Entry: 4
+      Data: 0
+    - Name: DamageMultiplier
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
