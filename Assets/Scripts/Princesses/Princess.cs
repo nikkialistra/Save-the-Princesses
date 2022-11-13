@@ -28,7 +28,6 @@ namespace Princesses
     [RequireComponent(typeof(Rigidbody2D))]
     public class Princess : MonoBehaviour, IEntity
     {
-        public event Action Spawned;
         public event Action Slain;
 
         public Train Train { get; private set; }
@@ -105,8 +104,6 @@ namespace Princesses
         public void PlaceInRoom(Room room)
         {
             _character.PlaceInRoom(room);
-
-            Spawned?.Invoke();
         }
 
         public void SetPosition(Vector3 position, Transform parent)
@@ -195,8 +192,9 @@ namespace Princesses
 
         private void FillComponents()
         {
-            _character = GetComponent<Character>();
             _characterStats = GetComponent<CharacterStats>();
+
+            _character = GetComponent<Character>();
 
             TrainCharacter = GetComponent<TrainCharacter>();
             Moving = GetComponent<CharacterMoving>();
@@ -211,8 +209,9 @@ namespace Princesses
 
         private void InitializeComponents()
         {
-            _character.Initialize();
             _characterStats.Initialize();
+
+            _character.Initialize();
 
             TrainCharacter.Initialize();
             Moving.Initialize();

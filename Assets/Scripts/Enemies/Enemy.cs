@@ -19,7 +19,6 @@ namespace Enemies
     [RequireComponent(typeof(EnemyAttacker))]
     public class Enemy : MonoBehaviour, IEntity
     {
-        public event Action Spawned;
         public event Action Slain;
 
         public Vector2 Position => transform.position;
@@ -51,8 +50,6 @@ namespace Enemies
             InitializeComponents();
 
             _character.Slain += OnSlain;
-
-            Spawned?.Invoke();
         }
 
         public void Dispose()
@@ -80,11 +77,11 @@ namespace Enemies
 
         private void FillComponents()
         {
-            _character = GetComponent<Character>();
-
             _characterStats = GetComponent<CharacterStats>();
             _meleeStats = GetComponent<MeleeStats>();
             _rangedStats = GetComponent<RangedStats>();
+
+            _character = GetComponent<Character>();
 
             Moving = GetComponent<CharacterMoving>();
             Attacker = GetComponent<EnemyAttacker>();
@@ -92,11 +89,11 @@ namespace Enemies
 
         private void InitializeComponents()
         {
-            _character.Initialize();
-
             _characterStats.Initialize();
             _meleeStats.Initialize();
             _rangedStats.Initialize();
+
+            _character.Initialize();
 
             Moving.Initialize();
             Attacker.Initialize();

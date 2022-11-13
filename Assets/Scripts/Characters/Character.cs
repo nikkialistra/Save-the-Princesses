@@ -10,6 +10,7 @@ using Zenject;
 
 namespace Characters
 {
+    [RequireComponent(typeof(CharacterHealth))]
     [RequireComponent(typeof(CharacterHealthHandling))]
     [RequireComponent(typeof(CharacterMoving))]
     [RequireComponent(typeof(CharacterAnimator))]
@@ -26,6 +27,7 @@ namespace Characters
 
         public Room Room { get; private set; }
 
+        public CharacterHealth Health { get; private set; }
         public CharacterMoving Moving { get; private set; }
         public CharacterAnimator Animator { get; private set; }
         public CharacterHitsImpact HitsImpact { get; private set; }
@@ -99,6 +101,11 @@ namespace Characters
             _traits.Remove(trait);
         }
 
+        public void SetCustomHitInvulnerabilityTime(float value)
+        {
+            Health.SetCustomHitInvulnerabilityTime(value);
+        }
+
         private void OnSlay()
         {
             Slain?.Invoke();
@@ -109,6 +116,7 @@ namespace Characters
 
         private void FillComponents()
         {
+            Health = GetComponent<CharacterHealth>();
             Moving = GetComponent<CharacterMoving>();
             Animator = GetComponent<CharacterAnimator>();
             HitsImpact = GetComponent<CharacterHitsImpact>();
@@ -123,6 +131,7 @@ namespace Characters
 
         private void InitializeComponents()
         {
+            Health.Initialize();
             Moving.Initialize();
             Animator.Initialize();
             HitsImpact.Initialize();
@@ -137,6 +146,7 @@ namespace Characters
 
         private void DisposeComponents()
         {
+            Health.Dispose();
             Moving.Dispose();
 
             _healthHandling.Dispose();
