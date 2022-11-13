@@ -1,5 +1,5 @@
 ﻿using Characters;
-using Infrastructure.CompositionRoot.Settings;
+using Infrastructure.Installers.Game.Settings;
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
 using Trains.Characters;

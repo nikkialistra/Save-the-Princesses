@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 namespace Zenject.Internal
 {
-    [InitializeOnLoad]
+    // [InitializeOnLoad]
     public static class SceneParentAutomaticLoader
     {
         static SceneParentAutomaticLoader()

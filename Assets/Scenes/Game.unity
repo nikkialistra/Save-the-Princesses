@@ -181,6 +181,198 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &224152722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 224152723}
+  - component: {fileID: 224152725}
+  - component: {fileID: 224152724}
+  m_Layer: 0
+  m_Name: Characters Spawning
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &224152723
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224152722}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 814525032}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &224152724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224152722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c79f1bfb544f3f94b0ba52b2eccead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 824360411594953427, guid: 527e99cc7fd3d254386c1a74a3c3a914, type: 3}
+    - {fileID: 6877760913545033272, guid: 7ceb2cd6530529e41a39631f0d1eb73b, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _enemiesMap
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[Enemies.EnemyType, Scripts],[Enemies.Enemy,
+        Scripts]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[Enemies.EnemyType,
+        Scripts]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+--- !u!114 &224152725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224152722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079db8c11c0f4695b6603d71e354dd58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 2453188263931797200, guid: 094c5447a4b7f7c4e8e20c66751280d3, type: 3}
+    - {fileID: 1062006250087838606, guid: d0e48a2e6df3ae54da6154966fd905c9, type: 3}
+    - {fileID: 7695758724357967985, guid: d43ee85c61fb2b6429680e3a1e605fc0, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _princessesMap
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[Princesses.Types.PrincessType,
+        Scripts],[Princesses.Princess, Scripts]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[Princesses.Types.PrincessType,
+        Scripts]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!1 &796033802
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,6 +499,7 @@ Transform:
   - {fileID: 803020353}
   - {fileID: 1470453272}
   - {fileID: 1827701610}
+  - {fileID: 224152723}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -322,7 +515,7 @@ GameObject:
   - component: {fileID: 926162204}
   - component: {fileID: 926162203}
   m_Layer: 0
-  m_Name: Princesses
+  m_Name: Princesses Appearance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -344,11 +537,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: fd6eb26601f49224abcd899d24dc2bfa, type: 2}
-    - {fileID: 11400000, guid: c6e7c8b597b2fd742937d3f16a4277a2, type: 2}
-    - {fileID: 11400000, guid: c9ea275ce341f1d4db49be8ac76b3092, type: 2}
-    - {fileID: 11400000, guid: b7fbf38ecd3a0b84b8ab32375a67968e, type: 2}
-    - {fileID: 11400000, guid: 0847a81d822a7ef4ba461d355cccded2, type: 2}
+    - {fileID: 11400000, guid: a5d68a5c6fc8ce8478d799993037e433, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -357,7 +546,7 @@ MonoBehaviour:
     - Name: _customPaletteElementsMap
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[Princesses.Types.PrincessType,
-        Scripts],[Princesses.Services.Palettes.PrincessPaletteElements, Scripts]],
+        Scripts],[Data.Princesses.Appearance.Palettes.PrincessPaletteElements, Scripts]],
         mscorlib
     - Name: comparer
       Entry: 7
@@ -382,166 +571,8 @@ MonoBehaviour:
       Entry: 3
       Data: 2
     - Name: $v
-      Entry: 7
-      Data: 2|Princesses.Services.Palettes.PrincessPaletteElements, Scripts
-    - Name: SkinPaletteElements
-      Entry: 7
-      Data: 3|Princesses.Services.Palettes.PaletteElements`1[[Princesses.Palettes.Types.SkinPalette,
-        Scripts]], Scripts
-    - Name: _paletteElements
-      Entry: 7
-      Data: 4|System.Collections.Generic.List`1[[Princesses.Services.Palettes.PaletteElement`1[[Princesses.Palettes.Types.SkinPalette,
-        Scripts]], Scripts]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 5
-    - Name: 
-      Entry: 7
-      Data: 5|Princesses.Services.Palettes.PaletteElement`1[[Princesses.Palettes.Types.SkinPalette,
-        Scripts]], Scripts
-    - Name: Palette
       Entry: 10
       Data: 0
-    - Name: RelativeChance
-      Entry: 4
-      Data: 1
-    - Name: PercentChance
-      Entry: 1
-      Data: 20%
-    - Name: _chance
-      Entry: 4
-      Data: 0.2
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 6|Princesses.Services.Palettes.PaletteElement`1[[Princesses.Palettes.Types.SkinPalette,
-        Scripts]], Scripts
-    - Name: Palette
-      Entry: 10
-      Data: 1
-    - Name: RelativeChance
-      Entry: 4
-      Data: 1
-    - Name: PercentChance
-      Entry: 1
-      Data: 20%
-    - Name: _chance
-      Entry: 4
-      Data: 0.2
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 7|Princesses.Services.Palettes.PaletteElement`1[[Princesses.Palettes.Types.SkinPalette,
-        Scripts]], Scripts
-    - Name: Palette
-      Entry: 10
-      Data: 2
-    - Name: RelativeChance
-      Entry: 4
-      Data: 1
-    - Name: PercentChance
-      Entry: 1
-      Data: 20%
-    - Name: _chance
-      Entry: 4
-      Data: 0.2
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 8|Princesses.Services.Palettes.PaletteElement`1[[Princesses.Palettes.Types.SkinPalette,
-        Scripts]], Scripts
-    - Name: Palette
-      Entry: 10
-      Data: 3
-    - Name: RelativeChance
-      Entry: 4
-      Data: 1
-    - Name: PercentChance
-      Entry: 1
-      Data: 20%
-    - Name: _chance
-      Entry: 4
-      Data: 0.2
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 9|Princesses.Services.Palettes.PaletteElement`1[[Princesses.Palettes.Types.SkinPalette,
-        Scripts]], Scripts
-    - Name: Palette
-      Entry: 10
-      Data: 4
-    - Name: RelativeChance
-      Entry: 4
-      Data: 1
-    - Name: PercentChance
-      Entry: 1
-      Data: 20%
-    - Name: _chance
-      Entry: 4
-      Data: 0.2
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: HairPaletteElements
-      Entry: 7
-      Data: 10|Princesses.Services.Palettes.PaletteElements`1[[Princesses.Palettes.Types.HairPalette,
-        Scripts]], Scripts
-    - Name: _paletteElements
-      Entry: 7
-      Data: 11|System.Collections.Generic.List`1[[Princesses.Services.Palettes.PaletteElement`1[[Princesses.Palettes.Types.HairPalette,
-        Scripts]], Scripts]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: GarmentPaletteElements
-      Entry: 7
-      Data: 12|Princesses.Services.Palettes.PaletteElements`1[[Princesses.Palettes.Types.GarmentPalette,
-        Scripts]], Scripts
-    - Name: _paletteElements
-      Entry: 7
-      Data: 13|System.Collections.Generic.List`1[[Princesses.Services.Palettes.PaletteElement`1[[Princesses.Palettes.Types.GarmentPalette,
-        Scripts]], Scripts]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -554,85 +585,7 @@ MonoBehaviour:
   _originalSkinPalette: {fileID: 11400000, guid: ef38ccf23da2a944bb892b9bf0f79b18, type: 2}
   _originalHairPalette: {fileID: 11400000, guid: 6f894dec8dc45224d80143aaa83eade4, type: 2}
   _originalGarmentPalette: {fileID: 11400000, guid: 684e4c4f8e77a7141b8c97582bc3bf05, type: 2}
-  _defaultPaletteElements:
-    SkinPaletteElements:
-      _paletteElements:
-      - Palette: {fileID: 11400000, guid: fab9190da93fa2841bcbb3458d8384a0, type: 2}
-        RelativeChance: 1
-        PercentChance: 20%
-        _chance: 0.2
-      - Palette: {fileID: 11400000, guid: ef38ccf23da2a944bb892b9bf0f79b18, type: 2}
-        RelativeChance: 1
-        PercentChance: 20%
-        _chance: 0.2
-      - Palette: {fileID: 11400000, guid: f1b928e2f79b06f4e95af7f31eac865f, type: 2}
-        RelativeChance: 1
-        PercentChance: 20%
-        _chance: 0.2
-      - Palette: {fileID: 11400000, guid: 2ca3b4a8f83115446b5d09f73c1b76e9, type: 2}
-        RelativeChance: 1
-        PercentChance: 20%
-        _chance: 0.2
-      - Palette: {fileID: 11400000, guid: c596388920a4b2746a2773ad76b7583a, type: 2}
-        RelativeChance: 1
-        PercentChance: 20%
-        _chance: 0.2
-    HairPaletteElements:
-      _paletteElements:
-      - Palette: {fileID: 11400000, guid: 6f894dec8dc45224d80143aaa83eade4, type: 2}
-        RelativeChance: 1
-        PercentChance: 25%
-        _chance: 0.25
-      - Palette: {fileID: 11400000, guid: 5cb424584f2788449b22e1181083f879, type: 2}
-        RelativeChance: 1
-        PercentChance: 25%
-        _chance: 0.25
-      - Palette: {fileID: 11400000, guid: 544f79bbe88fc794ca48f798bb472b6c, type: 2}
-        RelativeChance: 1
-        PercentChance: 25%
-        _chance: 0.25
-      - Palette: {fileID: 11400000, guid: 3651a5d0942e6a044a7625d0c19ad694, type: 2}
-        RelativeChance: 1
-        PercentChance: 25%
-        _chance: 0.25
-    GarmentPaletteElements:
-      _paletteElements:
-      - Palette: {fileID: 11400000, guid: 013e591238982d7469cdef45ae3118b1, type: 2}
-        RelativeChance: 1
-        PercentChance: 11.11%
-        _chance: 0.11111111
-      - Palette: {fileID: 11400000, guid: ca409134cf6551d448730b2572754ebf, type: 2}
-        RelativeChance: 1
-        PercentChance: 11.11%
-        _chance: 0.11111111
-      - Palette: {fileID: 11400000, guid: 1d21ba5bafe77d045ae78dc62444581c, type: 2}
-        RelativeChance: 1
-        PercentChance: 11.11%
-        _chance: 0.11111111
-      - Palette: {fileID: 11400000, guid: eb49411cf4dd55443a1e9cf2c5454075, type: 2}
-        RelativeChance: 1
-        PercentChance: 11.11%
-        _chance: 0.11111111
-      - Palette: {fileID: 11400000, guid: 373b56ed71aefe045b80ffbe1fe03a27, type: 2}
-        RelativeChance: 1
-        PercentChance: 11.11%
-        _chance: 0.11111111
-      - Palette: {fileID: 11400000, guid: 7b3316f13937cfb4e9dd3e08bb3480ce, type: 2}
-        RelativeChance: 1
-        PercentChance: 11.11%
-        _chance: 0.11111111
-      - Palette: {fileID: 11400000, guid: 2b042abdba7ad3942b8faee8e525704f, type: 2}
-        RelativeChance: 1
-        PercentChance: 11.11%
-        _chance: 0.11111111
-      - Palette: {fileID: 11400000, guid: 684e4c4f8e77a7141b8c97582bc3bf05, type: 2}
-        RelativeChance: 1
-        PercentChance: 11.11%
-        _chance: 0.11111111
-      - Palette: {fileID: 11400000, guid: afd7917c035b50241bb1382803bd4309, type: 2}
-        RelativeChance: 1
-        PercentChance: 11.11%
-        _chance: 0.11111111
+  _defaultPaletteElements: {fileID: 11400000, guid: 6bd350f0c78a7d8479cff3cd8fcde973, type: 2}
 --- !u!114 &926162204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,16 +602,8 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 22100000, guid: 11cbb3cb50b639342a2283ea2a93b589, type: 2}
-    - {fileID: 22100000, guid: 27ef700dfefe88d47b6e3b23f246a4fe, type: 2}
-    - {fileID: 22100000, guid: 97eda2bde7ef87f449287fea1572194b, type: 2}
-    - {fileID: 22100000, guid: 9a92a1d779403d5449cc33525497d24d, type: 2}
-    - {fileID: 22100000, guid: 59cbdb2029045504bb38d9fe21126b85, type: 2}
-    - {fileID: 22100000, guid: 679b11df115b2d141ab4a6e505ea49e6, type: 2}
-    - {fileID: 22100000, guid: 596a79c2925e9784887054733d8dd01d, type: 2}
-    - {fileID: 22100000, guid: 70be6c0bec8a2494c9c8303b0c8def2f, type: 2}
-    - {fileID: 22100000, guid: 48c13d248fc66554db53ca9c45e5177a, type: 2}
-    - {fileID: 22100000, guid: 394f9754c8d15f7458b44474ddafa22b, type: 2}
+    - {fileID: 11400000, guid: efb377fb200916c42a60ac8e82132e72, type: 2}
+    - {fileID: 11400000, guid: a5e05cadd504be140aff6cbf3a4ec767, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -667,8 +612,8 @@ MonoBehaviour:
     - Name: _customControllerMap
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[Princesses.Types.PrincessType,
-        Scripts],[Princesses.Services.Elements.PrincessElementControllers, Scripts]],
-        mscorlib
+        Scripts],[Data.Princesses.Appearance.Elements.PrincessElementControllers,
+        Scripts]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[Princesses.Types.PrincessType,
@@ -692,196 +637,8 @@ MonoBehaviour:
       Entry: 3
       Data: 1
     - Name: $v
-      Entry: 7
-      Data: 2|Princesses.Services.Elements.PrincessElementControllers, Scripts
-    - Name: Heads
-      Entry: 7
-      Data: 3|Princesses.Services.Elements.ElementControllers, Scripts
-    - Name: _elementControllers
-      Entry: 7
-      Data: 4|System.Collections.Generic.List`1[[Princesses.Services.Elements.ElementController,
-        Scripts]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 3
-    - Name: 
-      Entry: 7
-      Data: 5|Princesses.Services.Elements.ElementController, Scripts
-    - Name: Controller
       Entry: 10
       Data: 0
-    - Name: RelativeChance
-      Entry: 4
-      Data: 1
-    - Name: PercentChance
-      Entry: 1
-      Data: 33.33%
-    - Name: _chance
-      Entry: 4
-      Data: 0.333333343
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 6|Princesses.Services.Elements.ElementController, Scripts
-    - Name: Controller
-      Entry: 10
-      Data: 1
-    - Name: RelativeChance
-      Entry: 4
-      Data: 1
-    - Name: PercentChance
-      Entry: 1
-      Data: 33.33%
-    - Name: _chance
-      Entry: 4
-      Data: 0.333333343
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 7|Princesses.Services.Elements.ElementController, Scripts
-    - Name: Controller
-      Entry: 10
-      Data: 2
-    - Name: RelativeChance
-      Entry: 4
-      Data: 1
-    - Name: PercentChance
-      Entry: 1
-      Data: 33.33%
-    - Name: _chance
-      Entry: 4
-      Data: 0.333333343
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: Garments
-      Entry: 7
-      Data: 8|Princesses.Services.Elements.ElementControllers, Scripts
-    - Name: _elementControllers
-      Entry: 7
-      Data: 9|System.Collections.Generic.List`1[[Princesses.Services.Elements.ElementController,
-        Scripts]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 10|Princesses.Services.Elements.ElementController, Scripts
-    - Name: Controller
-      Entry: 10
-      Data: 3
-    - Name: RelativeChance
-      Entry: 4
-      Data: 1
-    - Name: PercentChance
-      Entry: 1
-      Data: 100%
-    - Name: _chance
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: Hairs
-      Entry: 7
-      Data: 11|Princesses.Services.Elements.ElementControllers, Scripts
-    - Name: _elementControllers
-      Entry: 7
-      Data: 12|System.Collections.Generic.List`1[[Princesses.Services.Elements.ElementController,
-        Scripts]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 13|Princesses.Services.Elements.ElementController, Scripts
-    - Name: Controller
-      Entry: 10
-      Data: 4
-    - Name: RelativeChance
-      Entry: 4
-      Data: 1
-    - Name: PercentChance
-      Entry: 1
-      Data: 100%
-    - Name: _chance
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: BodyAccessories
-      Entry: 7
-      Data: 14|Princesses.Services.Elements.ElementControllers, Scripts
-    - Name: _elementControllers
-      Entry: 7
-      Data: 15|System.Collections.Generic.List`1[[Princesses.Services.Elements.ElementController,
-        Scripts]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: HeadAccessories
-      Entry: 7
-      Data: 16|Princesses.Services.Elements.ElementControllers, Scripts
-    - Name: _elementControllers
-      Entry: 7
-      Data: 17|System.Collections.Generic.List`1[[Princesses.Services.Elements.ElementController,
-        Scripts]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -892,51 +649,7 @@ MonoBehaviour:
       Entry: 3
       Data: 2
     - Name: $v
-      Entry: 7
-      Data: 18|Princesses.Services.Elements.PrincessElementControllers, Scripts
-    - Name: Heads
-      Entry: 7
-      Data: 19|Princesses.Services.Elements.ElementControllers, Scripts
-    - Name: _elementControllers
-      Entry: 7
-      Data: 20|System.Collections.Generic.List`1[[Princesses.Services.Elements.ElementController,
-        Scripts]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: Garments
-      Entry: 7
-      Data: 21|Princesses.Services.Elements.ElementControllers, Scripts
-    - Name: _elementControllers
-      Entry: 7
-      Data: 22|System.Collections.Generic.List`1[[Princesses.Services.Elements.ElementController,
-        Scripts]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 23|Princesses.Services.Elements.ElementController, Scripts
-    - Name: Controller
       Entry: 10
-      Data: 5
-    - Name: RelativeChance
-      Entry: 4
-      Data: 1
-    - Name: PercentChance
-      Entry: 1
-      Data: 100%
-    - Name: _chance
-      Entry: 4
       Data: 1
     - Name: 
       Entry: 8
@@ -947,201 +660,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: Hairs
-      Entry: 7
-      Data: 24|Princesses.Services.Elements.ElementControllers, Scripts
-    - Name: _elementControllers
-      Entry: 7
-      Data: 25|System.Collections.Generic.List`1[[Princesses.Services.Elements.ElementController,
-        Scripts]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: BodyAccessories
-      Entry: 7
-      Data: 26|Princesses.Services.Elements.ElementControllers, Scripts
-    - Name: _elementControllers
-      Entry: 7
-      Data: 27|System.Collections.Generic.List`1[[Princesses.Services.Elements.ElementController,
-        Scripts]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 28|Princesses.Services.Elements.ElementController, Scripts
-    - Name: Controller
-      Entry: 10
-      Data: 6
-    - Name: RelativeChance
-      Entry: 4
-      Data: 7
-    - Name: PercentChance
-      Entry: 1
-      Data: 70%
-    - Name: _chance
-      Entry: 4
-      Data: 0.7
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 29|Princesses.Services.Elements.ElementController, Scripts
-    - Name: Controller
-      Entry: 10
-      Data: 7
-    - Name: RelativeChance
-      Entry: 4
-      Data: 3
-    - Name: PercentChance
-      Entry: 1
-      Data: 30%
-    - Name: _chance
-      Entry: 4
-      Data: 0.3
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: HeadAccessories
-      Entry: 7
-      Data: 30|Princesses.Services.Elements.ElementControllers, Scripts
-    - Name: _elementControllers
-      Entry: 7
-      Data: 31|System.Collections.Generic.List`1[[Princesses.Services.Elements.ElementController,
-        Scripts]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 32|Princesses.Services.Elements.ElementController, Scripts
-    - Name: Controller
-      Entry: 10
-      Data: 8
-    - Name: RelativeChance
-      Entry: 4
-      Data: 7
-    - Name: PercentChance
-      Entry: 1
-      Data: 70%
-    - Name: _chance
-      Entry: 4
-      Data: 0.7
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 33|Princesses.Services.Elements.ElementController, Scripts
-    - Name: Controller
-      Entry: 10
-      Data: 9
-    - Name: RelativeChance
-      Entry: 4
-      Data: 3
-    - Name: PercentChance
-      Entry: 1
-      Data: 30%
-    - Name: _chance
-      Entry: 4
-      Data: 0.3
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-  _defaultControllers:
-    Heads:
-      _elementControllers:
-      - Controller: {fileID: 22100000, guid: 684b6b63304b5284fae542fe15cd0c0d, type: 2}
-        RelativeChance: 1
-        PercentChance: 100%
-        _chance: 1
-    Garments:
-      _elementControllers:
-      - Controller: {fileID: 22100000, guid: f54171acbbe232d45bbb00d1fe88b401, type: 2}
-        RelativeChance: 1
-        PercentChance: 50%
-        _chance: 0.5
-      - Controller: {fileID: 22100000, guid: e6937be12ccf0e74bb8695498f4c2ae2, type: 2}
-        RelativeChance: 1
-        PercentChance: 50%
-        _chance: 0.5
-    Hairs:
-      _elementControllers:
-      - Controller: {fileID: 22100000, guid: 628a8df296687d14d9305a0f30341e2e, type: 2}
-        RelativeChance: 1
-        PercentChance: 20%
-        _chance: 0.2
-      - Controller: {fileID: 22100000, guid: 236e1bf177b2810499c38f5fb58252fa, type: 2}
-        RelativeChance: 1
-        PercentChance: 20%
-        _chance: 0.2
-      - Controller: {fileID: 22100000, guid: 59178e59b47c71d43a714a6342654848, type: 2}
-        RelativeChance: 1
-        PercentChance: 20%
-        _chance: 0.2
-      - Controller: {fileID: 22100000, guid: 11b79f65486cc704eb6627bc1e37ce28, type: 2}
-        RelativeChance: 1
-        PercentChance: 20%
-        _chance: 0.2
-      - Controller: {fileID: 22100000, guid: c39c159e94da7c14ab927a3128f931a2, type: 2}
-        RelativeChance: 1
-        PercentChance: 20%
-        _chance: 0.2
-    BodyAccessories:
-      _elementControllers:
-      - Controller: {fileID: 22100000, guid: 70be6c0bec8a2494c9c8303b0c8def2f, type: 2}
-        RelativeChance: 1
-        PercentChance: 100%
-        _chance: 1
-    HeadAccessories:
-      _elementControllers:
-      - Controller: {fileID: 22100000, guid: 394f9754c8d15f7458b44474ddafa22b, type: 2}
-        RelativeChance: 1
-        PercentChance: 100%
-        _chance: 1
+  _defaultControllers: {fileID: 11400000, guid: 2cd7de09c9698534dbea4607b8904539, type: 2}
 --- !u!4 &926162205
 Transform:
   m_ObjectHideFlags: 0
@@ -1150,12 +669,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 926162202}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -8.826893, y: -4.0431232, z: 3.7707298}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1508061228}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1058244647
 GameObject:
@@ -1314,8 +833,9 @@ GameObject:
   - component: {fileID: 1470453272}
   - component: {fileID: 1470453271}
   - component: {fileID: 1470453270}
+  - component: {fileID: 1470453273}
   m_Layer: 0
-  m_Name: Pathfinder
+  m_Name: Pathfinding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1354,12 +874,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAYIexVN9SglwIAAIcFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VMtu2zAQ/BWD5yaQDMeP3lrZcVogiRG3yKHKgSFXFmGKFPiI7QT+9y4pOVLcBjAgenZ2OTtc8o0IZWtgTpulEfxWcyBfBySsyZdBF7yBPd1otRavcOI8Cu7KQKKR80Cd0IinIc3qCpwR7JvayEBOEPRKFNpUC76BTFtnES6otIAho13IVgi9DcgePxezkHLA1XASVq+4miWDIy4ZKAemo56IJ1rD8opJWtXAg+SOnE5bdtrQFDbTMpLLq1BdSylsq4W4Qx17zWhtPXaCBC4o9hYFJJdjBEoQm9IFpf30+6Kw4FpZhh7mwqBJTV3yXTfOVdRuG20vVHqIskbTq8k4amsK3/7DuUhjuDC6ujntnSZhH1cKtn2gB0at69nbh+ed/DTatKNyS58lPJag7vTSaK84Bp3xIdVbGM67v+/tZSWwbYc3Us9AX39+SKGHY3Rgn0lRPUc3Rw2wljq6HkcADJ7QDxQcB8S2JRANKn5b+EU3/UlqA9fCWIehtksV5D1rbwKVLKJnoRvvMm0UmH6FGhSV7rDCOu78HM9in2dd03Bp2t3b2OkunKVEuOMnyVlopXfdaVn46at6pYVya6CGlb16ttS7W7DlvXdSKOjOIQTu0MVMK9XMoP1P2tqbgrJemoO98wbm1NF4F1ATjgnvp6KjMUN5KcNExi5C8T/YRfg9BZdLivvKCJM7reIt+vB9CpOw8YJ/nHOSTtgsTSmw6XTCx6PpxXBMi/EomU1mY2Cjq5TEiyAUek7lqjGtPSocIdX1onDoT+/aYGloHa8fN3S3FK+Vth1TqEKvmQFQ902F92bB4Cb4VPAFF9jmGpwTKg4fecuJ1GwLPH8vlEdjF3tnaN5VyUktXrQLSE6y+JDl5EiOfwFQSwMEFAAACAgAABgh7DQkc2ptAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTVUVBKL0osyCgGihiCOKWZKSB2tJKhebKloWFiarKFhXmKmYmFrpFZYpqZiYGluaVZarKJqaFSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAABgh7FU31KCXAgAAhwUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAABgh7DQkc2ptAAAAeAAAAAkAJAAAAAAAAAAAAAAA5AIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAACcAwAAAAA=
+    dataString: UEsDBBQAAAgIAAAYIex7Yy+INQAAAD4AAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM01VFQSi9KLMgoBooYgDilmSkgdnQskFNSWZDql5ibChGoBQBQSwECLQAUAAAICAAAGCHse2MviDUAAAA+AAAACQAkAAAAAAAAAAAAAAAAAAAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAABAAEAWwAAAIAAAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
     cacheStartup: 0
-  showNavGraphs: 1
+  showNavGraphs: 0
   showUnwalkableNodes: 1
   debugMode: 0
   debugFloor: 0
@@ -1441,6 +961,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 814525032}
   m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1470453273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470453269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df5abc95ecf74d5ab2937735a6cc36a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collisionMask:
+    serializedVersion: 2
+    m_Bits: 86048768
+--- !u!1 &1508061227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1508061228}
+  m_Layer: 0
+  m_Name: Data
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1508061228
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508061227}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.826893, y: 4.0431232, z: -3.7707298}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 926162205}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1636495293
 GameObject:
@@ -1546,6 +1113,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734eb43f80274d91ab2f932dd3d8d62f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1683786887 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3517064352616132721, guid: dd2807e49e089614f82d4c9e3c2a3b91, type: 3}
+  m_PrefabInstance: {fileID: 1683786885}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1827701608
 GameObject:
   m_ObjectHideFlags: 0
@@ -1882,10 +1454,13 @@ MonoBehaviour:
   _camera: {fileID: 7217504656796712229}
   _hero: {fileID: 1683786886}
   _room: {fileID: 5731957735619916329, guid: 93b0589ff82ac6d45be8a028c4becc10, type: 3}
-  _train: {fileID: 121481525}
-  _handsSprites: {fileID: 1058244649}
+  _navigation: {fileID: 1470453273}
+  _princessFactory: {fileID: 224152725}
+  _enemyFactory: {fileID: 224152724}
   _princessPalettesRegistry: {fileID: 926162203}
   _princessElementControllersRegistry: {fileID: 926162204}
+  _train: {fileID: 121481525}
+  _handsSprites: {fileID: 1058244649}
   _playerInput: {fileID: 803020352}
   _inputDevices: {fileID: 1251789105}
   _healthBarView: {fileID: 1972371814}
@@ -2022,7 +1597,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1683786887}
   m_Lens:
     FieldOfView: 34
     OrthographicSize: 5.945313
@@ -2207,7 +1782,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5.75
+  orthographic size: 7.6875
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

@@ -7,7 +7,7 @@ using Characters.Stats.Ranged;
 using Characters.Traits;
 using Combat.Attacks;
 using Heroes.Attacks;
-using Infrastructure.CompositionRoot.Settings;
+using Infrastructure.Installers.Game.Settings;
 using Trains.Characters;
 using UnityEngine;
 using Zenject;
@@ -28,11 +28,11 @@ namespace Heroes
     [RequireComponent(typeof(RangedStats))]
     public class Hero : MonoBehaviour, ITickable
     {
-        public event Action Dying;
+        public event Action Slain;
 
         public Attack Attack => _attack;
 
-        public CharacterHealth CharacterHealth { get; private set; }
+        public CharacterHealth Health => _character.Health;
         public HeroAttacker Attacker { get; private set; }
         public TrainCharacter TrainCharacter { get; private set; }
 
@@ -73,14 +73,14 @@ namespace Heroes
             InitializeComponents();
 
             TrainCharacter.SetAsHero();
-            CharacterHealth.SetCustomHitInvulnerabilityTime(_settings.HitInvulnerabilityTime);
+            _character.SetCustomHitInvulnerabilityTime(_settings.HitInvulnerabilityTime);
 
-            _character.Dying += OnDying;
+            _character.Slain += OnSlain;
         }
 
         public void Dispose()
         {
-            _character.Dying -= OnDying;
+            _character.Slain -= OnSlain;
 
             DisposeComponents();
         }
@@ -117,22 +117,21 @@ namespace Heroes
             _trainStatEffects.RemovePrincessStatEffects(effects);
         }
 
-        private void OnDying()
+        private void OnSlain()
         {
-            Dying?.Invoke();
+            Slain?.Invoke();
         }
 
         private void FillComponents()
         {
-            _character = GetComponent<Character>();
-
-            CharacterHealth = GetComponent<CharacterHealth>();
-            Attacker = GetComponent<HeroAttacker>();
-            TrainCharacter = GetComponent<TrainCharacter>();
-
             _characterStats = GetComponent<CharacterStats>();
             _meleeStats = GetComponent<MeleeStats>();
             _rangedStats = GetComponent<RangedStats>();
+
+            _character = GetComponent<Character>();
+
+            Attacker = GetComponent<HeroAttacker>();
+            TrainCharacter = GetComponent<TrainCharacter>();
 
             _trainStatEffects = GetComponent<HeroTrainStatEffects>();
             _animator = GetComponent<HeroAnimator>();
@@ -143,15 +142,14 @@ namespace Heroes
 
         private void InitializeComponents()
         {
-            _character.Initialize();
-
-            CharacterHealth.Initialize();
-            Attacker.Initialize();
-            TrainCharacter.Initialize();
-
             _characterStats.Initialize();
             _meleeStats.Initialize();
             _rangedStats.Initialize();
+
+            _character.Initialize();
+
+            Attacker.Initialize();
+            TrainCharacter.Initialize();
 
             _trainStatEffects.Initialize();
             _animator.Initialize();
@@ -163,8 +161,6 @@ namespace Heroes
         private void DisposeComponents()
         {
             _character.Dispose();
-
-            CharacterHealth.Dispose();
 
             _animator.Dispose();
             _princessGathering.Dispose();

@@ -1,6 +1,6 @@
 ﻿using Characters.Common;
 using Cysharp.Threading.Tasks;
-using Infrastructure.CompositionRoot.Settings;
+using Infrastructure.Installers.Game.Settings;
 using Trains.Characters;
 using UnityEngine;
 using Zenject;

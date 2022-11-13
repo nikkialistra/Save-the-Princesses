@@ -66,6 +66,7 @@ PolygonCollider2D:
       - {x: 0.15625, y: -0.875}
       - {x: 0.15625, y: -0.65625}
       - {x: 0.03125, y: -0.625}
+  m_UseDelaunayMesh: 0
 --- !u!1 &3120438979254824918
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +133,7 @@ PolygonCollider2D:
       - {x: -0.03125, y: -1}
       - {x: 0.125, y: -0.96875}
       - {x: 0.15625, y: -0.875}
+  m_UseDelaunayMesh: 0
 --- !u!1 &3538761698480161455
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,6 +200,7 @@ PolygonCollider2D:
       - {x: 0.15625, y: -0.875}
       - {x: 0.15625, y: -0.65625}
       - {x: 0.09375, y: -0.59375}
+  m_UseDelaunayMesh: 0
 --- !u!1 &5446850862100933150
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,15 +258,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.15625, y: -0.875}
-      - {x: 0.15625, y: -0.625}
-      - {x: 0.15625, y: 0.0625}
-      - {x: -0.15625, y: 0.0625}
-      - {x: -0.15625, y: -0.625}
-      - {x: -0.15625, y: -0.875}
+    - - {x: -0.03125, y: -1}
       - {x: -0.125, y: -0.96875}
-      - {x: -0.03125, y: -1}
-      - {x: 0.09375, y: -0.96875}
+      - {x: -0.15625, y: -0.78125}
+      - {x: -0.15625, y: -0.625}
+      - {x: 0.15625, y: -0.625}
+      - {x: 0.15625, y: -0.875}
+      - {x: 0.125, y: -1}
+  m_UseDelaunayMesh: 0
 --- !u!1 &6361800363750806681
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +344,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1255588663
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -427,6 +429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7166d4b898c0481bba75f5c949e1e26a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _centerOffset: {x: 0, y: 0}
 --- !u!114 &7952860131294507740
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cae56c049ca40bb84f19d5810030946, type: 3}
+  m_Name: Cruel
+  m_EditorClassIdentifier: 
+  SkinPaletteElements:
+    _elements:
+    - Element: {fileID: 11400000, guid: fd6eb26601f49224abcd899d24dc2bfa, type: 2}
+      RelativeChance: 1
+      PercentChance: 20%
+      _chance: 0.2
+    - Element: {fileID: 11400000, guid: c6e7c8b597b2fd742937d3f16a4277a2, type: 2}
+      RelativeChance: 1
+      PercentChance: 20%
+      _chance: 0.2
+    - Element: {fileID: 11400000, guid: c9ea275ce341f1d4db49be8ac76b3092, type: 2}
+      RelativeChance: 1
+      PercentChance: 20%
+      _chance: 0.2
+    - Element: {fileID: 11400000, guid: b7fbf38ecd3a0b84b8ab32375a67968e, type: 2}
+      RelativeChance: 1
+      PercentChance: 20%
+      _chance: 0.2
+    - Element: {fileID: 11400000, guid: 0847a81d822a7ef4ba461d355cccded2, type: 2}
+      RelativeChance: 1
+      PercentChance: 20%
+      _chance: 0.2
+  HairPaletteElements:
+    _elements: []
+  GarmentPaletteElements:
+    _elements: []

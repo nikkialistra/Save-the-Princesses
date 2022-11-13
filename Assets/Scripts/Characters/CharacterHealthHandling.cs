@@ -15,7 +15,7 @@ namespace Characters
     public class CharacterHealthHandling : MonoBehaviour, IDamageable
     {
         public event Action Hit;
-        public event Action Die;
+        public event Action Slay;
 
         private readonly HashSet<AttackSpecs> _damagedAttacks = new();
 
@@ -30,7 +30,7 @@ namespace Characters
             FillComponents();
 
             _health.Hit += OnHit;
-            _health.Die += OnDie;
+            _health.Slay += OnSlay;
         }
 
         public void Dispose()
@@ -38,7 +38,7 @@ namespace Characters
             _takingDamageToken.Dispose();
 
             _health.Hit += OnHit;
-            _health.Die -= OnDie;
+            _health.Slay -= OnSlay;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -77,9 +77,9 @@ namespace Characters
             Hit?.Invoke();
         }
 
-        private void OnDie()
+        private void OnSlay()
         {
-            Die?.Invoke();
+            Slay?.Invoke();
         }
 
         public void TakeDamage(int value)

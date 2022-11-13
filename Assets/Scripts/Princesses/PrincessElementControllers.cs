@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Characters;
-using Princesses.Services.Elements;
+using Data.Princesses.Appearance.Elements;
 using UnityEngine;
 using Zenject;
 using static Princesses.Types.ElementType;

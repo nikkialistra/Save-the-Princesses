@@ -1,6 +1,6 @@
 ﻿using System;
 using Characters;
-using Infrastructure.CompositionRoot.Settings;
+using Infrastructure.Installers.Game.Settings;
 using TMPro;
 using UnityEngine;
 using Zenject;

@@ -4,7 +4,7 @@ using Characters.Stats.Character;
 using Characters.Traits;
 using Entities;
 using Heroes;
-using Infrastructure.CompositionRoot.Settings;
+using Infrastructure.Installers.Game.Settings;
 using Surrounding.Rooms;
 using Princesses.Types;
 using Trains;
@@ -28,8 +28,7 @@ namespace Princesses
     [RequireComponent(typeof(Rigidbody2D))]
     public class Princess : MonoBehaviour, IEntity
     {
-        public event Action Spawn;
-        public event Action Dying;
+        public event Action Slain;
 
         public Train Train { get; private set; }
 
@@ -75,6 +74,7 @@ namespace Princesses
         private PrincessActualVelocity _actualVelocity;
 
         private Character _character;
+
         private CharacterStats _characterStats;
 
         [Inject]
@@ -92,8 +92,6 @@ namespace Princesses
             InitializeComponents();
 
             SubscribeToEvents();
-
-            Spawn?.Invoke();
         }
 
         public void Dispose()
@@ -108,9 +106,10 @@ namespace Princesses
             _character.PlaceInRoom(room);
         }
 
-        public void SetParent(Transform parent)
+        public void SetPosition(Vector3 position, Transform parent)
         {
             transform.parent = parent;
+            transform.position = position;
         }
 
         public void ShowGatherWish()
@@ -186,15 +185,16 @@ namespace Princesses
             _character.AddTrait(_slowMoving);
         }
 
-        private void OnDying()
+        private void OnSlain()
         {
-            Dying?.Invoke();
+            Slain?.Invoke();
         }
 
         private void FillComponents()
         {
-            _character = GetComponent<Character>();
             _characterStats = GetComponent<CharacterStats>();
+
+            _character = GetComponent<Character>();
 
             TrainCharacter = GetComponent<TrainCharacter>();
             Moving = GetComponent<CharacterMoving>();
@@ -209,8 +209,9 @@ namespace Princesses
 
         private void InitializeComponents()
         {
-            _character.Initialize();
             _characterStats.Initialize();
+
+            _character.Initialize();
 
             TrainCharacter.Initialize();
             Moving.Initialize();
@@ -235,7 +236,7 @@ namespace Princesses
 
         private void SubscribeToEvents()
         {
-            _character.Dying += OnDying;
+            _character.Slain += OnSlain;
 
             _tied.Hit += TiedHit;
             _tied.Untie += Untie;
@@ -243,7 +244,7 @@ namespace Princesses
 
         private void UnsubscribeFromEvents()
         {
-            _character.Dying -= OnDying;
+            _character.Slain -= OnSlain;
 
             _tied.Hit -= TiedHit;
             _tied.Untie -= Untie;

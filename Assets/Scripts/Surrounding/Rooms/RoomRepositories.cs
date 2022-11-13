@@ -17,10 +17,10 @@ namespace Surrounding.Rooms
             _enemyRepository = enemyRepository;
         }
 
-        public void Initialize()
+        public void Initialize(Room room)
         {
-            _princessRepository.Initialize();
-            _enemyRepository.Initialize();
+            _princessRepository.Initialize(room);
+            _enemyRepository.Initialize(room);
         }
 
         public void Dispose()

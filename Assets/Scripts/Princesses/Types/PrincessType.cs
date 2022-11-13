@@ -2,6 +2,7 @@
 {
     public enum PrincessType
     {
+        None,
         Standard,
         Knight,
         Cruel

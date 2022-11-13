@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cae56c049ca40bb84f19d5810030946, type: 3}
+  m_Name: Standard
+  m_EditorClassIdentifier: 
+  SkinPaletteElements:
+    _elements:
+    - Element: {fileID: 11400000, guid: fab9190da93fa2841bcbb3458d8384a0, type: 2}
+      RelativeChance: 1
+      PercentChance: 20%
+      _chance: 0.2
+    - Element: {fileID: 11400000, guid: ef38ccf23da2a944bb892b9bf0f79b18, type: 2}
+      RelativeChance: 1
+      PercentChance: 20%
+      _chance: 0.2
+    - Element: {fileID: 11400000, guid: f1b928e2f79b06f4e95af7f31eac865f, type: 2}
+      RelativeChance: 1
+      PercentChance: 20%
+      _chance: 0.2
+    - Element: {fileID: 11400000, guid: 2ca3b4a8f83115446b5d09f73c1b76e9, type: 2}
+      RelativeChance: 1
+      PercentChance: 20%
+      _chance: 0.2
+    - Element: {fileID: 11400000, guid: c596388920a4b2746a2773ad76b7583a, type: 2}
+      RelativeChance: 1
+      PercentChance: 20%
+      _chance: 0.2
+  HairPaletteElements:
+    _elements:
+    - Element: {fileID: 11400000, guid: 6f894dec8dc45224d80143aaa83eade4, type: 2}
+      RelativeChance: 1
+      PercentChance: 25%
+      _chance: 0.25
+    - Element: {fileID: 11400000, guid: 5cb424584f2788449b22e1181083f879, type: 2}
+      RelativeChance: 1
+      PercentChance: 25%
+      _chance: 0.25
+    - Element: {fileID: 11400000, guid: 544f79bbe88fc794ca48f798bb472b6c, type: 2}
+      RelativeChance: 1
+      PercentChance: 25%
+      _chance: 0.25
+    - Element: {fileID: 11400000, guid: 3651a5d0942e6a044a7625d0c19ad694, type: 2}
+      RelativeChance: 1
+      PercentChance: 25%
+      _chance: 0.25
+  GarmentPaletteElements:
+    _elements:
+    - Element: {fileID: 11400000, guid: 013e591238982d7469cdef45ae3118b1, type: 2}
+      RelativeChance: 1
+      PercentChance: 11.11%
+      _chance: 0.11111111
+    - Element: {fileID: 11400000, guid: ca409134cf6551d448730b2572754ebf, type: 2}
+      RelativeChance: 1
+      PercentChance: 11.11%
+      _chance: 0.11111111
+    - Element: {fileID: 11400000, guid: 1d21ba5bafe77d045ae78dc62444581c, type: 2}
+      RelativeChance: 1
+      PercentChance: 11.11%
+      _chance: 0.11111111
+    - Element: {fileID: 11400000, guid: eb49411cf4dd55443a1e9cf2c5454075, type: 2}
+      RelativeChance: 1
+      PercentChance: 11.11%
+      _chance: 0.11111111
+    - Element: {fileID: 11400000, guid: 373b56ed71aefe045b80ffbe1fe03a27, type: 2}
+      RelativeChance: 1
+      PercentChance: 11.11%
+      _chance: 0.11111111
+    - Element: {fileID: 11400000, guid: 7b3316f13937cfb4e9dd3e08bb3480ce, type: 2}
+      RelativeChance: 1
+      PercentChance: 11.11%
+      _chance: 0.11111111
+    - Element: {fileID: 11400000, guid: 2b042abdba7ad3942b8faee8e525704f, type: 2}
+      RelativeChance: 1
+      PercentChance: 11.11%
+      _chance: 0.11111111
+    - Element: {fileID: 11400000, guid: 684e4c4f8e77a7141b8c97582bc3bf05, type: 2}
+      RelativeChance: 1
+      PercentChance: 11.11%
+      _chance: 0.11111111
+    - Element: {fileID: 11400000, guid: afd7917c035b50241bb1382803bd4309, type: 2}
+      RelativeChance: 1
+      PercentChance: 11.11%
+      _chance: 0.11111111

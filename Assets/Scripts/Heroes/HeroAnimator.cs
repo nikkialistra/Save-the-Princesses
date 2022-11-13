@@ -1,7 +1,7 @@
 ﻿using Characters;
 using Characters.Common;
 using Combat.Attacks;
-using Infrastructure.CompositionRoot.Settings;
+using Infrastructure.Installers.Game.Settings;
 using UnityEngine;
 using Zenject;
 

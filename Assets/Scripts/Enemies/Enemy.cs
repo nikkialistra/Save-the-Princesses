@@ -1,5 +1,8 @@
 ﻿using System;
 using Characters;
+using Characters.Stats.Character;
+using Characters.Stats.Melee;
+using Characters.Stats.Ranged;
 using Entities;
 using Heroes;
 using Surrounding.Rooms;
@@ -10,11 +13,13 @@ namespace Enemies
 {
     [RequireComponent(typeof(Character))]
     [RequireComponent(typeof(CharacterMoving))]
+    [RequireComponent(typeof(CharacterStats))]
+    [RequireComponent(typeof(MeleeStats))]
+    [RequireComponent(typeof(RangedStats))]
     [RequireComponent(typeof(EnemyAttacker))]
     public class Enemy : MonoBehaviour, IEntity
     {
-        public event Action Spawn;
-        public event Action Dying;
+        public event Action Slain;
 
         public Vector2 Position => transform.position;
 
@@ -29,6 +34,10 @@ namespace Enemies
 
         private Character _character;
 
+        private CharacterStats _characterStats;
+        private MeleeStats _meleeStats;
+        private RangedStats _rangedStats;
+
         [Inject]
         public void Construct(Hero hero)
         {
@@ -40,16 +49,14 @@ namespace Enemies
             FillComponents();
             InitializeComponents();
 
-            _character.Dying += OnDying;
-
-            Spawn?.Invoke();
+            _character.Slain += OnSlain;
         }
 
         public void Dispose()
         {
             DisposeComponents();
 
-            _character.Dying -= OnDying;
+            _character.Slain -= OnSlain;
         }
 
         public void PlaceInRoom(Room room)
@@ -57,18 +64,23 @@ namespace Enemies
             _character.PlaceInRoom(room);
         }
 
-        public void SetParent(Transform parent)
+        public void SetPosition(Vector3 position, Transform parent)
         {
             transform.parent = parent;
+            transform.position = position;
         }
 
-        private void OnDying()
+        private void OnSlain()
         {
-            Dying?.Invoke();
+            Slain?.Invoke();
         }
 
         private void FillComponents()
         {
+            _characterStats = GetComponent<CharacterStats>();
+            _meleeStats = GetComponent<MeleeStats>();
+            _rangedStats = GetComponent<RangedStats>();
+
             _character = GetComponent<Character>();
 
             Moving = GetComponent<CharacterMoving>();
@@ -77,6 +89,10 @@ namespace Enemies
 
         private void InitializeComponents()
         {
+            _characterStats.Initialize();
+            _meleeStats.Initialize();
+            _rangedStats.Initialize();
+
             _character.Initialize();
 
             Moving.Initialize();

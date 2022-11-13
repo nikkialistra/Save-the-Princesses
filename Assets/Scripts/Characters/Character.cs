@@ -2,7 +2,7 @@
 using Characters.Common;
 using Characters.Traits;
 using Combat.Weapons;
-using Infrastructure.CompositionRoot.Settings;
+using Infrastructure.Installers.Game.Settings;
 using Surrounding.Rooms;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -10,6 +10,7 @@ using Zenject;
 
 namespace Characters
 {
+    [RequireComponent(typeof(CharacterHealth))]
     [RequireComponent(typeof(CharacterHealthHandling))]
     [RequireComponent(typeof(CharacterMoving))]
     [RequireComponent(typeof(CharacterAnimator))]
@@ -19,13 +20,14 @@ namespace Characters
     [RequireComponent(typeof(CharacterPathfinding))]
     public class Character : MonoBehaviour
     {
-        public event Action Dying;
+        public event Action Slain;
 
         public event Action AtStun;
         public event Action AtStunEnd;
 
         public Room Room { get; private set; }
 
+        public CharacterHealth Health { get; private set; }
         public CharacterMoving Moving { get; private set; }
         public CharacterAnimator Animator { get; private set; }
         public CharacterHitsImpact HitsImpact { get; private set; }
@@ -65,7 +67,7 @@ namespace Characters
             InitializeComponents();
             InitializeWeapon();
 
-            _healthHandling.Die += OnDie;
+            _healthHandling.Slay += OnSlay;
         }
 
         public void Dispose()
@@ -73,7 +75,7 @@ namespace Characters
             DisposeComponents();
             DisposeWeapon();
 
-            _healthHandling.Die -= OnDie;
+            _healthHandling.Slay -= OnSlay;
         }
 
         public void PlaceInRoom(Room room)
@@ -99,9 +101,14 @@ namespace Characters
             _traits.Remove(trait);
         }
 
-        private void OnDie()
+        public void SetCustomHitInvulnerabilityTime(float value)
         {
-            Dying?.Invoke();
+            Health.SetCustomHitInvulnerabilityTime(value);
+        }
+
+        private void OnSlay()
+        {
+            Slain?.Invoke();
 
             if (_characterType != CharacterType.Hero)
                 Destroy(gameObject);
@@ -109,6 +116,7 @@ namespace Characters
 
         private void FillComponents()
         {
+            Health = GetComponent<CharacterHealth>();
             Moving = GetComponent<CharacterMoving>();
             Animator = GetComponent<CharacterAnimator>();
             HitsImpact = GetComponent<CharacterHitsImpact>();
@@ -123,6 +131,7 @@ namespace Characters
 
         private void InitializeComponents()
         {
+            Health.Initialize();
             Moving.Initialize();
             Animator.Initialize();
             HitsImpact.Initialize();
@@ -137,6 +146,7 @@ namespace Characters
 
         private void DisposeComponents()
         {
+            Health.Dispose();
             Moving.Dispose();
 
             _healthHandling.Dispose();

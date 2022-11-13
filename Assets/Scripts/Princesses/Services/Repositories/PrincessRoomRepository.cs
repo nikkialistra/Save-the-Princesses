@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using Entities.Containers;
+using Surrounding.Rooms;
+using UnityEngine;
 using Zenject;
 
 namespace Princesses.Services.Repositories
 {
     public class PrincessRoomRepository
     {
-        public event Action<Princess> Adding;
-        public event Action<Princess> Removing;
+        public event Action<Princess> Added;
+        public event Action<Princess> Removed;
 
         public int Count => _container.Count;
 
@@ -24,9 +26,9 @@ namespace Princesses.Services.Repositories
             _container = container;
         }
 
-        public void Initialize()
+        public void Initialize(Room room)
         {
-            _container.Initialize();
+            _container.Initialize(room);
         }
 
         public void Dispose()
@@ -34,16 +36,16 @@ namespace Princesses.Services.Repositories
             _container.Dispose();
         }
 
-        public void Add(Princess princess)
+        public void Add(Princess princess, Vector3 position)
         {
-            _container.Add(princess);
-            Adding?.Invoke(princess);
+            _container.Add(princess, position);
+            Added?.Invoke(princess);
         }
 
         public void Remove(Princess princess)
         {
             _container.Remove(princess);
-            Removing?.Invoke(princess);
+            Removed?.Invoke(princess);
         }
     }
 }

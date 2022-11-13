@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Surrounding.Rooms;
 using UnityEngine;
-using Zenject;
 
 namespace Entities.Containers
 {
@@ -16,20 +15,20 @@ namespace Entities.Containers
 
         private Room _room;
 
-        [Inject]
-        public void Construct(Room room)
+        public void Initialize(Room room)
         {
             _room = room;
+            FillFromStartEntities(room);
         }
 
-        public void Initialize()
+        private void FillFromStartEntities(Room room)
         {
             _entities = GetComponentsInChildren<E>().ToList();
 
             foreach (var entity in _entities)
             {
                 entity.Initialize();
-                entity.PlaceInRoom(_room);
+                entity.PlaceInRoom(room);
             }
         }
 
@@ -41,13 +40,13 @@ namespace Entities.Containers
             _entities.Clear();
         }
 
-        public void Add(E entity)
+        public void Add(E entity, Vector3 position)
         {
-            if (!_entities.Contains(entity))
-                throw new InvalidOperationException("Cannot add alerady contained entity");
+            if (_entities.Contains(entity))
+                throw new InvalidOperationException("Cannot add already contained entity");
 
+            entity.SetPosition(position, transform);
             entity.PlaceInRoom(_room);
-            entity.SetParent(transform);
 
             _entities.Add(entity);
         }

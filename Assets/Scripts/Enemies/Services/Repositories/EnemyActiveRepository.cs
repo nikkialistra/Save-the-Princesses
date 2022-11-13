@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Enemies.Services.Repositories
 {
@@ -26,16 +27,12 @@ namespace Enemies.Services.Repositories
 
         public void ReplaceRoomRepository(EnemyRoomRepository newRepository)
         {
-            _roomRepository.Dispose();
-
             _roomRepository = newRepository;
-
-            _roomRepository.Initialize();
         }
 
-        public void Add(Enemy enemy)
+        public void Add(Enemy enemy, Vector3 position)
         {
-            _roomRepository.Add(enemy);
+            _roomRepository.Add(enemy, position);
             Adding?.Invoke(enemy);
         }
 

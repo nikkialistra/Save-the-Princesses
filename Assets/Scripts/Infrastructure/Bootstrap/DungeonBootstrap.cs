@@ -1,6 +1,6 @@
 ﻿using System;
-using DungeonSystem;
-using Surrounding;
+using Cysharp.Threading.Tasks;
+using Dungeons;
 using Surrounding.Rooms;
 using UI;
 using Zenject;
@@ -11,33 +11,30 @@ namespace Infrastructure.Bootstrap
     {
         private DungeonControl _dungeonControl;
 
-        private ActiveRepositories _activeRepositories;
-
         private LoadingScreen _loadingScreen;
         private Room _firstRoom;
 
         [Inject]
-        public void Construct(DungeonControl dungeonControl, ActiveRepositories activeRepositories, LoadingScreen loadingScreen)
+        public void Construct(DungeonControl dungeonControl, LoadingScreen loadingScreen)
         {
             _dungeonControl = dungeonControl;
-
-            _activeRepositories = activeRepositories;
 
             _loadingScreen = loadingScreen;
         }
 
         public void Initialize()
         {
-            _dungeonControl.Initialize();
-            _activeRepositories.SetStartRepositories(_firstRoom.Repositories);
+            _dungeonControl.Initialize(HideLoadingScreen).Forget();
+        }
 
+        private void HideLoadingScreen()
+        {
             _loadingScreen.Hide();
         }
 
         public void Dispose()
         {
             _dungeonControl.Dispose();
-            _activeRepositories.Dispose();
         }
     }
 }
