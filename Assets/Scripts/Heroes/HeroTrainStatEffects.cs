@@ -5,16 +5,15 @@ using UnityEngine;
 
 namespace Heroes
 {
-    [RequireComponent(typeof(Character))]
-    public class HeroTrainStatEffects : MonoBehaviour
+    public class HeroTrainStatEffects
     {
-        private List<Trait> _allEffects = new();
+        private readonly List<Trait> _allEffects = new();
 
-        private Character _character;
+        private readonly Character _character;
 
-        public void Initialize()
+        public HeroTrainStatEffects(Character character)
         {
-            _character = GetComponent<Character>();
+            _character = character;
         }
 
         public void ApplyPrincessStatEffects(Trait effects)

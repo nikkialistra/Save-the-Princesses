@@ -137,10 +137,10 @@ namespace Characters
         {
             Stats = new AllStats(initialStats);
 
-            Health.Initialize();
-            Moving.Initialize();
+            Health.Initialize(Stats);
+            Moving.Initialize(Stats);
             Animator.Initialize();
-            HitsImpact.Initialize();
+            HitsImpact.Initialize(Stats);
 
             _healthHandling.Initialize();
             _traits.Initialize();

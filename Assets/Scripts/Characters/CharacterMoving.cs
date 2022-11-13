@@ -1,4 +1,4 @@
-﻿using Characters.Stats.Character;
+﻿using Characters.Stats;
 using DG.Tweening;
 using Infrastructure.Installers.Game.Settings;
 using UnityEngine;
@@ -6,7 +6,6 @@ using Zenject;
 
 namespace Characters
 {
-    [RequireComponent(typeof(CharacterStats))]
     [RequireComponent(typeof(CharacterPathfinding))]
     [RequireComponent(typeof(CharacterMovement))]
     [RequireComponent(typeof(Character))]
@@ -17,7 +16,7 @@ namespace Characters
 
         public bool Stopped => _movement.Stopped;
 
-        public float MovementSpeed => _stats.MovementSpeed.Value;
+        public float MovementSpeed => _stats.MovementSpeed;
 
         private float AccelerationAmount => (MovementSpeed / _settings.AccelerationTime) * Time.fixedDeltaTime;
         private float DecelerationAmount => (MovementSpeed / _settings.DecelerationTime) * Time.fixedDeltaTime;
@@ -32,9 +31,8 @@ namespace Characters
         private Character _character;
         private Rigidbody2D _rigidBody2d;
 
-        private CharacterStats _stats;
-
         private CharacterSettings _settings;
+        private AllStats _stats;
 
         [Inject]
         public void Construct(CharacterSettings settings)
@@ -42,8 +40,10 @@ namespace Characters
             _settings = settings;
         }
 
-        public void Initialize()
+        public void Initialize(AllStats stats)
         {
+            _stats = stats;
+
             FillComponents();
 
             _pathfinding.RepathRate = _settings.RepathRate;
@@ -149,8 +149,6 @@ namespace Characters
             _movement = GetComponent<CharacterMovement>();
             _character = GetComponent<Character>();
             _rigidBody2d = GetComponent<Rigidbody2D>();
-
-            _stats = GetComponent<CharacterStats>();
         }
 
         private void SubscribeToEvents()

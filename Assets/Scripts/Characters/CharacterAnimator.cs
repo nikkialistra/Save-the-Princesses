@@ -72,6 +72,11 @@ namespace Characters
 
         public void Stun(bool value) { }
 
+        public void SetBool(int hashName, bool value)
+        {
+            _animator.SetBool(hashName, value);
+        }
+
         private void UpdateAnimations()
         {
             UpdateStatus();

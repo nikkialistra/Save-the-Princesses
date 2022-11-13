@@ -68,7 +68,7 @@ namespace Heroes.Attacks
 
         private void UpdateAttackRotation()
         {
-            _hero.Attack.UpdateRotation(Direction);
+            _hero.UpdateAttackRotation(Direction);
         }
 
         private void ComputeFromGamepad()

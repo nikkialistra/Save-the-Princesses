@@ -10,13 +10,12 @@ namespace Princesses
 {
     [RequireComponent(typeof(MovingInTrainPathfinding))]
     [RequireComponent(typeof(CharacterMovement))]
-    [RequireComponent(typeof(CharacterStats))]
     [RequireComponent(typeof(CharacterPathfinding))]
     [RequireComponent(typeof(CharacterAnimator))]
     [RequireComponent(typeof(TrainCharacter))]
     public class PrincessMovingInTrain : MonoBehaviour
     {
-        private float MovementSpeed => _stats.MovementSpeed.Value;
+        private float MovementSpeed => _stats.MovementSpeed;
 
         private float AccelerationAmount => (MovementSpeed / _princessSettings.AccelerationTime) * Time.fixedDeltaTime;
         private float DecelerationAmount => (MovementSpeed / _princessSettings.DecelerationTime) * Time.fixedDeltaTime;
@@ -27,10 +26,9 @@ namespace Princesses
         private TrainCharacter _trainCharacter;
         private CharacterAnimator _animator;
 
-        private CharacterStats _stats;
-
         private PrincessSettings _princessSettings;
         private CharacterSettings _characterSettings;
+        private AllStats _stats;
 
         [Inject]
         public void Construct(PrincessSettings princessSettings, CharacterSettings characterSettings)
@@ -39,8 +37,10 @@ namespace Princesses
             _characterSettings = characterSettings;
         }
 
-        public void Initialize()
+        public void Initialize(AllStats stats)
         {
+            _stats = stats;
+
             InitializeComponents();
 
             _trainCharacter.TrainEnter += OnTrainEnter;
@@ -100,8 +100,6 @@ namespace Princesses
             _movement = GetComponent<CharacterMovement>();
             _trainCharacter = GetComponent<TrainCharacter>();
             _animator = GetComponent<CharacterAnimator>();
-
-            _stats = GetComponent<CharacterStats>();
         }
     }
 }

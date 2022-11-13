@@ -1,5 +1,5 @@
 ﻿using System;
-using Characters.Stats.Character;
+using Characters.Stats;
 using Infrastructure.Installers.Game.Settings;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -7,7 +7,6 @@ using Zenject;
 
 namespace Characters
 {
-    [RequireComponent(typeof(CharacterStats))]
     public class CharacterHealth : MonoBehaviour
     {
         public event Action Hit;
@@ -25,7 +24,7 @@ namespace Characters
                 HealthChange?.Invoke();
             }
         }
-        public float MaxHealth => _stats.MaxHealth.Value;
+        public float MaxHealth => _stats.MaxHealth;
 
         private bool IsAlive => Health > 0;
 
@@ -34,7 +33,7 @@ namespace Characters
         private float _invulnerabilityTimeAfterHit;
         private float _lastHitTime;
 
-        private CharacterStats _stats;
+        private AllStats _stats;
 
         [Inject]
         public void Construct(CharacterSettings settings)
@@ -42,18 +41,18 @@ namespace Characters
             _invulnerabilityTimeAfterHit = settings.InvulnerabilityTimeAfterHit;
         }
 
-        public void Initialize()
+        public void Initialize(AllStats stats)
         {
-            _stats = GetComponent<CharacterStats>();
+            _stats = stats;
 
             SetInitialValues();
 
-            _stats.MaxHealth.ValueChange += OnMaxHealthChange;
+            _stats.MaxHealthStat.ValueChange += OnMaxHealthChange;
         }
 
         public void Dispose()
         {
-            _stats.MaxHealth.ValueChange -= OnMaxHealthChange;
+            _stats.MaxHealthStat.ValueChange -= OnMaxHealthChange;
         }
 
         [Button]

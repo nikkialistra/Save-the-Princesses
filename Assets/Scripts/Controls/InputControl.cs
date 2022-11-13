@@ -1,6 +1,5 @@
 ﻿using Controls.Gamepads;
 using Heroes;
-using Heroes.Attacks;
 using UnityEngine;
 
 namespace Controls
@@ -12,13 +11,13 @@ namespace Controls
         private InputDevices _inputDevices;
         private GamepadEffects _gamepadEffects;
 
-        public void Initialize(HeroAttacker heroAttacker)
+        public void Initialize(Hero hero)
         {
             _inputDevices = GetComponent<InputDevices>();
             _gamepadEffects = GetComponent<GamepadEffects>();
 
             _inputDevices.Initialize();
-            _gamepadEffects.Initialize(heroAttacker);
+            _gamepadEffects.Initialize(hero);
         }
 
         public void Dispose()

@@ -1,5 +1,5 @@
 ﻿using Controls;
-using Heroes.Attacks;
+using Heroes;
 using UI;
 
 namespace Infrastructure.Controls
@@ -15,10 +15,10 @@ namespace Infrastructure.Controls
             _inputControl = inputControl;
         }
 
-        public void Initialize(HeroAttacker heroAttacker)
+        public void Initialize(Hero hero)
         {
             _gameInterfaceControl.Initialize();
-            _inputControl.Initialize(heroAttacker);
+            _inputControl.Initialize(hero);
         }
 
         public void Dispose()

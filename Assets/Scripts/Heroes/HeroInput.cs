@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Heroes
 {
-    public class HeroInput : MonoBehaviour
+    public class HeroInput
     {
         public Vector2 MoveInput => _moveInput;
         public Vector2 DirectionNormalized => _directionNormalized;
@@ -28,20 +28,14 @@ namespace Heroes
 
         private InputAction _moveAction;
 
-        [Inject]
-        public void Construct(PlayerInput playerInput, HeroSettings settings)
+        public HeroInput(PlayerInput playerInput, HeroSettings settings)
         {
-            _playerInput = playerInput;
+            _moveAction = playerInput.actions.FindAction("Move");
 
             _settings = settings;
         }
 
-        public void Initialize()
-        {
-            _moveAction = _playerInput.actions.FindAction("Move");
-        }
-
-        private void Update()
+        public void Tick()
         {
             _moveInput = _moveAction.ReadValue<Vector2>();
             SavePressTimes();

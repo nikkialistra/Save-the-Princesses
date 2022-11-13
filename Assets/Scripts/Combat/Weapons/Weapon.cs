@@ -11,11 +11,14 @@ namespace Combat.Weapons
     {
         private static readonly int BlinkId = Shader.PropertyToID("_Blink");
 
+        public Attack Attack => _attack;
+        public AttackLocation AttackLocation { get; private set; }
+        public WeaponAnimator Animator { get; private set; }
+
         [SerializeField] private Attack _attack;
 
         private ConcreteWeapon _concreteWeapon;
 
-        private WeaponAnimator _animator;
         private SpriteRenderer _spriteRenderer;
 
         private Character _character;
@@ -44,7 +47,7 @@ namespace Combat.Weapons
 
         private void AlignWithCharacter(CharacterAnimator.AnimationStatus status)
         {
-            _animator.AlignWithCharacter(status.Velocity);
+            Animator.AlignWithCharacter(status.Velocity);
         }
 
         private void Show()
@@ -71,13 +74,13 @@ namespace Combat.Weapons
         {
             _concreteWeapon = GetComponent<ConcreteWeapon>();
 
-            _animator = GetComponent<WeaponAnimator>();
+            Animator = GetComponent<WeaponAnimator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         private void InitializeComponents()
         {
-            _animator.Initialize();
+            Animator.Initialize();
         }
 
         private void SubscribeToEvents()

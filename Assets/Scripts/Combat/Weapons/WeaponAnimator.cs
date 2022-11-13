@@ -20,5 +20,10 @@ namespace Combat.Weapons
             _animator.SetFloat(Horizontal, velocity.x);
             _animator.SetFloat(Vertical, velocity.y);
         }
+
+        public void SetBool(int hashName, bool value)
+        {
+            _animator.SetBool(hashName, value);
+        }
     }
 }

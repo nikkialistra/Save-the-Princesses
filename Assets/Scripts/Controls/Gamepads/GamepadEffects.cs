@@ -12,15 +12,15 @@ namespace Controls.Gamepads
     {
         [SerializeField] private StrokeRumble _strokeRumble = new();
 
-        private HeroAttacker _heroAttacker;
+        private Hero _hero;
 
         private GamepadRumbling _rumbling;
 
         private InputDevices _inputDevices;
 
-        public void Initialize(HeroAttacker heroAttacker)
+        public void Initialize(Hero hero)
         {
-            _heroAttacker = heroAttacker;
+            _hero = hero;
 
             FillComponents();
 
@@ -51,12 +51,12 @@ namespace Controls.Gamepads
 
         private void SubscribeToGameEvents()
         {
-            _heroAttacker.StrokeStart += OnStrokeStart;
+            _hero.StrokeStart += OnStrokeStart;
         }
 
         private void UnsubscribeFromGameEvents()
         {
-            _heroAttacker.StrokeStart -= OnStrokeStart;
+            _hero.StrokeStart -= OnStrokeStart;
         }
 
         private void OnStrokeStart()

@@ -1,47 +1,46 @@
 ﻿using System;
 using Combat.Attacks;
 using Combat.Weapons;
-using UnityEngine;
 using UnityEngine.InputSystem;
-using Zenject;
 
 namespace Heroes.Attacks
 {
-    public class HeroAttacker : MonoBehaviour
+    public class HeroAttacker
     {
         public event Action StrokeStart;
 
-        [SerializeField] private ConcreteWeapon _concreteWeapon;
+        private Attack Attack => _concreteWeapon.Attack;
 
-        [Space]
-        [SerializeField] private Attack _attack;
+        private ConcreteWeapon _concreteWeapon;
 
-        private PlayerInput _playerInput;
+        private readonly InputAction _attackAction;
 
-        private InputAction _attackAction;
-
-        [Inject]
-        public void Construct(PlayerInput playerInput)
+        public HeroAttacker(PlayerInput playerInput)
         {
-            _playerInput = playerInput;
+            _attackAction = playerInput.actions.FindAction("Attack");
         }
 
-        public void Initialize()
+        public void SetConcreteWeapon(ConcreteWeapon concreteWeapon)
         {
-            _attackAction = _playerInput.actions.FindAction("Attack");
+            _concreteWeapon = concreteWeapon;
         }
 
-        private void Update()
+        public void Tick()
         {
             if (_attackAction.IsPressed())
                 TryStroke();
+        }
+
+        public void UpdateAttackRotation(float direction)
+        {
+            Attack.UpdateRotation(direction);
         }
 
         private void TryStroke()
         {
             if (_concreteWeapon.TryStroke())
             {
-                _attack.Do(_concreteWeapon.LastStroke);
+                Attack.Do(_concreteWeapon.LastStroke);
                 StrokeStart?.Invoke();
             }
         }

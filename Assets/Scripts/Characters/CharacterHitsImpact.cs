@@ -1,22 +1,20 @@
 ﻿using Characters.Stats;
-using Characters.Stats.Character;
 using UnityEngine;
 
 namespace Characters
 {
-    [RequireComponent(typeof(CharacterStats))]
     public class CharacterHitsImpact : MonoBehaviour
     {
         public bool HasImpact { get; private set; }
 
-        private CharacterStats _stats;
+        private AllStats _stats;
 
         private Vector2 _knockback;
         private float _stun;
 
-        public void Initialize()
+        public void Initialize(AllStats stats)
         {
-            _stats = GetComponent<CharacterStats>();
+            _stats = stats;
         }
 
         public void Take(Vector2 direction, float knockback, float stun)
@@ -42,7 +40,7 @@ namespace Characters
 
         private void TakeKnockback(Vector2 direction, float value)
         {
-            var notAbsorbedAmount = value - _stats.KnockbackStand.Value;
+            var notAbsorbedAmount = value - _stats.KnockbackStand;
 
             if (notAbsorbedAmount <= 0) return;
 
@@ -51,7 +49,7 @@ namespace Characters
 
         private void TakeStun(float value)
         {
-            var notAbsorbedAmount = value - _stats.StunResistance.Value;
+            var notAbsorbedAmount = value - _stats.StunResistance;
 
             if (notAbsorbedAmount <= 0) return;
 

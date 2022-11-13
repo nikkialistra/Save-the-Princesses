@@ -13,7 +13,6 @@ using Zenject;
 namespace Enemies
 {
     [RequireComponent(typeof(Character))]
-    [RequireComponent(typeof(CharacterMoving))]
     [RequireComponent(typeof(EnemyAttacker))]
     public class Enemy : MonoBehaviour, IEntity
     {
@@ -26,7 +25,7 @@ namespace Enemies
         public Hero Hero { get; private set; }
         public EnemyAttacker Attacker { get; set; }
 
-        public CharacterMoving Moving { get; private set; }
+        public CharacterMoving Moving => _character.Moving;
 
         [SerializeField] private float _viewDistance = 7;
 
@@ -77,7 +76,6 @@ namespace Enemies
         {
             _character = GetComponent<Character>();
 
-            Moving = GetComponent<CharacterMoving>();
             Attacker = GetComponent<EnemyAttacker>();
         }
 
@@ -85,7 +83,6 @@ namespace Enemies
         {
             _character.Initialize(initialStats);
 
-            Moving.Initialize();
             Attacker.Initialize();
         }
 
@@ -93,7 +90,6 @@ namespace Enemies
         {
             _character.Dispose();
 
-            Moving.Dispose();
             Attacker.Dispose();
         }
     }

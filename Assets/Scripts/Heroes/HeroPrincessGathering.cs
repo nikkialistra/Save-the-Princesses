@@ -9,32 +9,30 @@ using Zenject;
 
 namespace Heroes
 {
-    public class HeroPrincessGathering : MonoBehaviour
+    public class HeroPrincessGathering
     {
-        private PrincessActiveRepository _activeRepository;
-        private HeroSettings _settings;
+        private readonly PrincessActiveRepository _activeRepository;
+        private readonly HeroSettings _settings;
 
         private readonly List<Princess> _gatherWishedPrincesses = new();
         private Princess _targetPrincess;
 
         private float _lastScanTime = float.NegativeInfinity;
 
-        private InputAction _interactAction;
+        private readonly InputAction _interactAction;
+        private readonly Transform _transform;
 
-        private PlayerInput _playerInput;
-
-        [Inject]
-        private void Construct(PrincessActiveRepository activeRepository, HeroSettings settings, PlayerInput playerInput)
+        public HeroPrincessGathering(PrincessActiveRepository activeRepository, Transform transform,
+            PlayerInput playerInput, HeroSettings settings)
         {
-            _playerInput = playerInput;
             _activeRepository = activeRepository;
+
+            _transform = transform;
+
             _settings = settings;
 
-            _interactAction = _playerInput.actions.FindAction("Interact");
-        }
+            _interactAction = playerInput.actions.FindAction("Interact");
 
-        public void Initialize()
-        {
             _interactAction.started += TryGather;
         }
 
@@ -68,7 +66,7 @@ namespace Heroes
 
             foreach (var princess in _activeRepository.UntiedFreePrincesses)
             {
-                if (Vector2.Distance(transform.position, princess.Position) <=
+                if (Vector2.Distance(_transform.position, princess.Position) <=
                     _settings.DistanceToGather)
                 {
                     _gatherWishedPrincesses.Add(princess);
@@ -98,10 +96,10 @@ namespace Heroes
 
             foreach (var princess in _gatherWishedPrincesses)
             {
-                if (Vector2.Distance(transform.position, princess.Position) < closestDistance)
+                if (Vector2.Distance(_transform.position, princess.Position) < closestDistance)
                 {
                     closestPrincess = princess;
-                    closestDistance = Vector2.Distance(transform.position, princess.Position);
+                    closestDistance = Vector2.Distance(_transform.position, princess.Position);
                 }
             }
 

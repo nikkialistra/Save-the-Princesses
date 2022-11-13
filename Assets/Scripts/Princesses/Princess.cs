@@ -16,7 +16,6 @@ using Zenject;
 namespace Princesses
 {
     [RequireComponent(typeof(Character))]
-    [RequireComponent(typeof(CharacterMoving))]
     [RequireComponent(typeof(TrainCharacter))]
     [RequireComponent(typeof(PrincessAnimators))]
     [RequireComponent(typeof(PrincessElementControllers))]
@@ -32,7 +31,7 @@ namespace Princesses
         public Train Train { get; private set; }
 
         public TrainCharacter TrainCharacter { get; private set; }
-        public CharacterMoving Moving { get; private set; }
+        public CharacterMoving Moving => _character.Moving;
         public PrincessMovingInTrain MovingInTrain { get; private set; }
 
         public PrincessSettings Settings { get; private set; }
@@ -192,7 +191,6 @@ namespace Princesses
             _character = GetComponent<Character>();
 
             TrainCharacter = GetComponent<TrainCharacter>();
-            Moving = GetComponent<CharacterMoving>();
             MovingInTrain = GetComponent<PrincessMovingInTrain>();
 
             _animators = GetComponent<PrincessAnimators>();
@@ -207,8 +205,7 @@ namespace Princesses
             _character.Initialize(initialStats);
 
             TrainCharacter.Initialize();
-            Moving.Initialize();
-            MovingInTrain.Initialize();
+            MovingInTrain.Initialize(_character.Stats);
 
             _animators.Initialize();
             _gatherWish.Initialize();

@@ -35,7 +35,7 @@ namespace Infrastructure.Bootstrap
             _hero.Initialize();
             _train.Initialize();
 
-            _gameControls.Initialize(_hero.Attacker);
+            _gameControls.Initialize(_hero);
 
             LoadGame();
         }

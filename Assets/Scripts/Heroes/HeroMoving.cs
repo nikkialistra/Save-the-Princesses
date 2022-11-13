@@ -3,20 +3,18 @@ using UnityEngine;
 
 namespace Heroes
 {
-    [RequireComponent(typeof(HeroInput))]
-    [RequireComponent(typeof(CharacterMoving))]
-    public class HeroMoving : MonoBehaviour
+    public class HeroMoving
     {
-        private HeroInput _input;
-        private CharacterMoving _moving;
+        private readonly HeroInput _input;
+        private readonly CharacterMoving _moving;
 
-        public void Initialize()
+        public HeroMoving(HeroInput input, CharacterMoving moving)
         {
-            _input = GetComponent<HeroInput>();
-            _moving = GetComponent<CharacterMoving>();
+            _input = input;
+            _moving = moving;
         }
 
-        private void FixedUpdate()
+        public void Tick()
         {
             if (_input.MoveInput != Vector2.zero)
                 _moving.Move(_input.DirectionNormalized);
