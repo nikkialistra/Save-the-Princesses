@@ -10,7 +10,7 @@ namespace Utilities.GameStart
         private const string MainMenuScenePath = "Assets/Scenes/MainMenu.unity";
         private const string BootstrapScenePath = "Assets/Scenes/Bootstrap.unity";
 
-        private const string ConfigurationPath = "Assets/Settings/Game Start Configuration.asset";
+        private const string ConfigurationPath = "Assets/GameData/Settings/Game Start Configuration.asset";
 
         static EditorGameStart()
         {

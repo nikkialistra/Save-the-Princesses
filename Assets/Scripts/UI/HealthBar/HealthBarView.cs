@@ -37,7 +37,7 @@ namespace UI.HealthBar
         {
             BindUi();
             InitializeAnimations();
-            BindHealth(hero.CharacterHealth);
+            BindHealth(hero.Health);
         }
 
         public void Dispose()

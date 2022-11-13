@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Enemies.Services;
+using Pathfinding;
 using Princesses.Services;
 using SuperTiled2Unity;
 using UnityEngine;
@@ -18,33 +19,56 @@ namespace Surrounding.Rooms
 
         private readonly Collider2D[] _boundHits = new Collider2D[10];
 
+        private Navigation _navigation;
+
         private PrincessGenerator _princessGenerator;
         private EnemyGenerator _enemyGenerator;
 
         private SuperMap _superMap;
 
+        private NavGraph _navGraph;
+        private RoomKind _roomKind;
+
         [Inject]
-        public void Construct(RoomRepositories repositories, PrincessGenerator princessGenerator, EnemyGenerator enemyGenerator)
+        public void Construct(Navigation navigation, RoomRepositories repositories,
+            PrincessGenerator princessGenerator, EnemyGenerator enemyGenerator)
         {
+            _navigation = navigation;
+
             Repositories = repositories;
 
             _princessGenerator = princessGenerator;
             _enemyGenerator = enemyGenerator;
         }
 
-        public void Initialize(RoomKind roomKind)
+        public void Initialize(RoomKind roomKind, Transform parent)
         {
-            _superMap = Instantiate(roomKind.Map, transform);
+            _roomKind = roomKind;
 
+            name = _roomKind.Map.name;
+            transform.parent = parent;
+
+            _superMap = Instantiate(_roomKind.Map, transform);
             CenterSuperMap();
 
             InitializeGenerators();
-            GenerateCharacters();
+        }
+
+        public void SetupNavigation()
+        {
+            _navGraph = _navigation.AddNavGraphForRoom(_superMap.name, _superMap.transform.position,
+                _superMap.m_Width, _superMap.m_Height);
+        }
+
+        public void GenerateCharacters()
+        {
+            _princessGenerator.Generate(_roomKind.PrincessCategoryRoomFrequencies);
+            _enemyGenerator.Generate(_roomKind.EnemyRoomFrequencies);
         }
 
         public void Dispose()
         {
-
+            _navigation.RemoveRoomNavGraph(_navGraph);
         }
 
         public bool InBounds(Vector2 point)
@@ -76,12 +100,6 @@ namespace Surrounding.Rooms
 
             _princessGenerator.Initialize(princessSpawnPointsLayer);
             _enemyGenerator.Initialize(enemySpawnPointsLayer);
-        }
-
-        private void GenerateCharacters()
-        {
-            _princessGenerator.Generate();
-            _enemyGenerator.Generate();
         }
 
         public class Factory : PlaceholderFactory<Room> { }

@@ -103,7 +103,7 @@ namespace Characters
         private bool CheckDamageAllowConditions(int value)
         {
             if (value <= 0)
-                return false;;
+                return false;
 
             if (Time.time - _lastHitTime < _invulnerabilityTimeAfterHit)
                 return false;

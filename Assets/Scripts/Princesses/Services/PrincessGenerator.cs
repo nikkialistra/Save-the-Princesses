@@ -1,46 +1,48 @@
-﻿using Princesses.Services.Repositories;
+﻿using Data.Princesses.Spawning;
+using Data.Princesses.Spawning.Frequencies;
+using Princesses.Services.Repositories;
+using Princesses.Types;
 using SuperTiled2Unity;
-using Surrounding.Rooms;
 using UnityEngine;
 
 namespace Princesses.Services
 {
     public class PrincessGenerator
     {
-        private SpawnPoints _spawnPoints;
+        private SuperObject[] _spawnPoints;
 
-        private readonly Princess.Factory _princessFactory;
+        private readonly PrincessPicking _picking;
+
+        private readonly PrincessFactory _factory;
 
         private readonly PrincessRoomRepository _repository;
 
-        public PrincessGenerator(Princess.Factory princessFactory, PrincessRoomRepository repository)
+        public PrincessGenerator(PrincessPicking picking, PrincessFactory factory, PrincessRoomRepository repository)
         {
-            _princessFactory = princessFactory;
+            _picking = picking;
+            _factory = factory;
             _repository = repository;
         }
 
         public void Initialize(SuperObjectLayer spawnPointsLayer)
         {
-            var spawnPoints = spawnPointsLayer.GetComponentsInChildren<SuperObject>();
-            _spawnPoints = new SpawnPoints(spawnPoints);
+            _spawnPoints = spawnPointsLayer.GetComponentsInChildren<SuperObject>();
         }
 
-        public void Generate()
+        public void Generate(PrincessCategoryRoomFrequencies categoryRoomFrequencies)
         {
-            var count = ComputeCount();
-
-            foreach (var spawnPoint in _spawnPoints.TakeSome(count))
-                SpawnAt(spawnPoint);
+            foreach (var spawnPoint in _spawnPoints)
+                SpawnFor(spawnPoint.transform.position, categoryRoomFrequencies);
         }
 
-        private static int ComputeCount()
+        private void SpawnFor(Vector3 position, PrincessCategoryRoomFrequencies categoryRoomFrequencies)
         {
-            return Random.Range(0, 4);
-        }
+            var princessType = _picking.GetRandomPrincessType(categoryRoomFrequencies);
 
-        private void SpawnAt(Vector3 position)
-        {
-            var princess = _princessFactory.Create();
+            if (princessType == PrincessType.None) return;
+
+            var princess = _factory.Create(princessType);
+
             princess.Initialize();
 
             _repository.Add(princess, position);

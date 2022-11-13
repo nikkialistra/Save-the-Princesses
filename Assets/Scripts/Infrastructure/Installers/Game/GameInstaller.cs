@@ -1,12 +1,17 @@
 ﻿using Controls;
-using Enemies;
+using Data.Enemies;
+using Data.Enemies.Spawning;
+using Data.Princesses.Appearance.Elements;
+using Data.Princesses.Appearance.Palettes;
+using Data.Princesses.Spawning;
+using Enemies.Services;
 using Enemies.Services.Repositories;
+using GameSystems;
 using Heroes;
 using Infrastructure.Bootstrap;
 using Infrastructure.Controls;
 using Princesses;
-using Princesses.Services.Elements;
-using Princesses.Services.Palettes;
+using Princesses.Services;
 using Princesses.Services.Repositories;
 using Saving.Progress;
 using Saving.Saves;
@@ -31,17 +36,20 @@ namespace Infrastructure.Installers.Game
         [SerializeField] private Hero _hero;
         [SerializeField] private Room _room;
 
-        [Title("Characters Spawning")]
-        [SerializeField] private Princess _princessPrefab;
-        [SerializeField] private Enemy _enemyPrefab;
+        [Title("Surroundings")]
+        [SerializeField] private Navigation _navigation;
+
+        [Title("Character Factories")]
+        [SerializeField] private PrincessFactory _princessFactory;
+        [SerializeField] private EnemyFactory _enemyFactory;
+
+        [Title("Princesses Data")]
+        [SerializeField] private PrincessPalettesRegistry _princessPalettesRegistry;
+        [SerializeField] private PrincessElementControllersRegistry _princessElementControllersRegistry;
 
         [Title("Train System")]
         [SerializeField] private Train _train;
         [SerializeField] private HandsSprites _handsSprites;
-
-        [Title("Princesses")]
-        [SerializeField] private PrincessPalettesRegistry _princessPalettesRegistry;
-        [SerializeField] private PrincessElementControllersRegistry _princessElementControllersRegistry;
 
         [Title("Input")]
         [SerializeField] private PlayerInput _playerInput;
@@ -67,32 +75,45 @@ namespace Infrastructure.Installers.Game
 
         public override void InstallBindings()
         {
-            Container.BindInstance(_camera);
-            Container.BindInterfacesAndSelfTo<Hero>().FromInstance(_hero);
-            Container.BindInstance(_room);
+            BindGameBase();
 
-            BindCharactersSpawning();
-            BindTrainSystem();
-            BindPrincesses();
+            BindCharactersPicking();
+            BindCharacterFactories();
             BindRepositories();
+
+            BindPrincessesData();
+            BindTrainSystem();
+
             BindInput();
             BindUI();
             BindControls();
+
             BindGameRun();
 
             BindProgress();
             BindBootstrap();
         }
 
-        private void BindCharactersSpawning()
+        private void BindGameBase()
         {
-            Container.BindFactory<Princess, Princess.Factory>()
-                .FromSubContainerResolve()
-                .ByNewContextPrefab(_princessPrefab);
+            Container.Bind<GameControl>().AsSingle();
 
-            Container.BindFactory<Enemy, Enemy.Factory>()
-                .FromSubContainerResolve()
-                .ByNewContextPrefab(_enemyPrefab);
+            Container.BindInstance(_camera);
+            Container.BindInterfacesAndSelfTo<Hero>().FromInstance(_hero);
+            Container.BindInstance(_room);
+            Container.BindInstance(_navigation);
+        }
+
+        private void BindCharactersPicking()
+        {
+            Container.Bind<PrincessPicking>().AsSingle();
+            Container.Bind<EnemyPicking>().AsSingle();
+        }
+
+        private void BindCharacterFactories()
+        {
+            Container.BindInstance(_princessFactory);
+            Container.BindInstance(_enemyFactory);
         }
 
         private void BindTrainSystem()
@@ -101,7 +122,7 @@ namespace Infrastructure.Installers.Game
             Container.BindInstance(_handsSprites);
         }
 
-        private void BindPrincesses()
+        private void BindPrincessesData()
         {
             Container.BindInstance(_princessPalettesRegistry);
             Container.BindInstance(_princessElementControllersRegistry);

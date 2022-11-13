@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using Heroes;
 using Infrastructure;
 using Surrounding;
@@ -8,7 +9,7 @@ using Zenject;
 
 namespace Hubs
 {
-    public class Hub : MonoBehaviour, IInitializable, IDisposable
+    public class Hub : MonoBehaviour
     {
         [SerializeField] private Room _hubRoom;
         [SerializeField] private RoomKind _hubRoomKind;
@@ -31,9 +32,9 @@ namespace Hubs
             _activeRepositories = activeRepositories;
         }
 
-        public void Initialize()
+        public async UniTaskVoid Initialize(Action onFinish)
         {
-            _hubRoom.Initialize(_hubRoomKind);
+            await InitializeHubRoom();
 
             _hero.PlaceAt(_heroSpawnPoint.position);
             _hero.Activate();
@@ -41,10 +42,23 @@ namespace Hubs
             _exitHubTrigger.Enter += EnterDungeon;
 
             StartHub();
+
+            onFinish?.Invoke();
+        }
+
+        private async UniTask InitializeHubRoom()
+        {
+            _hubRoom.Initialize(_hubRoomKind, transform);
+
+            await UniTask.NextFrame();
+
+            _hubRoom.SetupNavigation();
         }
 
         public void Dispose()
         {
+            _hubRoom.Dispose();
+
             _hero.Deactivate();
 
             _exitHubTrigger.Enter -= EnterDungeon;
@@ -57,7 +71,8 @@ namespace Hubs
 
         private void EnterDungeon()
         {
-            Dispose();
+            _exitHubTrigger.Enter -= EnterDungeon;
+
             _gameRun.EnterDungeon();
         }
     }

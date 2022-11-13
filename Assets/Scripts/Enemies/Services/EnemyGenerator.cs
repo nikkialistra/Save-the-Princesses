@@ -1,47 +1,47 @@
-﻿using Enemies.Services.Repositories;
+﻿using Data.Enemies;
+using Data.Enemies.Spawning;
+using Data.Enemies.Spawning.Frequencies;
+using Enemies.Services.Repositories;
 using SuperTiled2Unity;
-using Surrounding;
-using Surrounding.Rooms;
 using UnityEngine;
 
 namespace Enemies.Services
 {
     public class EnemyGenerator
     {
-        private SpawnPoints _spawnPoints;
+        private SuperObject[] _spawnPoints;
 
-        private readonly Enemy.Factory _enemyFactory;
+        private readonly EnemyPicking _picking;
+
+        private readonly EnemyFactory _factory;
 
         private readonly EnemyRoomRepository _repository;
 
-        public EnemyGenerator(Enemy.Factory enemyFactory, EnemyRoomRepository repository)
+        public EnemyGenerator(EnemyPicking picking, EnemyFactory factory, EnemyRoomRepository repository)
         {
-            _enemyFactory = enemyFactory;
+            _picking = picking;
+            _factory = factory;
             _repository = repository;
         }
 
         public void Initialize(SuperObjectLayer spawnPointsLayer)
         {
-            var spawnPoints = spawnPointsLayer.GetComponentsInChildren<SuperObject>();
-            _spawnPoints = new SpawnPoints(spawnPoints);
+            _spawnPoints = spawnPointsLayer.GetComponentsInChildren<SuperObject>();
         }
 
-        public void Generate()
+        public void Generate(EnemyRoomFrequencies roomFrequencies)
         {
-            var count = ComputeCount();
-
-            foreach (var spawnPoint in _spawnPoints.TakeSome(count))
-                SpawnAt(spawnPoint);
+            foreach (var spawnPoint in _spawnPoints)
+                SpawnFor(spawnPoint.transform.position, roomFrequencies);
         }
 
-        private static int ComputeCount()
+        private void SpawnFor(Vector3 position, EnemyRoomFrequencies roomFrequencies)
         {
-            return Random.Range(0, 4);
-        }
+            var enemyType = _picking.GetRandomEnemyType(roomFrequencies);
 
-        private void SpawnAt(Vector3 position)
-        {
-            var enemy = _enemyFactory.Create();
+            if (enemyType == EnemyType.None) return;
+
+            var enemy = _factory.Create(enemyType);
             enemy.Initialize();
 
             _repository.Add(enemy, position);

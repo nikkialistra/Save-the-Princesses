@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using Dungeons;
 using Surrounding.Rooms;
 using UI;
@@ -23,8 +24,11 @@ namespace Infrastructure.Bootstrap
 
         public void Initialize()
         {
-            _dungeonControl.Initialize();
+            _dungeonControl.Initialize(HideLoadingScreen).Forget();
+        }
 
+        private void HideLoadingScreen()
+        {
             _loadingScreen.Hide();
         }
 

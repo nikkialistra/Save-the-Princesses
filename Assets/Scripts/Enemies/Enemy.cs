@@ -1,5 +1,8 @@
 ﻿using System;
 using Characters;
+using Characters.Stats.Character;
+using Characters.Stats.Melee;
+using Characters.Stats.Ranged;
 using Entities;
 using Heroes;
 using Surrounding.Rooms;
@@ -10,10 +13,12 @@ namespace Enemies
 {
     [RequireComponent(typeof(Character))]
     [RequireComponent(typeof(CharacterMoving))]
+    [RequireComponent(typeof(CharacterStats))]
+    [RequireComponent(typeof(MeleeStats))]
+    [RequireComponent(typeof(RangedStats))]
     [RequireComponent(typeof(EnemyAttacker))]
     public class Enemy : MonoBehaviour, IEntity
     {
-        public event Action Spawned;
         public event Action Slain;
 
         public Vector2 Position => transform.position;
@@ -29,6 +34,10 @@ namespace Enemies
 
         private Character _character;
 
+        private CharacterStats _characterStats;
+        private MeleeStats _meleeStats;
+        private RangedStats _rangedStats;
+
         [Inject]
         public void Construct(Hero hero)
         {
@@ -41,8 +50,6 @@ namespace Enemies
             InitializeComponents();
 
             _character.Slain += OnSlain;
-
-            Spawned?.Invoke();
         }
 
         public void Dispose()
@@ -70,6 +77,10 @@ namespace Enemies
 
         private void FillComponents()
         {
+            _characterStats = GetComponent<CharacterStats>();
+            _meleeStats = GetComponent<MeleeStats>();
+            _rangedStats = GetComponent<RangedStats>();
+
             _character = GetComponent<Character>();
 
             Moving = GetComponent<CharacterMoving>();
@@ -78,6 +89,10 @@ namespace Enemies
 
         private void InitializeComponents()
         {
+            _characterStats.Initialize();
+            _meleeStats.Initialize();
+            _rangedStats.Initialize();
+
             _character.Initialize();
 
             Moving.Initialize();
@@ -91,7 +106,5 @@ namespace Enemies
             Moving.Dispose();
             Attacker.Dispose();
         }
-
-        public class Factory : PlaceholderFactory<Enemy> { }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using Heroes;
 using Hubs;
 using Surrounding;
 using UI;
@@ -27,8 +26,11 @@ namespace Infrastructure.Bootstrap
 
         public void Initialize()
         {
-            _hub.Initialize();
+            _hub.Initialize(HideLoadingScreen).Forget();
+        }
 
+        private void HideLoadingScreen()
+        {
             _loadingScreen.Hide();
         }
 
