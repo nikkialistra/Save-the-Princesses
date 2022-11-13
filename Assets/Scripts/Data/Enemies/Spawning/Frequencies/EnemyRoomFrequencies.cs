@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Data.Enemies.Spawning.Frequencies
 {
-    [CreateAssetMenu(fileName = "(Room Type)", menuName = "Data/Enemy Room Frequencies")]
+    [CreateAssetMenu(fileName = "(Room Type)", menuName = "GameData/Enemy Room Frequencies")]
     public class EnemyRoomFrequencies : SerializedScriptableObject
     {
         public Dictionary<GameDifficulty, EnemyFrequencies> Frequencies = new();

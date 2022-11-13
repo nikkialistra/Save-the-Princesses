@@ -2,7 +2,7 @@
 
 namespace Data.Princesses.Appearance.Elements
 {
-    [CreateAssetMenu(fileName = "(Princess Name)", menuName = "Data/Princess Element Controllers")]
+    [CreateAssetMenu(fileName = "(Princess Name)", menuName = "GameData/Princess Element Controllers")]
     public class PrincessElementControllers : ScriptableObject
     {
         public ElementControllers Heads = new();

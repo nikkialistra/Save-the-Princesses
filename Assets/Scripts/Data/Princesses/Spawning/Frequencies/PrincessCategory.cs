@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Data.Princesses.Spawning.Frequencies
 {
-    [CreateAssetMenu(fileName = "(Category Name)", menuName = "Data/Princess Category")]
+    [CreateAssetMenu(fileName = "(Category Name)", menuName = "GameData/Princess Category")]
     public class PrincessCategory : ScriptableObject
     {
         public List<PrincessType> PrincessTypes;

@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Infrastructure.Installers.Game.Settings
 {
-    [CreateAssetMenu(fileName = "Game Settings Installer", menuName = "Installers/Game Settings Installer")]
+    [CreateAssetMenu(fileName = "Game Settings Installer", menuName = "GameData/Game Settings Installer")]
     public class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInstaller>
     {
         [SerializeField] private CharacterSettings _characterSettings;
