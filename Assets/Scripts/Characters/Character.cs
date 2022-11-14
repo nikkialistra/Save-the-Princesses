@@ -6,7 +6,6 @@ using Characters.Traits;
 using Combat.Attacks;
 using Combat.Weapons;
 using GameData.Stats;
-using Infrastructure.Installers.Game.Settings;
 using Sirenix.OdinInspector;
 using Surrounding.Rooms;
 using UnityEngine;
@@ -35,7 +34,6 @@ namespace Characters
         public CharacterMoving Moving { get; private set; }
         public CharacterAnimator Animator { get; private set; }
         public CharacterHitsImpact HitsImpact { get; private set; }
-        public CharacterSettings Settings { get; private set; }
 
         public CharacterType Type => _characterType;
 
@@ -62,12 +60,6 @@ namespace Characters
         private CharacterBlinking _blinking;
 
         private SpriteRenderer _spriteRenderer;
-
-        [Inject]
-        public void Construct(CharacterSettings settings)
-        {
-            Settings = settings;
-        }
 
         public void Initialize(InitialStats initialStats)
         {
@@ -162,17 +154,17 @@ namespace Characters
         {
             Stats = new AllStats(initialStats);
 
-            Moving.Initialize(this, Settings);
+            Moving.Initialize(this);
 
             Animator.Initialize();
 
-            Health = new CharacterHealth(Stats, Settings);
+            Health = new CharacterHealth(Stats);
             HitsImpact = new CharacterHitsImpact(Stats);
             _healthHandling = new CharacterHealthHandling(this, Health, HitsImpact);
 
             _traits.Initialize();
 
-            _blinking = new CharacterBlinking(this, _spriteRenderer, Settings);
+            _blinking = new CharacterBlinking(this, _spriteRenderer);
         }
 
         private void DisposeComponents()

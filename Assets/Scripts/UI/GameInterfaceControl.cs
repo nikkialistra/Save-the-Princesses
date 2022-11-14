@@ -1,5 +1,4 @@
 ﻿using Heroes;
-using Saving.Progress;
 using Saving.Progress.Dungeon;
 using UI.HealthBar;
 using UI.Stats;

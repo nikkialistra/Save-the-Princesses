@@ -19,6 +19,7 @@ namespace Characters.Moving
         public bool Active { private get; set; }
 
         public float MovementSpeed => _character.Stats.MovementSpeed;
+        public bool Stopped => _movement.Stopped;
 
         public bool ShouldLocallyAvoid => _shouldLocallyAvoid;
         public bool ShowPath => _showPath;
@@ -38,7 +39,7 @@ namespace Characters.Moving
 
         private Character _character;
 
-        public void Initialize(Character character, CharacterSettings settings)
+        public void Initialize(Character character)
         {
             _character = character;
 
@@ -47,11 +48,11 @@ namespace Characters.Moving
             _rvoController = GetComponent<RVOController>();
             _lineRenderer = GetComponent<LineRenderer>();
 
-            _movement = new CharacterMovement(_rigidbody2D, settings);
+            _movement = new CharacterMovement(_rigidbody2D);
             _pathfinding = new CharacterPathfinding(this, _seeker, _rvoController, _lineRenderer);
-            _moveCalculation = new CharacterMoveCalculation(this, _movement, _pathfinding, _rigidbody2D, settings);
+            _moveCalculation = new CharacterMoveCalculation(this, _rigidbody2D, _pathfinding, _movement);
 
-            _pathfinding.RepathRate = settings.RepathRate;
+            _pathfinding.RepathRate = GameSettings.Character.RepathRate;
 
             _character.AtStun += OnAtStun;
             _character.AtStunEnd += OnAtStunEnd;
@@ -84,19 +85,35 @@ namespace Characters.Moving
             _moveCalculation.FindPathTo(position);
         }
 
-        public void Move(Vector2 direction) { }
+        public void Move(Vector2 direction)
+        {
+            _moveCalculation.Move(direction);
+        }
 
         public void ResetMove()
         {
-            throw new NotImplementedException();
+            _moveCalculation.ResetMove();
         }
 
-        public void Knockback(Vector2 knockback)
+        public void UpdateVelocity(float accelerationAmount, float decelerationAmount, float movementSpeed)
         {
-            throw new NotImplementedException();
+            _movement.UpdateVelocity(accelerationAmount, decelerationAmount, movementSpeed);
         }
 
-        public void Stop() { }
+        public void MoveWithSpeed(Vector2 direction, float speed)
+        {
+            _movement.MoveWithSpeed(direction, speed);
+        }
+
+        public void Knockback(Vector2 value)
+        {
+            _moveCalculation.Knockback(value);
+        }
+
+        public void Stop()
+        {
+            _moveCalculation.Stop();
+        }
 
         private void OnAtStun()
         {

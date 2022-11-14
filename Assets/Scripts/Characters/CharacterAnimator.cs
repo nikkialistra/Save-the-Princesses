@@ -1,10 +1,8 @@
 ﻿using System;
 using Characters.Common;
-using Characters.Moving;
 using Characters.Moving.Elements;
 using Infrastructure.Installers.Game.Settings;
 using UnityEngine;
-using Zenject;
 
 namespace Characters
 {
@@ -24,13 +22,13 @@ namespace Characters
 
         [SerializeField] private bool _ignoreChangeDirectionTime;
 
-        private bool IsMoving => !_moveCalculation.Stopped && TargetDirection.magnitude >= _settings.VelocityDelta;
+        private bool IsMoving => !_moveCalculation.Stopped && TargetDirection.magnitude >= GameSettings.Character.VelocityDelta;
 
         private Vector2 TargetDirection => Direction9Utils.AnyDirectionToSnappedVector2(_moveCalculation.TargetVelocity);
 
         private float TimeToChangeDirection => ChangeDirectionTimeAlternative == false
-            ? _settings.DirectionChangeTime
-            : _settings.DirectionChangeTimeAlternative;
+            ? GameSettings.Character.DirectionChangeTime
+            : GameSettings.Character.DirectionChangeTimeAlternative;
 
         private bool EnoughTimeForDirectionChange =>
             Time.time - TimeToChangeDirection >= _directionChangeTime;
@@ -45,14 +43,6 @@ namespace Characters
 
         private Animator _animator;
         private CharacterMoveCalculation _moveCalculation;
-
-        private CharacterSettings _settings;
-
-        [Inject]
-        public void Construct(CharacterSettings settings)
-        {
-            _settings = settings;
-        }
 
         public void Initialize()
         {
@@ -100,7 +90,7 @@ namespace Characters
 
         private void WatchForMoveDirectionsChanges()
         {
-            if (TargetDirection.magnitude <= _settings.VelocityDelta) return;
+            if (TargetDirection.magnitude <= GameSettings.Character.VelocityDelta) return;
 
             UpdateDirection();
             UpdateOngoingDirection();

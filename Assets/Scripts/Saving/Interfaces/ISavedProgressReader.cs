@@ -1,5 +1,4 @@
-﻿using Saving.Progress;
-using Saving.Progress.Dungeon;
+﻿using Saving.Progress.Dungeon;
 
 namespace Saving.Interfaces
 {

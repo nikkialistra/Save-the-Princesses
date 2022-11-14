@@ -1,14 +1,12 @@
 ﻿using System;
 using Characters;
 using Characters.Moving;
-using Characters.Moving.Elements;
 using Characters.Traits;
 using Entities;
 using GameData.Stats;
 using Heroes;
-using Infrastructure.Installers.Game.Settings;
-using Surrounding.Rooms;
 using Princesses.Types;
+using Surrounding.Rooms;
 using Trains;
 using Trains.Characters;
 using Trains.HandConnections;
@@ -35,8 +33,6 @@ namespace Princesses
         public TrainCharacter TrainCharacter { get; private set; }
         public CharacterMoving Moving => _character.Moving;
         public PrincessMovingInTrain MovingInTrain { get; private set; }
-
-        public PrincessSettings Settings { get; private set; }
 
         public PrincessType Type => _type;
 
@@ -76,12 +72,10 @@ namespace Princesses
         private Character _character;
 
         [Inject]
-        public void Construct(Hero hero, Train train, PrincessSettings settings)
+        public void Construct(Hero hero, Train train)
         {
             _hero = hero;
-
             Train = train;
-            Settings = settings;
         }
 
         public void Initialize(InitialStats initialStats)
@@ -207,7 +201,7 @@ namespace Princesses
             _character.Initialize(initialStats);
 
             TrainCharacter.Initialize();
-            MovingInTrain.Initialize(_character.Stats);
+            MovingInTrain.Initialize(Moving, _character.Stats);
 
             _animators.Initialize();
             _gatherWish.Initialize();

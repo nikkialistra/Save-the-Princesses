@@ -1,6 +1,4 @@
-﻿using Characters;
-using Characters.Moving;
-using Characters.Moving.Elements;
+﻿using Characters.Moving;
 using Infrastructure.Installers.Game.Settings;
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
@@ -18,15 +16,12 @@ namespace Princesses.Tasks
 
         private CharacterMoving _moving;
 
-        private PrincessSettings _settings;
-
         protected override string OnInit()
         {
             _movingInTrain = agent.MovingInTrain;
             _trainCharacter = agent.TrainCharacter;
 
             _moving = agent.Moving;
-            _settings = agent.Settings;
 
             return null;
         }
@@ -74,10 +69,10 @@ namespace Princesses.Tasks
 
         private void ChangeSpeedBasedOnDistance()
         {
-            var reachingLimitDistance = Distance > _trainCharacter.Previous.DistanceToMove * _settings.DistancePercentForElevatedSpeed;
+            var reachingLimitDistance = Distance > _trainCharacter.Previous.DistanceToMove * GameSettings.Princess.DistancePercentForElevatedSpeed;
 
-            var aboveHandsTensionDistance = Distance > _trainCharacter.Previous.DistanceToMove * _settings.DistancePercentForHeroSpeed;
-            var belowHandsTensionDistance = Distance < _trainCharacter.Previous.DistanceToMove * _settings.DistancePercentForRegularSpeed;
+            var aboveHandsTensionDistance = Distance > _trainCharacter.Previous.DistanceToMove * GameSettings.Princess.DistancePercentForHeroSpeed;
+            var belowHandsTensionDistance = Distance < _trainCharacter.Previous.DistanceToMove * GameSettings.Princess.DistancePercentForRegularSpeed;
 
             if (reachingLimitDistance)
                 agent.ElevateSpeed();

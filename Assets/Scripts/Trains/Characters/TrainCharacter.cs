@@ -1,6 +1,4 @@
 ﻿using System;
-using Characters;
-using Characters.Moving;
 using Characters.Moving.Elements;
 using Infrastructure.Installers.Game.Settings;
 using TMPro;
@@ -37,12 +35,12 @@ namespace Trains.Characters
         public bool Moving => !_moveCalculation.Stopped;
 
         public float DistanceToMove => IsHero
-            ? _settings.DistanceToHeroToMove
-            : _settings.DistanceBetweenPrincessesToMove;
+            ? GameSettings.Princess.DistanceToHeroToMove
+            : GameSettings.Princess.DistanceBetweenPrincessesToMove;
 
         public float RequiredDistanceToStop => IsHero
-            ? _settings.DistanceToHeroToStop
-            : _settings.DistanceBetweenPrincessesToStop;
+            ? GameSettings.Princess.DistanceToHeroToStop
+            : GameSettings.Princess.DistanceBetweenPrincessesToStop;
 
         [SerializeField] private float _handsYPosition = 0.4f;
         [SerializeField] private TMP_Text _orderNumber;
@@ -52,13 +50,10 @@ namespace Trains.Characters
 
         private CharacterMoveCalculation _moveCalculation;
 
-        private PrincessSettings _settings;
-
         [Inject]
-        public void Construct(Train train, PrincessSettings settings)
+        public void Construct(Train train)
         {
             _train = train;
-            _settings = settings;
         }
 
         public void Initialize()

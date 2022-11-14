@@ -1,18 +1,15 @@
 ﻿using System.Collections.Generic;
 using Infrastructure.Installers.Game.Settings;
 using Princesses;
-using Princesses.Services;
 using Princesses.Services.Repositories;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Zenject;
 
 namespace Heroes
 {
     public class HeroPrincessGathering
     {
         private readonly PrincessActiveRepository _activeRepository;
-        private readonly HeroSettings _settings;
 
         private readonly List<Princess> _gatherWishedPrincesses = new();
         private Princess _targetPrincess;
@@ -22,14 +19,11 @@ namespace Heroes
         private readonly InputAction _interactAction;
         private readonly Transform _transform;
 
-        public HeroPrincessGathering(PrincessActiveRepository activeRepository, Transform transform,
-            PlayerInput playerInput, HeroSettings settings)
+        public HeroPrincessGathering(PrincessActiveRepository activeRepository, Transform transform, PlayerInput playerInput)
         {
             _activeRepository = activeRepository;
 
             _transform = transform;
-
-            _settings = settings;
 
             _interactAction = playerInput.actions.FindAction("Interact");
 
@@ -43,7 +37,7 @@ namespace Heroes
 
         public void Tick()
         {
-            if (Time.time - _lastScanTime >= _settings.RescanRate)
+            if (Time.time - _lastScanTime >= GameSettings.Hero.RescanRate)
             {
                 Rescan();
                 _lastScanTime = Time.time;
@@ -67,7 +61,7 @@ namespace Heroes
             foreach (var princess in _activeRepository.UntiedFreePrincesses)
             {
                 if (Vector2.Distance(_transform.position, princess.Position) <=
-                    _settings.DistanceToGather)
+                    GameSettings.Hero.DistanceToGather)
                 {
                     _gatherWishedPrincesses.Add(princess);
                     princess.ShowGatherWish();

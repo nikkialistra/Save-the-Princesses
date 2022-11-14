@@ -1,7 +1,6 @@
 ﻿using Infrastructure.Installers.Game.Settings;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Zenject;
 
 namespace Heroes
 {
@@ -22,17 +21,11 @@ namespace Heroes
         private float _lastPressX = float.NegativeInfinity;
         private float _lastPressY = float.NegativeInfinity;
 
-        private HeroSettings _settings;
+        private readonly InputAction _moveAction;
 
-        private PlayerInput _playerInput;
-
-        private InputAction _moveAction;
-
-        public HeroInput(PlayerInput playerInput, HeroSettings settings)
+        public HeroInput(PlayerInput playerInput)
         {
             _moveAction = playerInput.actions.FindAction("Move");
-
-            _settings = settings;
         }
 
         public void Tick()
@@ -70,8 +63,8 @@ namespace Heroes
             bool InputXWasReleased() => _previousMoveInput.x != 0 && _moveInput.x == 0;
             bool InputYWasReleased() => _previousMoveInput.y != 0 && _moveInput.y == 0;
 
-            bool TimeBetweenYAndXInputIsSmall() => _lastPressY - _lastPressX < _settings.ButtonPressToleranceTime;
-            bool TimeBetweenXAndYInputIsSmall() => _lastPressX - _lastPressY < _settings.ButtonPressToleranceTime;
+            bool TimeBetweenYAndXInputIsSmall() => _lastPressY - _lastPressX < GameSettings.Hero.ButtonPressToleranceTime;
+            bool TimeBetweenXAndYInputIsSmall() => _lastPressX - _lastPressY < GameSettings.Hero.ButtonPressToleranceTime;
         }
     }
 }

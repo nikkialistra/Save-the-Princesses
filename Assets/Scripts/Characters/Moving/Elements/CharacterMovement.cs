@@ -6,19 +6,16 @@ namespace Characters.Moving.Elements
     public class CharacterMovement
     {
         public Vector2 TargetVelocity { get; private set; }
-        public bool Stopped => _rigidBody2D.velocity.magnitude <= _settings.VelocityDelta;
+        public bool Stopped => _rigidBody2D.velocity.magnitude <= GameSettings.Character.VelocityDelta;
 
         private float _currentSpeed;
         private Vector2 _direction;
 
         private readonly Rigidbody2D _rigidBody2D;
 
-        private readonly CharacterSettings _settings;
-
-        public CharacterMovement(Rigidbody2D rigidbody2D, CharacterSettings settings)
+        public CharacterMovement(Rigidbody2D rigidbody2D)
         {
             _rigidBody2D = rigidbody2D;
-            _settings = settings;
         }
 
         public void UpdateVelocity(float accelerationAmount, float decelerationAmount, float movementSpeed)

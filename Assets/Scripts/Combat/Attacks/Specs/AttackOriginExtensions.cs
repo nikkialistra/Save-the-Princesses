@@ -1,5 +1,4 @@
 ﻿using System;
-using Characters;
 using Characters.Common;
 
 namespace Combat.Attacks.Specs

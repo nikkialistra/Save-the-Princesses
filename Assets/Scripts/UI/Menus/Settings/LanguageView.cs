@@ -1,5 +1,4 @@
-﻿using Saving;
-using Saving.Settings;
+﻿using Saving.Settings;
 using UnityEngine;
 using UnityEngine.UIElements;
 

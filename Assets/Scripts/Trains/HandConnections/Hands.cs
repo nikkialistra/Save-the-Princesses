@@ -21,13 +21,10 @@ namespace Trains.HandConnections
 
         private HandsSprites _handsSprites;
 
-        private PrincessSettings _settings;
-
         [Inject]
-        public void Construct(HandsSprites handsSprites, PrincessSettings settings)
+        public void Construct(HandsSprites handsSprites)
         {
             _handsSprites = handsSprites;
-            _settings = settings;
         }
 
         public void Initialize()
@@ -37,6 +34,13 @@ namespace Trains.HandConnections
             _handsType = _trainCharacter.IsHero ? HandsType.HeroToPrincess : HandsType.PrincessToPrincess;
 
             _trainCharacter.NextChange += OnNextChange;
+        }
+
+        private void Update()
+        {
+            if (!_linked) return;
+
+            UpdateLocation(_trainCharacter.PositionCenter, _nextTrainCharacter.PositionCenter);
         }
 
         public void Dispose()
@@ -63,11 +67,8 @@ namespace Trains.HandConnections
 
         private async UniTask WaitForLinkFinish()
         {
-            while (_linked && Vector2.Distance(transform.position, _nextTrainCharacter.Position) >
-                _settings.DistanceToFinishLinking)
-            {
+            while (DistanceNotCutDownEnough())
                 await UniTask.Yield();
-            }
 
             if (_linked)
                 _spriteRenderer.enabled = true;
@@ -81,11 +82,10 @@ namespace Trains.HandConnections
             _spriteRenderer.enabled = false;
         }
 
-        private void Update()
+        private bool DistanceNotCutDownEnough()
         {
-            if (!_linked) return;
-
-            UpdateLocation(_trainCharacter.PositionCenter, _nextTrainCharacter.PositionCenter);
+            return _linked && Vector2.Distance(transform.position, _nextTrainCharacter.Position) >
+                GameSettings.Princess.DistanceToFinishLinking;
         }
 
         private void UpdateLocation(Vector2 firstPosition, Vector2 secondPosition)

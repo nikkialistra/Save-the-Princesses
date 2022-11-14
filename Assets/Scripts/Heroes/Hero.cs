@@ -47,17 +47,13 @@ namespace Heroes
 
         private PrincessActiveRepository _activePrincesses;
 
-        private HeroSettings _settings;
-
         private PlayerInput _playerInput;
 
         [Inject]
-        public void Construct(InitialStats initialStats, PrincessActiveRepository activePrincesses,
-            HeroSettings settings, PlayerInput playerInput)
+        public void Construct(InitialStats initialStats, PrincessActiveRepository activePrincesses, PlayerInput playerInput)
         {
             _initialStats = initialStats;
             _activePrincesses = activePrincesses;
-            _settings = settings;
             _playerInput = playerInput;
         }
 
@@ -66,7 +62,7 @@ namespace Heroes
             InitializeComponents();
 
             TrainCharacter.SetAsHero();
-            _character.SetCustomHitInvulnerabilityTime(_settings.HitInvulnerabilityTime);
+            _character.SetCustomHitInvulnerabilityTime(GameSettings.Hero.HitInvulnerabilityTime);
 
             _attacker.StrokeStart += OnStrokeStart;
             _character.Slain += OnSlain;
@@ -141,16 +137,16 @@ namespace Heroes
             _character = GetComponent<Character>();
             _character.Initialize(_initialStats);
 
-            _input = new HeroInput(_playerInput, _settings);
+            _input = new HeroInput(_playerInput);
             _moving = new HeroMoving(_input, _character.Moving);
-            _animator = new HeroAnimator(_character.Animator, _settings);
+            _animator = new HeroAnimator(_character.Animator);
             _attacker = new HeroAttacker(_playerInput);
 
             TrainCharacter = GetComponent<TrainCharacter>();
             TrainCharacter.Initialize();
 
             _trainStatEffects = new HeroTrainStatEffects(_character);
-            _princessGathering = new HeroPrincessGathering(_activePrincesses, transform, _playerInput, _settings);
+            _princessGathering = new HeroPrincessGathering(_activePrincesses, transform, _playerInput);
         }
 
         private void DisposeComponents()

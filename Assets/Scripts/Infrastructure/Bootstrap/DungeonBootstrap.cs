@@ -1,5 +1,4 @@
 ﻿using System;
-using Cysharp.Threading.Tasks;
 using Dungeons;
 using Surrounding.Rooms;
 using UI;

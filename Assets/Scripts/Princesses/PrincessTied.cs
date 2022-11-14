@@ -5,7 +5,6 @@ using Combat.Attacks;
 using Combat.Attacks.Specs;
 using Infrastructure.Installers.Game.Settings;
 using UnityEngine;
-using Zenject;
 using static Combat.Attacks.Specs.AttackOrigin;
 
 namespace Princesses
@@ -23,17 +22,9 @@ namespace Princesses
 
         private int _hits;
 
-        private PrincessSettings _settings;
-
-        [Inject]
-        public void Construct(PrincessSettings settings)
-        {
-            _settings = settings;
-        }
-
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (_hits >= _settings.HitsToUntie) return;
+            if (_hits >= GameSettings.Princess.HitsToUntie) return;
 
             var attackSpecs = other.GetComponentInParent<Attack>()?.Specs;
 
@@ -50,7 +41,7 @@ namespace Princesses
 
             _hitAttacks.Add(attackSpecs);
 
-            if (_hits >= _settings.HitsToUntie)
+            if (_hits >= GameSettings.Princess.HitsToUntie)
                 StartUntying();
             else
                 Hit?.Invoke();

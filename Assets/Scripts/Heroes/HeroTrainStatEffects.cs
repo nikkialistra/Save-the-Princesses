@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Characters;
 using Characters.Traits;
-using UnityEngine;
 
 namespace Heroes
 {

@@ -1,46 +1,33 @@
 ﻿using Characters;
 using Characters.Moving;
-using Characters.Moving.Elements;
 using Characters.Stats;
-using Characters.Stats.Character;
 using Infrastructure.Installers.Game.Settings;
 using Trains.Characters;
 using UnityEngine;
-using Zenject;
 
 namespace Princesses
 {
     [RequireComponent(typeof(MovingInTrainPathfinding))]
-    [RequireComponent(typeof(CharacterMovement))]
-    [RequireComponent(typeof(CharacterPathfinding))]
     [RequireComponent(typeof(CharacterAnimator))]
     [RequireComponent(typeof(TrainCharacter))]
     public class PrincessMovingInTrain : MonoBehaviour
     {
         private float MovementSpeed => _stats.MovementSpeed;
 
-        private float AccelerationAmount => (MovementSpeed / _princessSettings.AccelerationTime) * Time.fixedDeltaTime;
-        private float DecelerationAmount => (MovementSpeed / _princessSettings.DecelerationTime) * Time.fixedDeltaTime;
+        private float AccelerationAmount => (MovementSpeed / GameSettings.Princess.AccelerationTime) * Time.fixedDeltaTime;
+        private float DecelerationAmount => (MovementSpeed / GameSettings.Princess.DecelerationTime) * Time.fixedDeltaTime;
 
         private MovingInTrainPathfinding _pathfinding;
 
-        private CharacterMovement _movement;
+        private CharacterMoving _moving;
         private TrainCharacter _trainCharacter;
         private CharacterAnimator _animator;
 
-        private PrincessSettings _princessSettings;
-        private CharacterSettings _characterSettings;
         private AllStats _stats;
 
-        [Inject]
-        public void Construct(PrincessSettings princessSettings, CharacterSettings characterSettings)
+        public void Initialize(CharacterMoving moving, AllStats stats)
         {
-            _princessSettings = princessSettings;
-            _characterSettings = characterSettings;
-        }
-
-        public void Initialize(AllStats stats)
-        {
+            _moving = moving;
             _stats = stats;
 
             InitializeComponents();
@@ -57,20 +44,20 @@ namespace Princesses
 
         private void FixedUpdate()
         {
-            _movement.UpdateVelocity(AccelerationAmount, DecelerationAmount, MovementSpeed);
+            _moving.UpdateVelocity(AccelerationAmount, DecelerationAmount, MovementSpeed);
         }
 
         public void MoveTo(Vector2 target)
         {
             var delta = target - (Vector2)transform.position;
 
-            if (delta.magnitude <= _characterSettings.DestinationDistanceDelta)
+            if (delta.magnitude <= GameSettings.Character.DestinationDistanceDelta)
             {
                 Stop();
                 return;
             }
 
-            if (_movement.Stopped)
+            if (_moving.Stopped)
                 _pathfinding.ResetScanning();
 
             MoveWithSpeed(_pathfinding.FindDirectionToHero(), MovementSpeed);
@@ -78,7 +65,7 @@ namespace Princesses
 
         public void Stop()
         {
-            _movement.Stop();
+            _moving.Stop();
         }
 
         private void OnTrainEnter()
@@ -93,13 +80,12 @@ namespace Princesses
 
         private void MoveWithSpeed(Vector2 direction, float speed)
         {
-            _movement.MoveWithSpeed(direction, speed);
+            _moving.MoveWithSpeed(direction, speed);
         }
 
         private void InitializeComponents()
         {
             _pathfinding = GetComponent<MovingInTrainPathfinding>();
-            _movement = GetComponent<CharacterMovement>();
             _trainCharacter = GetComponent<TrainCharacter>();
             _animator = GetComponent<CharacterAnimator>();
         }

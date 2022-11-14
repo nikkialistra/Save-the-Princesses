@@ -18,13 +18,10 @@ namespace Characters
 
         private readonly Character _character;
 
-        private readonly CharacterSettings _settings;
-
-        public CharacterBlinking(Character character, SpriteRenderer spriteRenderer, CharacterSettings settings)
+        public CharacterBlinking(Character character, SpriteRenderer spriteRenderer)
         {
             _character = character;
             _spriteRenderer = spriteRenderer;
-            _settings = settings;
 
             _character.Hit += OnHit;
         }
@@ -47,7 +44,7 @@ namespace Characters
             _spriteRenderer.materials[0].SetInt(BlinkId, 1);
             Blinking?.Invoke();
 
-            yield return new WaitForSeconds(_settings.HitBlinkingTime);
+            yield return new WaitForSeconds(GameSettings.Character.HitBlinkingTime);
 
             _spriteRenderer.materials[0].SetInt(BlinkId, 0);
             BlinkingEnd?.Invoke();

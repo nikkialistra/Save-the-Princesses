@@ -33,10 +33,10 @@ namespace Characters
 
         private readonly AllStats _stats;
 
-        public CharacterHealth(AllStats stats, CharacterSettings settings)
+        public CharacterHealth(AllStats stats)
         {
             _stats = stats;
-            _invulnerabilityTimeAfterHit = settings.InvulnerabilityTimeAfterHit;
+            _invulnerabilityTimeAfterHit = GameSettings.Character.InvulnerabilityTimeAfterHit;
 
             SetInitialValues();
 

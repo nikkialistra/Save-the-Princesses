@@ -1,8 +1,6 @@
 ﻿using System;
 using Heroes;
-using Heroes.Attacks;
 using UnityEngine;
-using Zenject;
 
 namespace Controls.Gamepads
 {

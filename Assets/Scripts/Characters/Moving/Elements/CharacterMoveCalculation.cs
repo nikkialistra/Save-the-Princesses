@@ -12,8 +12,8 @@ namespace Characters.Moving.Elements
 
         public float MovementSpeed => _moving.MovementSpeed;
 
-        private float AccelerationAmount => (MovementSpeed / _settings.AccelerationTime) * Time.fixedDeltaTime;
-        private float DecelerationAmount => (MovementSpeed / _settings.DecelerationTime) * Time.fixedDeltaTime;
+        private float AccelerationAmount => (MovementSpeed / GameSettings.Character.AccelerationTime) * Time.fixedDeltaTime;
+        private float DecelerationAmount => (MovementSpeed / GameSettings.Character.DecelerationTime) * Time.fixedDeltaTime;
 
         private bool Blocked => _atKnockback || _stunned;
 
@@ -21,19 +21,17 @@ namespace Characters.Moving.Elements
         private bool _stunned;
 
         private readonly CharacterMoving _moving;
-        private readonly CharacterMovement _movement;
+        private readonly Rigidbody2D _rigidBody2D;
         private readonly CharacterPathfinding _pathfinding;
-        private readonly Rigidbody2D _rigidBody2d;
-        private readonly CharacterSettings _settings;
+        private readonly CharacterMovement _movement;
 
-        public CharacterMoveCalculation(CharacterMoving moving, CharacterMovement movement,
-            CharacterPathfinding pathfinding, Rigidbody2D rigidbody2D, CharacterSettings settings)
+        public CharacterMoveCalculation(CharacterMoving moving, Rigidbody2D rigidbody2D,
+            CharacterPathfinding pathfinding, CharacterMovement movement)
         {
             _moving = moving;
-            _movement = movement;
+            _rigidBody2D = rigidbody2D;
             _pathfinding = pathfinding;
-            _rigidBody2d = rigidbody2D;
-            _settings = settings;
+            _movement = movement;
 
             SubscribeToEvents();
         }
@@ -76,17 +74,17 @@ namespace Characters.Moving.Elements
             Stop();
             _atKnockback = true;
 
-            var targetPosition = _rigidBody2d.position + value;
+            var targetPosition = _rigidBody2D.position + value;
 
-            DOTween.To(() => _rigidBody2d.position, x => _rigidBody2d.position = x, targetPosition,
-                    _settings.TimeAtKnockback)
+            DOTween.To(() => _rigidBody2D.position, x => _rigidBody2D.position = x, targetPosition,
+                    GameSettings.Character.TimeAtKnockback)
                 .SetEase(Ease.OutQuint)
                 .OnComplete(ResetKnockback);
         }
 
         private void MoveWith(Vector2 velocity)
         {
-            if (velocity.magnitude <= _settings.VelocityDelta)
+            if (velocity.magnitude <= GameSettings.Character.VelocityDelta)
             {
                 Stop();
                 return;
@@ -100,7 +98,7 @@ namespace Characters.Moving.Elements
         {
             var delta = destination - (Vector2)_moving.transform.position;
 
-            if (delta.magnitude <= _settings.DestinationDistanceDelta)
+            if (delta.magnitude <= GameSettings.Character.DestinationDistanceDelta)
             {
                 Stop();
                 return;

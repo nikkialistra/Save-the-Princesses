@@ -15,6 +15,8 @@ namespace Infrastructure.Installers.Game.Settings
             Container.BindInstance(_characterSettings);
             Container.BindInstance(_heroSettings);
             Container.BindInstance(_princessSettings);
+
+            Container.Bind<GameSettings>().AsSingle().NonLazy();
         }
     }
 }

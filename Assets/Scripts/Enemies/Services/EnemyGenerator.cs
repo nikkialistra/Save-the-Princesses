@@ -2,7 +2,6 @@
 using GameData.Enemies.Spawning;
 using GameData.Enemies.Spawning.Frequencies;
 using SuperTiled2Unity;
-using Surrounding.Staging;
 using UnityEngine;
 
 namespace Enemies.Services

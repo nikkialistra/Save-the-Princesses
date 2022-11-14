@@ -25,12 +25,9 @@ namespace Heroes
 
         private Weapon _weapon;
 
-        private readonly HeroSettings _settings;
-
-        public HeroAnimator(CharacterAnimator animator, HeroSettings heroSettings)
+        public HeroAnimator(CharacterAnimator animator)
         {
             _animator = animator;
-            _settings = heroSettings;
 
             _animator.UpdateFinish += UpdateAnimator;
         }
@@ -57,7 +54,7 @@ namespace Heroes
 
         private void UpdateInversionStatus(float angle)
         {
-            if (Mathf.Abs(_settings.InversionAngle - angle) <= _settings.InversionFlickeringDelta)
+            if (Mathf.Abs(GameSettings.Hero.InversionAngle - angle) <= GameSettings.Hero.InversionFlickeringDelta)
                 UpdateInversionStatusWithLatency(angle);
             else
                 SetInversionStatus(angle);
@@ -65,14 +62,14 @@ namespace Heroes
 
         private void UpdateInversionStatusWithLatency(float angle)
         {
-            if (Time.time - _lastInversionTime < _settings.MinTimeToChangeInversion) return;
+            if (Time.time - _lastInversionTime < GameSettings.Hero.MinTimeToChangeInversion) return;
 
             SetInversionStatus(angle);
         }
 
         private void SetInversionStatus(float angle)
         {
-            _isInverted = angle > _settings.InversionAngle;
+            _isInverted = angle > GameSettings.Hero.InversionAngle;
             _lastInversionTime = Time.time;
         }
     }

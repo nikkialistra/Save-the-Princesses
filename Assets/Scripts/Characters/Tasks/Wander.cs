@@ -1,5 +1,4 @@
 ﻿using Characters.Moving;
-using Characters.Moving.Elements;
 using Infrastructure.Installers.Game.Settings;
 using NodeCanvas.Framework;
 using ParadoxNotion;
@@ -25,12 +24,10 @@ namespace Characters.Tasks
         private int _collideCount;
 
         private CharacterMoving _moving;
-        private CharacterSettings _settings;
 
         protected override string OnInit()
         {
             _moving = agent.Moving;
-            _settings = agent.Settings;
 
             return null;
         }
@@ -62,7 +59,7 @@ namespace Characters.Tasks
 
         private bool FindDestination()
         {
-            for (int i = 0; i < _settings.DestinationSearchTriesCount; i++)
+            for (int i = 0; i < GameSettings.Character.DestinationSearchTriesCount; i++)
             {
                 var randomDirection = agent.Forward + (Random.insideUnitCircle * DeviationStrength);
                 var randomPosition = agent.Position + randomDirection * Random.Range(DistanceMin, DistanceMax);
@@ -92,7 +89,7 @@ namespace Characters.Tasks
 
         private void CheckForFinish()
         {
-            if (Vector2.Distance(agent.Position, _destination) <= _settings.DestinationDistanceDeltaPathfinding)
+            if (Vector2.Distance(agent.Position, _destination) <= GameSettings.Character.DestinationDistanceDeltaPathfinding)
                 EndAction(true);
         }
     }

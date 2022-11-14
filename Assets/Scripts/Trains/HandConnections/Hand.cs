@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using Characters.Common;
 using Heroes;
 using Princesses;
 using UnityEngine;

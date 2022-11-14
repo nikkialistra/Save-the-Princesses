@@ -1,7 +1,4 @@
 ﻿using Characters.Stats;
-using Characters.Stats.Character;
-using Characters.Stats.Melee;
-using Characters.Stats.Ranged;
 using Heroes;
 using UnityEngine;
 using UnityEngine.UIElements;

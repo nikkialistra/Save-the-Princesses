@@ -1,9 +1,6 @@
-﻿using Characters;
-using Characters.Moving;
-using Characters.Moving.Elements;
+﻿using Characters.Moving;
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
-using UnityEngine;
 
 namespace Enemies.Tasks
 {

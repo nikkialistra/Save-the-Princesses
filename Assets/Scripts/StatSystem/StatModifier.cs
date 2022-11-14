@@ -1,5 +1,4 @@
 ﻿using System;
-using Characters.Stats;
 using UnityEngine;
 
 namespace StatSystem
