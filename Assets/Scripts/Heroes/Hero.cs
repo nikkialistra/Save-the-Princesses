@@ -1,7 +1,7 @@
 ﻿using System;
 using Characters;
+using Characters.Common;
 using Characters.Stats;
-using Characters.Traits;
 using Combat.Weapons;
 using GameData.Stats;
 using Heroes.Attacks;
@@ -43,8 +43,6 @@ namespace Heroes
 
         private InitialStats _initialStats;
 
-        private Weapon _weapon;
-
         private PrincessActiveRepository _activePrincesses;
 
         private PlayerInput _playerInput;
@@ -70,7 +68,7 @@ namespace Heroes
 
         public void SetWeapon(Weapon weapon)
         {
-            _weapon = weapon;
+            _character.SetWeapon(weapon);
         }
 
         public void Dispose()
@@ -135,7 +133,7 @@ namespace Heroes
         private void InitializeComponents()
         {
             _character = GetComponent<Character>();
-            _character.Initialize(_initialStats);
+            _character.Initialize(CharacterType.Hero, _initialStats);
 
             _input = new HeroInput(_playerInput);
             _moving = new HeroMoving(_input, _character.Moving);
@@ -143,7 +141,7 @@ namespace Heroes
             _attacker = new HeroAttacker(_playerInput);
 
             TrainCharacter = GetComponent<TrainCharacter>();
-            TrainCharacter.Initialize();
+            TrainCharacter.Initialize(_character.Moving);
 
             _trainStatEffects = new HeroTrainStatEffects(_character);
             _princessGathering = new HeroPrincessGathering(_activePrincesses, transform, _playerInput);

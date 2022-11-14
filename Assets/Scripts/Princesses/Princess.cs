@@ -1,7 +1,7 @@
 ﻿using System;
 using Characters;
+using Characters.Common;
 using Characters.Moving;
-using Characters.Traits;
 using Entities;
 using GameData.Stats;
 using Heroes;
@@ -198,14 +198,14 @@ namespace Princesses
 
         private void InitializeComponents(InitialStats initialStats)
         {
-            _character.Initialize(initialStats);
+            _character.Initialize(CharacterType.Princess, initialStats);
 
-            TrainCharacter.Initialize();
-            MovingInTrain.Initialize(Moving, _character.Stats);
+            TrainCharacter.Initialize(Moving);
+            MovingInTrain.Initialize(Moving, _character.Animator, _character.Stats);
 
             _animators.Initialize();
-            _gatherWish.Initialize();
-            _elements.Initialize();
+            _gatherWish.Initialize(_character.Animator);
+            _elements.Initialize(this, _character.Animator);
             _actualVelocity.Initialize();
 
             _hand.Initialize();

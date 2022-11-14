@@ -1,5 +1,5 @@
 ﻿using System;
-using Characters.Moving.Elements;
+using Characters.Moving;
 using Infrastructure.Installers.Game.Settings;
 using TMPro;
 using UnityEngine;
@@ -7,7 +7,6 @@ using Zenject;
 
 namespace Trains.Characters
 {
-    [RequireComponent(typeof(CharacterMoveCalculation))]
     public class TrainCharacter : MonoBehaviour
     {
         public event Action TrainEnter;
@@ -32,7 +31,7 @@ namespace Trains.Characters
         public Vector2 Position => transform.position;
         public Vector2 PositionCenter => (Vector2)transform.position + new Vector2(0, _handsYPosition);
 
-        public bool Moving => !_moveCalculation.Stopped;
+        public bool Moving => !_moving.Stopped;
 
         public float DistanceToMove => IsHero
             ? GameSettings.Princess.DistanceToHeroToMove
@@ -48,7 +47,7 @@ namespace Trains.Characters
         private Train _train;
         private TrainCharacter _next;
 
-        private CharacterMoveCalculation _moveCalculation;
+        private CharacterMoving _moving;
 
         [Inject]
         public void Construct(Train train)
@@ -56,9 +55,9 @@ namespace Trains.Characters
             _train = train;
         }
 
-        public void Initialize()
+        public void Initialize(CharacterMoving moving)
         {
-            _moveCalculation = GetComponent<CharacterMoveCalculation>();
+            _moving = moving;
         }
 
         public void SetAsHero()

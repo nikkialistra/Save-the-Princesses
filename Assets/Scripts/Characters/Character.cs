@@ -2,20 +2,17 @@
 using Characters.Common;
 using Characters.Moving;
 using Characters.Stats;
-using Characters.Traits;
 using Combat.Attacks;
 using Combat.Weapons;
 using GameData.Stats;
-using Sirenix.OdinInspector;
 using Surrounding.Rooms;
 using UnityEngine;
 using Zenject;
 
 namespace Characters
 {
-    [RequireComponent(typeof(CharacterAnimator))]
-    [RequireComponent(typeof(CharacterTraits))]
     [RequireComponent(typeof(CharacterMoving))]
+    [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(SpriteRenderer))]
     public class Character : MonoBehaviour, ITickable, IFixedTickable
     {
@@ -35,40 +32,43 @@ namespace Characters
         public CharacterAnimator Animator { get; private set; }
         public CharacterHitsImpact HitsImpact { get; private set; }
 
-        public CharacterType Type => _characterType;
+        public CharacterType Type { get; private set; }
 
         public Vector2 Forward => transform.forward;
         public Vector2 Position => transform.position;
         public Vector2 PositionCenterOffset => new(0, _yPosition);
         public Vector2 PositionCenter => (Vector2)transform.position + new Vector2(0, _yPosition);
 
-        public bool HasImpact => HitsImpact.HasImpact;
-
-        [SerializeField] private CharacterType _characterType;
-
-        [Space]
         [SerializeField] private float _yPosition;
 
-        [Title("Fighting")]
-        [SerializeField] private Weapon _weapon;
+        private Weapon _weapon;
 
         private bool _active;
 
         private CharacterHealthHandling _healthHandling;
-        private CharacterTraits _traits;
 
         private CharacterBlinking _blinking;
 
+        private Animator _animator;
         private SpriteRenderer _spriteRenderer;
 
-        public void Initialize(InitialStats initialStats)
+        public void Initialize(CharacterType characterType, InitialStats initialStats)
         {
+            Type = characterType;
+
             FillComponents();
             InitializeComponents(initialStats);
-            InitializeWeapon();
 
             _healthHandling.Hit += OnHit;
             _healthHandling.Slay += OnSlay;
+        }
+
+        public void Dispose()
+        {
+            DisposeComponents();
+
+            _healthHandling.Hit -= OnHit;
+            _healthHandling.Slay -= OnSlay;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -81,20 +81,12 @@ namespace Characters
             TakeIfAttack(other);
         }
 
-        public void Dispose()
-        {
-            DisposeComponents();
-            DisposeWeapon();
-
-            _healthHandling.Hit -= OnHit;
-            _healthHandling.Slay -= OnSlay;
-        }
-
         public void Tick()
         {
             if (!Active) return;
 
             Moving.Tick();
+            Animator.Tick();
         }
 
         public void FixedTick()
@@ -109,6 +101,12 @@ namespace Characters
             Room = room;
         }
 
+        public void SetWeapon(Weapon weapon)
+        {
+            _weapon = weapon;
+            _weapon.Initialize(this, _blinking);
+        }
+
         public void Stun(bool value)
         {
             if (value == true)
@@ -119,12 +117,12 @@ namespace Characters
 
         public void AddTrait(Trait trait)
         {
-            _traits.Add(trait);
+            Stats.AddTrait(trait);
         }
 
         public void RemoveTrait(Trait trait)
         {
-            _traits.Remove(trait);
+            Stats.RemoveTrait(trait);
         }
 
         public void SetCustomHitInvulnerabilityTime(float value)
@@ -143,11 +141,9 @@ namespace Characters
         private void FillComponents()
         {
             Moving = GetComponent<CharacterMoving>();
+
+            _animator = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
-
-            Animator = GetComponent<CharacterAnimator>();
-
-            _traits = GetComponent<CharacterTraits>();
         }
 
         private void InitializeComponents(InitialStats initialStats)
@@ -155,14 +151,11 @@ namespace Characters
             Stats = new AllStats(initialStats);
 
             Moving.Initialize(this);
-
-            Animator.Initialize();
+            Animator = new CharacterAnimator(_animator, Moving, Type);
 
             Health = new CharacterHealth(Stats);
             HitsImpact = new CharacterHitsImpact(Stats);
             _healthHandling = new CharacterHealthHandling(this, Health, HitsImpact);
-
-            _traits.Initialize();
 
             _blinking = new CharacterBlinking(this, _spriteRenderer);
         }
@@ -173,19 +166,9 @@ namespace Characters
             Moving.Dispose();
 
             _healthHandling.Dispose();
-            _traits.Dispose();
 
             _blinking.Dispose();
-        }
 
-        private void InitializeWeapon()
-        {
-            if (_weapon != null)
-                _weapon.Initialize(this, _blinking);
-        }
-
-        private void DisposeWeapon()
-        {
             if (_weapon != null)
                 _weapon.Dispose();
         }
@@ -199,8 +182,11 @@ namespace Characters
         {
             Slain?.Invoke();
 
-            if (_characterType != CharacterType.Hero)
+            if (Type != CharacterType.Hero)
+            {
+                Dispose();
                 Destroy(gameObject);
+            }
         }
     }
 }

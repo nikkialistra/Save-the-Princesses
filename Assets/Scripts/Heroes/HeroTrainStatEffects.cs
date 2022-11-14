@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Characters;
-using Characters.Traits;
+using GameData.Stats;
 
 namespace Heroes
 {

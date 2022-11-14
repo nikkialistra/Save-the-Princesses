@@ -7,8 +7,6 @@ using static Princesses.Types.ElementType;
 
 namespace Princesses
 {
-    [RequireComponent(typeof(Princess))]
-    [RequireComponent(typeof(CharacterAnimator))]
     public class PrincessElementControllers : MonoBehaviour
     {
         private static readonly int MoveX = Animator.StringToHash("moveX");
@@ -39,9 +37,10 @@ namespace Princesses
             _animators.Add(_headAccessory);
         }
 
-        public void Initialize()
+        public void Initialize(Princess princess, CharacterAnimator characterAnimator)
         {
-            FillComponents();
+            _princess = princess;
+            _characterAnimator = characterAnimator;
 
             FillControllers();
 
@@ -71,12 +70,6 @@ namespace Princesses
                 animator.SetFloat(MoveX, status.Velocity.x);
                 animator.SetFloat(MoveY, status.Velocity.y);
             }
-        }
-
-        private void FillComponents()
-        {
-            _princess = GetComponent<Princess>();
-            _characterAnimator = GetComponent<CharacterAnimator>();
         }
     }
 }

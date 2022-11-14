@@ -1,9 +1,11 @@
 ﻿using System;
 using Characters;
+using Characters.Common;
 using Characters.Moving;
 using Characters.Stats.Character;
 using Characters.Stats.Melee;
 using Characters.Stats.Ranged;
+using Combat.Weapons;
 using Entities;
 using GameData.Stats;
 using Heroes;
@@ -57,6 +59,11 @@ namespace Enemies
             _character.Slain -= OnSlain;
         }
 
+        public void SetWeapon(Weapon weapon)
+        {
+            _character.SetWeapon(weapon);
+        }
+
         public void PlaceInRoom(Room room)
         {
             _character.PlaceInRoom(room);
@@ -82,7 +89,7 @@ namespace Enemies
 
         private void InitializeComponents(InitialStats initialStats)
         {
-            _character.Initialize(initialStats);
+            _character.Initialize(CharacterType.Enemy, initialStats);
 
             Attacker.Initialize();
         }

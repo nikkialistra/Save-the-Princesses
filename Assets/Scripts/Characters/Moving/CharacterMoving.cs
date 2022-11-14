@@ -19,6 +19,7 @@ namespace Characters.Moving
         public bool Active { private get; set; }
 
         public float MovementSpeed => _character.Stats.MovementSpeed;
+        public Vector2 TargetVelocity => _moveCalculation.TargetVelocity;
         public bool Stopped => _movement.Stopped;
 
         public bool ShouldLocallyAvoid => _shouldLocallyAvoid;

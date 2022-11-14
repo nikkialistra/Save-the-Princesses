@@ -1,4 +1,4 @@
-﻿using Characters.Traits;
+﻿using GameData.Stats;
 using Heroes;
 using Trains.Characters;
 using UnityEngine;

@@ -5,7 +5,7 @@ using Characters.Stats.Ranged;
 using StatSystem;
 using UnityEngine;
 
-namespace Characters.Traits
+namespace GameData.Stats
 {
     [CreateAssetMenu(fileName = "(Trait Name)", menuName = "GameData/Character Trait")]
     public class Trait : ScriptableObject

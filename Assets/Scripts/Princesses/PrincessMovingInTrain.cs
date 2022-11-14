@@ -8,7 +8,6 @@ using UnityEngine;
 namespace Princesses
 {
     [RequireComponent(typeof(MovingInTrainPathfinding))]
-    [RequireComponent(typeof(CharacterAnimator))]
     [RequireComponent(typeof(TrainCharacter))]
     public class PrincessMovingInTrain : MonoBehaviour
     {
@@ -25,9 +24,10 @@ namespace Princesses
 
         private AllStats _stats;
 
-        public void Initialize(CharacterMoving moving, AllStats stats)
+        public void Initialize(CharacterMoving moving, CharacterAnimator animator, AllStats stats)
         {
             _moving = moving;
+            _animator = animator;
             _stats = stats;
 
             InitializeComponents();

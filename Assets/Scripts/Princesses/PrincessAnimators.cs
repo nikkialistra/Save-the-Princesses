@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Princesses
 {
-    [RequireComponent(typeof(CharacterMoveCalculation))]
     public class PrincessAnimators : MonoBehaviour
     {
         private static readonly int TiedId = Animator.StringToHash("tied");

@@ -1,14 +1,13 @@
 ﻿using System;
 using Characters.Common;
+using Characters.Moving;
 using Characters.Moving.Elements;
 using Infrastructure.Installers.Game.Settings;
 using UnityEngine;
 
 namespace Characters
 {
-    [RequireComponent(typeof(CharacterMoveCalculation))]
-    [RequireComponent(typeof(Animator))]
-    public class CharacterAnimator : MonoBehaviour
+    public class CharacterAnimator
     {
         private const float MoveMotion = 1f;
         private const float IdleMotion = 0.5f;
@@ -20,11 +19,11 @@ namespace Characters
 
         public bool ChangeDirectionTimeAlternative { private get; set; }
 
-        [SerializeField] private bool _ignoreChangeDirectionTime;
+        private readonly bool _ignoreChangeDirectionTime;
 
-        private bool IsMoving => !_moveCalculation.Stopped && TargetDirection.magnitude >= GameSettings.Character.VelocityDelta;
+        private bool IsMoving => !_moving.Stopped && TargetDirection.magnitude >= GameSettings.Character.VelocityDelta;
 
-        private Vector2 TargetDirection => Direction9Utils.AnyDirectionToSnappedVector2(_moveCalculation.TargetVelocity);
+        private Vector2 TargetDirection => Direction9Utils.AnyDirectionToSnappedVector2(_moving.TargetVelocity);
 
         private float TimeToChangeDirection => ChangeDirectionTimeAlternative == false
             ? GameSettings.Character.DirectionChangeTime
@@ -41,16 +40,17 @@ namespace Characters
         private bool _lookToSomething;
         private Vector2 _lookDirection;
 
-        private Animator _animator;
-        private CharacterMoveCalculation _moveCalculation;
+        private readonly Animator _animator;
+        private readonly CharacterMoving _moving;
 
-        public void Initialize()
+        public CharacterAnimator(Animator animator, CharacterMoving moving, CharacterType characterType)
         {
-            _animator = GetComponent<Animator>();
-            _moveCalculation = GetComponent<CharacterMoveCalculation>();
+            _animator = animator;
+            _moving = moving;
+            _ignoreChangeDirectionTime = characterType == CharacterType.Hero;
         }
 
-        private void Update()
+        public void Tick()
         {
             WatchForMoveDirectionsChanges();
             UpdateAnimations();

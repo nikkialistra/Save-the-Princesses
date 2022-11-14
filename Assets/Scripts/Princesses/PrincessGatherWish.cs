@@ -7,7 +7,6 @@ using Zenject;
 
 namespace Princesses
 {
-    [RequireComponent(typeof(CharacterAnimator))]
     public class PrincessGatherWish : MonoBehaviour
     {
         public bool Showing { get; private set; }
@@ -27,9 +26,9 @@ namespace Princesses
             _hero = hero;
         }
 
-        public void Initialize()
+        public void Initialize(CharacterAnimator animator)
         {
-            _animator = GetComponent<CharacterAnimator>();
+            _animator = animator;
         }
 
         public void Show()
