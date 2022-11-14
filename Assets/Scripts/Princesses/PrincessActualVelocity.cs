@@ -1,28 +1,31 @@
 ﻿using System.Collections.Generic;
+using GameData.Settings;
 using UnityEngine;
 
 namespace Princesses
 {
-    public class PrincessActualVelocity : MonoBehaviour
+    public class PrincessActualVelocity
     {
-        public float Value => ((Vector2)transform.position - _lastPositions.Peek()).magnitude / _timeInterval;
+        public float Value => (_princess.Position - _lastPositions.Peek()).magnitude / GameSettings.Princess.TimeIntervalForStuckCheck;
 
-        [SerializeField] private float _timeInterval = 0.06f;
+        private readonly Queue<Vector2> _lastPositions;
+        private readonly int _positionsCount;
 
-        private Queue<Vector2> _lastPositions;
-        private int _positionsCount;
+        private readonly Princess _princess;
 
-        public void Initialize()
+        public PrincessActualVelocity(Princess princess)
         {
+            _princess = princess;
+
             var updatesInSecond = 1f / Time.fixedDeltaTime;
-            _positionsCount = (int)(updatesInSecond * _timeInterval);
+            _positionsCount = (int)(updatesInSecond * GameSettings.Princess.TimeIntervalForStuckCheck);
 
             _lastPositions = new Queue<Vector2>(_positionsCount);
         }
 
-        private void FixedUpdate()
+        public void FixedTick()
         {
-            _lastPositions.Enqueue(transform.position);
+            _lastPositions.Enqueue(_princess.Position);
 
             if (_lastPositions.Count > _positionsCount)
                 _lastPositions.Dequeue();

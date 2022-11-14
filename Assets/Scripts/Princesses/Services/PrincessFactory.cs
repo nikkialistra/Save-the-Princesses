@@ -27,6 +27,7 @@ namespace Princesses.Services
             var princess = _diContainer.InstantiatePrefabForComponent<Princess>(princessData.Prefab);
 
             princess.Initialize(princessData.InitialStats.For(stageType));
+            princess.Active = true;
 
             return princess;
         }

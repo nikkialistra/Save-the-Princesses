@@ -1,6 +1,6 @@
 ﻿using System;
 using Characters.Moving.Elements;
-using Infrastructure.Installers.Game.Settings;
+using GameData.Settings;
 using Pathfinding;
 using Pathfinding.RVO;
 using UnityEngine;

@@ -6,12 +6,12 @@ using UnityEngine;
 
 namespace Entities.Containers
 {
-    public class EntityContainer<E> : MonoBehaviour where E : IEntity
+    public class EntityContainer<TEntity> : MonoBehaviour where TEntity : IEntity
     {
-        public IReadOnlyCollection<E> Entities => _entities;
+        public IReadOnlyCollection<TEntity> Entities => _entities;
         public int Count => _entities.Count;
 
-        private List<E> _entities;
+        private List<TEntity> _entities;
 
         private Room _room;
 
@@ -23,7 +23,7 @@ namespace Entities.Containers
 
         private void FillFromStartEntities(Room room)
         {
-            _entities = GetComponentsInChildren<E>().ToList();
+            _entities = GetComponentsInChildren<TEntity>().ToList();
 
             foreach (var entity in _entities)
                 entity.PlaceInRoom(room);
@@ -37,7 +37,7 @@ namespace Entities.Containers
             _entities.Clear();
         }
 
-        public void Add(E entity, Vector3 position)
+        public void Add(TEntity entity, Vector3 position)
         {
             if (_entities.Contains(entity))
                 throw new InvalidOperationException("Cannot add already contained entity");
@@ -48,7 +48,7 @@ namespace Entities.Containers
             _entities.Add(entity);
         }
 
-        public void Remove(E entity)
+        public void Remove(TEntity entity)
         {
             if (!_entities.Contains(entity))
                 throw new InvalidOperationException("Cannot remove not contained entity");

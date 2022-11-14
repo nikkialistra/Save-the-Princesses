@@ -32,7 +32,7 @@ namespace Dungeons
 
             _hero.Slain += FinishRun;
 
-            _hero.Activate();
+            _hero.Active = true;
         }
 
         public void Dispose()
@@ -41,7 +41,7 @@ namespace Dungeons
 
             _hero.Slain -= FinishRun;
 
-            _hero.Deactivate();
+            _hero.Active = false;
         }
 
         private void FinishRun()

@@ -2,7 +2,7 @@
 using Characters.Common;
 using Characters.Moving;
 using Characters.Moving.Elements;
-using Infrastructure.Installers.Game.Settings;
+using GameData.Settings;
 using UnityEngine;
 
 namespace Characters
@@ -17,20 +17,14 @@ namespace Characters
 
         public event Action<AnimationStatus> UpdateFinish;
 
-        public bool ChangeDirectionTimeAlternative { private get; set; }
-
         private readonly bool _ignoreChangeDirectionTime;
 
         private bool IsMoving => !_moving.Stopped && TargetDirection.magnitude >= GameSettings.Character.VelocityDelta;
 
         private Vector2 TargetDirection => Direction9Utils.AnyDirectionToSnappedVector2(_moving.TargetVelocity);
 
-        private float TimeToChangeDirection => ChangeDirectionTimeAlternative == false
-            ? GameSettings.Character.DirectionChangeTime
-            : GameSettings.Character.DirectionChangeTimeAlternative;
-
         private bool EnoughTimeForDirectionChange =>
-            Time.time - TimeToChangeDirection >= _directionChangeTime;
+            Time.time - _character.DirectionChangeTime >= _directionChangeTime;
 
         private readonly AnimationStatus _status = new();
 
@@ -43,10 +37,14 @@ namespace Characters
         private readonly Animator _animator;
         private readonly CharacterMoving _moving;
 
-        public CharacterAnimator(Animator animator, CharacterMoving moving, CharacterType characterType)
+        private readonly Character _character;
+
+        public CharacterAnimator(Character character, Animator animator, CharacterMoving moving, CharacterType characterType)
         {
+            _character = character;
             _animator = animator;
             _moving = moving;
+
             _ignoreChangeDirectionTime = characterType == CharacterType.Hero;
         }
 

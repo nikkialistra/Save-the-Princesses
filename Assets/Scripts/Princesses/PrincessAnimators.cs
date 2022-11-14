@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Characters.Moving.Elements;
+using GameData.Settings;
 using UnityEngine;
 
 namespace Princesses
@@ -14,9 +15,6 @@ namespace Princesses
         [SerializeField] private List<Animator> _animators;
         [SerializeField] private Animator _rope;
         [SerializeField] private Animator _light;
-
-        [Space]
-        [SerializeField] private float _timeToDisableRopeAndLight = 0.6f;
 
         private GameObject _ropeAngLightParent;
 
@@ -47,7 +45,7 @@ namespace Princesses
 
         private IEnumerator DisableRopeAndLightAfter()
         {
-            yield return new WaitForSeconds(_timeToDisableRopeAndLight);
+            yield return new WaitForSeconds(GameSettings.Princess.TimeToDisableRopeAndLight);
 
             _ropeAngLightParent.SetActive(false);
         }

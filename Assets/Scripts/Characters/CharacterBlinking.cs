@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-using Infrastructure.Installers.Game.Settings;
+using GameData.Settings;
 using UnityEngine;
 
 namespace Characters

@@ -3,26 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using Combat.Attacks;
 using Combat.Attacks.Specs;
-using Infrastructure.Installers.Game.Settings;
+using GameData.Settings;
 using UnityEngine;
 using static Combat.Attacks.Specs.AttackOrigin;
 
 namespace Princesses
 {
-    public class PrincessTied : MonoBehaviour
+    public class PrincessTied
     {
         public event Action Hit;
         public event Action Untie;
 
         public bool Tied { get; private set; } = true;
 
-        [SerializeField] private float _untieFinishTime = 0.6f;
-
         private readonly HashSet<AttackSpecs> _hitAttacks = new();
 
         private int _hits;
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private readonly Princess _princess;
+
+        public PrincessTied(Princess princess)
+        {
+            _princess = princess;
+        }
+
+        private void DoHit(Collider2D other)
         {
             if (_hits >= GameSettings.Princess.HitsToUntie) return;
 
@@ -52,14 +57,13 @@ namespace Princesses
             Untie?.Invoke();
 
             _hitAttacks.Clear();
-            enabled = false;
 
-            StartCoroutine(FinishUntyingAfter());
+            _princess.StartCoroutine(FinishUntyingAfter());
         }
 
         private IEnumerator FinishUntyingAfter()
         {
-            yield return new WaitForSeconds(_untieFinishTime);
+            yield return new WaitForSeconds(GameSettings.Princess.UntieFinishTime);
 
             Tied = false;
         }

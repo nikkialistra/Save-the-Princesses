@@ -1,4 +1,4 @@
-﻿using Infrastructure.Installers.Game.Settings;
+﻿using GameData.Settings;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

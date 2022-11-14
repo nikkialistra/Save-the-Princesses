@@ -3,10 +3,11 @@ using Characters;
 using Characters.Common;
 using Characters.Stats;
 using Combat.Weapons;
+using GameData.Settings;
 using GameData.Stats;
 using Heroes.Attacks;
-using Infrastructure.Installers.Game.Settings;
 using Princesses.Services.Repositories;
+using Trains;
 using Trains.Characters;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,13 +15,15 @@ using Zenject;
 
 namespace Heroes
 {
-    [RequireComponent(typeof(TrainCharacter))]
     [RequireComponent(typeof(Character))]
-    public class Hero : MonoBehaviour, ITickable
+    [RequireComponent(typeof(TrainCharacter))]
+    public class Hero : MonoBehaviour, ITickable, IFixedTickable
     {
         public event Action StrokeStart;
 
         public event Action Slain;
+
+        public bool Active { get; set; }
 
         public CharacterHealth Health => _character.Health;
         public TrainCharacter TrainCharacter { get; private set; }
@@ -41,34 +44,30 @@ namespace Heroes
 
         private Character _character;
 
-        private InitialStats _initialStats;
-
         private PrincessActiveRepository _activePrincesses;
+
+        private Train _train;
 
         private PlayerInput _playerInput;
 
         [Inject]
-        public void Construct(InitialStats initialStats, PrincessActiveRepository activePrincesses, PlayerInput playerInput)
+        public void Construct(PrincessActiveRepository activePrincesses, Train train, PlayerInput playerInput)
         {
-            _initialStats = initialStats;
             _activePrincesses = activePrincesses;
+            _train = train;
             _playerInput = playerInput;
         }
 
-        public void Initialize()
+        public void Initialize(InitialStats initialStats)
         {
-            InitializeComponents();
+            FillComponents();
+            InitializeComponents(initialStats);
 
             TrainCharacter.SetAsHero();
             _character.SetCustomHitInvulnerabilityTime(GameSettings.Hero.HitInvulnerabilityTime);
 
             _attacker.StrokeStart += OnStrokeStart;
             _character.Slain += OnSlain;
-        }
-
-        public void SetWeapon(Weapon weapon)
-        {
-            _character.SetWeapon(weapon);
         }
 
         public void Dispose()
@@ -79,25 +78,29 @@ namespace Heroes
             DisposeComponents();
         }
 
-        public void Activate()
+        public void SetWeapon(Weapon weapon)
         {
-            _character.Active = true;
-        }
-
-        public void Deactivate()
-        {
-            _character.Active = false;
+            _character.SetWeapon(weapon);
         }
 
         public void Tick()
         {
-            if (!_character.Active) return;
+            if (!Active) return;
+
+            _character.Tick();
 
             _input.Tick();
             _moving.Tick();
             _attacker.Tick();
 
             _princessGathering.Tick();
+        }
+
+        public void FixedTick()
+        {
+            if (!Active) return;
+
+            _character.FixedTick();
         }
 
         public void PlaceAt(Vector3 position)
@@ -130,18 +133,21 @@ namespace Heroes
             Slain?.Invoke();
         }
 
-        private void InitializeComponents()
+        private void FillComponents()
         {
             _character = GetComponent<Character>();
-            _character.Initialize(CharacterType.Hero, _initialStats);
+            TrainCharacter = GetComponent<TrainCharacter>();
+        }
+
+        private void InitializeComponents(InitialStats initialStats)
+        {
+            _character.Initialize(CharacterType.Hero, initialStats);
+            TrainCharacter.Initialize(_character, _character.Moving, _train);
 
             _input = new HeroInput(_playerInput);
             _moving = new HeroMoving(_input, _character.Moving);
             _animator = new HeroAnimator(_character.Animator);
             _attacker = new HeroAttacker(_playerInput);
-
-            TrainCharacter = GetComponent<TrainCharacter>();
-            TrainCharacter.Initialize(_character.Moving);
 
             _trainStatEffects = new HeroTrainStatEffects(_character);
             _princessGathering = new HeroPrincessGathering(_activePrincesses, transform, _playerInput);

@@ -1,9 +1,9 @@
 ﻿using System;
+using Characters;
 using Characters.Moving;
-using Infrastructure.Installers.Game.Settings;
+using GameData.Settings;
 using TMPro;
 using UnityEngine;
-using Zenject;
 
 namespace Trains.Characters
 {
@@ -28,8 +28,8 @@ namespace Trains.Characters
         }
         public TrainCharacter Previous { get; private set; }
 
-        public Vector2 Position => transform.position;
-        public Vector2 PositionCenter => (Vector2)transform.position + new Vector2(0, _handsYPosition);
+        public Vector2 Position => _character.Position;
+        public Vector2 PositionCenter => _character.Position + new Vector2(0, HandsDeltaY);
 
         public bool Moving => !_moving.Stopped;
 
@@ -41,23 +41,22 @@ namespace Trains.Characters
             ? GameSettings.Princess.DistanceToHeroToStop
             : GameSettings.Princess.DistanceBetweenPrincessesToStop;
 
-        [SerializeField] private float _handsYPosition = 0.4f;
         [SerializeField] private TMP_Text _orderNumber;
 
-        private Train _train;
+        private float HandsDeltaY => IsHero ? GameSettings.Hero.HandsDeltaY : GameSettings.Princess.HandsDeltaY;
+
         private TrainCharacter _next;
 
+        private Character _character;
         private CharacterMoving _moving;
 
-        [Inject]
-        public void Construct(Train train)
-        {
-            _train = train;
-        }
+        private Train _train;
 
-        public void Initialize(CharacterMoving moving)
+        public void Initialize(Character character, CharacterMoving moving, Train train)
         {
+            _character = character;
             _moving = moving;
+            _train = train;
         }
 
         public void SetAsHero()
@@ -72,6 +71,7 @@ namespace Trains.Characters
 
             _train.Recalculate();
 
+            _character.DirectionChangeTime = GameSettings.Character.DirectionChangeTimeInTrain;
             TrainEnter?.Invoke();
         }
 
@@ -82,6 +82,7 @@ namespace Trains.Characters
             else
                 LeavePrevious();
 
+            _character.DirectionChangeTime = GameSettings.Character.DirectionChangeTime;
             TrainLeave?.Invoke();
         }
 

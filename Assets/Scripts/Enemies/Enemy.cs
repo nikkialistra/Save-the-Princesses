@@ -17,9 +17,11 @@ namespace Enemies
 {
     [RequireComponent(typeof(Character))]
     [RequireComponent(typeof(EnemyAttacker))]
-    public class Enemy : MonoBehaviour, IEntity
+    public class Enemy : MonoBehaviour, IEntity, ITickable, IFixedTickable
     {
         public event Action Slain;
+
+        public bool Active { get; set; }
 
         public Vector2 Position => transform.position;
 
@@ -59,6 +61,20 @@ namespace Enemies
             _character.Slain -= OnSlain;
         }
 
+        public void Tick()
+        {
+            if (!Active) return;
+
+            _character.Tick();
+        }
+
+        public void FixedTick()
+        {
+            if (Active) return;
+
+            _character.FixedTick();
+        }
+
         public void SetWeapon(Weapon weapon)
         {
             _character.SetWeapon(weapon);
@@ -78,6 +94,8 @@ namespace Enemies
         private void OnSlain()
         {
             Slain?.Invoke();
+
+            Active = false;
         }
 
         private void FillComponents()

@@ -2,7 +2,7 @@
 using Characters.Common;
 using Combat.Attacks;
 using Combat.Weapons;
-using Infrastructure.Installers.Game.Settings;
+using GameData.Settings;
 using UnityEngine;
 
 namespace Heroes

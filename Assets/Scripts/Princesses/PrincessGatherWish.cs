@@ -7,27 +7,19 @@ using Zenject;
 
 namespace Princesses
 {
-    public class PrincessGatherWish : MonoBehaviour
+    public class PrincessGatherWish
     {
         public bool Showing { get; private set; }
 
-        [SerializeField] private Hand _hand;
-
         private Coroutine _showGatherWithCoroutine;
 
-        private Hero _hero;
+        private readonly CharacterAnimator _animator;
 
-        private CharacterAnimator _animator;
-        private SpriteRenderer _spriteRenderer;
+        private readonly Princess _princess;
 
-        [Inject]
-        private void Construct(Hero hero)
+        public PrincessGatherWish(Princess princess, CharacterAnimator animator)
         {
-            _hero = hero;
-        }
-
-        public void Initialize(CharacterAnimator animator)
-        {
+            _princess = princess;
             _animator = animator;
         }
 
@@ -36,7 +28,7 @@ namespace Princesses
             if (Showing) return;
 
             Showing = true;
-            _showGatherWithCoroutine = StartCoroutine(CShowGatherWish());
+            _showGatherWithCoroutine = _princess.StartCoroutine(CShowGatherWish());
         }
 
         public void Hide()
@@ -47,28 +39,18 @@ namespace Princesses
 
             if (_showGatherWithCoroutine != null)
             {
-                StopCoroutine(_showGatherWithCoroutine);
+                _princess.StopCoroutine(_showGatherWithCoroutine);
                 _showGatherWithCoroutine = null;
             }
 
-            HideHands();
-        }
-
-        public void ShowHands()
-        {
-            _hand.Show();
-        }
-
-        private void HideHands()
-        {
-            _hand.Hide();
+            _princess.HideHands();
         }
 
         private IEnumerator CShowGatherWish()
         {
             while (true)
             {
-                var directionToHero = (_hero.Position - (Vector2)transform.position).normalized;
+                var directionToHero = (_princess.Hero.Position - _princess.Position).normalized;
 
                 _animator.LookTo(directionToHero);
 

@@ -37,7 +37,7 @@ namespace Hubs
             await InitializeHubRoom();
 
             _hero.PlaceAt(_heroSpawnPoint.position);
-            _hero.Activate();
+            _hero.Active = true;
 
             _exitHubTrigger.Enter += EnterDungeon;
 
@@ -59,7 +59,7 @@ namespace Hubs
         {
             _hubRoom.Dispose();
 
-            _hero.Deactivate();
+            _hero.Active = false;
 
             _exitHubTrigger.Enter -= EnterDungeon;
         }

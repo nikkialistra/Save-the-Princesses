@@ -19,14 +19,12 @@ namespace Princesses
     [RequireComponent(typeof(TrainCharacter))]
     [RequireComponent(typeof(PrincessAnimators))]
     [RequireComponent(typeof(PrincessElementControllers))]
-    [RequireComponent(typeof(PrincessTied))]
-    [RequireComponent(typeof(PrincessGatherWish))]
-    [RequireComponent(typeof(PrincessActualVelocity))]
     [RequireComponent(typeof(PrincessMovingInTrain))]
-    [RequireComponent(typeof(Rigidbody2D))]
-    public class Princess : MonoBehaviour, IEntity
+    public class Princess : MonoBehaviour, IEntity, ITickable, IFixedTickable
     {
         public event Action Slain;
+
+        public bool Active { get; set; }
 
         public Train Train { get; private set; }
 
@@ -35,6 +33,8 @@ namespace Princesses
         public PrincessMovingInTrain MovingInTrain { get; private set; }
 
         public PrincessType Type => _type;
+
+        public Hero Hero { get; private set; }
 
         public bool Gathered { get; private set; }
         public bool ShowingGatherWish => _gatherWish.Showing;
@@ -50,17 +50,12 @@ namespace Princesses
         [SerializeField] private PrincessType _type;
         [SerializeField] private Hand _hand;
 
-        [Space]
-        [SerializeField] private float _regularSpeed = 2f;
-
         [SerializeField] private Trait _slowMoving;
         [SerializeField] private Trait _fastMoving;
 
-        [Space]
-        [SerializeField] private Collider2D _collider;
+        private Collider2D _collider;
 
-        private Hero _hero;
-
+        private float _regularSpeed;
         private bool _speedElevated;
 
         private PrincessAnimators _animators;
@@ -74,14 +69,18 @@ namespace Princesses
         [Inject]
         public void Construct(Hero hero, Train train)
         {
-            _hero = hero;
+            Hero = hero;
             Train = train;
         }
 
         public void Initialize(InitialStats initialStats)
         {
+            _collider = GetComponent<CircleCollider2D>();
+
             FillComponents();
             InitializeComponents(initialStats);
+
+            _regularSpeed = _character.Stats.MovementSpeedStat.BaseValue;
 
             SubscribeToEvents();
         }
@@ -91,6 +90,22 @@ namespace Princesses
             DisposeComponents();
 
             UnsubscribeFromEvents();
+        }
+
+        public void Tick()
+        {
+            if (!Active) return;
+
+            _character.Tick();
+        }
+
+        public void FixedTick()
+        {
+            if (!Active) return;
+
+            _character.FixedTick();
+
+            _actualVelocity.FixedTick();
         }
 
         public void PlaceInRoom(Room room)
@@ -114,9 +129,14 @@ namespace Princesses
             _gatherWish.Hide();
         }
 
-        public void ShowGatherHands()
+        public void ShowHands()
         {
-            _gatherWish.ShowHands();
+            _hand.Show();
+        }
+
+        public void HideHands()
+        {
+            _hand.Hide();
         }
 
         public void Gather()
@@ -134,12 +154,12 @@ namespace Princesses
 
         public void ChangeToRegularSpeed()
         {
-            _character.Stats.MovementSpeedStat.ChangeBaseValue(_hero.Stats.MovementSpeed);
+            _character.Stats.MovementSpeedStat.ChangeBaseValue(_regularSpeed);
         }
 
         public void ChangeToHeroSpeed()
         {
-            _character.Stats.MovementSpeedStat.ChangeBaseValue(_regularSpeed);
+            _character.Stats.MovementSpeedStat.ChangeBaseValue(Hero.Stats.MovementSpeed);
         }
 
         public void ElevateSpeed()
@@ -180,33 +200,33 @@ namespace Princesses
         private void OnSlain()
         {
             Slain?.Invoke();
+
+            Active = false;
         }
 
         private void FillComponents()
         {
             _character = GetComponent<Character>();
-
             TrainCharacter = GetComponent<TrainCharacter>();
+
             MovingInTrain = GetComponent<PrincessMovingInTrain>();
 
             _animators = GetComponent<PrincessAnimators>();
-            _tied = GetComponent<PrincessTied>();
-            _gatherWish = GetComponent<PrincessGatherWish>();
             _elements = GetComponent<PrincessElementControllers>();
-            _actualVelocity = GetComponent<PrincessActualVelocity>();
         }
 
         private void InitializeComponents(InitialStats initialStats)
         {
             _character.Initialize(CharacterType.Princess, initialStats);
 
-            TrainCharacter.Initialize(Moving);
-            MovingInTrain.Initialize(Moving, _character.Animator, _character.Stats);
+            TrainCharacter.Initialize(_character, _character.Moving, Train);
+            MovingInTrain.Initialize(Moving, _character.Stats, Hero);
 
             _animators.Initialize();
-            _gatherWish.Initialize(_character.Animator);
+            _gatherWish = new PrincessGatherWish(this, _character.Animator);
+            _tied = new PrincessTied(this);
             _elements.Initialize(this, _character.Animator);
-            _actualVelocity.Initialize();
+            _actualVelocity = new PrincessActualVelocity(this);
 
             _hand.Initialize();
         }
@@ -214,8 +234,6 @@ namespace Princesses
         private void DisposeComponents()
         {
             _character.Dispose();
-
-            MovingInTrain.Dispose();
 
             _elements.Dispose();
         }

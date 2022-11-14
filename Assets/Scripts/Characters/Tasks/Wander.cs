@@ -1,5 +1,5 @@
 ﻿using Characters.Moving;
-using Infrastructure.Installers.Game.Settings;
+using GameData.Settings;
 using NodeCanvas.Framework;
 using ParadoxNotion;
 using ParadoxNotion.Design;

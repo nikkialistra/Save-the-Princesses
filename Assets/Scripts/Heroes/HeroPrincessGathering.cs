@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Infrastructure.Installers.Game.Settings;
+using GameData.Settings;
 using Princesses;
 using Princesses.Services.Repositories;
 using UnityEngine;
@@ -80,7 +80,7 @@ namespace Heroes
             ClearTargetPrincess();
 
             _targetPrincess = princess;
-            _targetPrincess.ShowGatherHands();
+            _targetPrincess.ShowHands();
         }
 
         private Princess GetClosestPrincess()

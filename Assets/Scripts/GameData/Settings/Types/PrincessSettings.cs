@@ -1,12 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Infrastructure.Installers.Game.Settings
+namespace GameData.Settings.Types
 {
     [Serializable]
     public class PrincessSettings
     {
         public int HitsToUntie => _hitsToUntie;
+        public float UntieFinishTime => _untieFinishTime;
+        public float TimeToDisableRopeAndLight => _timeToDisableRopeAndLight;
+
+        public float HandsDeltaY => _handsDeltaY;
 
         public float DistanceToHeroToMove => _distanceToHero;
         public float DistanceBetweenPrincessesToMove => _distanceBetweenPrincesses;
@@ -23,7 +27,14 @@ namespace Infrastructure.Installers.Game.Settings
 
         public float DistanceToFinishLinking => _distanceToFinishLinking;
 
+        public float TimeIntervalForStuckCheck => _timeIntervalForStuckCheck;
+
         [SerializeField] private int _hitsToUntie = 3;
+        [SerializeField] private float _untieFinishTime = 0.6f;
+        [SerializeField] private float _timeToDisableRopeAndLight = 0.6f;
+
+        [Space]
+        [SerializeField] private float _handsDeltaY = 0.4f;
 
         [Space]
         [SerializeField] private float _distanceToHero = 0.7f;
@@ -41,5 +52,9 @@ namespace Infrastructure.Installers.Game.Settings
 
         [Space]
         [SerializeField] private float _distanceToFinishLinking = 0.8f;
+
+        [Space]
+        [SerializeField] private float _timeIntervalForStuckCheck = 0.06f;
+
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Infrastructure.Installers.Game.Settings
+﻿using GameData.Settings.Types;
+
+namespace GameData.Settings
 {
     public class GameSettings
     {

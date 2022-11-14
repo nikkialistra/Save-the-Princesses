@@ -2,7 +2,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Infrastructure.Installers.Game.Settings
+namespace GameData.Settings.Types
 {
     [Serializable]
     public class CharacterSettings
@@ -12,7 +12,7 @@ namespace Infrastructure.Installers.Game.Settings
 
         public float VelocityDelta => _velocityDelta;
         public float DirectionChangeTime => _directionChangeTime;
-        public float DirectionChangeTimeAlternative => _directionChangeTimeAlternative;
+        public float DirectionChangeTimeInTrain => _directionChangeTimeInTrain;
 
         public float TimeAtKnockback => _timeAtKnockback;
         public float InvulnerabilityTimeAfterHit => _invulnerabilityTimeAfterHit;
@@ -31,7 +31,7 @@ namespace Infrastructure.Installers.Game.Settings
         [Space]
         [SerializeField] private float _velocityDelta = 0.01f;
         [SerializeField] private float _directionChangeTime = 0.1f;
-        [SerializeField] private float _directionChangeTimeAlternative = 0.02f;
+        [SerializeField] private float _directionChangeTimeInTrain = 0.02f;
 
         [Title("Combat")]
         [SerializeField] private float _timeAtKnockback = 0.4f;

@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using GameData.Settings;
+using GameData.Settings.Types;
+using UnityEngine;
 using Zenject;
 
-namespace Infrastructure.Installers.Game.Settings
+namespace Infrastructure.Installers.Game
 {
     [CreateAssetMenu(fileName = "Game Settings Installer", menuName = "GameData/Game Settings Installer")]
     public class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInstaller>

@@ -32,7 +32,7 @@ namespace Infrastructure.Bootstrap
 
         public void Initialize()
         {
-            _hero.Initialize();
+            _hero.Initialize(null);
             _train.Initialize();
 
             _gameControls.Initialize(_hero);

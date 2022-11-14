@@ -2,7 +2,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Infrastructure.Installers.Game.Settings
+namespace GameData.Settings.Types
 {
     [Serializable]
     public class HeroSettings
@@ -10,6 +10,8 @@ namespace Infrastructure.Installers.Game.Settings
         public float InversionAngle => _inversionAngle;
         public float MinTimeToChangeInversion => _minTimeToChangeInversion;
         public float InversionFlickeringDelta => _inversionFlickeringDelta;
+
+        public float HandsDeltaY => _handsDeltaY;
 
         public float HitInvulnerabilityTime => _hitInvulnerabilityTime;
 
@@ -22,6 +24,9 @@ namespace Infrastructure.Installers.Game.Settings
         [SerializeField] private float _inversionAngle = 90f;
         [SerializeField] private float _minTimeToChangeInversion = 0.02f;
         [SerializeField] private float _inversionFlickeringDelta = 0.5f;
+
+        [Space]
+        [SerializeField] private float _handsDeltaY = 0.4f;
 
         [Space]
         [SerializeField] private float _hitInvulnerabilityTime = 1f;

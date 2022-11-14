@@ -30,6 +30,7 @@ namespace Enemies.Services
             var enemy = _diContainer.InstantiatePrefabForComponent<Enemy>(enemyData.Prefab);
 
             enemy.Initialize(enemyData.InitialStats.For(_gameControl.CurrentDifficulty));
+            enemy.Active = true;
 
             return enemy;
         }

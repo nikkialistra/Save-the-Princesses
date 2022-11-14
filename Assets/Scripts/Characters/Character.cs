@@ -4,17 +4,17 @@ using Characters.Moving;
 using Characters.Stats;
 using Combat.Attacks;
 using Combat.Weapons;
+using GameData.Settings;
 using GameData.Stats;
 using Surrounding.Rooms;
 using UnityEngine;
-using Zenject;
 
 namespace Characters
 {
     [RequireComponent(typeof(CharacterMoving))]
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(SpriteRenderer))]
-    public class Character : MonoBehaviour, ITickable, IFixedTickable
+    public class Character : MonoBehaviour
     {
         public event Action Hit;
         public event Action Slain;
@@ -38,6 +38,7 @@ namespace Characters
         public Vector2 Position => transform.position;
         public Vector2 PositionCenterOffset => new(0, _yPosition);
         public Vector2 PositionCenter => (Vector2)transform.position + new Vector2(0, _yPosition);
+        public float DirectionChangeTime { get; set; }
 
         [SerializeField] private float _yPosition;
 
@@ -55,6 +56,8 @@ namespace Characters
         public void Initialize(CharacterType characterType, InitialStats initialStats)
         {
             Type = characterType;
+
+            DirectionChangeTime = GameSettings.Character.DirectionChangeTime;
 
             FillComponents();
             InitializeComponents(initialStats);
@@ -83,16 +86,12 @@ namespace Characters
 
         public void Tick()
         {
-            if (!Active) return;
-
             Moving.Tick();
             Animator.Tick();
         }
 
         public void FixedTick()
         {
-            if (!Active) return;
-
             Moving.FixedTick();
         }
 
@@ -151,7 +150,7 @@ namespace Characters
             Stats = new AllStats(initialStats);
 
             Moving.Initialize(this);
-            Animator = new CharacterAnimator(_animator, Moving, Type);
+            Animator = new CharacterAnimator(this, _animator, Moving, Type);
 
             Health = new CharacterHealth(Stats);
             HitsImpact = new CharacterHitsImpact(Stats);

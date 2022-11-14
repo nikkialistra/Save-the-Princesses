@@ -1,4 +1,4 @@
-﻿using Infrastructure.Installers.Game.Settings;
+﻿using GameData.Settings;
 using UnityEngine;
 
 namespace Characters.Moving.Elements

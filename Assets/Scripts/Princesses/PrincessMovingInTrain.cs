@@ -1,14 +1,14 @@
 ﻿using Characters;
 using Characters.Moving;
 using Characters.Stats;
-using Infrastructure.Installers.Game.Settings;
+using GameData.Settings;
+using Heroes;
 using Trains.Characters;
 using UnityEngine;
 
 namespace Princesses
 {
     [RequireComponent(typeof(MovingInTrainPathfinding))]
-    [RequireComponent(typeof(TrainCharacter))]
     public class PrincessMovingInTrain : MonoBehaviour
     {
         private float MovementSpeed => _stats.MovementSpeed;
@@ -24,22 +24,13 @@ namespace Princesses
 
         private AllStats _stats;
 
-        public void Initialize(CharacterMoving moving, CharacterAnimator animator, AllStats stats)
+        public void Initialize(CharacterMoving moving, AllStats stats, Hero hero)
         {
+            _pathfinding = GetComponent<MovingInTrainPathfinding>();
+            _pathfinding.Initialize(hero);
+
             _moving = moving;
-            _animator = animator;
             _stats = stats;
-
-            InitializeComponents();
-
-            _trainCharacter.TrainEnter += OnTrainEnter;
-            _trainCharacter.TrainLeave += OnTrainLeave;
-        }
-
-        public void Dispose()
-        {
-            _trainCharacter.TrainEnter += OnTrainEnter;
-            _trainCharacter.TrainLeave += OnTrainLeave;
         }
 
         private void FixedUpdate()
@@ -68,26 +59,9 @@ namespace Princesses
             _moving.Stop();
         }
 
-        private void OnTrainEnter()
-        {
-            _animator.ChangeDirectionTimeAlternative = true;
-        }
-
-        private void OnTrainLeave()
-        {
-            _animator.ChangeDirectionTimeAlternative = false;
-        }
-
         private void MoveWithSpeed(Vector2 direction, float speed)
         {
             _moving.MoveWithSpeed(direction, speed);
-        }
-
-        private void InitializeComponents()
-        {
-            _pathfinding = GetComponent<MovingInTrainPathfinding>();
-            _trainCharacter = GetComponent<TrainCharacter>();
-            _animator = GetComponent<CharacterAnimator>();
         }
     }
 }

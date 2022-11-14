@@ -1,6 +1,5 @@
 ﻿using Heroes;
 using UnityEngine;
-using Zenject;
 
 namespace Princesses
 {
@@ -33,8 +32,7 @@ namespace Princesses
 
         private Hero _hero;
 
-        [Inject]
-        public void Construct(Hero hero)
+        public void Initialize(Hero hero)
         {
             _hero = hero;
         }
