@@ -34,12 +34,12 @@ namespace Enemies
         {
             _character = GetComponent<Character>();
 
-            _character.AtStun += OnAtStun;
+            _character.StunChange += OnStunChange;
         }
 
         public void Dispose()
         {
-            _character.AtStun -= OnAtStun;
+            _character.StunChange -= OnStunChange;
         }
 
         public void UpdateAttackRotation()
@@ -59,9 +59,10 @@ namespace Enemies
             _attack.Cancel();
         }
 
-        private void OnAtStun()
+        private void OnStunChange(bool stunned)
         {
-            CancelAttack();
+            if (stunned)
+                CancelAttack();
         }
     }
 }

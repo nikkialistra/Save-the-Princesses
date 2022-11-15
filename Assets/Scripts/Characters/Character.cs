@@ -3,7 +3,6 @@ using Characters.Common;
 using Characters.Health;
 using Characters.Moving;
 using Characters.Stats;
-using Combat;
 using Combat.Attacks;
 using Combat.Weapons;
 using GameData.Settings;
@@ -21,8 +20,8 @@ namespace Characters
         public event Action Hit;
         public event Action Slain;
 
-        public event Action AtStun;
-        public event Action AtStunEnd;
+        public event Action<bool> StunChange;
+        public event Action<bool> BlinkChange;
 
         public Room Room { get; private set; }
 
@@ -62,6 +61,8 @@ namespace Characters
 
             Health.Hit += OnHit;
             Health.Slain += OnSlain;
+
+            _blinking.BlinkChange += OnBlinkChange;
         }
 
         public void Dispose()
@@ -70,6 +71,8 @@ namespace Characters
 
             Health.Hit -= OnHit;
             Health.Slain -= OnSlain;
+
+            _blinking.BlinkChange -= OnBlinkChange;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -101,15 +104,12 @@ namespace Characters
         public void SetWeapon(Weapon weapon)
         {
             _weapon = weapon;
-            _weapon.Initialize(this, _blinking);
+            _weapon.Initialize(this);
         }
 
         public void Stun(bool value)
         {
-            if (value == true)
-                AtStun?.Invoke();
-            else
-                AtStunEnd?.Invoke();
+            StunChange?.Invoke(value);
         }
 
         public void AddTrait(Trait trait)
@@ -195,6 +195,11 @@ namespace Characters
                 Dispose();
                 Destroy(gameObject);
             }
+        }
+
+        private void OnBlinkChange(bool status)
+        {
+            BlinkChange?.Invoke(status);
         }
     }
 }

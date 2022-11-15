@@ -70,6 +70,7 @@ namespace Characters.Moving.Elements
         public void Knockback(Vector2 value)
         {
             Stop();
+
             _atKnockback = true;
 
             var targetPosition = _rigidBody2D.position + value;
@@ -116,20 +117,14 @@ namespace Characters.Moving.Elements
             _atKnockback = false;
         }
 
-        private void OnAtStun()
+        private void OnStunChange(bool status)
         {
-            _stunned = true;
-        }
-
-        private void OnAtStunEnd()
-        {
-            _stunned = false;
+            _stunned = status;
         }
 
         private void SubscribeToEvents()
         {
-            _moving.AtStun += OnAtStun;
-            _moving.AtStunEnd += OnAtStunEnd;
+            _moving.StunChange += OnStunChange;
 
             _pathfinding.MoveWith += MoveWith;
             _pathfinding.MoveTo += MoveTo;
@@ -138,8 +133,7 @@ namespace Characters.Moving.Elements
 
         private void UnsubscribeFromEvents()
         {
-            _moving.AtStun -= OnAtStun;
-            _moving.AtStunEnd -= OnAtStunEnd;
+            _moving.StunChange -= OnStunChange;
 
             _pathfinding.MoveWith += MoveWith;
             _pathfinding.MoveTo -= MoveTo;

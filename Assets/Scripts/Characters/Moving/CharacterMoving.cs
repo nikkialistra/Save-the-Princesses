@@ -15,8 +15,7 @@ namespace Characters.Moving
     [RequireComponent(typeof(LineRenderer))]
     public class CharacterMoving : MonoBehaviour
     {
-        public event Action AtStun;
-        public event Action AtStunEnd;
+        public event Action<bool> StunChange;
 
         public bool Active { private get; set; }
 
@@ -61,16 +60,14 @@ namespace Characters.Moving
 
             _pathfinding.RepathRate = GameSettings.Character.RepathRate;
 
-            _character.AtStun += OnAtStun;
-            _character.AtStunEnd += OnAtStunEnd;
+            _character.StunChange += OnStunChange;
         }
 
         public void Dispose()
         {
             _moveCalculation.Dispose();
 
-            _character.AtStun -= OnAtStun;
-            _character.AtStunEnd -= OnAtStunEnd;
+            _character.StunChange -= OnStunChange;
         }
 
         public void Tick()
@@ -132,14 +129,9 @@ namespace Characters.Moving
             _moveCalculation.Stop();
         }
 
-        private void OnAtStun()
+        private void OnStunChange(bool status)
         {
-            AtStun?.Invoke();
-        }
-
-        private void OnAtStunEnd()
-        {
-            AtStunEnd?.Invoke();
+            StunChange?.Invoke(status);
         }
     }
 }

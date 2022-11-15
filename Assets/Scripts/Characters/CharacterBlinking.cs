@@ -9,8 +9,7 @@ namespace Characters
     {
         private static readonly int BlinkId = Shader.PropertyToID("_Blink");
 
-        public event Action Blinking;
-        public event Action BlinkingEnd;
+        public event Action<bool> BlinkChange;
 
         private bool _active;
 
@@ -42,12 +41,12 @@ namespace Characters
             _active = true;
 
             _spriteRenderer.materials[0].SetInt(BlinkId, 1);
-            Blinking?.Invoke();
+            BlinkChange?.Invoke(true);
 
             yield return new WaitForSeconds(GameSettings.Character.HitBlinkingTime);
 
             _spriteRenderer.materials[0].SetInt(BlinkId, 0);
-            BlinkingEnd?.Invoke();
+            BlinkChange?.Invoke(false);
 
             _active = false;
         }

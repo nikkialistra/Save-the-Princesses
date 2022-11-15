@@ -23,12 +23,10 @@ namespace Combat.Weapons
         private SpriteRenderer _spriteRenderer;
 
         private Character _character;
-        private CharacterBlinking _characterBlinking;
 
-        public void Initialize(Character character, CharacterBlinking characterBlinking)
+        public void Initialize(Character character)
         {
             _character = character;
-            _characterBlinking = characterBlinking;
 
             FillComponents();
 
@@ -65,19 +63,9 @@ namespace Combat.Weapons
             _spriteRenderer.enabled = false;
         }
 
-        private void Blink()
+        private void OnCharacterBlinkChange(bool active)
         {
-            SetBlink(true);
-        }
-
-        private void EndBlink()
-        {
-            SetBlink(false);
-        }
-
-        private void SetBlink(bool active)
-        {
-            _spriteRenderer.materials[0].SetInt(BlinkId, active == true ? 1 : 0);
+            _spriteRenderer.materials[0].SetInt(BlinkId, active ? 1 : 0);
         }
 
         private void FillComponents()
@@ -95,8 +83,7 @@ namespace Combat.Weapons
 
             _character.Animator.UpdateFinish += AlignWithCharacter;
 
-            _characterBlinking.Blinking += Blink;
-            _characterBlinking.BlinkingEnd += EndBlink;
+            _character.BlinkChange += OnCharacterBlinkChange;
         }
 
         private void UnsubscribeFromEvents()
@@ -106,8 +93,7 @@ namespace Combat.Weapons
 
             _character.Animator.UpdateFinish -= AlignWithCharacter;
 
-            _characterBlinking.Blinking -= Blink;
-            _characterBlinking.BlinkingEnd -= EndBlink;
+            _character.BlinkChange -= OnCharacterBlinkChange;
         }
     }
 }
