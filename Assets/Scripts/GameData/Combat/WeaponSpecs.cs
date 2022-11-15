@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Combat.Weapons
+namespace GameData.Combat
 {
     [Serializable]
     public class WeaponSpecs

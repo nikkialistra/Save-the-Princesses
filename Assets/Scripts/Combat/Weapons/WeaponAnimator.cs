@@ -2,17 +2,16 @@
 
 namespace Combat.Weapons
 {
-    [RequireComponent(typeof(Animator))]
-    public class WeaponAnimator : MonoBehaviour
+    public class WeaponAnimator
     {
         private static readonly int Horizontal = Animator.StringToHash("horizontal");
         private static readonly int Vertical = Animator.StringToHash("vertical");
 
-        private Animator _animator;
+        private readonly Animator _animator;
 
-        public void Initialize()
+        public WeaponAnimator(Animator animator)
         {
-            _animator = GetComponent<Animator>();
+            _animator = animator;
         }
 
         public void AlignWithCharacter(Vector2 velocity)

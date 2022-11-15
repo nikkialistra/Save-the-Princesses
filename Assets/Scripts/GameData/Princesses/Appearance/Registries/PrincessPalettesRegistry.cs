@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using GameData.Princesses.Appearance.Palettes;
 using Princesses.Palettes.Types;
 using Princesses.Types;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using static Princesses.Types.PrincessType;
 
-namespace GameData.Princesses.Appearance.Palettes
+namespace GameData.Princesses.Appearance.Registries
 {
     public class PrincessPalettesRegistry : SerializedMonoBehaviour
     {

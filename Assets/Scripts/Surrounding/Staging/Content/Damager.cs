@@ -1,4 +1,4 @@
-﻿using Combat;
+﻿using Characters;
 using UnityEngine;
 
 namespace Surrounding.Staging.Content
@@ -9,14 +9,14 @@ namespace Surrounding.Staging.Content
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.GetComponent(typeof(IDamageable)) is IDamageable damageable)
-                damageable.TakeDamageContinuously(_value, 0.5f);
+            if (other.GetComponent(typeof(Character)) is Character character)
+                character.TakeDamageContinuously(_value, 0.5f);
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.GetComponent(typeof(IDamageable)) is IDamageable damageable)
-                damageable.StopTakingDamage();
+            if (other.GetComponent(typeof(Character)) is Character character)
+                character.StopTakingDamage();
         }
     }
 }

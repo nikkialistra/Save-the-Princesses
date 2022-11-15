@@ -3,14 +3,13 @@ using System.Collections;
 using Characters.Moving;
 using Characters.Moving.HitImpacting;
 using Characters.Stats;
-using Combat;
 using Combat.Attacks;
 using GameData.Settings;
 using UnityEngine;
 
 namespace Characters.Health
 {
-    public class CharacterHealth : IDamageable
+    public class CharacterHealth
     {
         public event Action Hit;
         public event Action Slain;

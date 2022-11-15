@@ -2,11 +2,12 @@
 using Characters.Common;
 using Combat.Attacks.Specs;
 using Combat.Weapons;
+using Combat.Weapons.Concrete;
+using GameData.Combat;
 using UnityEngine;
 
 namespace Combat.Attacks
 {
-    [RequireComponent(typeof(AttackLocation))]
     [RequireComponent(typeof(AttackAnimator))]
     public class Attack : MonoBehaviour
     {
@@ -30,7 +31,8 @@ namespace Combat.Attacks
 
         public void Initialize(Vector2 offset, CharacterType characterType)
         {
-            FillComponents();
+            _animator = GetComponent<AttackAnimator>();
+
             InitializeComponents();
 
             _animator.Start += OnStart;
@@ -44,6 +46,11 @@ namespace Combat.Attacks
         {
             _animator.Start -= OnStart;
             _animator.End -= OnEnd;
+        }
+
+        public void Tick()
+        {
+            _animator.Tick();
         }
 
         public void Do(StrokeType stroke)
@@ -80,6 +87,12 @@ namespace Combat.Attacks
             };
         }
 
+        private void InitializeComponents()
+        {
+            _location = new AttackLocation(transform);
+            _animator.Initialize();
+        }
+
         private void OnStart()
         {
             Start?.Invoke();
@@ -88,17 +101,6 @@ namespace Combat.Attacks
         private void OnEnd()
         {
             End?.Invoke();
-        }
-
-        private void FillComponents()
-        {
-            _location = GetComponent<AttackLocation>();
-            _animator = GetComponent<AttackAnimator>();
-        }
-
-        private void InitializeComponents()
-        {
-            _animator.Initialize();
         }
     }
 }

@@ -1,12 +1,13 @@
 ﻿using Characters;
 using Combat.Attacks;
+using Combat.Weapons.Concrete;
 using UnityEngine;
 
 namespace Combat.Weapons
 {
     [RequireComponent(typeof(ConcreteWeapon))]
-    [RequireComponent(typeof(WeaponAnimator))]
     [RequireComponent(typeof(SpriteRenderer))]
+    [RequireComponent(typeof(Animator))]
     public class Weapon : MonoBehaviour
     {
         private static readonly int BlinkId = Shader.PropertyToID("_Blink");
@@ -30,7 +31,6 @@ namespace Combat.Weapons
             _characterBlinking = characterBlinking;
 
             FillComponents();
-            InitializeComponents();
 
             SubscribeToEvents();
 
@@ -43,6 +43,11 @@ namespace Combat.Weapons
             _attack.Dispose();
 
             UnsubscribeFromEvents();
+        }
+
+        public void Tick()
+        {
+            _attack.Tick();
         }
 
         private void AlignWithCharacter(CharacterAnimator.AnimationStatus status)
@@ -62,25 +67,25 @@ namespace Combat.Weapons
 
         private void Blink()
         {
-            _spriteRenderer.materials[0].SetInt(BlinkId, 1);
+            SetBlink(true);
         }
 
         private void EndBlink()
         {
-            _spriteRenderer.materials[0].SetInt(BlinkId, 0);
+            SetBlink(false);
+        }
+
+        private void SetBlink(bool active)
+        {
+            _spriteRenderer.materials[0].SetInt(BlinkId, active == true ? 1 : 0);
         }
 
         private void FillComponents()
         {
+            Animator = new WeaponAnimator(GetComponent<Animator>());
             _concreteWeapon = GetComponent<ConcreteWeapon>();
 
-            Animator = GetComponent<WeaponAnimator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
-        }
-
-        private void InitializeComponents()
-        {
-            Animator.Initialize();
         }
 
         private void SubscribeToEvents()

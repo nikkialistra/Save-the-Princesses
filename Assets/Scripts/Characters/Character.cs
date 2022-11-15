@@ -16,7 +16,7 @@ namespace Characters
     [RequireComponent(typeof(CharacterMoving))]
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(SpriteRenderer))]
-    public class Character : MonoBehaviour, IDamageable
+    public class Character : MonoBehaviour
     {
         public event Action Hit;
         public event Action Slain;

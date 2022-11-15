@@ -8,14 +8,14 @@ namespace GameData.Enemies.Spawning
     {
         private readonly GameControl _gameControl;
 
-        public  EnemyPicking(GameControl gameControl)
+        public EnemyPicking(GameControl gameControl)
         {
             _gameControl = gameControl;
         }
 
         public EnemyType GetRandomEnemyType(EnemyRoomFrequencies enemyRoomFrequencies)
         {
-            var frequencies = enemyRoomFrequencies.Frequencies[_gameControl.CurrentDifficulty];
+            var frequencies = enemyRoomFrequencies[_gameControl.CurrentDifficulty];
 
             return frequencies.GetRandom();
         }

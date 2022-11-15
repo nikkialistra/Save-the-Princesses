@@ -1,5 +1,7 @@
 ﻿using System;
 using Combat.Weapons;
+using Combat.Weapons.Concrete;
+using GameData.Combat;
 
 namespace Combat.Attacks.Specs
 {

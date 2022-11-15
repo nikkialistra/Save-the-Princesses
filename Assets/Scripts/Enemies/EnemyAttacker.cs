@@ -1,6 +1,7 @@
 ﻿using Characters;
 using Combat.Attacks;
 using Combat.Weapons;
+using Combat.Weapons.Concrete;
 using Heroes;
 using UnityEngine;
 using Zenject;

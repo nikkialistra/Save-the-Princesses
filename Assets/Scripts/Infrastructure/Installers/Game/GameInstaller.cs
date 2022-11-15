@@ -4,6 +4,7 @@ using Enemies.Services.Repositories;
 using GameData.Enemies.Spawning;
 using GameData.Princesses.Appearance.Elements;
 using GameData.Princesses.Appearance.Palettes;
+using GameData.Princesses.Appearance.Registries;
 using GameData.Princesses.Spawning;
 using GameSystems;
 using Heroes;

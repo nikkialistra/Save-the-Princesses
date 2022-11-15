@@ -1,6 +1,7 @@
 ﻿using System;
 using Combat.Attacks;
 using Combat.Weapons;
+using Combat.Weapons.Concrete;
 using UnityEngine.InputSystem;
 
 namespace Heroes.Attacks

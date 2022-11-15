@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using GameData.Princesses.Appearance.Elements;
 using Princesses.Types;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using static Princesses.Types.ElementType;
 using static Princesses.Types.PrincessType;
 
-namespace GameData.Princesses.Appearance.Elements
+namespace GameData.Princesses.Appearance.Registries
 {
     public class PrincessElementControllersRegistry : SerializedMonoBehaviour
     {

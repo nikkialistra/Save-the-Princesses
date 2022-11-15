@@ -1,7 +1,8 @@
 ﻿using Combat.Attacks;
+using GameData.Combat;
 using UnityEngine;
 
-namespace Combat.Weapons
+namespace Combat.Weapons.Concrete
 {
     public abstract class ConcreteWeapon : MonoBehaviour
     {

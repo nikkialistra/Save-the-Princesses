@@ -9,5 +9,7 @@ namespace GameData.Enemies.Spawning.Frequencies
     public class EnemyRoomFrequencies : SerializedScriptableObject
     {
         public Dictionary<GameDifficulty, EnemyFrequencies> Frequencies = new();
+
+        public EnemyFrequencies this[GameDifficulty gameDifficulty] => Frequencies[gameDifficulty];
     }
 }

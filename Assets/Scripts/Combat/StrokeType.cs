@@ -1,4 +1,4 @@
-namespace Combat.Attacks
+namespace Combat
 {
     public enum StrokeType
     {

@@ -1,9 +1,8 @@
-﻿using Combat.Attacks;
-using Combat.Weapons;
+﻿using GameData.Combat;
 using UnityEngine;
-using static Combat.Attacks.StrokeType;
+using static Combat.StrokeType;
 
-namespace Enemies.Weapons
+namespace Combat.Weapons.Concrete.Types
 {
     public class Fork : ConcreteWeapon
     {
@@ -26,9 +25,6 @@ namespace Enemies.Weapons
             return strokeStarted;
         }
 
-        public override void ResetStroke()
-        {
-
-        }
+        public override void ResetStroke() { }
     }
 }

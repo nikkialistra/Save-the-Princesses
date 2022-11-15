@@ -34,7 +34,7 @@ namespace Combat.Attacks
             _lastStroke = (StrokeType)_strokes.Count;
         }
 
-        private void Update()
+        public void Tick()
         {
             var isStroking = _animator.GetCurrentAnimatorStateInfo(0).IsTag(NoStrokeTag) == false;
 

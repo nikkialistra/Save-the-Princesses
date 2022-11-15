@@ -1,10 +1,9 @@
 ﻿using System;
-using Combat.Attacks;
-using Combat.Weapons;
+using GameData.Combat;
 using UnityEngine;
-using static Combat.Attacks.StrokeType;
+using static Combat.StrokeType;
 
-namespace Heroes.Weapons
+namespace Combat.Weapons.Concrete.Types
 {
     public class Sword : ConcreteWeapon
     {
