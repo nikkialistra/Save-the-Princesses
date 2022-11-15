@@ -8,9 +8,7 @@ namespace Characters.Moving.Elements
     {
         public Vector2 TargetVelocity => _movement.TargetVelocity;
 
-        public bool Stopped => _movement.Stopped;
-
-        public float MovementSpeed => _moving.MovementSpeed;
+        private float MovementSpeed => _moving.MovementSpeed;
 
         private float AccelerationAmount => (MovementSpeed / GameSettings.Character.AccelerationTime) * Time.fixedDeltaTime;
         private float DecelerationAmount => (MovementSpeed / GameSettings.Character.DecelerationTime) * Time.fixedDeltaTime;

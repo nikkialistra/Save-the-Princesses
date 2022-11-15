@@ -1,5 +1,7 @@
 ﻿using System;
 using Characters.Moving.Elements;
+using Characters.Moving.HitImpacting;
+using Characters.Stats;
 using GameData.Settings;
 using Pathfinding;
 using Pathfinding.RVO;
@@ -40,9 +42,13 @@ namespace Characters.Moving
 
         private Character _character;
 
-        public void Initialize(Character character)
+        private CharacterHitImpacts _hitImpacts;
+
+        public void Initialize(Character character, AllStats stats)
         {
             _character = character;
+
+            _hitImpacts = new CharacterHitImpacts(stats);
 
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _seeker = GetComponent<Seeker>();
@@ -109,6 +115,16 @@ namespace Characters.Moving
         public void Knockback(Vector2 value)
         {
             _moveCalculation.Knockback(value);
+        }
+
+        public void TakeHitImpact(TakenHitImpact hitImpact)
+        {
+            _hitImpacts.Take(hitImpact);
+        }
+
+        public HitImpacts TransferHitImpacts()
+        {
+            return _hitImpacts.Transfer();
         }
 
         public void Stop()

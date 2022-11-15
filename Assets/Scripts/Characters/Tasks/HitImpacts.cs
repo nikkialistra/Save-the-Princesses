@@ -6,16 +6,14 @@ using UnityEngine;
 namespace Characters.Tasks
 {
     [Category("Characters")]
-    public class HitsImpact : ActionTask<Character>
+    public class HitImpacts : ActionTask<Character>
     {
-        private CharacterHitsImpact _hitsImpact;
         private CharacterMoving _moving;
 
         private float _stunTime;
 
         protected override string OnInit()
         {
-            _hitsImpact = agent.HitsImpact;
             _moving = agent.Moving;
 
             return null;
@@ -23,14 +21,15 @@ namespace Characters.Tasks
 
         protected override void OnExecute()
         {
-            var (knockback, stun) = _hitsImpact.Transfer();
-            _stunTime = stun;
+            var hitImpacts = _moving.TransferHitImpacts();
+
+            _stunTime = hitImpacts.Stun;
 
             if (_stunTime > 0)
                 agent.Stun(true);
 
-            if (knockback != Vector2.zero)
-                _moving.Knockback(knockback);
+            if (hitImpacts.Knockback != Vector2.zero)
+                _moving.Knockback(hitImpacts.Knockback);
         }
 
         protected override void OnUpdate()

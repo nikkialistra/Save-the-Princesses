@@ -64,7 +64,7 @@ namespace Characters.Moving.Elements
             var vectorPath = path.vectorPath;
 
             if (vectorPath.Count > 1)
-                UpdateMove(vectorPath);
+                UpdateMove(vectorPath[1]);
             else
                 Stop?.Invoke();
 
@@ -72,12 +72,12 @@ namespace Characters.Moving.Elements
                 ShowPathLine(vectorPath);
         }
 
-        private void UpdateMove(List<Vector3> vectorPath)
+        private void UpdateMove(Vector3 destination)
         {
             if (_moving.ShouldLocallyAvoid)
-                UpdateRvo(vectorPath[1]);
+                UpdateRvo(destination);
             else
-                MoveTo?.Invoke(vectorPath[1]);
+                MoveTo?.Invoke(destination);
         }
 
         private void UpdateRvo(Vector2 destination)

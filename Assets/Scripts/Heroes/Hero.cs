@@ -1,6 +1,7 @@
 ﻿using System;
 using Characters;
 using Characters.Common;
+using Characters.Health;
 using Characters.Stats;
 using Combat.Weapons;
 using GameData.Settings;

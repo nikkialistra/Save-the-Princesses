@@ -1,9 +1,10 @@
-﻿using Characters.Stats;
+﻿using Characters.Moving.HitImpacting;
+using Characters.Stats;
 using UnityEngine;
 
-namespace Characters
+namespace Characters.Moving.Elements
 {
-    public class CharacterHitsImpact
+    public class CharacterHitImpacts
     {
         public bool HasImpact { get; private set; }
 
@@ -12,30 +13,33 @@ namespace Characters
         private Vector2 _knockback;
         private float _stun;
 
-        public CharacterHitsImpact(AllStats stats)
+        public CharacterHitImpacts(AllStats stats)
         {
             _stats = stats;
         }
 
-        public void Take(Vector2 direction, float knockback, float stun)
+        public void Take(TakenHitImpact hitImpact)
         {
-            TakeKnockback(direction, knockback);
-            TakeStun(stun);
+            TakeKnockback(hitImpact.Direction, hitImpact.Knockback);
+            TakeStun(hitImpact.Stun);
 
             HasImpact = true;
         }
 
-        public (Vector2, float) Transfer()
+        public HitImpacts Transfer()
         {
-            var knockback = _knockback;
-            var stun = _stun;
+            var hitImpacts = new HitImpacts
+            {
+                Knockback = _knockback,
+                Stun = _stun
+            };
 
             _knockback = Vector2.zero;
             _stun = 0;
 
             HasImpact = false;
 
-            return (knockback, stun);
+            return hitImpacts;
         }
 
         private void TakeKnockback(Vector2 direction, float value)

@@ -1,7 +1,9 @@
 ﻿using System;
 using Characters.Common;
+using Characters.Health;
 using Characters.Moving;
 using Characters.Stats;
+using Combat;
 using Combat.Attacks;
 using Combat.Weapons;
 using GameData.Settings;
@@ -14,7 +16,7 @@ namespace Characters
     [RequireComponent(typeof(CharacterMoving))]
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(SpriteRenderer))]
-    public class Character : MonoBehaviour
+    public class Character : MonoBehaviour, IDamageable
     {
         public event Action Hit;
         public event Action Slain;
@@ -22,7 +24,6 @@ namespace Characters
         public event Action AtStun;
         public event Action AtStunEnd;
 
-        public bool Active { get; set; }
         public Room Room { get; private set; }
 
         public AllStats Stats { get; private set; }
@@ -30,7 +31,6 @@ namespace Characters
         public CharacterHealth Health { get; private set; }
         public CharacterMoving Moving { get; private set; }
         public CharacterAnimator Animator { get; private set; }
-        public CharacterHitsImpact HitsImpact { get; private set; }
 
         public CharacterType Type { get; private set; }
 
@@ -46,8 +46,6 @@ namespace Characters
 
         private bool _active;
 
-        private CharacterHealthHandling _healthHandling;
-
         private CharacterBlinking _blinking;
 
         private Animator _animator;
@@ -62,16 +60,16 @@ namespace Characters
             FillComponents();
             InitializeComponents(initialStats);
 
-            _healthHandling.Hit += OnHit;
-            _healthHandling.Slay += OnSlay;
+            Health.Hit += OnHit;
+            Health.Slain += OnSlain;
         }
 
         public void Dispose()
         {
             DisposeComponents();
 
-            _healthHandling.Hit -= OnHit;
-            _healthHandling.Slay -= OnSlay;
+            Health.Hit -= OnHit;
+            Health.Slain -= OnSlain;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -129,12 +127,27 @@ namespace Characters
             Health.SetCustomHitInvulnerabilityTime(value);
         }
 
+        public void TakeDamage(int value)
+        {
+            Health.TakeDamage(value);
+        }
+
+        public void TakeDamageContinuously(int value, float interval)
+        {
+            Health.TakeDamageContinuously(value, interval);
+        }
+
+        public void StopTakingDamage()
+        {
+            Health.StopTakingDamage();
+        }
+
         private void TakeIfAttack(Collider2D other)
         {
             var attack = other.GetComponentInParent<Attack>();
 
             if (attack != null)
-                _healthHandling.TakeAttack(attack);
+                Health.TakeAttack(attack);
         }
 
         private void FillComponents()
@@ -149,12 +162,10 @@ namespace Characters
         {
             Stats = new AllStats(initialStats);
 
-            Moving.Initialize(this);
+            Moving.Initialize(this, Stats);
             Animator = new CharacterAnimator(this, _animator, Moving, Type);
 
-            Health = new CharacterHealth(Stats);
-            HitsImpact = new CharacterHitsImpact(Stats);
-            _healthHandling = new CharacterHealthHandling(this, Health, HitsImpact);
+            Health = new CharacterHealth(this, Moving, Stats);
 
             _blinking = new CharacterBlinking(this, _spriteRenderer);
         }
@@ -163,8 +174,6 @@ namespace Characters
         {
             Health.Dispose();
             Moving.Dispose();
-
-            _healthHandling.Dispose();
 
             _blinking.Dispose();
 
@@ -177,7 +186,7 @@ namespace Characters
             Hit?.Invoke();
         }
 
-        private void OnSlay()
+        private void OnSlain()
         {
             Slain?.Invoke();
 
