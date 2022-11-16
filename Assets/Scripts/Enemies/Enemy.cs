@@ -16,7 +16,6 @@ using Zenject;
 namespace Enemies
 {
     [RequireComponent(typeof(Character))]
-    [RequireComponent(typeof(EnemyAttacker))]
     public class Enemy : MonoBehaviour, IEntity, ITickable, IFixedTickable
     {
         public event Action Slain;
@@ -48,7 +47,8 @@ namespace Enemies
 
         public void Initialize(InitialStats initialStats)
         {
-            FillComponents();
+            _character = GetComponent<Character>();
+
             InitializeComponents(initialStats);
 
             _character.Slain += OnSlain;
@@ -98,18 +98,11 @@ namespace Enemies
             Active = false;
         }
 
-        private void FillComponents()
-        {
-            _character = GetComponent<Character>();
-
-            Attacker = GetComponent<EnemyAttacker>();
-        }
-
         private void InitializeComponents(InitialStats initialStats)
         {
             _character.Initialize(CharacterType.Enemy, initialStats);
 
-            Attacker.Initialize();
+            Attacker = new EnemyAttacker(_character, Hero);
         }
 
         private void DisposeComponents()

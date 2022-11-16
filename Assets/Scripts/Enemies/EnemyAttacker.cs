@@ -1,38 +1,27 @@
 ﻿using Characters;
-using Combat.Attacks;
 using Combat.Weapons;
-using Combat.Weapons.Concrete;
 using Heroes;
 using UnityEngine;
-using Zenject;
 
 namespace Enemies
 {
-    [RequireComponent(typeof(Character))]
-    public class EnemyAttacker : MonoBehaviour
+    public class EnemyAttacker
     {
-        public float AttackDistance => _attack.AttackDistance;
+        public float AttackDistance => _weapon.Attack.AttackDistance;
 
-        [SerializeField] private ConcreteWeapon _concreteWeapon;
-
-        [Space]
-        [SerializeField] private Attack _attack;
-
-        private Vector2 DirectionToHero => _hero.PositionCenter - ((Vector2)transform.position + _attack.CenterOffset);
+        private Vector2 DirectionToHero => _hero.PositionCenter - (_character.Position + _weapon.Attack.CenterOffset);
         private float AngleToHero => Mathf.Atan2(DirectionToHero.y, DirectionToHero.x) * Mathf.Rad2Deg;
 
-        private Hero _hero;
-        private Character _character;
+        private Weapon _weapon;
 
-        [Inject]
-        public void Construct(Hero hero)
+        private readonly Character _character;
+
+        private readonly Hero _hero;
+
+        public EnemyAttacker(Character character, Hero hero)
         {
+            _character = character;
             _hero = hero;
-        }
-
-        public void Initialize()
-        {
-            _character = GetComponent<Character>();
 
             _character.StunChange += OnStunChange;
         }
@@ -42,21 +31,26 @@ namespace Enemies
             _character.StunChange -= OnStunChange;
         }
 
+        public void SetWeapon(Weapon weapon)
+        {
+            _weapon = weapon;
+        }
+
         public void UpdateAttackRotation()
         {
-            _attack.UpdateRotation(AngleToHero);
+            _weapon.Attack.UpdateRotation(AngleToHero);
         }
 
         public void TryAttack()
         {
-            if (_concreteWeapon.TryStroke())
-                _attack.Do(_concreteWeapon.LastStroke);
+            if (_weapon.TryStroke())
+                _weapon.Attack.Do(_weapon.LastStroke);
         }
 
         private void CancelAttack()
         {
-            _concreteWeapon.ResetStroke();
-            _attack.Cancel();
+            _weapon.ResetStroke();
+            _weapon.Attack.Cancel();
         }
 
         private void OnStunChange(bool stunned)

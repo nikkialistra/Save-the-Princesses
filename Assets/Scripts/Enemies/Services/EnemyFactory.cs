@@ -47,7 +47,7 @@ namespace Enemies.Services
         {
             var weaponType = _weaponsRegistry.GetRandomWeaponTypeFor(enemyType);
 
-            var weapon = _weaponFactory.Create(weaponType);
+            var weapon = _weaponFactory.Create(weaponType, enemy.transform);
 
             enemy.Initialize(enemyData.InitialStats.For(_gameControl.CurrentDifficulty));
             enemy.SetWeapon(weapon);

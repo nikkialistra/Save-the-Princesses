@@ -1,6 +1,7 @@
 ﻿using Characters;
 using Combat.Attacks;
 using Combat.Weapons.Concrete;
+using GameData.Weapons;
 using UnityEngine;
 using static Characters.CharacterAnimator;
 
@@ -17,6 +18,8 @@ namespace Combat.Weapons
         public AttackLocation AttackLocation { get; private set; }
         public WeaponAnimator Animator { get; private set; }
 
+        public StrokeType LastStroke => _concreteWeapon.LastStroke;
+
         [SerializeField] private Attack _attack;
 
         private ConcreteWeapon _concreteWeapon;
@@ -25,17 +28,15 @@ namespace Combat.Weapons
 
         private Character _character;
 
-        public void Initialize(Character character)
+        public void Initialize(WeaponSpecs specs, Transform parent)
         {
-            _character = character;
-
-            transform.parent = character.gameObject.transform;
+            transform.parent = parent;
 
             FillComponents();
 
             SubscribeToEvents();
 
-            _attack.UpdateForWeaponSpecs(_concreteWeapon.Specs);
+            _attack.UpdateForWeaponSpecs(specs);
             _attack.Initialize(_character.PositionCenterOffset, _character.Type);
         }
 
@@ -49,6 +50,16 @@ namespace Combat.Weapons
         public void Tick()
         {
             _attack.Tick();
+        }
+
+        public bool TryStroke()
+        {
+            return _concreteWeapon.TryStroke();
+        }
+
+        public void ResetStroke()
+        {
+            _concreteWeapon.ResetStroke();
         }
 
         private void AlignWithCharacter(AnimationStatus status)

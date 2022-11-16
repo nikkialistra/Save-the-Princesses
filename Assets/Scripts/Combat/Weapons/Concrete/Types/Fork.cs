@@ -6,7 +6,6 @@ namespace Combat.Weapons.Concrete.Types
 {
     public class Fork : ConcreteWeapon
     {
-        public override WeaponSpecs Specs => _specs;
         public override StrokeType LastStroke => First;
 
         [SerializeField] private WeaponSpecs _specs;

@@ -82,6 +82,7 @@ namespace Heroes
         public void SetWeapon(Weapon weapon)
         {
             _character.SetWeapon(weapon);
+            _attacker.SetWeapon(weapon);
         }
 
         public void Tick()

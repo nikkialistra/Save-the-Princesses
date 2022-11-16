@@ -10,9 +10,9 @@ namespace Heroes.Attacks
     {
         public event Action StrokeStart;
 
-        private Attack Attack => _concreteWeapon.Attack;
+        private Attack Attack => _weapon.Attack;
 
-        private ConcreteWeapon _concreteWeapon;
+        private Weapon _weapon;
 
         private readonly InputAction _attackAction;
 
@@ -21,9 +21,9 @@ namespace Heroes.Attacks
             _attackAction = playerInput.actions.FindAction("Attack");
         }
 
-        public void SetConcreteWeapon(ConcreteWeapon concreteWeapon)
+        public void SetWeapon(Weapon weapon)
         {
-            _concreteWeapon = concreteWeapon;
+            _weapon = weapon;
         }
 
         public void Tick()
@@ -39,9 +39,9 @@ namespace Heroes.Attacks
 
         private void TryStroke()
         {
-            if (_concreteWeapon.TryStroke())
+            if (_weapon.TryStroke())
             {
-                Attack.Do(_concreteWeapon.LastStroke);
+                Attack.Do(_weapon.LastStroke);
                 StrokeStart?.Invoke();
             }
         }

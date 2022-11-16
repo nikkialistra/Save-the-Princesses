@@ -107,7 +107,6 @@ namespace Characters
         public void SetWeapon(Weapon weapon)
         {
             _weapon = weapon;
-            _weapon.Initialize(this);
         }
 
         public void Stun(bool value)

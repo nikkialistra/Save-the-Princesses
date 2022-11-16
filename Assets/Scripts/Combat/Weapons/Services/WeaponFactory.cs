@@ -18,11 +18,12 @@ namespace Combat.Weapons.Services
             _diContainer = diContainer;
         }
 
-        public Weapon Create(WeaponType weaponType)
+        public Weapon Create(WeaponType weaponType, Transform parent)
         {
             var weaponData = _weaponsMap[weaponType];
 
             var weapon = _diContainer.InstantiatePrefabForComponent<Weapon>(weaponData.Prefab);
+            weapon.Initialize(weaponData.Specs, parent);
 
             return weapon;
         }

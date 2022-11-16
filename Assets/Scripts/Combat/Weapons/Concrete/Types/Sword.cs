@@ -7,7 +7,6 @@ namespace Combat.Weapons.Concrete.Types
 {
     public class Sword : ConcreteWeapon
     {
-        public override WeaponSpecs Specs => _specs;
         public override StrokeType LastStroke => _lastStroke;
 
         [SerializeField] private WeaponSpecs _specs;
