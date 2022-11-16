@@ -1,5 +1,4 @@
-﻿using GameData.Princesses.Appearance.Palettes;
-using GameData.Princesses.Appearance.Registries;
+﻿using GameData.Princesses.Appearance.Registries;
 using Princesses.Palettes.Types;
 using UnityEngine;
 using Zenject;

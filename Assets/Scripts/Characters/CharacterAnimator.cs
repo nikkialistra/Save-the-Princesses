@@ -1,7 +1,6 @@
 ﻿using System;
 using Characters.Common;
 using Characters.Moving;
-using Characters.Moving.Elements;
 using GameData.Settings;
 using UnityEngine;
 

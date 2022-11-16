@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Characters.Moving;
 using Characters.Moving.HitImpacting;
 using Combat.Attacks;
 using Combat.Attacks.Specs;

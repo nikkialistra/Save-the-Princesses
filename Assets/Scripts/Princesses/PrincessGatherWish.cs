@@ -1,9 +1,6 @@
 ﻿using System.Collections;
 using Characters;
-using Heroes;
-using Trains.HandConnections;
 using UnityEngine;
-using Zenject;
 
 namespace Princesses
 {

@@ -1,6 +1,4 @@
 ﻿using System;
-using Combat.Weapons;
-using Combat.Weapons.Concrete;
 using GameData.Weapons;
 
 namespace Combat.Attacks.Specs

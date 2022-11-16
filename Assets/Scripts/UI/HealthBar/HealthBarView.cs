@@ -1,5 +1,4 @@
-﻿using Characters;
-using Characters.Health;
+﻿using Characters.Health;
 using Heroes;
 using UnityEngine;
 using UnityEngine.UIElements;
