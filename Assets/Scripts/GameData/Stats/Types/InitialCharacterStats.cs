@@ -8,10 +8,10 @@ namespace GameData.Stats.Types
     public class InitialCharacterStats
     {
         [MinValue(0)]
-        public float MaxHealth;
+        public float MaxHealth = 100;
 
         [MinValue(0)]
-        public float MovementSpeed;
+        public float MovementSpeed = 2;
 
         [Range(0, 1)]
         public float Armor;

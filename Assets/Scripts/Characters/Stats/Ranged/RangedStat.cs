@@ -4,6 +4,8 @@
     {
         AttackSpeed,
         AttackRange,
-        DamageMultiplier
+        DamageMultiplier,
+        KnockbackMultiplier,
+        StunMultiplier
     }
 }

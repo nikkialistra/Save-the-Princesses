@@ -7,9 +7,15 @@ namespace GameData.Stats.Types
     public class InitialMeleeStats
     {
         [MinValue(0)]
-        public float AttackSpeed;
+        public float AttackSpeed = 1;
 
-        [MinValue(1)]
-        public float DamageMultiplier;
+        [MinValue(0)]
+        public float DamageMultiplier = 1;
+
+        [MinValue(0)]
+        public float KnockbackMultiplier = 1;
+
+        [MinValue(0)]
+        public float StunMultiplier = 1;
     }
 }

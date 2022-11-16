@@ -3,6 +3,8 @@
     public enum MeleeStat
     {
         AttackSpeed,
-        DamageMultiplier
+        DamageMultiplier,
+        KnockbackMultiplier,
+        StunMultiplier
     }
 }
