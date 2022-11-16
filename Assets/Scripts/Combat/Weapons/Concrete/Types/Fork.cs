@@ -8,11 +8,16 @@ namespace Combat.Weapons.Concrete.Types
     {
         public override StrokeType LastStroke => First;
 
-        [SerializeField] private WeaponSpecs _specs;
-
         private float TimeFromLastStroke => Time.time - _timeOfLastStroke;
 
+        private WeaponSpecs _specs;
+
         private float _timeOfLastStroke = float.NegativeInfinity;
+
+        public override void Initialize(WeaponSpecs specs)
+        {
+            _specs = specs;
+        }
 
         public override bool TryStroke()
         {

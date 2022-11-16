@@ -34,6 +34,8 @@ namespace Combat.Weapons
 
             FillComponents();
 
+            _concreteWeapon.Initialize(specs);
+
             SubscribeToEvents();
 
             _attack.UpdateForWeaponSpecs(specs);

@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 1107651646594438310}
   - component: {fileID: 1966676901535359606}
   - component: {fileID: 595450100019424768}
-  - component: {fileID: 1660561921137111533}
   - component: {fileID: 6779059010053486687}
   m_Layer: 13
   m_Name: Enemy
@@ -421,20 +420,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _viewDistance: 7
---- !u!114 &1660561921137111533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4356872695162329138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42043af1cb524b16b356d04f34df22ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _concreteWeapon: {fileID: 0}
-  _attack: {fileID: 0}
 --- !u!114 &6779059010053486687
 MonoBehaviour:
   m_ObjectHideFlags: 0

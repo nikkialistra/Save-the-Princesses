@@ -230,9 +230,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 6877760913545033272, guid: 7ceb2cd6530529e41a39631f0d1eb73b, type: 3}
     - {fileID: 11400000, guid: 2e19e4ae7f3650d43b9e3eda3150c7d5, type: 2}
-    - {fileID: 824360411594953427, guid: 527e99cc7fd3d254386c1a74a3c3a914, type: 3}
     - {fileID: 11400000, guid: c0d4c561e9d63e2409672c8bc8c167fc, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
@@ -269,11 +267,11 @@ MonoBehaviour:
       Entry: 7
       Data: 2|GameData.Enemies.EnemyData, Scripts
     - Name: Prefab
-      Entry: 10
-      Data: 0
+      Entry: 6
+      Data: 
     - Name: InitialStats
       Entry: 10
-      Data: 1
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -290,11 +288,11 @@ MonoBehaviour:
       Entry: 7
       Data: 3|GameData.Enemies.EnemyData, Scripts
     - Name: Prefab
-      Entry: 10
-      Data: 2
+      Entry: 6
+      Data: 
     - Name: InitialStats
       Entry: 10
-      Data: 3
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -325,9 +323,7 @@ MonoBehaviour:
     ReferencedUnityObjects:
     - {fileID: 2453188263931797200, guid: 094c5447a4b7f7c4e8e20c66751280d3, type: 3}
     - {fileID: 11400000, guid: 19336cfcc31368e4e812056dd5ba56e0, type: 2}
-    - {fileID: 1062006250087838606, guid: d0e48a2e6df3ae54da6154966fd905c9, type: 3}
     - {fileID: 11400000, guid: 8ff660aa7e97eaa4ba97c7835dba255f, type: 2}
-    - {fileID: 7695758724357967985, guid: d43ee85c61fb2b6429680e3a1e605fc0, type: 3}
     - {fileID: 11400000, guid: a131dd1a326556c49a8f4e7b5b74dd9d, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
@@ -385,11 +381,11 @@ MonoBehaviour:
       Entry: 7
       Data: 3|GameData.Princesses.PrincessData, Scripts
     - Name: Prefab
-      Entry: 10
-      Data: 2
+      Entry: 6
+      Data: 
     - Name: InitialStats
       Entry: 10
-      Data: 3
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -406,11 +402,11 @@ MonoBehaviour:
       Entry: 7
       Data: 4|GameData.Princesses.PrincessData, Scripts
     - Name: Prefab
-      Entry: 10
-      Data: 4
+      Entry: 6
+      Data: 
     - Name: InitialStats
       Entry: 10
-      Data: 5
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -550,6 +546,8 @@ Transform:
   - {fileID: 1470453272}
   - {fileID: 1827701610}
   - {fileID: 224152723}
+  - {fileID: 1579129449}
+  - {fileID: 1127293788}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -786,6 +784,131 @@ MonoBehaviour:
   _firstPrincessDownRight: {fileID: -1494043136, guid: 53d67e5064db5634a96c5ed2a3f2a8df, type: 3}
   _firstPrincessDown: {fileID: 2006484380, guid: 53d67e5064db5634a96c5ed2a3f2a8df, type: 3}
   _firstPrincessDownLeft: {fileID: 1842376722, guid: 53d67e5064db5634a96c5ed2a3f2a8df, type: 3}
+--- !u!1 &1127293787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1127293788}
+  - component: {fileID: 1127293789}
+  m_Layer: 0
+  m_Name: Weapons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1127293788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127293787}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 814525032}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1127293789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127293787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e71e642c84a4505861d5983588168d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 2997320696376528147, guid: 68aab2eeb485e6a41a6444bc0cd2e652, type: 3}
+    - {fileID: 11400000, guid: af8223f20d2789c42a558d942c0428c8, type: 2}
+    - {fileID: 2997320696376528147, guid: 14b5951bd6a3c6f48a585bcaef531584, type: 3}
+    - {fileID: 11400000, guid: d75ac5237c794c6428e4d03e3b9aa707, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _weaponsMap
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[Combat.Weapons.WeaponType,
+        Scripts],[GameData.Weapons.WeaponData, Scripts]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[Combat.Weapons.WeaponType,
+        Scripts]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 2|GameData.Weapons.WeaponData, Scripts
+    - Name: Prefab
+      Entry: 10
+      Data: 0
+    - Name: Specs
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 7
+      Data: 3|GameData.Weapons.WeaponData, Scripts
+    - Name: Prefab
+      Entry: 10
+      Data: 2
+    - Name: Specs
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!1 &1251789102
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,6 +1182,132 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1579129448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1579129449}
+  - component: {fileID: 1579129450}
+  m_Layer: 0
+  m_Name: Enemy Weapons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1579129449
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579129448}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 814525032}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1579129450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579129448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 030506998bae4475a65ac1739fcef954, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _weaponsMap
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[Enemies.EnemyType, Scripts],[System.Collections.Generic.List`1[[Combat.Weapons.WeaponType,
+        Scripts]], mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[Enemies.EnemyType,
+        Scripts]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[Combat.Weapons.WeaponType, Scripts]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 7
+      Data: 3|System.Collections.Generic.List`1[[Combat.Weapons.WeaponType, Scripts]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!1 &1636495293
 GameObject:
   m_ObjectHideFlags: 0
@@ -1507,6 +1756,8 @@ MonoBehaviour:
   _navigation: {fileID: 1470453273}
   _princessFactory: {fileID: 224152725}
   _enemyFactory: {fileID: 224152724}
+  _enemyWeaponsRegistry: {fileID: 1579129450}
+  _weaponFactory: {fileID: 1127293789}
   _princessPalettesRegistry: {fileID: 926162203}
   _princessElementControllersRegistry: {fileID: 926162204}
   _train: {fileID: 121481525}
@@ -1832,7 +2083,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 7.5
+  orthographic size: 0
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
