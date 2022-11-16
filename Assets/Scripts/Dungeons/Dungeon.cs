@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Cysharp.Threading.Tasks;
+using GameData.Settings;
 using Heroes;
 using Infrastructure;
 using Surrounding.Staging;
@@ -10,8 +11,6 @@ namespace Dungeons
 {
     public class Dungeon : MonoBehaviour
     {
-        [SerializeField] private float _timeToFinishRun = 1.5f;
-
         private Hero _hero;
         private Stages _stages;
 
@@ -51,7 +50,7 @@ namespace Dungeons
 
         private IEnumerator CFinishRunAfterSomeTime()
         {
-            yield return new WaitForSeconds(_timeToFinishRun);
+            yield return new WaitForSeconds(GameSettings.General.TimeToFinishRun);
 
             _gameRun.Finish();
         }

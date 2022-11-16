@@ -46,10 +46,11 @@ namespace Enemies.Services
         private void SetupEnemy(Enemy enemy, EnemyType enemyType, EnemyData enemyData)
         {
             var weaponType = _weaponsRegistry.GetRandomWeaponTypeFor(enemyType);
-
             var weapon = _weaponFactory.Create(weaponType, enemy.transform);
 
-            enemy.Initialize(enemyData.InitialStats.For(_gameControl.CurrentDifficulty));
+            var initialStats = enemyData.InitialStats.For(_gameControl.CurrentDifficulty);
+
+            enemy.Initialize(initialStats, enemyData.Specs);
             enemy.SetWeapon(weapon);
             enemy.Active = true;
         }

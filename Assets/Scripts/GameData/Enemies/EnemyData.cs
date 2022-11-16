@@ -8,5 +8,6 @@ namespace GameData.Enemies
     {
         public Enemy Prefab;
         public EnemyInitialStats InitialStats;
+        public EnemySpecs Specs;
     }
 }

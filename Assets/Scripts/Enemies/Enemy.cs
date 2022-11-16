@@ -7,6 +7,7 @@ using Characters.Stats.Melee;
 using Characters.Stats.Ranged;
 using Combat.Weapons;
 using Entities;
+using GameData.Enemies;
 using GameData.Stats;
 using Heroes;
 using Surrounding.Rooms;
@@ -24,14 +25,14 @@ namespace Enemies
 
         public Vector2 Position => transform.position;
 
-        public float ViewDistance => _viewDistance;
+        public float ViewDistance => _specs.ViewDistance;
 
         public Hero Hero { get; private set; }
         public EnemyAttacker Attacker { get; set; }
 
         public CharacterMoving Moving => _character.Moving;
 
-        [SerializeField] private float _viewDistance = 7;
+        private EnemySpecs _specs;
 
         private Character _character;
 
@@ -45,9 +46,11 @@ namespace Enemies
             Hero = hero;
         }
 
-        public void Initialize(InitialStats initialStats)
+        public void Initialize(InitialStats initialStats, EnemySpecs specs)
         {
             _character = GetComponent<Character>();
+
+            _specs = specs;
 
             InitializeComponents(initialStats);
 
@@ -78,6 +81,7 @@ namespace Enemies
         public void SetWeapon(Weapon weapon)
         {
             _character.SetWeapon(weapon);
+            Attacker.SetWeapon(weapon);
         }
 
         public void PlaceInRoom(Room room)

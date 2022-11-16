@@ -2,7 +2,7 @@
 
 namespace GameData.Weapons
 {
-    [CreateAssetMenu(fileName = "(Weapon Type)", menuName = "GameData/Weapon Specs")]
+    [CreateAssetMenu(fileName = "(Weapon Type)", menuName = "GameData/Specs/Weapon Specs")]
     public class WeaponSpecs : ScriptableObject
     {
         public int Damage;
