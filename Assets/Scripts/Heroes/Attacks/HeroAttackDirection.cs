@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
+using DeviceType = Controls.DeviceType;
 
 namespace Heroes.Attacks
 {
@@ -49,10 +50,10 @@ namespace Heroes.Attacks
         {
             switch (_inputDevices.ActiveDevice)
             {
-                case Device.Gamepad:
+                case DeviceType.Gamepad:
                     ComputeFromGamepad();
                     break;
-                case Device.KeyboardAndMouse:
+                case DeviceType.KeyboardAndMouse:
                     ComputeFromMouse();
                     break;
             }

@@ -6,26 +6,22 @@ using Zenject;
 
 namespace Controls
 {
-    public class InputDevices : MonoBehaviour
+    public class InputDevices
     {
-        private const string KeyboardAndMouseScheme = "KeyaboardAndMouse";
+        private const string KeyboardAndMouseScheme = "KeyboardAndMouse";
         private const string GamepadScheme = "Gamepad";
 
         public event Action ActiveDeviceChange;
 
-        public Device ActiveDevice { get; private set; }
+        public DeviceType ActiveDevice { get; private set; }
         public Gamepad Gamepad { get; private set; }
 
-        private PlayerInput _playerInput;
+        private readonly PlayerInput _playerInput;
 
-        [Inject]
-        public void Construct(PlayerInput playerInput)
+        public InputDevices(PlayerInput playerInput)
         {
             _playerInput = playerInput;
-        }
 
-        public void Initialize()
-        {
             _playerInput.onControlsChanged += OnControlsChange;
 
             FindGamepad();
@@ -40,12 +36,12 @@ namespace Controls
         {
             ActiveDevice = _playerInput.currentControlScheme switch
             {
-                KeyboardAndMouseScheme => Device.KeyboardAndMouse,
-                GamepadScheme => Device.Gamepad,
+                KeyboardAndMouseScheme => DeviceType.KeyboardAndMouse,
+                GamepadScheme => DeviceType.Gamepad,
                 _ => ActiveDevice
             };
 
-            if (ActiveDevice == Device.Gamepad)
+            if (ActiveDevice == DeviceType.Gamepad)
                 FindGamepad();
 
             ActiveDeviceChange?.Invoke();

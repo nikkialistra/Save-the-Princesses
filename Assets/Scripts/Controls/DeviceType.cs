@@ -1,6 +1,6 @@
 namespace Controls
 {
-    public enum Device
+    public enum DeviceType
     {
         KeyboardAndMouse,
         Gamepad

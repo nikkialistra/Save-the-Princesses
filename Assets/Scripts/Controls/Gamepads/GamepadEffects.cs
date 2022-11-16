@@ -5,10 +5,9 @@ using UnityEngine;
 namespace Controls.Gamepads
 {
     [RequireComponent(typeof(GamepadRumbling))]
-    [RequireComponent(typeof(InputDevices))]
     public class GamepadEffects : MonoBehaviour
     {
-        [SerializeField] private StrokeRumble _strokeRumble = new();
+        [SerializeField] private StrokeRumble _strokeHitRumble = new();
 
         private Hero _hero;
 
@@ -16,15 +15,16 @@ namespace Controls.Gamepads
 
         private InputDevices _inputDevices;
 
-        public void Initialize(Hero hero)
+        public void Initialize(InputDevices inputDevices, Hero hero)
         {
+            _inputDevices = inputDevices;
             _hero = hero;
 
-            FillComponents();
+            _rumbling = GetComponent<GamepadRumbling>();
 
-            _rumbling.Initialize();
+            _rumbling.Initialize(inputDevices);
 
-            if (_inputDevices.ActiveDevice == Device.Gamepad)
+            if (_inputDevices.ActiveDevice == DeviceType.Gamepad)
                 SubscribeToGameEvents();
 
             _inputDevices.ActiveDeviceChange += OnActiveDeviceChange;
@@ -41,7 +41,7 @@ namespace Controls.Gamepads
 
         private void OnActiveDeviceChange()
         {
-            if (_inputDevices.ActiveDevice == Device.Gamepad)
+            if (_inputDevices.ActiveDevice == DeviceType.Gamepad)
                 SubscribeToGameEvents();
             else
                 UnsubscribeFromGameEvents();
@@ -59,13 +59,7 @@ namespace Controls.Gamepads
 
         private void OnStrokeStart()
         {
-            _rumbling.StartConstant(_strokeRumble.Strength, _strokeRumble.Strength, _strokeRumble.Duration);
-        }
-
-        private void FillComponents()
-        {
-            _rumbling = GetComponent<GamepadRumbling>();
-            _inputDevices = GetComponent<InputDevices>();
+            _rumbling.StartConstant(_strokeHitRumble.Strength, _strokeHitRumble.Strength, _strokeHitRumble.Duration);
         }
 
         [Serializable]

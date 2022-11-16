@@ -919,7 +919,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1251789103}
   - component: {fileID: 1251789107}
-  - component: {fileID: 1251789105}
   - component: {fileID: 1251789106}
   - component: {fileID: 1251789104}
   m_Layer: 0
@@ -956,18 +955,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e68e52f96a7144e1853b4059b9af0dd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1251789105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1251789102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad869fc4789547ab957ee4d90228a11e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1251789106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -980,7 +967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1befb407c5e4137b9523be08e5fd529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _strokeRumble:
+  _strokeHitRumble:
     Strength: 0.1
     Duration: 0.1
 --- !u!114 &1251789107
@@ -1763,7 +1750,6 @@ MonoBehaviour:
   _train: {fileID: 121481525}
   _handsSprites: {fileID: 1058244649}
   _playerInput: {fileID: 803020352}
-  _inputDevices: {fileID: 1251789105}
   _healthBarView: {fileID: 1972371814}
   _ammoView: {fileID: 1972371810}
   _statsView: {fileID: 1972371809}

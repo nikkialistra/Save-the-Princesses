@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 namespace Controls.Gamepads
 {
-    [RequireComponent(typeof(InputDevices))]
     public class GamepadRumbling : MonoBehaviour
     {
         private enum RumblePattern
@@ -33,9 +32,9 @@ namespace Controls.Gamepads
 
         private InputDevices _inputDevices;
 
-        public void Initialize()
+        public void Initialize(InputDevices inputDevices)
         {
-            _inputDevices = GetComponent<InputDevices>();
+            _inputDevices = inputDevices;
         }
 
         public void Dispose()
