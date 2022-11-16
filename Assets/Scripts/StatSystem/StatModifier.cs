@@ -12,7 +12,6 @@ namespace StatSystem
         public float Value => _value;
 
         public int Order => (int)_modifierType;
-        public object Source => _source;
 
         [SerializeField] private T _statType;
         [SerializeField] private StatModifierType _modifierType;
@@ -20,15 +19,12 @@ namespace StatSystem
         [Space]
         [SerializeField] private float _value;
 
-        private object _source;
-
-        public StatModifier(T statType, StatModifierType modifierType, float value, object source = null)
+        public StatModifier(T statType, StatModifierType modifierType, float value)
         {
             _statType = statType;
             _modifierType = modifierType;
 
             _value = value;
-            _source = source;
         }
     }
 }

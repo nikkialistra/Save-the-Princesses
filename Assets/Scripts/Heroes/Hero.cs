@@ -35,6 +35,8 @@ namespace Heroes
         public Vector2 PositionCenter => _character.PositionCenter;
         public Vector2 PositionCenterOffset => _character.PositionCenterOffset;
 
+        [SerializeField] private HeroAttackDirection _attackDirection;
+
         private HeroInput _input;
         private HeroMoving _moving;
         private HeroAnimator _animator;
@@ -81,7 +83,6 @@ namespace Heroes
 
         public void SetWeapon(Weapon weapon)
         {
-            _character.SetWeapon(weapon);
             _attacker.SetWeapon(weapon);
         }
 
@@ -93,6 +94,7 @@ namespace Heroes
 
             _input.Tick();
             _moving.Tick();
+            _attackDirection.Tick();
             _attacker.Tick();
 
             _princessGathering.Tick();
@@ -158,6 +160,7 @@ namespace Heroes
         private void DisposeComponents()
         {
             _character.Dispose();
+            _attacker.Dispose();
 
             _animator.Dispose();
             _princessGathering.Dispose();

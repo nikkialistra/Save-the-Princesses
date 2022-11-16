@@ -13,11 +13,19 @@ namespace Heroes.Attacks
 
         private Weapon _weapon;
 
+        private Hero _hero;
+
         private readonly InputAction _attackAction;
 
         public HeroAttacker(PlayerInput playerInput)
         {
             _attackAction = playerInput.actions.FindAction("Attack");
+        }
+
+        public void Dispose()
+        {
+            if (_weapon != null)
+                _weapon.Dispose();
         }
 
         public void SetWeapon(Weapon weapon)
@@ -27,6 +35,9 @@ namespace Heroes.Attacks
 
         public void Tick()
         {
+            if (_weapon != null)
+                _weapon.Tick();
+
             if (_attackAction.IsPressed())
                 TryStroke();
         }

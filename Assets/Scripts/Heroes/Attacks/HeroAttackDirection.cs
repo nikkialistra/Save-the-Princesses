@@ -1,4 +1,5 @@
 ﻿using Controls;
+using GameData.Settings;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
@@ -8,9 +9,6 @@ namespace Heroes.Attacks
 {
     public class HeroAttackDirection : MonoBehaviour
     {
-        [SerializeField] private Hero _hero;
-        [SerializeField] private float _drawDistance;
-
         private float AngleFromDirection => Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
         private float Direction => transform.rotation.eulerAngles.z;
 
@@ -19,27 +17,22 @@ namespace Heroes.Attacks
         private InputDevices _inputDevices;
         private Camera _camera;
 
-        private PlayerInput _playerInput;
+        private Hero _hero;
 
         private InputAction _lookAction;
 
         [Inject]
-        public void Construct(InputDevices inputDevices, Camera camera, PlayerInput playerInput)
+        public void Construct(Hero hero, InputDevices inputDevices, Camera camera, PlayerInput playerInput)
         {
+            _hero = hero;
+
             _inputDevices = inputDevices;
             _camera = camera;
 
-            _playerInput = playerInput;
-
-            _lookAction = _playerInput.actions.FindAction("Look");
+            _lookAction = playerInput.actions.FindAction("Look");
         }
 
-        public void Initialize()
-        {
-            UpdateTransform();
-        }
-
-        private void Update()
+        public void Tick()
         {
             UpdateAttackDirection();
             UpdateTransform();
@@ -63,7 +56,7 @@ namespace Heroes.Attacks
         {
             if (_direction == Vector2.zero || Time.timeScale == 0) return;
 
-            transform.localPosition = _hero.PositionCenterOffset + (_direction.normalized * _drawDistance);
+            transform.localPosition = _hero.PositionCenterOffset + (_direction.normalized * GameSettings.Hero.AttackDirectionDistance);
             transform.rotation = Quaternion.Euler(0, 0, AngleFromDirection);
         }
 

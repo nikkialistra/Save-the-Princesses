@@ -7,6 +7,8 @@ namespace GameData.Settings.Types
     [Serializable]
     public class HeroSettings
     {
+        public float AttackDirectionDistance => _attackDirectionDistance;
+
         public float InversionAngle => _inversionAngle;
         public float MinTimeToChangeInversion => _minTimeToChangeInversion;
         public float InversionFlickeringDelta => _inversionFlickeringDelta;
@@ -19,6 +21,8 @@ namespace GameData.Settings.Types
 
         public float RescanRate => _rescanRate;
         public float DistanceToGather => _distanceToGather;
+
+        [SerializeField] private float _attackDirectionDistance = 1.5f;
 
         [Title("Inversion")]
         [SerializeField] private float _inversionAngle = 90f;

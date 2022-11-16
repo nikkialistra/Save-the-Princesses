@@ -19,7 +19,6 @@ namespace Heroes.Accumulations
             _ammoView = ammoView;
         }
 
-        [Button]
         public bool TryIncrease()
         {
             if (_quantity == MaxQuantity)
@@ -31,7 +30,6 @@ namespace Heroes.Accumulations
             return true;
         }
 
-        [Button]
         public bool TrySpend()
         {
             if (_quantity == 0)

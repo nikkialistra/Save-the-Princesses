@@ -3,7 +3,7 @@ using Saving.Progress.State;
 using UI;
 using static Saving.Progress.State.GameState;
 
-namespace Infrastructure
+namespace GameSystems
 {
     public class GameRun
     {

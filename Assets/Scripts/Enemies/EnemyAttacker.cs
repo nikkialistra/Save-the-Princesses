@@ -28,7 +28,16 @@ namespace Enemies
 
         public void Dispose()
         {
+            if (_weapon != null)
+                _weapon.Dispose();
+
             _character.StunChange -= OnStunChange;
+        }
+
+        public void Tick()
+        {
+            if (_weapon != null)
+                _weapon.Tick();
         }
 
         public void SetWeapon(Weapon weapon)

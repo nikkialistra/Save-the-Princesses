@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Entities.Containers;
 using Surrounding.Rooms;
@@ -10,11 +9,6 @@ namespace Princesses.Services.Repositories
 {
     public class PrincessRoomRepository
     {
-        public event Action<Princess> Added;
-        public event Action<Princess> Removed;
-
-        public int Count => _container.Count;
-
         public IEnumerable<Princess> Princesses => _container.Entities;
         public IEnumerable<Princess> UntiedFreePrincesses => _container.Entities.Where(princess => princess.Free);
 
@@ -39,13 +33,11 @@ namespace Princesses.Services.Repositories
         public void Add(Princess princess, Vector3 position)
         {
             _container.Add(princess, position);
-            Added?.Invoke(princess);
         }
 
         public void Remove(Princess princess)
         {
             _container.Remove(princess);
-            Removed?.Invoke(princess);
         }
     }
 }

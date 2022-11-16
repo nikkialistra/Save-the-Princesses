@@ -47,19 +47,6 @@ namespace StatSystem
             return false;
         }
 
-        public bool RemoveAllModifiersFromSource(object source)
-        {
-            var removedCount = _statModifiers.RemoveAll(modifier => modifier.Source == source);
-
-            if (removedCount > 0)
-            {
-                RecalculateValue();
-                return true;
-            }
-
-            return false;
-        }
-
         private void RecalculateValue()
         {
             var finalValue = _baseValue;

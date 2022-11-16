@@ -41,8 +41,6 @@ namespace Characters
 
         [SerializeField] private float _yPosition;
 
-        private Weapon _weapon;
-
         private bool _active;
 
         private CharacterBlinking _blinking;
@@ -89,9 +87,6 @@ namespace Characters
         {
             Moving.Tick();
             Animator.Tick();
-
-            if (_weapon != null)
-                _weapon.Tick();
         }
 
         public void FixedTick()
@@ -102,11 +97,6 @@ namespace Characters
         public void PlaceInRoom(Room room)
         {
             Room = room;
-        }
-
-        public void SetWeapon(Weapon weapon)
-        {
-            _weapon = weapon;
         }
 
         public void Stun(bool value)
@@ -178,9 +168,6 @@ namespace Characters
             Moving.Dispose();
 
             _blinking.Dispose();
-
-            if (_weapon != null)
-                _weapon.Dispose();
         }
 
         private void OnHit()

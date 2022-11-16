@@ -69,6 +69,7 @@ namespace Enemies
             if (!Active) return;
 
             _character.Tick();
+            Attacker.Tick();
         }
 
         public void FixedTick()
@@ -80,7 +81,6 @@ namespace Enemies
 
         public void SetWeapon(Weapon weapon)
         {
-            _character.SetWeapon(weapon);
             Attacker.SetWeapon(weapon);
         }
 
