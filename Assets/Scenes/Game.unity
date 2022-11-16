@@ -543,6 +543,7 @@ Transform:
   m_Children:
   - {fileID: 7217504656796712410}
   - {fileID: 803020353}
+  - {fileID: 1699712177}
   - {fileID: 1470453272}
   - {fileID: 1827701610}
   - {fileID: 224152723}
@@ -1404,6 +1405,89 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3517064352616132721, guid: dd2807e49e089614f82d4c9e3c2a3b91, type: 3}
   m_PrefabInstance: {fileID: 1683786885}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1699712176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1699712177}
+  - component: {fileID: 1699712178}
+  m_Layer: 0
+  m_Name: Game Settings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1699712177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699712176}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 814525032}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1699712178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699712176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf760989cc24951b30a38172d8683f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _generalSettings:
+    _timeToFinishRun: 1.5
+  _characterSettings:
+    _accelerationTime: 0.3
+    _decelerationTime: 0.25
+    _velocityDelta: 0.1
+    _directionChangeTime: 0.1
+    _directionChangeTimeInTrain: 0.02
+    _timeAtKnockback: 0.4
+    _invulnerabilityTimeAfterHit: 0.3
+    _destinationDistanceDelta: 0.2
+    _destinationDistanceDeltaPathfinding: 0.6
+    _repathRate: 0.07
+    _destinationSearchTriesCount: 6
+    _hitBlinkingTime: 0.18
+  _heroSettings:
+    _inversionAngle: 90
+    _minTimeToChangeInversion: 0.02
+    _inversionFlickeringDelta: 0.5
+    _handsDeltaY: 0.4
+    _hitInvulnerabilityTime: 1
+    _buttonPressToleranceTime: 0.05
+    _rescanRate: 0.1
+    _distanceToGather: 1.5
+  _princessSettings:
+    _hitsToUntie: 3
+    _untieFinishTime: 0.6
+    _timeToDisableRopeAndLight: 0.6
+    _handsDeltaY: 0.4
+    _distanceToHero: 0.8
+    _distanceBetweenPrincesses: 0.8
+    _additionalDistanceBeforeStop: 0.4
+    _distancePercentForRegularSpeed: 0.85
+    _distancePercentForHeroSpeed: 0.9
+    _distancePercentForElevatedSpeed: 0.99
+    _accelerationTime: 0.12
+    _decelerationTime: 0.25
+    _distanceToFinishLinking: 0.8
+    _timeIntervalForStuckCheck: 0.06
 --- !u!1 &1827701608
 GameObject:
   m_ObjectHideFlags: 0
@@ -1737,6 +1821,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ee90b7ed1c45e9ab5e17d8406e531d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameSettings: {fileID: 1699712178}
+  _playerInput: {fileID: 803020352}
   _camera: {fileID: 7217504656796712229}
   _hero: {fileID: 1683786886}
   _room: {fileID: 5731957735619916329, guid: 93b0589ff82ac6d45be8a028c4becc10, type: 3}
@@ -1749,7 +1835,6 @@ MonoBehaviour:
   _princessElementControllersRegistry: {fileID: 926162204}
   _train: {fileID: 121481525}
   _handsSprites: {fileID: 1058244649}
-  _playerInput: {fileID: 803020352}
   _healthBarView: {fileID: 1972371814}
   _ammoView: {fileID: 1972371810}
   _statsView: {fileID: 1972371809}

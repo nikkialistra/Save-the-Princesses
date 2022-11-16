@@ -1,18 +1,27 @@
 ﻿using GameData.Settings.Types;
+using UnityEngine;
+using Zenject;
 
 namespace GameData.Settings
 {
-    public class GameSettings
+    public class GameSettings : MonoBehaviour, IInitializable
     {
-        public static CharacterSettings Character;
-        public static HeroSettings Hero;
-        public static PrincessSettings Princess;
+        public static GeneralSettings General { get; set; }
+        public static CharacterSettings Character { get; set; }
+        public static HeroSettings Hero { get; set; }
+        public static PrincessSettings Princess { get; set; }
 
-        public GameSettings(CharacterSettings character, HeroSettings hero, PrincessSettings princess)
+        [SerializeField] private GeneralSettings _generalSettings;
+        [SerializeField] private CharacterSettings _characterSettings;
+        [SerializeField] private HeroSettings _heroSettings;
+        [SerializeField] private PrincessSettings _princessSettings;
+
+        public void Initialize()
         {
-            Character = character;
-            Hero = hero;
-            Princess = princess;
+            General = _generalSettings;
+            Character = _characterSettings;
+            Hero = _heroSettings;
+            Princess = _princessSettings;
         }
     }
 }

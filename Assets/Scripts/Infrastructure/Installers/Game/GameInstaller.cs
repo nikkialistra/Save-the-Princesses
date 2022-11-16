@@ -1,12 +1,11 @@
 ﻿using Combat.Weapons.Services;
-using Controls;
 using Enemies.Services;
 using Enemies.Services.Repositories;
 using GameData.Enemies.Spawning;
 using GameData.Princesses.Appearance.Registries;
 using GameData.Princesses.Spawning;
+using GameData.Settings;
 using GameData.Weapons.Registries;
-using GameSystems;
 using Heroes;
 using Infrastructure.Bootstrap;
 using Infrastructure.Controls;
@@ -31,11 +30,14 @@ namespace Infrastructure.Installers.Game
 {
     public class GameInstaller : MonoInstaller
     {
+        [Title("Core")]
+        [SerializeField] private GameSettings _gameSettings;
+        [SerializeField] private PlayerInput _playerInput;
+
+        [Title("General")]
         [SerializeField] private Camera _camera;
         [SerializeField] private Hero _hero;
         [SerializeField] private Room _room;
-
-        [Title("Surroundings")]
         [SerializeField] private Navigation _navigation;
 
         [Title("Characters")]
@@ -53,10 +55,6 @@ namespace Infrastructure.Installers.Game
         [Title("Train System")]
         [SerializeField] private Train _train;
         [SerializeField] private HandsSprites _handsSprites;
-
-        [Title("Input")]
-        [SerializeField] private PlayerInput _playerInput;
-        [SerializeField] private InputDevices _inputDevices;
 
         [Title("Game Interface")]
         [SerializeField] private HealthBarView _healthBarView;
@@ -78,7 +76,8 @@ namespace Infrastructure.Installers.Game
 
         public override void InstallBindings()
         {
-            BindGameBase();
+            BindCore();
+            BindGeneral();
 
             BindCharactersPicking();
             BindCharacters();
@@ -88,7 +87,6 @@ namespace Infrastructure.Installers.Game
             BindPrincessesData();
             BindTrainSystem();
 
-            BindInput();
             BindUI();
             BindControls();
 
@@ -98,10 +96,14 @@ namespace Infrastructure.Installers.Game
             BindBootstrap();
         }
 
-        private void BindGameBase()
+        private void BindCore()
         {
-            Container.Bind<GameControl>().AsSingle();
+            Container.BindInstance(_gameSettings);
+            Container.BindInstance(_playerInput);
+        }
 
+        private void BindGeneral()
+        {
             Container.BindInstance(_camera);
             Container.BindInterfacesAndSelfTo<Hero>().FromInstance(_hero);
             Container.BindInstance(_room);
@@ -144,12 +146,6 @@ namespace Infrastructure.Installers.Game
             Container.Bind<EnemyActiveRepository>().AsSingle();
 
             Container.Bind<ActiveRepositories>().AsSingle();
-        }
-
-        private void BindInput()
-        {
-            Container.BindInstance(_playerInput);
-            Container.BindInstance(_inputDevices);
         }
 
         private void BindUI()
