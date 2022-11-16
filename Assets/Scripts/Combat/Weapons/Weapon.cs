@@ -2,6 +2,7 @@
 using Combat.Attacks;
 using Combat.Weapons.Concrete;
 using UnityEngine;
+using static Characters.CharacterAnimator;
 
 namespace Combat.Weapons
 {
@@ -28,6 +29,8 @@ namespace Combat.Weapons
         {
             _character = character;
 
+            transform.parent = character.gameObject.transform;
+
             FillComponents();
 
             SubscribeToEvents();
@@ -48,7 +51,7 @@ namespace Combat.Weapons
             _attack.Tick();
         }
 
-        private void AlignWithCharacter(CharacterAnimator.AnimationStatus status)
+        private void AlignWithCharacter(AnimationStatus status)
         {
             Animator.AlignWithCharacter(status.Velocity);
         }

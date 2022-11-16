@@ -1,7 +1,7 @@
 ﻿using System;
 using Characters.Common;
 using Combat.Attacks.Specs;
-using GameData.Combat;
+using GameData.Weapons;
 using UnityEngine;
 
 namespace Combat.Attacks

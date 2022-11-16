@@ -89,6 +89,9 @@ namespace Characters
         {
             Moving.Tick();
             Animator.Tick();
+
+            if (_weapon != null)
+                _weapon.Tick();
         }
 
         public void FixedTick()

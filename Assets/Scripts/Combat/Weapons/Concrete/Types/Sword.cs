@@ -1,5 +1,5 @@
 ﻿using System;
-using GameData.Combat;
+using GameData.Weapons;
 using UnityEngine;
 using static Combat.StrokeType;
 

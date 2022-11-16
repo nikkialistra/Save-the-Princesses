@@ -1,11 +1,11 @@
-﻿using Controls;
+﻿using Combat.Weapons.Services;
+using Controls;
 using Enemies.Services;
 using Enemies.Services.Repositories;
 using GameData.Enemies.Spawning;
-using GameData.Princesses.Appearance.Elements;
-using GameData.Princesses.Appearance.Palettes;
 using GameData.Princesses.Appearance.Registries;
 using GameData.Princesses.Spawning;
+using GameData.Weapons.Registries;
 using GameSystems;
 using Heroes;
 using Infrastructure.Bootstrap;
@@ -38,9 +38,13 @@ namespace Infrastructure.Installers.Game
         [Title("Surroundings")]
         [SerializeField] private Navigation _navigation;
 
-        [Title("Character Factories")]
+        [Title("Characters")]
         [SerializeField] private PrincessFactory _princessFactory;
         [SerializeField] private EnemyFactory _enemyFactory;
+
+        [Title("Weapons")]
+        [SerializeField] private EnemyWeaponsRegistry _enemyWeaponsRegistry;
+        [SerializeField] private WeaponFactory _weaponFactory;
 
         [Title("Princesses Data")]
         [SerializeField] private PrincessPalettesRegistry _princessPalettesRegistry;
@@ -77,7 +81,8 @@ namespace Infrastructure.Installers.Game
             BindGameBase();
 
             BindCharactersPicking();
-            BindCharacterFactories();
+            BindCharacters();
+            BindWeapons();
             BindRepositories();
 
             BindPrincessesData();
@@ -109,10 +114,16 @@ namespace Infrastructure.Installers.Game
             Container.Bind<EnemyPicking>().AsSingle();
         }
 
-        private void BindCharacterFactories()
+        private void BindCharacters()
         {
             Container.BindInstance(_princessFactory);
             Container.BindInstance(_enemyFactory);
+        }
+
+        private void BindWeapons()
+        {
+            Container.BindInstance(_enemyWeaponsRegistry);
+            Container.BindInstance(_weaponFactory);
         }
 
         private void BindTrainSystem()

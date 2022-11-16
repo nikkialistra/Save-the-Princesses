@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using Combat.Weapons.Services;
 using GameData.Enemies;
+using GameData.Weapons.Registries;
 using GameSystems;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -13,12 +15,19 @@ namespace Enemies.Services
 
         private GameControl _gameControl;
 
+        private EnemyWeaponsRegistry _weaponsRegistry;
+        private WeaponFactory _weaponFactory;
+
         private DiContainer _diContainer;
 
         [Inject]
-        public void Construct(GameControl gameControl, DiContainer diContainer)
+        public void Construct(GameControl gameControl, EnemyWeaponsRegistry weaponsRegistry,
+            WeaponFactory weaponFactory, DiContainer diContainer)
         {
             _gameControl = gameControl;
+
+            _weaponsRegistry = weaponsRegistry;
+            _weaponFactory = weaponFactory;
 
             _diContainer = diContainer;
         }
@@ -29,10 +38,20 @@ namespace Enemies.Services
 
             var enemy = _diContainer.InstantiatePrefabForComponent<Enemy>(enemyData.Prefab);
 
-            enemy.Initialize(enemyData.InitialStats.For(_gameControl.CurrentDifficulty));
-            enemy.Active = true;
+            SetupEnemy(enemy, enemyType, enemyData);
 
             return enemy;
+        }
+
+        private void SetupEnemy(Enemy enemy, EnemyType enemyType, EnemyData enemyData)
+        {
+            var weaponType = _weaponsRegistry.GetRandomWeaponTypeFor(enemyType);
+
+            var weapon = _weaponFactory.Create(weaponType);
+
+            enemy.Initialize(enemyData.InitialStats.For(_gameControl.CurrentDifficulty));
+            enemy.SetWeapon(weapon);
+            enemy.Active = true;
         }
     }
 }

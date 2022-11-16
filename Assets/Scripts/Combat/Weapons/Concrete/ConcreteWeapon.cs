@@ -1,5 +1,5 @@
 ﻿using Combat.Attacks;
-using GameData.Combat;
+using GameData.Weapons;
 using UnityEngine;
 
 namespace Combat.Weapons.Concrete
