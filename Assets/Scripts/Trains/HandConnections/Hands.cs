@@ -1,5 +1,5 @@
-﻿using Characters.Common;
-using Cysharp.Threading.Tasks;
+﻿using System.Collections;
+using Characters.Common;
 using GameData.Settings;
 using Trains.Characters;
 using UnityEngine;
@@ -19,6 +19,8 @@ namespace Trains.HandConnections
         private SpriteRenderer _spriteRenderer;
 
         private HandsSprites _handsSprites;
+
+        private Coroutine _waitForLinkFinishCoroutine;
 
         [Inject]
         public void Construct(HandsSprites handsSprites)
@@ -63,13 +65,24 @@ namespace Trains.HandConnections
 
             _linked = true;
 
-            WaitForLinkFinish().AttachExternalCancellation(this.GetCancellationTokenOnDestroy()).Forget();
+            WaitForLinkFinish();
         }
 
-        private async UniTask WaitForLinkFinish()
+        private void WaitForLinkFinish()
+        {
+            if (_waitForLinkFinishCoroutine != null)
+            {
+                StopCoroutine(_waitForLinkFinishCoroutine);
+                _waitForLinkFinishCoroutine = null;
+            }
+
+            _waitForLinkFinishCoroutine = StartCoroutine(CWaitForLinkFinish());
+        }
+
+        private IEnumerator CWaitForLinkFinish()
         {
             while (DistanceNotCutDownEnough())
-                await UniTask.Yield();
+                yield return null;
 
             if (_linked)
                 _spriteRenderer.enabled = true;
