@@ -1,4 +1,5 @@
 ﻿using Combat.Weapons.Services;
+using Controls.Gamepads;
 using Enemies.Services;
 using Enemies.Services.Repositories;
 using GameData.Enemies.Spawning;
@@ -16,7 +17,6 @@ using Saving.Progress;
 using Saving.Saves;
 using Sirenix.OdinInspector;
 using Surrounding;
-using Surrounding.Rooms;
 using Surrounding.Rooms.Services;
 using Trains;
 using Trains.HandConnections;
@@ -161,7 +161,7 @@ namespace Infrastructure.Installers.Game
         private void BindControls()
         {
             Container.BindInstance(_gameInterfaceControl);
-            Container.BindInstance(_inputControl);
+            Container.BindInterfacesAndSelfTo<InputControl>().FromInstance(_inputControl);
             Container.Bind<GameControls>().AsSingle();
         }
 

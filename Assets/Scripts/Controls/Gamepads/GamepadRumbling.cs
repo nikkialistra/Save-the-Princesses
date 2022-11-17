@@ -42,7 +42,7 @@ namespace Controls.Gamepads
             Stop();
         }
 
-        private void Update()
+        public void Tick()
         {
             if (_activeRumblePattern != RumblePattern.None
                 && Time.time > _rumbleFinishTime)

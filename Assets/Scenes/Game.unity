@@ -1925,6 +1925,7 @@ MonoBehaviour:
   _goldView: {fileID: 1972371808}
   _gameInterfaceControl: {fileID: 1972371816}
   _inputControl: {fileID: 1251789107}
+  _gamepadEffects: {fileID: 1251789106}
 --- !u!114 &2023767274
 MonoBehaviour:
   m_ObjectHideFlags: 0

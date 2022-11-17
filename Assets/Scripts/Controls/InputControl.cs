@@ -7,7 +7,7 @@ using Zenject;
 namespace Controls
 {
     [RequireComponent(typeof(GamepadEffects))]
-    public class InputControl : MonoBehaviour
+    public class InputControl : MonoBehaviour, ITickable
     {
         private InputDevices _inputDevices;
         private GamepadEffects _gamepadEffects;
@@ -32,6 +32,11 @@ namespace Controls
         {
             _inputDevices.Dispose();
             _gamepadEffects.Dispose();
+        }
+
+        public void Tick()
+        {
+            _gamepadEffects.Tick();
         }
     }
 }

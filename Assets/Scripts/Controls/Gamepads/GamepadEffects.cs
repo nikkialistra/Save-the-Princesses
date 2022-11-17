@@ -39,6 +39,11 @@ namespace Controls.Gamepads
             _inputDevices.ActiveDeviceChange -= OnActiveDeviceChange;
         }
 
+        public void Tick()
+        {
+            _rumbling.Tick();
+        }
+
         private void OnActiveDeviceChange()
         {
             if (_inputDevices.ActiveDevice == DeviceType.Gamepad)
