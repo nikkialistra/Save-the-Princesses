@@ -10,8 +10,7 @@ namespace Trains.HandConnections
     [RequireComponent(typeof(SpriteRenderer))]
     public class Hands : MonoBehaviour
     {
-        [SerializeField] private TrainCharacter _trainCharacter;
-
+        private TrainCharacter _trainCharacter;
         private TrainCharacter _nextTrainCharacter;
 
         private bool _linked;
@@ -27,8 +26,10 @@ namespace Trains.HandConnections
             _handsSprites = handsSprites;
         }
 
-        public void Initialize()
+        public void Initialize(TrainCharacter trainCharacter)
         {
+            _trainCharacter = trainCharacter;
+
             _spriteRenderer = GetComponent<SpriteRenderer>();
 
             _handsType = _trainCharacter.IsHero ? HandsType.HeroToPrincess : HandsType.PrincessToPrincess;
@@ -36,7 +37,7 @@ namespace Trains.HandConnections
             _trainCharacter.NextChange += OnNextChange;
         }
 
-        private void Update()
+        public void Tick()
         {
             if (!_linked) return;
 

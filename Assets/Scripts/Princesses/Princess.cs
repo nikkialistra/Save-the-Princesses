@@ -97,6 +97,7 @@ namespace Princesses
             if (!Active) return;
 
             _character.Tick();
+            TrainCharacter.Tick();
         }
 
         public void FixedTick()
@@ -228,12 +229,14 @@ namespace Princesses
             _elements.Initialize(this, _character.Animator);
             _actualVelocity = new PrincessActualVelocity(this);
 
-            _hand.Initialize();
+            _hand.Initialize(this, Hero);
         }
 
         private void DisposeComponents()
         {
             _character.Dispose();
+
+            TrainCharacter.Dispose();
 
             _elements.Dispose();
         }

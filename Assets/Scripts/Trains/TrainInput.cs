@@ -1,29 +1,18 @@
-﻿using UnityEngine;
-using UnityEngine.InputSystem;
-using Zenject;
+﻿using UnityEngine.InputSystem;
 
 namespace Trains
 {
-    [RequireComponent(typeof(Train))]
-    public class TrainInput : MonoBehaviour
+    public class TrainInput
     {
-        private Train _train;
+        private readonly Train _train;
 
-        private PlayerInput _playerInput;
+        private readonly InputAction _showTrainOrderNumbersAction;
 
-        private InputAction _showTrainOrderNumbersAction;
-
-        [Inject]
-        public void Construct(PlayerInput playerInput)
+        public TrainInput(Train train, PlayerInput playerInput)
         {
-            _playerInput = playerInput;
+            _train = train;
 
-            _showTrainOrderNumbersAction = _playerInput.actions.FindAction("Show Train Order Numbers");
-        }
-
-        public void Initialize()
-        {
-            _train = GetComponent<Train>();
+            _showTrainOrderNumbersAction = playerInput.actions.FindAction("Show Train Order Numbers");
 
             _showTrainOrderNumbersAction.started += ShowOrderNumbers;
             _showTrainOrderNumbersAction.canceled += HideOrderNumbers;

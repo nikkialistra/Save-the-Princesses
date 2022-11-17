@@ -3,6 +3,7 @@ using Characters;
 using Characters.Moving;
 using GameData.Settings;
 using TMPro;
+using Trains.HandConnections;
 using UnityEngine;
 
 namespace Trains.Characters
@@ -42,6 +43,7 @@ namespace Trains.Characters
             : GameSettings.Princess.DistanceBetweenPrincessesToStop;
 
         [SerializeField] private TMP_Text _orderNumber;
+        [SerializeField] private Hands _hands;
 
         private float HandsDeltaY => IsHero ? GameSettings.Hero.HandsDeltaY : GameSettings.Princess.HandsDeltaY;
 
@@ -57,6 +59,19 @@ namespace Trains.Characters
             _character = character;
             _moving = moving;
             _train = train;
+
+            if (!IsHero)
+                _hands.Initialize(this);
+        }
+
+        public void Dispose()
+        {
+            _hands.Dispose();
+        }
+
+        public void Tick()
+        {
+            _hands.Tick();
         }
 
         public void SetAsHero()

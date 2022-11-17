@@ -10,6 +10,8 @@ namespace GameData.Settings.Types
         public float UntieFinishTime => _untieFinishTime;
         public float TimeToDisableRopeAndLight => _timeToDisableRopeAndLight;
 
+        public float HandDistance => _handDistance;
+
         public float HandsDeltaY => _handsDeltaY;
 
         public float DistanceToHeroToMove => _distanceToHero;
@@ -32,6 +34,9 @@ namespace GameData.Settings.Types
         [SerializeField] private int _hitsToUntie = 3;
         [SerializeField] private float _untieFinishTime = 0.6f;
         [SerializeField] private float _timeToDisableRopeAndLight = 0.6f;
+
+        [Space]
+        [SerializeField] private float _handDistance = 0.5f;
 
         [Space]
         [SerializeField] private float _handsDeltaY = 0.4f;

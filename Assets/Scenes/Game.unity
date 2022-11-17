@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 121481526}
   - component: {fileID: 121481525}
-  - component: {fileID: 121481524}
   m_Layer: 0
   m_Name: Train
   m_TagString: Untagged
@@ -141,18 +140,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &121481524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 121481523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e32b60c6b9a4f5eba4c4f76cdc42dc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &121481525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1573,6 +1560,7 @@ MonoBehaviour:
     _hitsToUntie: 3
     _untieFinishTime: 0.6
     _timeToDisableRopeAndLight: 0.6
+    _handDistance: 0.5
     _handsDeltaY: 0.4
     _distanceToHero: 0.8
     _distanceBetweenPrincesses: 0.8

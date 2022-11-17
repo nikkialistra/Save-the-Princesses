@@ -4,6 +4,7 @@ using Heroes;
 using Sirenix.OdinInspector;
 using Trains.Characters;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Zenject;
 
 namespace Trains
@@ -17,21 +18,29 @@ namespace Trains
         private TrainCharacter _trainHero;
 
         private Hero _hero;
+        private PlayerInput _playerInput;
+
+        private TrainInput _input;
 
         [Inject]
-        public void Construct(Hero hero)
+        public void Construct(Hero hero, PlayerInput playerInput)
         {
             _hero = hero;
+            _playerInput = playerInput;
         }
 
         public void Initialize()
         {
+            _input = new TrainInput(this, _playerInput);
+
             _trainHero = _hero.TrainCharacter;
             _trainCharacters.Add(_trainHero);
         }
 
         public void Dispose()
         {
+            _input.Dispose();
+
             _trainCharacters.Clear();
         }
 
