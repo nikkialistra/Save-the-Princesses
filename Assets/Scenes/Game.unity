@@ -1020,6 +1020,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d588420ac98b4e46b8803e8afcd23dd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1369145402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1369145403}
+  - component: {fileID: 1369145404}
+  m_Layer: 0
+  m_Name: Rooms
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1369145403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369145402}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.826893, y: -4.0431232, z: 3.7707298}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1508061228}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1369145404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369145402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82747304480c44c0a5b006906d1fa7b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _roomPrefab: {fileID: 5731957735619916329, guid: 93b0589ff82ac6d45be8a028c4becc10, type: 3}
 --- !u!1 &1470453269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,6 +1258,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1699712177}
+  - {fileID: 1369145403}
   - {fileID: 224152723}
   - {fileID: 838829059}
   - {fileID: 1127293788}
@@ -1505,6 +1560,7 @@ MonoBehaviour:
     _destinationSearchTriesCount: 6
     _hitBlinkingTime: 0.18
   _heroSettings:
+    _attackDirectionDistance: 1.5
     _inversionAngle: 90
     _minTimeToChangeInversion: 0.02
     _inversionFlickeringDelta: 0.5
@@ -1865,7 +1921,7 @@ MonoBehaviour:
   _playerInput: {fileID: 803020352}
   _camera: {fileID: 7217504656796712229}
   _hero: {fileID: 1683786886}
-  _room: {fileID: 5731957735619916329, guid: 93b0589ff82ac6d45be8a028c4becc10, type: 3}
+  _roomFactory: {fileID: 1369145404}
   _navigation: {fileID: 1470453273}
   _princessFactory: {fileID: 224152725}
   _enemyFactory: {fileID: 838829060}

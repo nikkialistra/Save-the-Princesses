@@ -6,6 +6,8 @@ namespace Surrounding.Rooms.Services
 {
     public class RoomFactory : SerializedMonoBehaviour
     {
+        [SerializeField] private Room _roomPrefab;
+
         private DiContainer _diContainer;
 
         [Inject]
@@ -16,7 +18,7 @@ namespace Surrounding.Rooms.Services
 
         public Room Create(RoomKind roomKind, Transform parent)
         {
-            var room = _diContainer.InstantiatePrefabForComponent<Room>(roomKind.Map);
+            var room = _diContainer.InstantiatePrefabForComponent<Room>(_roomPrefab);
             room.Initialize(roomKind, parent);
 
             return room;

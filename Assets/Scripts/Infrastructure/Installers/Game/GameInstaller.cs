@@ -17,6 +17,7 @@ using Saving.Saves;
 using Sirenix.OdinInspector;
 using Surrounding;
 using Surrounding.Rooms;
+using Surrounding.Rooms.Services;
 using Trains;
 using Trains.HandConnections;
 using UI;
@@ -38,7 +39,7 @@ namespace Infrastructure.Installers.Game
         [Title("General")]
         [SerializeField] private Camera _camera;
         [SerializeField] private Hero _hero;
-        [SerializeField] private Room _room;
+        [SerializeField] private RoomFactory _roomFactory;
         [SerializeField] private Navigation _navigation;
 
         [Title("Characters")]
@@ -107,7 +108,7 @@ namespace Infrastructure.Installers.Game
         {
             Container.BindInstance(_camera);
             Container.BindInterfacesAndSelfTo<Hero>().FromInstance(_hero);
-            Container.BindInstance(_room);
+            Container.BindInstance(_roomFactory);
             Container.BindInstance(_navigation);
         }
 
