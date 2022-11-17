@@ -1,7 +1,7 @@
 ﻿using Enemies.Services.Repositories;
 using Princesses.Services.Repositories;
 
-namespace Surrounding.Rooms
+namespace Surrounding.Rooms.Services
 {
     public class RoomRepositories
     {

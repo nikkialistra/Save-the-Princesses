@@ -1,5 +1,6 @@
 ﻿using System;
 using Surrounding.Rooms;
+using Surrounding.Rooms.Services;
 using Zenject;
 
 namespace Infrastructure.Bootstrap

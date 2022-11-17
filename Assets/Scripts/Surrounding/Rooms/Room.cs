@@ -3,6 +3,8 @@ using Enemies.Services;
 using Pathfinding;
 using Princesses.Services;
 using SuperTiled2Unity;
+using Surrounding.Extensions;
+using Surrounding.Rooms.Services;
 using UnityEngine;
 using Zenject;
 
@@ -15,7 +17,7 @@ namespace Surrounding.Rooms
 
         public RoomRepositories Repositories { get; private set; }
 
-        [SerializeField] private LayerMask _foreground;
+        [SerializeField] private LayerMask _foregroundLayers;
 
         private readonly Collider2D[] _boundHits = new Collider2D[10];
 
@@ -76,7 +78,7 @@ namespace Surrounding.Rooms
             var size = Physics2D.OverlapPointNonAlloc(point, _boundHits);
 
             for (int i = 0; i < size; i++)
-                if (_boundHits[i].gameObject.layer == _foreground)
+                if (_foregroundLayers.Contains(_boundHits[i].gameObject.layer))
                     return true;
 
             return false;

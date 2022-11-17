@@ -5,6 +5,7 @@ using Infrastructure.Bootstrap;
 using Princesses.Services;
 using Princesses.Services.Repositories;
 using Surrounding.Rooms;
+using Surrounding.Rooms.Services;
 using UnityEngine;
 using Zenject;
 

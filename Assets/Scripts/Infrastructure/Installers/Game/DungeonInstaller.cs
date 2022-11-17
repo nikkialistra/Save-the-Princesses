@@ -1,7 +1,9 @@
 ﻿using Dungeons;
+using GameData.Rooms;
 using Infrastructure.Bootstrap;
 using Sirenix.OdinInspector;
 using Surrounding.Rooms;
+using Surrounding.Rooms.Services;
 using Surrounding.Staging;
 using UnityEngine;
 using Zenject;
@@ -16,8 +18,9 @@ namespace Infrastructure.Installers.Game
         [SerializeField] private Dungeon _dungeon;
 
         [Title("Rooms")]
-        [SerializeField] private RoomGenerator _roomGenerator;
+        [SerializeField] private RoomFrequencyRegistry _roomFrequencyRegistry;
         [SerializeField] private GameObject _roomPrefab;
+        [SerializeField] private Transform _roomsParent;
 
         public override void InstallBindings()
         {
@@ -32,12 +35,11 @@ namespace Infrastructure.Installers.Game
 
         private void BindRooms()
         {
-            Container.BindInstance(_roomGenerator);
+            Container.BindInstance(_roomFrequencyRegistry);
 
-            Container.BindFactory<Room, Room.Factory>()
-                .FromSubContainerResolve()
-                .ByNewContextPrefab(_roomPrefab)
-                .UnderTransform(_roomGenerator.transform);
+            Container.Bind<RoomGenerator>().AsSingle();
+
+            Container.BindInstance(_roomsParent).WhenInjectedInto<RoomGenerator>();
         }
 
         private void BindStages()

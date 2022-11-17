@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Surrounding.Rooms;
+using Surrounding.Rooms.Services;
 using UnityEngine;
 using Zenject;
 
@@ -16,6 +17,8 @@ namespace Surrounding.Staging
 
         private ActiveRepositories _activeRepositories;
 
+        private StageType _stageType;
+
         [Inject]
         public void Construct(RoomGenerator roomGenerator, ActiveRepositories activeRepositories)
         {
@@ -28,6 +31,8 @@ namespace Surrounding.Staging
         {
             name = stageType.GetName();
 
+            _stageType = stageType;
+
             GenerateRooms();
 
             await SetupNavigation();
@@ -37,7 +42,7 @@ namespace Surrounding.Staging
 
         private void GenerateRooms()
         {
-            var room = _roomGenerator.Create(transform);
+            var room = _roomGenerator.Create(_stageType, transform);
 
             AddRoom(room);
             ChangeActiveRoomTo(room);
