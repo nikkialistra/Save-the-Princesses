@@ -3,14 +3,14 @@ using Saving.Progress.Dungeon;
 using UI.HealthBar;
 using UI.Stats;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Zenject;
 
 namespace UI
 {
+    [RequireComponent(typeof(UIDocument))]
     [RequireComponent(typeof(HealthBarView))]
     [RequireComponent(typeof(HealthBarDigitsView))]
-    [RequireComponent(typeof(AmmoView))]
-    [RequireComponent(typeof(StatsView))]
     [RequireComponent(typeof(GoldView))]
     public class GameInterfaceControl : MonoBehaviour
     {
@@ -21,6 +21,8 @@ namespace UI
         private GoldView _goldView;
 
         private Hero _hero;
+
+        private VisualElement _uiRoot;
 
         [Inject]
         public void Construct(Hero hero)
@@ -34,8 +36,8 @@ namespace UI
 
             _healthBarDigitsView.Initialize();
             _healthBarView.Initialize(_hero);
-            _ammoView.Initialize();
-            _statsView.Initialize(_hero);
+            _ammoView.Initialize(_uiRoot);
+            _statsView.Initialize(_uiRoot, _hero);
             _goldView.Initialize();
         }
 
@@ -52,10 +54,10 @@ namespace UI
 
         private void FillComponents()
         {
+            _uiRoot = GetComponent<UIDocument>().rootVisualElement;
+
             _healthBarView = GetComponent<HealthBarView>();
             _healthBarDigitsView = GetComponent<HealthBarDigitsView>();
-            _ammoView = GetComponent<AmmoView>();
-            _statsView = GetComponent<StatsView>();
             _goldView = GetComponent<GoldView>();
         }
     }

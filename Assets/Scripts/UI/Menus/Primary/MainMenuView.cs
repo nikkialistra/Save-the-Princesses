@@ -17,7 +17,7 @@ namespace UI.Menus.Primary
 
         public event Action HideCurrent;
 
-        [SerializeField] private GameSettings _gameSettings;
+        private GameSettings _gameSettings;
 
         private VisualElement _tree;
 

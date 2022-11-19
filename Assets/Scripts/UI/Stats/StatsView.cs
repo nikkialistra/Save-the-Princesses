@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 namespace UI.Stats
 {
-    public class StatsView : MonoBehaviour
+    public class StatsView
     {
         private StatView _maxHealth;
         private StatView _meleeDamage;
@@ -19,11 +19,9 @@ namespace UI.Stats
 
         private VisualElement _root;
 
-        public void Initialize(Hero hero)
+        public void Initialize(VisualElement root, Hero hero)
         {
-            _root = GetComponent<UIDocument>().rootVisualElement;
-
-            var allStats = hero.Stats;
+            _root = root;
 
             BindStatsUi();
             BindStats(hero.Stats);

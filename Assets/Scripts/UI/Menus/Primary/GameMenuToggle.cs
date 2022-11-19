@@ -13,8 +13,8 @@ namespace UI.Menus.Primary
     {
         public event Action HideCurrent;
 
-        public event Action GamePause;
-        public event Action GameResume;
+        public event Action GamePaused;
+        public event Action GameResumed;
 
         private VisualElement _root;
 
@@ -65,13 +65,13 @@ namespace UI.Menus.Primary
         private void DoPause()
         {
             _timeToggling.Pause();
-            GamePause?.Invoke();
+            GamePaused?.Invoke();
         }
 
         private void DoResume()
         {
             _timeToggling.Resume();
-            GameResume?.Invoke();
+            GameResumed?.Invoke();
         }
 
         private void ToggleMenu(InputAction.CallbackContext context)

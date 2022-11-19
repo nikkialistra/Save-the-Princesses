@@ -47,15 +47,15 @@ namespace UI.HealthBar
 
         private void BindUi()
         {
-            var root = GetComponent<UIDocument>().rootVisualElement;
-
-            _background = root.Q<VisualElement>("health-bar");
-            _frame = root.Q<VisualElement>("health-bar__frame");
-
             _digitsView = GetComponent<HealthBarDigitsView>();
 
             _decreaseAnimations = GetComponent<HealthBarDecreaseAnimations>();
             _increaseAnimations = GetComponent<HealthBarIncreaseAnimations>();
+
+            var root = GetComponent<UIDocument>().rootVisualElement;
+
+            _background = root.Q<VisualElement>("health-bar");
+            _frame = root.Q<VisualElement>("health-bar__frame");
         }
 
         private void BindHealth(CharacterHealth heroHealth)
