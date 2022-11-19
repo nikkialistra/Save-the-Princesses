@@ -1,33 +1,25 @@
-﻿using UI;
-using UnityEngine;
-using Zenject;
+﻿using System;
 
 namespace Heroes.Accumulations
 {
-    public class HeroGold : MonoBehaviour
+    public class HeroGold
     {
+        public event Action<int> QuantityChanged;
+
         private int _quantity;
-
-        private GoldView _goldView;
-
-        [Inject]
-        public void Construct(GoldView goldView)
-        {
-            _goldView = goldView;
-        }
 
         public void Add(int value)
         {
             _quantity += value;
 
-            _goldView.UpdateQuantity(_quantity);
+            QuantityChanged?.Invoke(_quantity);
         }
 
         public void Remove(int value)
         {
             _quantity -= value;
 
-            _goldView.UpdateQuantity(_quantity);
+            QuantityChanged?.Invoke(_quantity);
         }
     }
 }

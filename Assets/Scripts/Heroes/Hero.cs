@@ -6,8 +6,10 @@ using Characters.Stats;
 using Combat.Weapons;
 using GameData.Settings;
 using GameData.Stats;
+using Heroes.Accumulations;
 using Heroes.Attacks;
 using Princesses.Services.Repositories;
+using Surrounding.Collectables;
 using Trains;
 using Trains.Characters;
 using UnityEngine;
@@ -28,6 +30,8 @@ namespace Heroes
 
         public CharacterHealth Health => _character.Health;
         public TrainCharacter TrainCharacter { get; private set; }
+
+        public HeroCollector Collector { get; private set; } = new();
 
         public AllStats Stats => _character.Stats;
 
@@ -79,6 +83,12 @@ namespace Heroes
             _character.Slain -= OnSlain;
 
             DisposeComponents();
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.GetComponent(typeof(Collectable)) is Collectable collectable)
+                Collector.Pickup(collectable);
         }
 
         public void SetWeapon(Weapon weapon)
@@ -141,6 +151,8 @@ namespace Heroes
         {
             _character = GetComponent<Character>();
             TrainCharacter = GetComponent<TrainCharacter>();
+
+            Collector = GetComponent<HeroCollector>();
         }
 
         private void InitializeComponents(InitialStats initialStats)

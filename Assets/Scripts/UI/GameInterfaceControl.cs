@@ -35,16 +35,18 @@ namespace UI
             FillComponents();
 
             _healthBarDigitsView.Initialize();
-            _healthBarView.Initialize(_hero);
-            _ammoView.Initialize(_uiRoot);
-            _statsView.Initialize(_uiRoot, _hero);
-            _goldView.Initialize();
+            _healthBarView.Initialize(_hero.Health);
+            _ammoView = new AmmoView(_uiRoot, _hero.Collector.Ammo);
+            _statsView = new StatsView(_uiRoot, _hero);
+            _goldView.Initialize(_hero.Collector.Gold);
         }
 
         public void Dispose()
         {
             _healthBarView.Dispose();
+            _ammoView.Dispose();
             _statsView.Dispose();
+            _goldView.Dispose();
         }
 
         public void LoadProgress(DungeonProgress progress)

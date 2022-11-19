@@ -1,6 +1,6 @@
 ﻿using Characters.Stats;
 using Heroes;
-using UnityEngine;
+
 using UnityEngine.UIElements;
 
 namespace UI.Stats
@@ -17,9 +17,9 @@ namespace UI.Stats
         private StatView _vampirism;
         private StatView _luck;
 
-        private VisualElement _root;
+        private readonly VisualElement _root;
 
-        public void Initialize(VisualElement root, Hero hero)
+        public StatsView(VisualElement root, Hero hero)
         {
             _root = root;
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Heroes.Accumulations;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -14,19 +15,28 @@ namespace UI
 
         private Coroutine _hideAfterCoroutine;
 
-        public void Initialize()
+        private HeroGold _heroGold;
+
+        public void Initialize(HeroGold heroGold)
         {
+            _heroGold = heroGold;
+
             var root = GetComponent<UIDocument>().rootVisualElement;
 
             _container = root.Q<VisualElement>("gold");
-
             _quantity = root.Q<Label>("gold__quantity");
 
             Hide();
+
+            _heroGold.QuantityChanged += UpdateQuantity;
         }
 
-        [Button]
-        public void UpdateQuantity(int quantity)
+        public void Dispose()
+        {
+            _heroGold.QuantityChanged -= UpdateQuantity;
+        }
+
+        private void UpdateQuantity(int quantity)
         {
             Show();
 

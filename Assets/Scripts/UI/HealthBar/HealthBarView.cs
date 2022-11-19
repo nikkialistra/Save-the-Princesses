@@ -33,11 +33,11 @@ namespace UI.HealthBar
 
         private CharacterHealth _heroHealth;
 
-        public void Initialize(Hero hero)
+        public void Initialize(CharacterHealth heroHealth)
         {
             BindUi();
             InitializeAnimations();
-            BindHealth(hero.Health);
+            BindHealth(heroHealth);
         }
 
         public void Dispose()

@@ -1698,10 +1698,7 @@ GameObject:
   - component: {fileID: 1972371813}
   - component: {fileID: 1972371812}
   - component: {fileID: 1972371811}
-  - component: {fileID: 1972371810}
-  - component: {fileID: 1972371809}
   - component: {fileID: 1972371808}
-  - component: {fileID: 1972371807}
   m_Layer: 0
   m_Name: Game Interface
   m_TagString: Untagged
@@ -1709,19 +1706,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1972371807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1972371806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2047015feba478eb5a331ac119bb6b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _uiDocument: {fileID: 0}
 --- !u!114 &1972371808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1735,30 +1719,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToHide: 5
---- !u!114 &1972371809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1972371806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cff1d658b7d544e2b45dca23ed90611e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1972371810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1972371806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac5fc3e3cfb646ddbd84d8ad369eca02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1972371811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1920,12 +1880,9 @@ MonoBehaviour:
   _train: {fileID: 121481525}
   _handsSprites: {fileID: 1058244649}
   _healthBarView: {fileID: 1972371814}
-  _ammoView: {fileID: 1972371810}
-  _statsView: {fileID: 1972371809}
   _goldView: {fileID: 1972371808}
   _gameInterfaceControl: {fileID: 1972371816}
   _inputControl: {fileID: 1251789107}
-  _gamepadEffects: {fileID: 1251789106}
 --- !u!114 &2023767274
 MonoBehaviour:
   m_ObjectHideFlags: 0

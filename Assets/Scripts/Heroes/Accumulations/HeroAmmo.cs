@@ -1,31 +1,22 @@
-﻿using Sirenix.OdinInspector;
-using UI;
-using UnityEngine;
-using Zenject;
+﻿using System;
 
 namespace Heroes.Accumulations
 {
-    public class HeroAmmo : MonoBehaviour
+    public class HeroAmmo
     {
         private const int MaxQuantity = 4;
 
+        public event Action<int> QuantityChanged;
+
         private int _quantity;
 
-        private AmmoView _ammoView;
-
-        [Inject]
-        public void Construct(AmmoView ammoView)
+        public bool TryIncrease(int value)
         {
-            _ammoView = ammoView;
-        }
-
-        public bool TryIncrease()
-        {
-            if (_quantity == MaxQuantity)
+            if (_quantity + value > MaxQuantity)
                 return false;
 
-            _quantity++;
-            _ammoView.UpdateQuantity(_quantity);
+            _quantity += value;
+            QuantityChanged?.Invoke(_quantity);
 
             return true;
         }
@@ -36,7 +27,7 @@ namespace Heroes.Accumulations
                 return false;
 
             _quantity--;
-            _ammoView.UpdateQuantity(_quantity);
+            QuantityChanged?.Invoke(_quantity);
 
             return true;
         }

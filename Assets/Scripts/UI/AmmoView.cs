@@ -1,23 +1,34 @@
-﻿using UnityEngine.UIElements;
+﻿using Heroes.Accumulations;
+using UnityEngine.UIElements;
 
 namespace UI
 {
     public class AmmoView
     {
-        private VisualElement _charge1;
-        private VisualElement _charge2;
-        private VisualElement _charge3;
-        private VisualElement _charge4;
+        private readonly VisualElement _charge1;
+        private readonly VisualElement _charge2;
+        private readonly VisualElement _charge3;
+        private readonly VisualElement _charge4;
+        private readonly HeroAmmo _heroAmmo;
 
-        public void Initialize(VisualElement root)
+        public AmmoView(VisualElement root, HeroAmmo heroAmmo)
         {
+            _heroAmmo = heroAmmo;
+
             _charge1 = root.Q<VisualElement>("charge1");
             _charge2 = root.Q<VisualElement>("charge2");
             _charge3 = root.Q<VisualElement>("charge3");
             _charge4 = root.Q<VisualElement>("charge4");
+
+            _heroAmmo.QuantityChanged += UpdateQuantity;
         }
 
-        public void UpdateQuantity(int quantity)
+        public void Dispose()
+        {
+            _heroAmmo.QuantityChanged -= UpdateQuantity;
+        }
+
+        private void UpdateQuantity(int quantity)
         {
             UpdateCharge1(quantity);
             UpdateCharge2(quantity);
