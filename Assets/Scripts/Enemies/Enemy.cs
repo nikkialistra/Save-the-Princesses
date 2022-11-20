@@ -40,14 +40,10 @@ namespace Enemies
         private MeleeStats _meleeStats;
         private RangedStats _rangedStats;
 
-        [Inject]
-        public void Construct(Hero hero)
+        public void Initialize(Hero hero, InitialStats initialStats, EnemySpecs specs)
         {
             Hero = hero;
-        }
 
-        public void Initialize(InitialStats initialStats, EnemySpecs specs)
-        {
             _character = GetComponent<Character>();
 
             _specs = specs;

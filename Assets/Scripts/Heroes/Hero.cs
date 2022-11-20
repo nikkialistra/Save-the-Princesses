@@ -70,7 +70,6 @@ namespace Heroes
             FillComponents();
             InitializeComponents(initialStats);
 
-            TrainCharacter.SetAsHero();
             _character.SetCustomHitInvulnerabilityTime(GameSettings.Hero.HitInvulnerabilityTime);
 
             _attacker.StrokeStart += OnStrokeStart;
@@ -151,8 +150,6 @@ namespace Heroes
         {
             _character = GetComponent<Character>();
             TrainCharacter = GetComponent<TrainCharacter>();
-
-            Collector = GetComponent<HeroCollector>();
         }
 
         private void InitializeComponents(InitialStats initialStats)
@@ -164,6 +161,8 @@ namespace Heroes
             _moving = new HeroMoving(_input, _character.Moving);
             _animator = new HeroAnimator(_character.Animator);
             _attacker = new HeroAttacker(_playerInput);
+
+            Collector = new HeroCollector();
 
             _trainStatEffects = new HeroTrainStatEffects(_character);
             _princessGathering = new HeroPrincessGathering(_activePrincesses, transform, _playerInput);

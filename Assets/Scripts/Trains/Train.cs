@@ -23,14 +23,15 @@ namespace Trains
         private TrainInput _input;
 
         [Inject]
-        public void Construct(Hero hero, PlayerInput playerInput)
+        public void Construct(PlayerInput playerInput)
         {
-            _hero = hero;
             _playerInput = playerInput;
         }
 
-        public void Initialize()
+        public void Initialize(Hero hero)
         {
+            _hero = hero;
+
             _input = new TrainInput(this, _playerInput);
 
             _trainHero = _hero.TrainCharacter;

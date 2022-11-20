@@ -14,7 +14,6 @@ namespace Heroes.Attacks
 
         private Vector2 _direction = new(0, -1);
 
-        private InputDevices _inputDevices;
         private Camera _camera;
 
         private Hero _hero;
@@ -22,14 +21,16 @@ namespace Heroes.Attacks
         private InputAction _lookAction;
 
         [Inject]
-        public void Construct(Hero hero, InputDevices inputDevices, Camera camera, PlayerInput playerInput)
+        public void Construct(Camera camera, PlayerInput playerInput)
         {
-            _hero = hero;
-
-            _inputDevices = inputDevices;
             _camera = camera;
 
             _lookAction = playerInput.actions.FindAction("Look");
+        }
+
+        public void Initialize(Hero hero)
+        {
+            _hero = hero;
         }
 
         public void Tick()
@@ -41,7 +42,7 @@ namespace Heroes.Attacks
 
         private void UpdateAttackDirection()
         {
-            switch (_inputDevices.ActiveDevice)
+            switch (InputDevices.ActiveDevice)
             {
                 case DeviceType.Gamepad:
                     ComputeFromGamepad();

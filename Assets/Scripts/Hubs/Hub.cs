@@ -25,16 +25,16 @@ namespace Hubs
         private ActiveRepositories _activeRepositories;
 
         [Inject]
-        public void Construct(Hero hero, GameRun gameRun, ActiveRepositories activeRepositories)
+        public void Construct(GameRun gameRun, ActiveRepositories activeRepositories)
         {
-            _hero = hero;
-
             _gameRun = gameRun;
             _activeRepositories = activeRepositories;
         }
 
-        public async UniTaskVoid Initialize(Action onFinish)
+        public async UniTaskVoid Initialize(Hero hero, Action onFinish)
         {
+            _hero = hero;
+
             await InitializeHubRoom();
 
             _hero.PlaceAt(_heroSpawnPoint.position);

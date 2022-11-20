@@ -14,14 +14,10 @@ namespace Princesses.Types
         private TrainCharacter _trainCharacter;
         private Hero _hero;
 
-        [Inject]
-        public void Construct(Hero hero)
+        public void Initialize(Hero hero)
         {
             _hero = hero;
-        }
 
-        public void Initialize()
-        {
             _trainCharacter = GetComponent<TrainCharacter>();
 
             _trainCharacter.TrainEnter += OnTrainEnter;

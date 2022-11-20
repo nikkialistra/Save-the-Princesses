@@ -4,7 +4,6 @@ using Characters.Health;
 using Characters.Moving;
 using Characters.Stats;
 using Combat.Attacks;
-using Combat.Weapons;
 using GameData.Settings;
 using GameData.Stats;
 using Surrounding.Rooms;

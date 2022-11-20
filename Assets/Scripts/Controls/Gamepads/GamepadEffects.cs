@@ -24,7 +24,7 @@ namespace Controls.Gamepads
 
             _rumbling.Initialize(inputDevices);
 
-            if (_inputDevices.ActiveDevice == DeviceType.Gamepad)
+            if (InputDevices.ActiveDevice == DeviceType.Gamepad)
                 SubscribeToGameEvents();
 
             _inputDevices.ActiveDeviceChange += OnActiveDeviceChange;
@@ -46,7 +46,7 @@ namespace Controls.Gamepads
 
         private void OnActiveDeviceChange()
         {
-            if (_inputDevices.ActiveDevice == DeviceType.Gamepad)
+            if (InputDevices.ActiveDevice == DeviceType.Gamepad)
                 SubscribeToGameEvents();
             else
                 UnsubscribeFromGameEvents();

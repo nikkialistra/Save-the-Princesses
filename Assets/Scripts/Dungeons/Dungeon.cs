@@ -18,16 +18,17 @@ namespace Dungeons
         private GameRun _gameRun;
 
         [Inject]
-        public void Construct(Hero hero, Stages stages, GameRun gameRun)
+        public void Construct(Stages stages, GameRun gameRun)
         {
-            _hero = hero;
             _stages = stages;
 
             _gameRun = gameRun;
         }
 
-        public async UniTask Initialize()
+        public async UniTask Initialize(Hero hero)
         {
+            _hero = hero;
+
             await _stages.StartFirstStage();
 
             _hero.Slain += FinishRun;

@@ -2,6 +2,7 @@
 using Characters;
 using Characters.Moving;
 using GameData.Settings;
+using Sirenix.OdinInspector;
 using TMPro;
 using Trains.HandConnections;
 using UnityEngine;
@@ -15,8 +16,8 @@ namespace Trains.Characters
 
         public event Action NextChange;
 
-        public bool IsHero { get; private set; }
-        public bool InTrainNow => IsHero || Previous != null;
+        public bool IsHero => _isHero;
+        public bool InTrainNow => _isHero || Previous != null;
 
         public TrainCharacter Next
         {
@@ -34,18 +35,22 @@ namespace Trains.Characters
 
         public bool Moving => !_moving.Stopped;
 
-        public float DistanceToMove => IsHero
+        public float DistanceToMove => _isHero
             ? GameSettings.Princess.DistanceToHeroToMove
             : GameSettings.Princess.DistanceBetweenPrincessesToMove;
 
-        public float RequiredDistanceToStop => IsHero
+        public float RequiredDistanceToStop => _isHero
             ? GameSettings.Princess.DistanceToHeroToStop
             : GameSettings.Princess.DistanceBetweenPrincessesToStop;
 
+        [SerializeField] private bool _isHero;
+
+        [ShowIf("@_isHero == false")]
         [SerializeField] private TMP_Text _orderNumber;
+        [ShowIf("@_isHero == false")]
         [SerializeField] private Hands _hands;
 
-        private float HandsDeltaY => IsHero ? GameSettings.Hero.HandsDeltaY : GameSettings.Princess.HandsDeltaY;
+        private float HandsDeltaY => _isHero ? GameSettings.Hero.HandsDeltaY : GameSettings.Princess.HandsDeltaY;
 
         private TrainCharacter _next;
 
@@ -60,7 +65,7 @@ namespace Trains.Characters
             _moving = moving;
             _train = train;
 
-            if (!IsHero)
+            if (!_isHero)
                 _hands.Initialize(this);
         }
 
@@ -72,11 +77,6 @@ namespace Trains.Characters
         public void Tick()
         {
             _hands.Tick();
-        }
-
-        public void SetAsHero()
-        {
-            IsHero = true;
         }
 
         public void BindToPrevious(TrainCharacter previous)

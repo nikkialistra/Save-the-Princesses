@@ -24,13 +24,7 @@ namespace UI
 
         private VisualElement _uiRoot;
 
-        [Inject]
-        public void Construct(Hero hero)
-        {
-            _hero = hero;
-        }
-
-        public void Initialize()
+        public void Initialize(Hero hero)
         {
             FillComponents();
 

@@ -13,7 +13,7 @@ namespace Enemies.Services
     {
         [SerializeField] private Dictionary<EnemyType, EnemyData> _enemiesMap = new();
 
-        private GameControl _gameControl;
+        private GameModeControl _gameModeControl;
 
         private EnemyWeaponsRegistry _weaponsRegistry;
         private WeaponFactory _weaponFactory;
@@ -21,10 +21,10 @@ namespace Enemies.Services
         private DiContainer _diContainer;
 
         [Inject]
-        public void Construct(GameControl gameControl, EnemyWeaponsRegistry weaponsRegistry,
+        public void Construct(GameModeControl gameModeControl, EnemyWeaponsRegistry weaponsRegistry,
             WeaponFactory weaponFactory, DiContainer diContainer)
         {
-            _gameControl = gameControl;
+            _gameModeControl = gameModeControl;
 
             _weaponsRegistry = weaponsRegistry;
             _weaponFactory = weaponFactory;
@@ -45,13 +45,15 @@ namespace Enemies.Services
 
         private void SetupEnemy(Enemy enemy, EnemyType enemyType, EnemyData enemyData)
         {
+            var initialStats = enemyData.InitialStats.For(_gameModeControl.CurrentDifficulty);
+
+            enemy.Initialize(initialStats, enemyData.Specs);
+
             var weaponType = _weaponsRegistry.GetRandomWeaponTypeFor(enemyType);
             var weapon = _weaponFactory.Create(weaponType, enemy.transform);
 
-            var initialStats = enemyData.InitialStats.For(_gameControl.CurrentDifficulty);
-
-            enemy.Initialize(initialStats, enemyData.Specs);
             enemy.SetWeapon(weapon);
+
             enemy.Active = true;
         }
     }

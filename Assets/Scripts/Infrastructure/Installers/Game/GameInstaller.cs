@@ -1,5 +1,4 @@
 ﻿using Combat.Weapons.Services;
-using Controls.Gamepads;
 using Enemies.Services;
 using Enemies.Services.Repositories;
 using GameData.Enemies.Spawning;
@@ -9,6 +8,7 @@ using GameData.Settings;
 using GameData.Weapons.Registries;
 using GameSystems;
 using Heroes;
+using Heroes.Services;
 using Infrastructure.Bootstrap;
 using Infrastructure.Controls;
 using Princesses.Services;
@@ -22,7 +22,6 @@ using Trains;
 using Trains.HandConnections;
 using UI;
 using UI.HealthBar;
-using UI.Stats;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
@@ -43,6 +42,7 @@ namespace Infrastructure.Installers.Game
         [SerializeField] private Navigation _navigation;
 
         [Title("Characters")]
+        [SerializeField] private HeroFactory _heroFactory;
         [SerializeField] private PrincessFactory _princessFactory;
         [SerializeField] private EnemyFactory _enemyFactory;
 
@@ -60,8 +60,6 @@ namespace Infrastructure.Installers.Game
 
         [Title("Game Interface")]
         [SerializeField] private HealthBarView _healthBarView;
-        [SerializeField] private AmmoView _ammoView;
-        [SerializeField] private StatsView _statsView;
         [SerializeField] private GoldView _goldView;
 
         [Title("Controls")]
@@ -100,7 +98,7 @@ namespace Infrastructure.Installers.Game
 
         private void BindCore()
         {
-            Container.BindInstance(_gameSettings);
+            Container.BindInterfacesAndSelfTo<GameSettings>().FromInstance(_gameSettings);
             Container.BindInstance(_playerInput);
         }
 
@@ -120,6 +118,7 @@ namespace Infrastructure.Installers.Game
 
         private void BindCharacters()
         {
+            Container.BindInstance(_heroFactory);
             Container.BindInstance(_princessFactory);
             Container.BindInstance(_enemyFactory);
         }
@@ -153,13 +152,12 @@ namespace Infrastructure.Installers.Game
         private void BindUI()
         {
             Container.BindInstance(_healthBarView);
-            Container.BindInstance(_ammoView);
-            Container.BindInstance(_statsView);
             Container.BindInstance(_goldView);
         }
 
         private void BindControls()
         {
+            Container.Bind<GameModeControl>().AsSingle();
             Container.BindInstance(_gameInterfaceControl);
             Container.BindInterfacesAndSelfTo<InputControl>().FromInstance(_inputControl);
             Container.Bind<GameControls>().AsSingle();

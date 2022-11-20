@@ -66,15 +66,10 @@ namespace Princesses
 
         private Character _character;
 
-        [Inject]
-        public void Construct(Hero hero, Train train)
+        public void Initialize(Hero hero, InitialStats initialStats)
         {
             Hero = hero;
-            Train = train;
-        }
 
-        public void Initialize(InitialStats initialStats)
-        {
             _collider = GetComponent<CircleCollider2D>();
 
             FillComponents();

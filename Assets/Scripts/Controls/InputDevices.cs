@@ -13,7 +13,8 @@ namespace Controls
 
         public event Action ActiveDeviceChange;
 
-        public DeviceType ActiveDevice { get; private set; }
+        public static DeviceType ActiveDevice { get; private set; }
+
         public Gamepad Gamepad { get; private set; }
 
         private readonly PlayerInput _playerInput;
@@ -24,7 +25,7 @@ namespace Controls
 
             _playerInput.onControlsChanged += OnControlsChange;
 
-            FindGamepad();
+            OnControlsChange(_playerInput);
         }
 
         public void Dispose()

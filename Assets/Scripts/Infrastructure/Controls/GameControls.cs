@@ -17,7 +17,7 @@ namespace Infrastructure.Controls
 
         public void Initialize(Hero hero)
         {
-            _gameInterfaceControl.Initialize();
+            _gameInterfaceControl.Initialize(hero);
             _inputControl.Initialize(hero);
         }
 

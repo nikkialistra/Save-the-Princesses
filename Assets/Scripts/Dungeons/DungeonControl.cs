@@ -11,20 +11,18 @@ namespace Dungeons
         [SerializeField] private Transform _heroSpawnPoint;
 
         private Dungeon _dungeon;
-        private Hero _hero;
 
         [Inject]
-        public void Construct(Dungeon dungeon, Hero hero)
+        public void Construct(Dungeon dungeon)
         {
             _dungeon = dungeon;
-            _hero = hero;
         }
 
-        public async UniTaskVoid Initialize(Action onFinish)
+        public async UniTaskVoid Initialize(Hero hero, Action onFinish)
         {
-            await _dungeon.Initialize();
+            await _dungeon.Initialize(hero);
 
-            _hero.PlaceAt(_heroSpawnPoint.position);
+            hero.PlaceAt(_heroSpawnPoint.position);
 
             onFinish();
         }
