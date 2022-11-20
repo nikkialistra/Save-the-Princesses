@@ -1,6 +1,6 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
-using Heroes;
+using Infrastructure.Controls;
 using UnityEngine;
 using Zenject;
 
@@ -18,7 +18,7 @@ namespace Dungeons
             _dungeon = dungeon;
         }
 
-        public async UniTaskVoid Initialize(Hero hero, Action onFinish)
+        public async UniTaskVoid Initialize(HeroesControl heroesControl, Action onFinish)
         {
             await _dungeon.Initialize(hero);
 

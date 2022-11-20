@@ -28,13 +28,13 @@ namespace Enemies.Tasks
 
         private bool TryMoveToHero()
         {
-            if ((agent.Hero.Position - agent.Position).magnitude <= _attacker.AttackDistance)
+            if ((agent.ClosestHero.Position - agent.Position).magnitude <= _attacker.AttackDistance)
             {
                 _moving.Stop();
                 return false;
             }
 
-            _moving.FindPathTo(agent.Hero.Position);
+            _moving.FindPathTo(agent.ClosestHero.Position);
             return true;
         }
     }

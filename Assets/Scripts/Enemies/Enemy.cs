@@ -10,6 +10,7 @@ using Entities;
 using GameData.Enemies;
 using GameData.Stats;
 using Heroes;
+using Heroes.Services;
 using Surrounding.Rooms;
 using UnityEngine;
 using Zenject;
@@ -27,7 +28,7 @@ namespace Enemies
 
         public float ViewDistance => _specs.ViewDistance;
 
-        public Hero Hero { get; private set; }
+        public Hero ClosestHero => _heroClosestFinder.GetFor(transform.position);
         public EnemyAttacker Attacker { get; set; }
 
         public CharacterMoving Moving => _character.Moving;
@@ -40,9 +41,11 @@ namespace Enemies
         private MeleeStats _meleeStats;
         private RangedStats _rangedStats;
 
-        public void Initialize(Hero hero, InitialStats initialStats, EnemySpecs specs)
+        private HeroClosestFinder _heroClosestFinder;
+
+        public void Initialize(HeroClosestFinder heroClosestFinder, InitialStats initialStats, EnemySpecs specs)
         {
-            Hero = hero;
+            _heroClosestFinder = heroClosestFinder;
 
             _character = GetComponent<Character>();
 
@@ -102,7 +105,7 @@ namespace Enemies
         {
             _character.Initialize(CharacterType.Enemy, initialStats);
 
-            Attacker = new EnemyAttacker(_character, Hero);
+            Attacker = new EnemyAttacker(_character, ClosestHero);
         }
 
         private void DisposeComponents()

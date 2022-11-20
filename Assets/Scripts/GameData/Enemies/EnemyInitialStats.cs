@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using GameData.Stats;
 using GameSystems;
+using GameSystems.Parameters;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

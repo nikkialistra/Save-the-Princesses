@@ -5,6 +5,7 @@ using Characters.Moving;
 using Entities;
 using GameData.Stats;
 using Heroes;
+using Heroes.Services;
 using Princesses.Types;
 using Surrounding.Rooms;
 using Trains;
@@ -34,7 +35,7 @@ namespace Princesses
 
         public PrincessType Type => _type;
 
-        public Hero Hero { get; private set; }
+        public Hero ClosestHero => _heroClosestFinder.GetFor(transform.position);
 
         public bool Gathered { get; private set; }
         public bool ShowingGatherWish => _gatherWish.Showing;
@@ -66,9 +67,11 @@ namespace Princesses
 
         private Character _character;
 
-        public void Initialize(Hero hero, InitialStats initialStats)
+        private HeroClosestFinder _heroClosestFinder;
+
+        public void Initialize(HeroClosestFinder heroClosestFinder, InitialStats initialStats)
         {
-            Hero = hero;
+            _heroClosestFinder = heroClosestFinder;
 
             _collider = GetComponent<CircleCollider2D>();
 
@@ -155,7 +158,7 @@ namespace Princesses
 
         public void ChangeToHeroSpeed()
         {
-            _character.Stats.MovementSpeedStat.ChangeBaseValue(Hero.Stats.MovementSpeed);
+            _character.Stats.MovementSpeedStat.ChangeBaseValue(ClosestHero.Stats.MovementSpeed);
         }
 
         public void ElevateSpeed()
@@ -216,7 +219,7 @@ namespace Princesses
             _character.Initialize(CharacterType.Princess, initialStats);
 
             TrainCharacter.Initialize(_character, _character.Moving, Train);
-            MovingInTrain.Initialize(Moving, _character.Stats, Hero);
+            MovingInTrain.Initialize(Moving, _character.Stats, ClosestHero);
 
             _animators.Initialize();
             _gatherWish = new PrincessGatherWish(this, _character.Animator);
@@ -224,7 +227,7 @@ namespace Princesses
             _elements.Initialize(this, _character.Animator);
             _actualVelocity = new PrincessActualVelocity(this);
 
-            _hand.Initialize(this, Hero);
+            _hand.Initialize(this, ClosestHero);
         }
 
         private void DisposeComponents()

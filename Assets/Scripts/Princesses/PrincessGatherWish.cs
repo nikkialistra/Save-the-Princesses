@@ -47,7 +47,7 @@ namespace Princesses
         {
             while (true)
             {
-                var directionToHero = (_princess.Hero.Position - _princess.Position).normalized;
+                var directionToHero = (_princess.ClosestHero.Position - _princess.Position).normalized;
 
                 _animator.LookTo(directionToHero);
 

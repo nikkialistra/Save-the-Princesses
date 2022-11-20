@@ -1,5 +1,7 @@
 ﻿using System;
+using Heroes.Services;
 using Hubs;
+using Infrastructure.Controls;
 using Surrounding;
 using UI;
 using Zenject;
@@ -9,15 +11,17 @@ namespace Infrastructure.Bootstrap
     public class HubBootstrap : IInitializable, IDisposable
     {
         private Hub _hub;
+        private HeroesControl _heroesControl;
 
         private ActiveRepositories _activeRepositories;
 
         private LoadingScreen _loadingScreen;
 
         [Inject]
-        public void Construct(Hub hub, ActiveRepositories activeRepositories, LoadingScreen loadingScreen)
+        public void Construct(Hub hub, HeroesControl heroesControl, ActiveRepositories activeRepositories, LoadingScreen loadingScreen)
         {
             _hub = hub;
+            _heroesControl = heroesControl;
 
             _activeRepositories = activeRepositories;
 
@@ -26,7 +30,7 @@ namespace Infrastructure.Bootstrap
 
         public void Initialize()
         {
-            _hub.Initialize(HideLoadingScreen).Forget();
+            _hub.Initialize(_heroesControl, HideLoadingScreen).Forget();
         }
 
         private void HideLoadingScreen()

@@ -2,7 +2,9 @@
 using Cysharp.Threading.Tasks;
 using GameSystems;
 using Heroes;
+using Heroes.Services;
 using Infrastructure;
+using Infrastructure.Controls;
 using Surrounding;
 using Surrounding.Rooms;
 using UnityEngine;
@@ -31,7 +33,7 @@ namespace Hubs
             _activeRepositories = activeRepositories;
         }
 
-        public async UniTaskVoid Initialize(Hero hero, Action onFinish)
+        public async UniTaskVoid Initialize(HeroesControl heroesControl, Action onFinish)
         {
             _hero = hero;
 

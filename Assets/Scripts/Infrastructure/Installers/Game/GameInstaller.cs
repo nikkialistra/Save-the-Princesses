@@ -62,7 +62,7 @@ namespace Infrastructure.Installers.Game
         [SerializeField] private HealthBarView _healthBarView;
         [SerializeField] private GoldView _goldView;
 
-        [Title("Controls")]
+        [Title("General Controls")]
         [SerializeField] private GameInterfaceControl _gameInterfaceControl;
         [SerializeField] private InputControl _inputControl;
 
@@ -79,6 +79,7 @@ namespace Infrastructure.Installers.Game
             BindCore();
             BindGeneral();
 
+            BindHeroes();
             BindCharactersPicking();
             BindCharacters();
             BindWeapons();
@@ -88,7 +89,7 @@ namespace Infrastructure.Installers.Game
             BindTrainSystem();
 
             BindUI();
-            BindControls();
+            BindGeneralControls();
 
             BindGameRun();
 
@@ -105,9 +106,14 @@ namespace Infrastructure.Installers.Game
         private void BindGeneral()
         {
             Container.BindInstance(_camera);
-            Container.BindInterfacesAndSelfTo<Hero>().FromInstance(_hero);
             Container.BindInstance(_roomFactory);
             Container.BindInstance(_navigation);
+        }
+
+        private void BindHeroes()
+        {
+            Container.Bind<HeroClosestFinder>().AsSingle();
+            Container.Bind<HeroesControl>().AsSingle();
         }
 
         private void BindCharactersPicking()
@@ -155,9 +161,9 @@ namespace Infrastructure.Installers.Game
             Container.BindInstance(_goldView);
         }
 
-        private void BindControls()
+        private void BindGeneralControls()
         {
-            Container.Bind<GameModeControl>().AsSingle();
+            Container.Bind<GameParameters>().AsSingle();
             Container.BindInstance(_gameInterfaceControl);
             Container.BindInterfacesAndSelfTo<InputControl>().FromInstance(_inputControl);
             Container.Bind<GameControls>().AsSingle();

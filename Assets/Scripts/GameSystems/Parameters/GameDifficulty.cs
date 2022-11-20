@@ -1,4 +1,4 @@
-﻿namespace GameSystems
+﻿namespace GameSystems.Parameters
 {
     public enum GameDifficulty
     {

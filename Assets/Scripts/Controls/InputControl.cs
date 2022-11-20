@@ -1,5 +1,7 @@
 ﻿using Controls.Gamepads;
 using Heroes;
+using Heroes.Services;
+using Infrastructure.Controls;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
@@ -20,7 +22,7 @@ namespace Controls
             _playerInput = playerInput;
         }
 
-        public void Initialize(Hero hero)
+        public void Initialize(HeroesControl heroesControl)
         {
             _gamepadEffects = GetComponent<GamepadEffects>();
 

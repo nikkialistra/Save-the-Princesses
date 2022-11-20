@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using GameData.Princesses;
+using Heroes.Services;
 using Princesses.Types;
 using Sirenix.OdinInspector;
 using Surrounding.Staging;
@@ -12,11 +13,15 @@ namespace Princesses.Services
     {
         [SerializeField] private Dictionary<PrincessType, PrincessData> _princessesMap = new();
 
+        private HeroClosestFinder _heroClosestFinder;
+
         private DiContainer _diContainer;
 
         [Inject]
-        public void Construct(DiContainer diContainer)
+        public void Construct(HeroClosestFinder heroClosestFinder, DiContainer diContainer)
         {
+            _heroClosestFinder = heroClosestFinder;
+
             _diContainer = diContainer;
         }
 
@@ -26,7 +31,7 @@ namespace Princesses.Services
 
             var princess = _diContainer.InstantiatePrefabForComponent<Princess>(princessData.Prefab);
 
-            princess.Initialize(princessData.InitialStats.For(stageType));
+            princess.Initialize(_heroClosestFinder, princessData.InitialStats.For(stageType));
             princess.Active = true;
 
             return princess;

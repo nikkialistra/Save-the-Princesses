@@ -1,10 +1,9 @@
-﻿using Heroes;
+﻿using Infrastructure.Controls;
 using Saving.Progress.Dungeon;
 using UI.HealthBar;
 using UI.Stats;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Zenject;
 
 namespace UI
 {
@@ -20,19 +19,19 @@ namespace UI
         private StatsView _statsView;
         private GoldView _goldView;
 
-        private Hero _hero;
-
         private VisualElement _uiRoot;
 
-        public void Initialize(Hero hero)
+        public void Initialize(HeroesControl heroesControl)
         {
             FillComponents();
 
+            var hero = heroesControl.First;
+
             _healthBarDigitsView.Initialize();
-            _healthBarView.Initialize(_hero.Health);
-            _ammoView = new AmmoView(_uiRoot, _hero.Collector.Ammo);
-            _statsView = new StatsView(_uiRoot, _hero);
-            _goldView.Initialize(_hero.Collector.Gold);
+            _healthBarView.Initialize(hero.Health);
+            _ammoView = new AmmoView(_uiRoot, hero.Collector.Ammo);
+            _statsView = new StatsView(_uiRoot, hero);
+            _goldView.Initialize(hero.Collector.Gold);
         }
 
         public void Dispose()

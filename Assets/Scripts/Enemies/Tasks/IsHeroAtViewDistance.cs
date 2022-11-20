@@ -8,7 +8,7 @@ namespace Enemies.Tasks
     {
         protected override bool OnCheck()
         {
-            var distance = (agent.Hero.Position - agent.Position).magnitude;
+            var distance = (agent.ClosestHero.Position - agent.Position).magnitude;
 
             return distance <= agent.ViewDistance;
         }

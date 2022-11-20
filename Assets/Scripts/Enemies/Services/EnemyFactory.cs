@@ -3,6 +3,7 @@ using Combat.Weapons.Services;
 using GameData.Enemies;
 using GameData.Weapons.Registries;
 using GameSystems;
+using Heroes.Services;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
@@ -13,21 +14,25 @@ namespace Enemies.Services
     {
         [SerializeField] private Dictionary<EnemyType, EnemyData> _enemiesMap = new();
 
-        private GameModeControl _gameModeControl;
+        private GameParameters _gameParameters;
 
         private EnemyWeaponsRegistry _weaponsRegistry;
         private WeaponFactory _weaponFactory;
 
+        private HeroClosestFinder _heroClosestFinder;
+
         private DiContainer _diContainer;
 
         [Inject]
-        public void Construct(GameModeControl gameModeControl, EnemyWeaponsRegistry weaponsRegistry,
-            WeaponFactory weaponFactory, DiContainer diContainer)
+        public void Construct(GameParameters gameParameters, EnemyWeaponsRegistry weaponsRegistry,
+            WeaponFactory weaponFactory, HeroClosestFinder heroClosestFinder, DiContainer diContainer)
         {
-            _gameModeControl = gameModeControl;
+            _gameParameters = gameParameters;
 
             _weaponsRegistry = weaponsRegistry;
             _weaponFactory = weaponFactory;
+
+            _heroClosestFinder = heroClosestFinder;
 
             _diContainer = diContainer;
         }
@@ -45,9 +50,9 @@ namespace Enemies.Services
 
         private void SetupEnemy(Enemy enemy, EnemyType enemyType, EnemyData enemyData)
         {
-            var initialStats = enemyData.InitialStats.For(_gameModeControl.CurrentDifficulty);
+            var initialStats = enemyData.InitialStats.For(_gameParameters.CurrentDifficulty);
 
-            enemy.Initialize(initialStats, enemyData.Specs);
+            enemy.Initialize(_heroClosestFinder, initialStats, enemyData.Specs);
 
             var weaponType = _weaponsRegistry.GetRandomWeaponTypeFor(enemyType);
             var weapon = _weaponFactory.Create(weaponType, enemy.transform);

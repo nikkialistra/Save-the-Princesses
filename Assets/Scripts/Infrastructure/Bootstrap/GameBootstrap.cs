@@ -1,7 +1,5 @@
 ﻿using System;
-using Combat.Weapons;
 using Heroes;
-using Heroes.Services;
 using Infrastructure.Controls;
 using Infrastructure.Loading;
 using Saving.Progress;
@@ -13,7 +11,6 @@ namespace Infrastructure.Bootstrap
 {
     public class GameBootstrap : IInitializable, IDisposable
     {
-        private readonly HeroFactory _heroFactory;
         private readonly GameControls _gameControls;
 
         private readonly SceneLoader _sceneLoader;
@@ -22,12 +19,9 @@ namespace Infrastructure.Bootstrap
 
         private Hero _hero;
 
-        public GameBootstrap(HeroFactory heroFactory, Train train, GameControls gameControls,
+        public GameBootstrap(GameControls gameControls,
             SceneLoader sceneLoader, GameProgress gameProgress)
         {
-            _heroFactory = heroFactory;
-            _train = train;
-
             _gameControls = gameControls;
 
             _sceneLoader = sceneLoader;
@@ -36,10 +30,7 @@ namespace Infrastructure.Bootstrap
 
         public void Initialize()
         {
-            _hero = _heroFactory.CreateWith(WeaponType.None);
-            _train.Initialize(_hero);
-
-            _gameControls.Initialize(_hero);
+            _gameControls.Initialize();
 
             LoadGame();
         }
