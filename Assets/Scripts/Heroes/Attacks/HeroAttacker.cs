@@ -24,8 +24,7 @@ namespace Heroes.Attacks
 
         public void Dispose()
         {
-            if (_weapon != null)
-                _weapon.Dispose();
+            _weapon.Dispose();
         }
 
         public void SetWeapon(Weapon weapon)
@@ -35,8 +34,7 @@ namespace Heroes.Attacks
 
         public void Tick()
         {
-            if (_weapon != null)
-                _weapon.Tick();
+            _weapon.Tick();
 
             if (_attackAction.IsPressed())
                 TryStroke();

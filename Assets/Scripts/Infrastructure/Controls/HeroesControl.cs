@@ -3,13 +3,16 @@ using GameSystems;
 using GameSystems.Parameters;
 using Heroes;
 using Heroes.Services;
+using Zenject;
 
 namespace Infrastructure.Controls
 {
-    public class HeroesControl
+    public class HeroesControl : ITickable
     {
         public Hero First { get; private set; }
         public Hero Second { get; private set; }
+
+        private bool IsCoop => _gameParameters.GameMode == GameMode.Coop;
 
         private readonly GameParameters _gameParameters;
         private readonly HeroFactory _heroFactory;
@@ -36,6 +39,14 @@ namespace Infrastructure.Controls
 
             if (Second != null)
                 Second.Dispose();
+        }
+
+        public void Tick()
+        {
+            First.Tick();
+
+            if (IsCoop)
+                Second.Tick();
         }
 
         private void InitializeForSingle()

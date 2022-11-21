@@ -916,6 +916,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: af8223f20d2789c42a558d942c0428c8, type: 2}
     - {fileID: 2997320696376528147, guid: 14b5951bd6a3c6f48a585bcaef531584, type: 3}
     - {fileID: 11400000, guid: d75ac5237c794c6428e4d03e3b9aa707, type: 2}
+    - {fileID: 2997320696376528147, guid: 78c0487d4f7557d4dafcd0fe9ef64978, type: 3}
+    - {fileID: 11400000, guid: f9cdf01ecab149943b644acb69902eb1, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -940,7 +942,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 7
       Data: 
@@ -977,6 +979,27 @@ MonoBehaviour:
     - Name: Specs
       Entry: 10
       Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 4|GameData.Weapons.WeaponData, Scripts
+    - Name: Prefab
+      Entry: 10
+      Data: 4
+    - Name: Specs
+      Entry: 10
+      Data: 5
     - Name: 
       Entry: 8
       Data: 

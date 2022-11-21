@@ -28,11 +28,15 @@ namespace Combat.Weapons
 
         private Character _character;
 
-        public void Initialize(WeaponSpecs specs, Transform parent)
+        public void Initialize(WeaponSpecs specs, Character parent)
         {
-            transform.parent = parent;
+            transform.parent = parent.transform;
+
+            _character = parent;
 
             FillComponents();
+
+            AttackLocation = new AttackLocation(transform);
 
             _concreteWeapon.Initialize(specs);
 

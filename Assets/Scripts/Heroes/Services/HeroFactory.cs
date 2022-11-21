@@ -30,11 +30,8 @@ namespace Heroes.Services
 
             hero.Initialize(_initialStats.InitialStats);
 
-            if (weaponType != WeaponType.None)
-            {
-                var weapon = _weaponFactory.Create(weaponType, hero.transform);
-                hero.SetWeapon(weapon);
-            }
+            var weapon = _weaponFactory.Create(weaponType, hero.Character);
+            hero.SetWeapon(weapon);
 
             return hero;
         }

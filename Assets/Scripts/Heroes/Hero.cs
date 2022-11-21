@@ -28,16 +28,17 @@ namespace Heroes
 
         public bool Active { get; set; }
 
-        public CharacterHealth Health => _character.Health;
+        public CharacterHealth Health => Character.Health;
+        public Character Character { get; private set; }
         public TrainCharacter TrainCharacter { get; private set; }
 
         public HeroCollector Collector { get; private set; } = new();
 
-        public AllStats Stats => _character.Stats;
+        public AllStats Stats => Character.Stats;
 
-        public Vector2 Position => _character.Position;
-        public Vector2 PositionCenter => _character.PositionCenter;
-        public Vector2 PositionCenterOffset => _character.PositionCenterOffset;
+        public Vector2 Position => Character.Position;
+        public Vector2 PositionCenter => Character.PositionCenter;
+        public Vector2 PositionCenterOffset => Character.PositionCenterOffset;
 
         [SerializeField] private HeroAttackDirection _attackDirection;
 
@@ -48,8 +49,6 @@ namespace Heroes
 
         private HeroTrainStatEffects _trainStatEffects;
         private HeroPrincessGathering _princessGathering;
-
-        private Character _character;
 
         private PrincessActiveRepository _activePrincesses;
 
@@ -70,16 +69,16 @@ namespace Heroes
             FillComponents();
             InitializeComponents(initialStats);
 
-            _character.SetCustomHitInvulnerabilityTime(GameSettings.Hero.HitInvulnerabilityTime);
+            Character.SetCustomHitInvulnerabilityTime(GameSettings.Hero.HitInvulnerabilityTime);
 
             _attacker.StrokeStart += OnStrokeStart;
-            _character.Slain += OnSlain;
+            Character.Slain += OnSlain;
         }
 
         public void Dispose()
         {
             _attacker.StrokeStart += OnStrokeStart;
-            _character.Slain -= OnSlain;
+            Character.Slain -= OnSlain;
 
             DisposeComponents();
         }
@@ -93,13 +92,14 @@ namespace Heroes
         public void SetWeapon(Weapon weapon)
         {
             _attacker.SetWeapon(weapon);
+            _animator.SetWeapon(weapon);
         }
 
         public void Tick()
         {
             if (!Active) return;
 
-            _character.Tick();
+            Character.Tick();
 
             _input.Tick();
             _moving.Tick();
@@ -113,7 +113,7 @@ namespace Heroes
         {
             if (!Active) return;
 
-            _character.FixedTick();
+            Character.FixedTick();
         }
 
         public void PlaceAt(Vector3 position)
@@ -149,29 +149,29 @@ namespace Heroes
 
         private void FillComponents()
         {
-            _character = GetComponent<Character>();
+            Character = GetComponent<Character>();
             TrainCharacter = GetComponent<TrainCharacter>();
         }
 
         private void InitializeComponents(InitialStats initialStats)
         {
-            _character.Initialize(CharacterType.Hero, initialStats);
-            TrainCharacter.Initialize(_character, _character.Moving, _train);
+            Character.Initialize(CharacterType.Hero, initialStats);
+            TrainCharacter.Initialize(Character, Character.Moving, _train);
 
             _input = new HeroInput(_playerInput);
-            _moving = new HeroMoving(_input, _character.Moving);
-            _animator = new HeroAnimator(_character.Animator);
+            _moving = new HeroMoving(_input, Character.Moving);
+            _animator = new HeroAnimator(Character.Animator);
             _attacker = new HeroAttacker(_playerInput);
 
             Collector = new HeroCollector();
 
-            _trainStatEffects = new HeroTrainStatEffects(_character);
+            _trainStatEffects = new HeroTrainStatEffects(Character);
             _princessGathering = new HeroPrincessGathering(_activePrincesses, transform, _playerInput);
         }
 
         private void DisposeComponents()
         {
-            _character.Dispose();
+            Character.Dispose();
             _attacker.Dispose();
 
             _animator.Dispose();

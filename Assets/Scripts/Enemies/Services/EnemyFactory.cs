@@ -55,7 +55,7 @@ namespace Enemies.Services
             enemy.Initialize(_heroClosestFinder, initialStats, enemyData.Specs);
 
             var weaponType = _weaponsRegistry.GetRandomWeaponTypeFor(enemyType);
-            var weapon = _weaponFactory.Create(weaponType, enemy.transform);
+            var weapon = _weaponFactory.Create(weaponType, enemy.Character);
 
             enemy.SetWeapon(weapon);
 

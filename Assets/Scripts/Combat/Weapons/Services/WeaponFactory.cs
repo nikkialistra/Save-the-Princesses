@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Characters;
 using GameData.Weapons;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -18,7 +19,7 @@ namespace Combat.Weapons.Services
             _diContainer = diContainer;
         }
 
-        public Weapon Create(WeaponType weaponType, Transform parent)
+        public Weapon Create(WeaponType weaponType, Character parent)
         {
             var weaponData = _weaponsMap[weaponType];
 

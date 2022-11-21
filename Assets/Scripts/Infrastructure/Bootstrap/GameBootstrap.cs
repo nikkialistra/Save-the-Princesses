@@ -1,5 +1,4 @@
 ﻿using System;
-using Heroes;
 using Infrastructure.Controls;
 using Infrastructure.Loading;
 using Saving.Progress;
@@ -16,8 +15,6 @@ namespace Infrastructure.Bootstrap
         private readonly SceneLoader _sceneLoader;
         private readonly GameProgress _gameProgress;
         private readonly Train _train;
-
-        private Hero _hero;
 
         public GameBootstrap(GameControls gameControls,
             SceneLoader sceneLoader, GameProgress gameProgress)
@@ -37,7 +34,6 @@ namespace Infrastructure.Bootstrap
 
         public void Dispose()
         {
-            _hero.Dispose();
             _train.Dispose();
 
             _gameControls.Dispose();

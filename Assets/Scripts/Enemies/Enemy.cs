@@ -24,18 +24,19 @@ namespace Enemies
 
         public bool Active { get; set; }
 
+        public Character Character { get; private set; }
+
+        public EnemyAttacker Attacker { get; set; }
+
+        public Hero ClosestHero => _heroClosestFinder.GetFor(transform.position);
+
         public Vector2 Position => transform.position;
 
         public float ViewDistance => _specs.ViewDistance;
 
-        public Hero ClosestHero => _heroClosestFinder.GetFor(transform.position);
-        public EnemyAttacker Attacker { get; set; }
-
-        public CharacterMoving Moving => _character.Moving;
+        public CharacterMoving Moving => Character.Moving;
 
         private EnemySpecs _specs;
-
-        private Character _character;
 
         private CharacterStats _characterStats;
         private MeleeStats _meleeStats;
@@ -47,27 +48,27 @@ namespace Enemies
         {
             _heroClosestFinder = heroClosestFinder;
 
-            _character = GetComponent<Character>();
+            Character = GetComponent<Character>();
 
             _specs = specs;
 
             InitializeComponents(initialStats);
 
-            _character.Slain += OnSlain;
+            Character.Slain += OnSlain;
         }
 
         public void Dispose()
         {
             DisposeComponents();
 
-            _character.Slain -= OnSlain;
+            Character.Slain -= OnSlain;
         }
 
         public void Tick()
         {
             if (!Active) return;
 
-            _character.Tick();
+            Character.Tick();
             Attacker.Tick();
         }
 
@@ -75,7 +76,7 @@ namespace Enemies
         {
             if (Active) return;
 
-            _character.FixedTick();
+            Character.FixedTick();
         }
 
         public void SetWeapon(Weapon weapon)
@@ -85,7 +86,7 @@ namespace Enemies
 
         public void PlaceInRoom(Room room)
         {
-            _character.PlaceInRoom(room);
+            Character.PlaceInRoom(room);
         }
 
         public void SetPosition(Vector3 position, Transform parent)
@@ -102,14 +103,14 @@ namespace Enemies
 
         private void InitializeComponents(InitialStats initialStats)
         {
-            _character.Initialize(CharacterType.Enemy, initialStats);
+            Character.Initialize(CharacterType.Enemy, initialStats);
 
-            Attacker = new EnemyAttacker(_character, ClosestHero);
+            Attacker = new EnemyAttacker(Character, ClosestHero);
         }
 
         private void DisposeComponents()
         {
-            _character.Dispose();
+            Character.Dispose();
 
             Attacker.Dispose();
         }

@@ -113,7 +113,7 @@ namespace Infrastructure.Installers.Game
         private void BindHeroes()
         {
             Container.Bind<HeroClosestFinder>().AsSingle();
-            Container.Bind<HeroesControl>().AsSingle();
+            Container.BindInterfacesAndSelfTo<HeroesControl>().AsSingle();
         }
 
         private void BindCharactersPicking()
