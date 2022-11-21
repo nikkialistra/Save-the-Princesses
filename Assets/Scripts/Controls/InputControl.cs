@@ -27,7 +27,7 @@ namespace Controls
             _gamepadEffects = GetComponent<GamepadEffects>();
 
             _inputDevices = new InputDevices(_playerInput);
-            _gamepadEffects.Initialize(_inputDevices, hero);
+            _gamepadEffects.Initialize(_inputDevices, heroesControl.First);
         }
 
         public void Dispose()

@@ -143,6 +143,7 @@ namespace Heroes
 
         private void OnSlain()
         {
+            Active = false;
             Slain?.Invoke();
         }
 

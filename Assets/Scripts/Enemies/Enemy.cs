@@ -96,9 +96,8 @@ namespace Enemies
 
         private void OnSlain()
         {
-            Slain?.Invoke();
-
             Active = false;
+            Slain?.Invoke();
         }
 
         private void InitializeComponents(InitialStats initialStats)

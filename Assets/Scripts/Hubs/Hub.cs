@@ -1,9 +1,8 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using GameSystems;
+using GameSystems.Parameters;
 using Heroes;
-using Heroes.Services;
-using Infrastructure;
 using Infrastructure.Controls;
 using Surrounding;
 using Surrounding.Rooms;
@@ -18,29 +17,33 @@ namespace Hubs
         [SerializeField] private RoomKind _hubRoomKind;
 
         [Space]
-        [SerializeField] private Transform _heroSpawnPoint;
+        [SerializeField] private Transform _heroSpawnPointFirst;
+        [SerializeField] private Transform _heroSpawnPointSecond;
+
+        [Space]
         [SerializeField] private ZoneTrigger _exitHubTrigger;
 
-        private Hero _hero;
+        private Hero _heroFirst;
+        private Hero _heroSecond;
 
         private GameRun _gameRun;
         private ActiveRepositories _activeRepositories;
 
+        private GameParameters _gameParameters;
+
         [Inject]
-        public void Construct(GameRun gameRun, ActiveRepositories activeRepositories)
+        public void Construct(GameRun gameRun, ActiveRepositories activeRepositories, GameParameters gameParameters)
         {
             _gameRun = gameRun;
             _activeRepositories = activeRepositories;
+            _gameParameters = gameParameters;
         }
 
         public async UniTaskVoid Initialize(HeroesControl heroesControl, Action onFinish)
         {
-            _hero = hero;
-
             await InitializeHubRoom();
 
-            _hero.PlaceAt(_heroSpawnPoint.position);
-            _hero.Active = true;
+            PlaceHeroes(heroesControl);
 
             _exitHubTrigger.Enter += EnterDungeon;
 
@@ -58,11 +61,42 @@ namespace Hubs
             _hubRoom.SetupNavigation();
         }
 
+        private void PlaceHeroes(HeroesControl heroesControl)
+        {
+            if (_gameParameters.GameMode == GameMode.Single)
+                PlaceHeroForSingle(heroesControl);
+            else
+                PlaceHeroesForCoop(heroesControl);
+        }
+
+        private void PlaceHeroForSingle(HeroesControl heroesControl)
+        {
+            _heroFirst = heroesControl.First;
+
+            _heroFirst.PlaceAt(_heroSpawnPointFirst.position);
+            _heroFirst.Active = true;
+        }
+
+        private void PlaceHeroesForCoop(HeroesControl heroesControl)
+        {
+            _heroFirst = heroesControl.First;
+            _heroSecond = heroesControl.Second;
+
+            _heroFirst.PlaceAt(_heroSpawnPointFirst.position);
+            _heroSecond.PlaceAt(_heroSpawnPointSecond.position);
+
+            _heroFirst.Active = true;
+            _heroSecond.Active = true;
+        }
+
         public void Dispose()
         {
-            _hubRoom.Dispose();
+            _heroFirst.Active = false;
 
-            _hero.Active = false;
+            if (_heroSecond != null)
+                _heroSecond.Active = false;
+
+            _hubRoom.Dispose();
 
             _exitHubTrigger.Enter -= EnterDungeon;
         }
