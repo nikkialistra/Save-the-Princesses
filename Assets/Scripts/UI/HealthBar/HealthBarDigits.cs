@@ -1,24 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
+using GameConfig.HealthBar;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace UI.HealthBar
 {
-    [RequireComponent(typeof(UIDocument))]
-    public class HealthBarDigitsView : MonoBehaviour
+    public class HealthBarDigits
     {
-        [SerializeField] private List<Sprite> _digitSprites;
+        private readonly HealthBarDigitSprites _sprites;
 
-        private VisualElement _digits;
+        private readonly VisualElement _digits;
 
-        private Image _digit1;
-        private Image _digit2;
-        private Image _digit3;
+        private readonly Image _digit1;
+        private readonly Image _digit2;
+        private readonly Image _digit3;
 
-        public void Initialize()
+        public HealthBarDigits(VisualElement root, HealthBarDigitSprites sprites)
         {
-            var root = GetComponent<UIDocument>().rootVisualElement;
+            _sprites = sprites;
 
             _digits = root.Q<VisualElement>("health-bar__digits");
 
@@ -85,7 +84,7 @@ namespace UI.HealthBar
             if (index is < 0 or > 9)
                 throw new ArgumentException("Index should be between 0 and 9");
 
-            return _digitSprites[index];
+            return _sprites[index];
         }
     }
 }

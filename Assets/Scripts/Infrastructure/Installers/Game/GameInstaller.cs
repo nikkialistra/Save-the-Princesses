@@ -1,13 +1,13 @@
 ﻿using Combat.Weapons.Services;
 using Enemies.Services;
 using Enemies.Services.Repositories;
+using GameConfig;
 using GameData.Enemies.Spawning;
 using GameData.Princesses.Appearance.Registries;
 using GameData.Princesses.Spawning;
 using GameData.Settings;
 using GameData.Weapons.Registries;
 using GameSystems;
-using Heroes;
 using Heroes.Services;
 using Infrastructure.Bootstrap;
 using Infrastructure.Controls;
@@ -18,7 +18,6 @@ using Saving.Saves;
 using Sirenix.OdinInspector;
 using Surrounding;
 using Surrounding.Rooms.Services;
-using Trains;
 using Trains.HandConnections;
 using UI;
 using UI.HealthBar;
@@ -37,7 +36,6 @@ namespace Infrastructure.Installers.Game
 
         [Title("General")]
         [SerializeField] private Camera _camera;
-        [SerializeField] private Hero _hero;
         [SerializeField] private RoomFactory _roomFactory;
         [SerializeField] private Navigation _navigation;
 
@@ -55,7 +53,6 @@ namespace Infrastructure.Installers.Game
         [SerializeField] private PrincessElementControllersRegistry _princessElementControllersRegistry;
 
         [Title("Train System")]
-        [SerializeField] private Train _train;
         [SerializeField] private HandsSprites _handsSprites;
 
         [Title("Game Interface")]
@@ -137,7 +134,6 @@ namespace Infrastructure.Installers.Game
 
         private void BindTrainSystem()
         {
-            Container.BindInstance(_train);
             Container.BindInstance(_handsSprites);
         }
 

@@ -9,12 +9,10 @@ namespace UI
 {
     [RequireComponent(typeof(UIDocument))]
     [RequireComponent(typeof(HealthBarView))]
-    [RequireComponent(typeof(HealthBarDigitsView))]
     [RequireComponent(typeof(GoldView))]
     public class GameInterfaceControl : MonoBehaviour
     {
         private HealthBarView _healthBarView;
-        private HealthBarDigitsView _healthBarDigitsView;
         private AmmoView _ammoView;
         private StatsView _statsView;
         private GoldView _goldView;
@@ -27,7 +25,6 @@ namespace UI
 
             var hero = heroesControl.First;
 
-            _healthBarDigitsView.Initialize();
             _healthBarView.Initialize(hero.Health);
             _ammoView = new AmmoView(_uiRoot, hero.Collector.Ammo);
             _statsView = new StatsView(_uiRoot, hero);
@@ -42,17 +39,13 @@ namespace UI
             _goldView.Dispose();
         }
 
-        public void LoadProgress(DungeonProgress progress)
-        {
-
-        }
+        public void LoadProgress(DungeonProgress progress) { }
 
         private void FillComponents()
         {
             _uiRoot = GetComponent<UIDocument>().rootVisualElement;
 
             _healthBarView = GetComponent<HealthBarView>();
-            _healthBarDigitsView = GetComponent<HealthBarDigitsView>();
             _goldView = GetComponent<GoldView>();
         }
     }

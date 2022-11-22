@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea3dae5593c543b2abdfc8fab7bba56d, type: 3}
+  m_Name: Health Bar Digit Sprites
+  m_EditorClassIdentifier: 
+  Digits:
+  - {fileID: 1906120800, guid: 71fae62ecff4a6646872090b483ff88c, type: 3}
+  - {fileID: -1609839137, guid: 71fae62ecff4a6646872090b483ff88c, type: 3}
+  - {fileID: -1237913609, guid: 71fae62ecff4a6646872090b483ff88c, type: 3}
+  - {fileID: 493870880, guid: 71fae62ecff4a6646872090b483ff88c, type: 3}
+  - {fileID: 1383391236, guid: 71fae62ecff4a6646872090b483ff88c, type: 3}
+  - {fileID: 1642090964, guid: 71fae62ecff4a6646872090b483ff88c, type: 3}
+  - {fileID: -1095220717, guid: 71fae62ecff4a6646872090b483ff88c, type: 3}
+  - {fileID: -1829946387, guid: 71fae62ecff4a6646872090b483ff88c, type: 3}
+  - {fileID: -493133620, guid: 71fae62ecff4a6646872090b483ff88c, type: 3}
+  - {fileID: 1059336640, guid: 71fae62ecff4a6646872090b483ff88c, type: 3}

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections;
+using GameConfig.HealthBar;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace UI.HealthBar
 {
-    [RequireComponent(typeof(UIDocument))]
-    [RequireComponent(typeof(HealthBarView))]
-    public class HealthBarIncreaseAnimations : MonoBehaviour
+    public class HealthBarIncreaseAnimations
     {
         private const float AnimationIncreaseStepLength = 0.1f;
 
@@ -15,26 +14,22 @@ namespace UI.HealthBar
 
         private const float PartWidth = 0.4f;
 
-        [SerializeField] private Sprite _fillFull;
-        [SerializeField] private Sprite _fillNotFull;
-        [SerializeField] private Sprite _fillRemainderTwoPixels;
-        [SerializeField] private Sprite _fillRemainderOnePixel;
+        private HealthBarSprites _sprites;
 
-        private VisualElement _fill;
-        private VisualElement _fillWhite;
+        private readonly VisualElement _fill;
+        private readonly VisualElement _fillWhite;
 
         private float _widthDifference;
 
-        private HealthBarView _view;
+        private readonly HealthBarView _view;
 
-        public void BindUi()
+        public HealthBarIncreaseAnimations(VisualElement root, HealthBarSprites sprites, HealthBarView view)
         {
-            var root = GetComponent<UIDocument>().rootVisualElement;
+            _sprites = sprites;
+            _view = view;
 
             _fill = root.Q<VisualElement>("health-bar__fill");
             _fillWhite = root.Q<VisualElement>("health-bar__fill-white");
-
-            _view = GetComponent<HealthBarView>();
         }
 
         public void IncreaseFill(float newWidth)
@@ -47,7 +42,7 @@ namespace UI.HealthBar
             _widthDifference =  newWidth - _view.FillWidth;
             _view.FillWidth = newWidth;
 
-            StartCoroutine(CShowIncreaseAnimation());
+            _view.StartCoroutine(CShowIncreaseAnimation());
         }
 
         public void ShowFillFullAtFullBar()
@@ -55,7 +50,7 @@ namespace UI.HealthBar
             if (_view.IsFillFull)
             {
                 _fill.style.width = _view.FillWidth;
-                _fill.style.backgroundImage = Background.FromSprite(_fillFull);
+                _fill.style.backgroundImage = Background.FromSprite(_sprites.Full);
             }
         }
 
@@ -84,10 +79,10 @@ namespace UI.HealthBar
         {
             var fillSprite = _view.FillWidth switch
             {
-                HealthBarView.DefaultWidth => _fillFull,
-                2 => _fillRemainderTwoPixels,
-                1 => _fillRemainderOnePixel,
-                _ => _fillNotFull
+                HealthBarView.DefaultWidth => _sprites.Full,
+                2 => _sprites.RemainderTwoPixels,
+                1 => _sprites.RemainderOnePixel,
+                _ => _sprites.NotFull
             };
 
             _fill.style.backgroundImage = Background.FromSprite(fillSprite);

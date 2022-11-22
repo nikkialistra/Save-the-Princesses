@@ -3,9 +3,10 @@ using Characters.Common;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Trains.HandConnections
+namespace GameConfig
 {
-    public class HandsSprites : MonoBehaviour
+    [CreateAssetMenu(fileName = "Hands Sprites", menuName = "GameConfig/Hands Sprites")]
+    public class HandsSprites : ScriptableObject
     {
         [Title("To Hero")]
         [SerializeField] private Sprite _heroLeft;

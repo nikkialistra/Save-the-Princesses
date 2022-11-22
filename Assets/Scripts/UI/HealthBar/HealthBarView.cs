@@ -1,14 +1,11 @@
 ﻿using Characters.Health;
-using Heroes;
+using GameConfig.HealthBar;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace UI.HealthBar
 {
     [RequireComponent(typeof(UIDocument))]
-    [RequireComponent(typeof(HealthBarDigitsView))]
-    [RequireComponent(typeof(HealthBarDecreaseAnimations))]
-    [RequireComponent(typeof(HealthBarIncreaseAnimations))]
     public class HealthBarView : MonoBehaviour
     {
         public const int DefaultWidth = 50;
@@ -18,15 +15,20 @@ namespace UI.HealthBar
         public float FillWidth { get; set; } = DefaultWidth;
         public bool IsFillFull => FillWidth == DefaultWidth;
 
+        [SerializeField] private HealthBarSprites _sprites;
+        [SerializeField] private HealthBarDigitSprites _digitSprites;
+
         private float Health => _heroHealth.Health;
         private float MaxHealth => _heroHealth.MaxHealth;
+
+        private VisualElement _root;
 
         private VisualElement _background;
         private VisualElement _frame;
 
         private float _lastHealth;
 
-        private HealthBarDigitsView _digitsView;
+        private HealthBarDigits _digits;
 
         private HealthBarDecreaseAnimations _decreaseAnimations;
         private HealthBarIncreaseAnimations _increaseAnimations;
@@ -47,15 +49,10 @@ namespace UI.HealthBar
 
         private void BindUi()
         {
-            _digitsView = GetComponent<HealthBarDigitsView>();
+            _root = GetComponent<UIDocument>().rootVisualElement;
 
-            _decreaseAnimations = GetComponent<HealthBarDecreaseAnimations>();
-            _increaseAnimations = GetComponent<HealthBarIncreaseAnimations>();
-
-            var root = GetComponent<UIDocument>().rootVisualElement;
-
-            _background = root.Q<VisualElement>("health-bar");
-            _frame = root.Q<VisualElement>("health-bar__frame");
+            _background = _root.Q<VisualElement>("health-bar");
+            _frame = _root.Q<VisualElement>("health-bar__frame");
         }
 
         private void BindHealth(CharacterHealth heroHealth)
@@ -77,8 +74,10 @@ namespace UI.HealthBar
 
         private void InitializeAnimations()
         {
-            _decreaseAnimations.BindUi();
-            _increaseAnimations.BindUi();
+            _digits = new HealthBarDigits(_root, _digitSprites);
+
+            _decreaseAnimations = new HealthBarDecreaseAnimations(_root, _sprites, this);
+            _increaseAnimations = new HealthBarIncreaseAnimations(_root, _sprites, this);
 
             _increaseAnimations.ShowFillFullAtFullBar();
         }
@@ -97,7 +96,7 @@ namespace UI.HealthBar
 
         private void UpdateHealthValue()
         {
-            _digitsView.UpdateForNumber(Health);
+            _digits.UpdateForNumber(Health);
 
             _lastHealth = Health;
         }
@@ -123,7 +122,7 @@ namespace UI.HealthBar
             _background.style.width = newWidth;
             _frame.style.width = newWidth;
 
-            _digitsView.UpdateWidth(newWidth);
+            _digits.UpdateWidth(newWidth);
         }
 
         private static int CalculateWidthFor(float health)

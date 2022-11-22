@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Characters.Common;
+using GameConfig;
 using GameData.Settings;
 using Trains.Characters;
 using UnityEngine;

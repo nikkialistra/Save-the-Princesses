@@ -59,7 +59,7 @@ namespace Infrastructure.Controls
 
         private void InitializeForSingle()
         {
-            First = _heroFactory.CreateWith(WeaponType.NoWeapon, "Hero");
+            First = _heroFactory.CreateWith(WeaponType.NoWeapon, "Single Hero");
 
             _heroClosestFinder.FillForSingle(First);
         }

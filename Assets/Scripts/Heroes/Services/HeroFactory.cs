@@ -2,6 +2,7 @@
 using Combat.Weapons.Services;
 using GameData.Heroes;
 using Sirenix.OdinInspector;
+using Trains;
 using UnityEngine;
 using Zenject;
 
@@ -24,17 +25,29 @@ namespace Heroes.Services
             _diContainer = diContainer;
         }
 
-        public Hero CreateWith(WeaponType weaponType, string name)
+        public Hero CreateWith(WeaponType weaponType, string containerName)
         {
+            var heroContainer = _diContainer.CreateEmptyGameObject(containerName).transform;
+
             var hero = _diContainer.InstantiatePrefabForComponent<Hero>(_heroPrefab);
 
-            hero.name = name;
+            Initialize(hero, heroContainer, weaponType);
+
+            var train = _diContainer.InstantiateComponentOnNewGameObject<Train>();
+            train.transform.parent = heroContainer;
+
+            return hero;
+        }
+
+        private void Initialize(Hero hero, Transform heroContainer, WeaponType weaponType)
+        {
+            hero.name = "Hero";
+            hero.transform.parent = heroContainer;
+
             hero.Initialize(_initialStats.InitialStats);
 
             var weapon = _weaponFactory.Create(weaponType, hero.Character);
             hero.SetWeapon(weapon);
-
-            return hero;
         }
     }
 }
