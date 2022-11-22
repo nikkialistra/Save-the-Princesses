@@ -40,9 +40,8 @@ namespace Trains
 
         public void Dispose()
         {
-            _input.Dispose();
-
             _trainCharacters.Clear();
+            _input.Dispose();
         }
 
         public void Recalculate()

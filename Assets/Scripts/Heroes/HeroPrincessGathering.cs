@@ -2,6 +2,7 @@
 using GameData.Settings;
 using Princesses;
 using Princesses.Services.Repositories;
+using Trains;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,14 +17,14 @@ namespace Heroes
 
         private float _lastScanTime = float.NegativeInfinity;
 
-        private readonly InputAction _interactAction;
-        private readonly Transform _transform;
+        private Hero _hero;
 
-        public HeroPrincessGathering(PrincessActiveRepository activeRepository, Transform transform, PlayerInput playerInput)
+        private readonly InputAction _interactAction;
+
+        public HeroPrincessGathering(PrincessActiveRepository activeRepository, Hero hero, PlayerInput playerInput)
         {
             _activeRepository = activeRepository;
-
-            _transform = transform;
+            _hero = hero;
 
             _interactAction = playerInput.actions.FindAction("Interact");
 
@@ -60,7 +61,7 @@ namespace Heroes
 
             foreach (var princess in _activeRepository.UntiedFreePrincesses)
             {
-                if (Vector2.Distance(_transform.position, princess.Position) <=
+                if (Vector2.Distance(_hero.Position, princess.Position) <=
                     GameSettings.Hero.DistanceToGather)
                 {
                     _gatherWishedPrincesses.Add(princess);
@@ -90,10 +91,10 @@ namespace Heroes
 
             foreach (var princess in _gatherWishedPrincesses)
             {
-                if (Vector2.Distance(_transform.position, princess.Position) < closestDistance)
+                if (Vector2.Distance(_hero.Position, princess.Position) < closestDistance)
                 {
                     closestPrincess = princess;
-                    closestDistance = Vector2.Distance(_transform.position, princess.Position);
+                    closestDistance = Vector2.Distance(_hero.Position, princess.Position);
                 }
             }
 
@@ -111,7 +112,7 @@ namespace Heroes
         private void TryGather(InputAction.CallbackContext _)
         {
             if (_targetPrincess != null)
-                _targetPrincess.Gather();
+                _targetPrincess.GatherTo(_hero.Train);
         }
     }
 }

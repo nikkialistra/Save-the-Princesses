@@ -35,10 +35,14 @@ namespace Infrastructure.Controls
 
         public void Dispose()
         {
+            First.Train.Dispose();
             First.Dispose();
 
             if (Second != null)
+            {
+                Second.Train.Dispose();
                 Second.Dispose();
+            }
         }
 
         public void Tick()

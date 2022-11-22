@@ -32,6 +32,8 @@ namespace Heroes
         public Character Character { get; private set; }
         public TrainCharacter TrainCharacter { get; private set; }
 
+        public Train Train { get; private set; }
+
         public HeroCollector Collector { get; private set; } = new();
 
         public AllStats Stats => Character.Stats;
@@ -52,20 +54,20 @@ namespace Heroes
 
         private PrincessActiveRepository _activePrincesses;
 
-        private Train _train;
-
         private PlayerInput _playerInput;
 
         [Inject]
-        public void Construct(PrincessActiveRepository activePrincesses, Train train, PlayerInput playerInput)
+        public void Construct(PrincessActiveRepository activePrincesses, PlayerInput playerInput)
         {
             _activePrincesses = activePrincesses;
-            _train = train;
+
             _playerInput = playerInput;
         }
 
-        public void Initialize(InitialStats initialStats)
+        public void Initialize(Train train, InitialStats initialStats)
         {
+            Train = train;
+
             FillComponents();
             InitializeComponents(initialStats);
 
@@ -156,7 +158,8 @@ namespace Heroes
         private void InitializeComponents(InitialStats initialStats)
         {
             Character.Initialize(CharacterType.Hero, initialStats);
-            TrainCharacter.Initialize(Character, Character.Moving, _train);
+            TrainCharacter.Initialize(Character, Character.Moving);
+            TrainCharacter.SetTrain(Train);
 
             _attackDirection.Initialize(this);
 
@@ -168,7 +171,7 @@ namespace Heroes
             Collector = new HeroCollector();
 
             _trainStatEffects = new HeroTrainStatEffects(Character);
-            _princessGathering = new HeroPrincessGathering(_activePrincesses, transform, _playerInput);
+            _princessGathering = new HeroPrincessGathering(_activePrincesses, this, _playerInput);
         }
 
         private void DisposeComponents()

@@ -30,21 +30,24 @@ namespace Heroes.Services
             var heroContainer = _diContainer.CreateEmptyGameObject(containerName).transform;
 
             var hero = _diContainer.InstantiatePrefabForComponent<Hero>(_heroPrefab);
-
-            Initialize(hero, heroContainer, weaponType);
-
             var train = _diContainer.InstantiateComponentOnNewGameObject<Train>();
+
+            train.name = "Train";
             train.transform.parent = heroContainer;
+
+            train.Initialize(hero);
+
+            InitializeHero(hero, heroContainer, weaponType, train);
 
             return hero;
         }
 
-        private void Initialize(Hero hero, Transform heroContainer, WeaponType weaponType)
+        private void InitializeHero(Hero hero, Transform heroContainer, WeaponType weaponType, Train train)
         {
             hero.name = "Hero";
             hero.transform.parent = heroContainer;
 
-            hero.Initialize(_initialStats.InitialStats);
+            hero.Initialize(train, _initialStats.InitialStats);
 
             var weapon = _weaponFactory.Create(weaponType, hero.Character);
             hero.SetWeapon(weapon);

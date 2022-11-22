@@ -95,7 +95,9 @@ namespace Princesses
             if (!Active) return;
 
             _character.Tick();
-            TrainCharacter.Tick();
+
+            if (Gathered)
+                TrainCharacter.Tick();
         }
 
         public void FixedTick()
@@ -144,8 +146,10 @@ namespace Princesses
             _hand.Hide();
         }
 
-        public void Gather()
+        public void GatherTo(Train train)
         {
+            Train = train;
+
             _character.RemoveTrait(_slowMoving);
 
             _gatherWish.Hide();
@@ -223,7 +227,7 @@ namespace Princesses
         {
             _character.Initialize(CharacterType.Princess, initialStats);
 
-            TrainCharacter.Initialize(_character, _character.Moving, Train);
+            TrainCharacter.Initialize(_character, _character.Moving);
             MovingInTrain.Initialize(Moving, _character.Stats, ClosestHero);
 
             _animators.Initialize();

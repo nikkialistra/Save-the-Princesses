@@ -59,11 +59,10 @@ namespace Trains.Characters
 
         private Train _train;
 
-        public void Initialize(Character character, CharacterMoving moving, Train train)
+        public void Initialize(Character character, CharacterMoving moving)
         {
             _character = character;
             _moving = moving;
-            _train = train;
 
             if (!_isHero)
                 _hands.Initialize(this);
@@ -77,6 +76,11 @@ namespace Trains.Characters
         public void Tick()
         {
             _hands.Tick();
+        }
+
+        public void SetTrain(Train train)
+        {
+            _train = train;
         }
 
         public void BindToPrevious(TrainCharacter previous)
