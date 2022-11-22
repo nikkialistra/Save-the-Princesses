@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Infrastructure.Controls
 {
-    public class HeroesControl : ITickable
+    public class HeroesControl : ITickable, IFixedTickable
     {
         public Hero First { get; private set; }
         public Hero Second { get; private set; }
@@ -49,17 +49,25 @@ namespace Infrastructure.Controls
                 Second.Tick();
         }
 
+        public void FixedTick()
+        {
+            First.FixedTick();
+
+            if (IsCoop)
+                Second.FixedTick();
+        }
+
         private void InitializeForSingle()
         {
-            First = _heroFactory.CreateWith(WeaponType.None);
+            First = _heroFactory.CreateWith(WeaponType.NoWeapon, "Hero");
 
             _heroClosestFinder.FillForSingle(First);
         }
 
         private void InitializeForCoop()
         {
-            First = _heroFactory.CreateWith(WeaponType.None);
-            Second = _heroFactory.CreateWith(WeaponType.None);
+            First = _heroFactory.CreateWith(WeaponType.NoWeapon, "First Hero");
+            Second = _heroFactory.CreateWith(WeaponType.NoWeapon, "Second Hero");
 
             _heroClosestFinder.FillForCoop(First, Second);
         }

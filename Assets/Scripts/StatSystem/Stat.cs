@@ -13,14 +13,18 @@ namespace StatSystem
         public float Value { get; private set; }
         public float BaseValue => _baseValue;
 
-        [ReadOnly]
         [SerializeField] private float _baseValue;
-
-        private readonly List<StatModifier<T>> _statModifiers = new();
+        [SerializeField] private List<StatModifier<T>> _statModifiers = new();
 
         public Stat(float baseValue)
         {
             _baseValue = baseValue;
+            RecalculateValue();
+        }
+
+        [Button]
+        private void Recalculate()
+        {
             RecalculateValue();
         }
 

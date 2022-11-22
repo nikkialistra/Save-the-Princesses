@@ -24,10 +24,11 @@ namespace Heroes.Services
             _diContainer = diContainer;
         }
 
-        public Hero CreateWith(WeaponType weaponType)
+        public Hero CreateWith(WeaponType weaponType, string name)
         {
             var hero = _diContainer.InstantiatePrefabForComponent<Hero>(_heroPrefab);
 
+            hero.name = name;
             hero.Initialize(_initialStats.InitialStats);
 
             var weapon = _weaponFactory.Create(weaponType, hero.Character);

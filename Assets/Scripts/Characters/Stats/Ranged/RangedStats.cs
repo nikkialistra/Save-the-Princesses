@@ -1,24 +1,32 @@
 ﻿using System;
 using GameData.Stats.Types;
 using StatSystem;
+using UnityEngine;
 
 namespace Characters.Stats.Ranged
 {
+    [Serializable]
     public class RangedStats
     {
-        public Stat<RangedStat> AttackSpeed { get; }
-        public Stat<RangedStat> AttackRange { get; }
-        public Stat<RangedStat> DamageMultiplier { get; }
-        public Stat<RangedStat> KnockbackMultiplier { get; }
-        public Stat<RangedStat> StunMultiplier { get; }
+        public Stat<RangedStat> AttackSpeed => _attackSpeed;
+        public Stat<RangedStat> AttackRange => _attackRange;
+        public Stat<RangedStat> DamageMultiplier => _damageMultiplier;
+        public Stat<RangedStat> KnockbackMultiplier => _knockbackMultiplier;
+        public Stat<RangedStat> StunMultiplier => _stunMultiplier;
+
+        [SerializeField] private Stat<RangedStat> _attackSpeed;
+        [SerializeField] private Stat<RangedStat> _attackRange;
+        [SerializeField] private Stat<RangedStat> _damageMultiplier;
+        [SerializeField] private Stat<RangedStat> _knockbackMultiplier;
+        [SerializeField] private Stat<RangedStat> _stunMultiplier;
 
         public RangedStats(InitialRangedStats initialStats)
         {
-            AttackSpeed = new Stat<RangedStat>(initialStats.AttackSpeed);
-            AttackRange = new Stat<RangedStat>(initialStats.AttackRange);
-            DamageMultiplier = new Stat<RangedStat>(initialStats.DamageMultiplier);
-            KnockbackMultiplier = new Stat<RangedStat>(initialStats.KnockbackMultiplier);
-            StunMultiplier = new Stat<RangedStat>(initialStats.StunMultiplier);
+            _attackSpeed = new Stat<RangedStat>(initialStats.AttackSpeed);
+            _attackRange = new Stat<RangedStat>(initialStats.AttackRange);
+            _damageMultiplier = new Stat<RangedStat>(initialStats.DamageMultiplier);
+            _knockbackMultiplier = new Stat<RangedStat>(initialStats.KnockbackMultiplier);
+            _stunMultiplier = new Stat<RangedStat>(initialStats.StunMultiplier);
         }
 
         public void AddStatModifier(StatModifier<RangedStat> statModifier)

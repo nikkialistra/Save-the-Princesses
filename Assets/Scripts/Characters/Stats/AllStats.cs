@@ -4,10 +4,11 @@ using Characters.Stats.Melee;
 using Characters.Stats.Ranged;
 using GameData.Stats;
 using StatSystem;
+using UnityEngine;
 
 namespace Characters.Stats
 {
-    public class AllStats
+    public class AllStats : MonoBehaviour
     {
         public float MaxHealth => _characterStats.MaxHealth.Value;
         public float MovementSpeed => _characterStats.MovementSpeed.Value;
@@ -39,13 +40,13 @@ namespace Characters.Stats
         public Stat<RangedStat> RangedAttackRangeStat => _rangedStats.AttackRange;
         public Stat<RangedStat> RangedDamageMultiplierStat => _rangedStats.DamageMultiplier;
 
-        private readonly CharacterStats _characterStats;
-        private readonly MeleeStats _meleeStats;
-        private readonly RangedStats _rangedStats;
+        [SerializeField] private CharacterStats _characterStats;
+        [SerializeField] private MeleeStats _meleeStats;
+        [SerializeField] private RangedStats _rangedStats;
 
         private readonly List<Trait> _traits = new();
 
-        public AllStats(InitialStats initialStats)
+        public void Initialize(InitialStats initialStats)
         {
             _characterStats = new CharacterStats(initialStats.Character);
             _meleeStats = new MeleeStats(initialStats.Melee);

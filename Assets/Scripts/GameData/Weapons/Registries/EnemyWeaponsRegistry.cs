@@ -15,7 +15,7 @@ namespace GameData.Weapons.Registries
             var weapons = _weaponsMap[enemyType];
 
             if (weapons.Count == 0)
-                return WeaponType.None;
+                return WeaponType.NoWeapon;
 
             return weapons[Random.Range(0, weapons.Count)];
         }

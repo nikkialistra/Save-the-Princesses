@@ -3,7 +3,7 @@ using static Combat.StrokeType;
 
 namespace Combat.Weapons.Concrete.Types
 {
-    public class NoneWeapon : ConcreteWeapon
+    public class NoWeapon : ConcreteWeapon
     {
         public override StrokeType LastStroke => First;
 

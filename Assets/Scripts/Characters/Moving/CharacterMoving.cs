@@ -17,8 +17,6 @@ namespace Characters.Moving
     {
         public event Action<bool> StunChange;
 
-        public bool Active { private get; set; }
-
         public float MovementSpeed => _character.Stats.MovementSpeed;
         public Vector2 TargetVelocity => _moveCalculation.TargetVelocity;
         public bool Stopped => _movement.Stopped;
@@ -72,15 +70,11 @@ namespace Characters.Moving
 
         public void Tick()
         {
-            if (!Active) return;
-
             _pathfinding.Tick();
         }
 
         public void FixedTick()
         {
-            if (!Active) return;
-
             _moveCalculation.FixedTick();
         }
 

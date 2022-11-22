@@ -2,7 +2,7 @@
 {
     public enum WeaponType
     {
-        None,
+        NoWeapon,
         Sword,
         Fork
     }

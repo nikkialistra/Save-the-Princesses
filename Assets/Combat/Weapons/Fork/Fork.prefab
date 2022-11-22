@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 3205836657509138874}
   - component: {fileID: 8378046253476718757}
   m_Layer: 7
-  m_Name: Fork Attack
+  m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

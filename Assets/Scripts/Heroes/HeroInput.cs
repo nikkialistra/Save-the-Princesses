@@ -7,7 +7,7 @@ namespace Heroes
     public class HeroInput
     {
         public Vector2 MoveInput => _moveInput;
-        public Vector2 DirectionNormalized => _directionNormalized;
+        public Vector2 DirectionNormalized { get; private set; }
 
         private bool BothAxesWereUsed => _previousMoveInput.x != 0 && _previousMoveInput.y != 0;
         private bool BothAxesWereChanged => Mathf.Sign(_moveInput.x) != Mathf.Sign(_previousMoveInput.x)
@@ -15,8 +15,6 @@ namespace Heroes
 
         private Vector2 _moveInput;
         private Vector2 _previousMoveInput;
-
-        private Vector2 _directionNormalized;
 
         private float _lastPressX = float.NegativeInfinity;
         private float _lastPressY = float.NegativeInfinity;
@@ -37,7 +35,7 @@ namespace Heroes
             _previousMoveInput = _moveInput;
 
             if (_moveInput != Vector2.zero)
-                _directionNormalized = _moveInput.normalized;
+                DirectionNormalized = _moveInput.normalized;
         }
 
         private void SavePressTimes()

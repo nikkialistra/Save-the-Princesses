@@ -24,6 +24,8 @@ namespace Combat.Weapons.Services
             var weaponData = _weaponsMap[weaponType];
 
             var weapon = _diContainer.InstantiatePrefabForComponent<Weapon>(weaponData.Prefab);
+
+            weapon.name = weaponType.ToString();
             weapon.Initialize(weaponData.Specs, parent);
 
             return weapon;

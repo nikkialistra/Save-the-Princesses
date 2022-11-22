@@ -104,6 +104,12 @@ namespace Princesses
 
             _character.FixedTick();
 
+            if (TrainCharacter.InTrainNow)
+            {
+                Moving.FixedTick();
+                MovingInTrain.FixedTick();
+            }
+
             _actualVelocity.FixedTick();
         }
 

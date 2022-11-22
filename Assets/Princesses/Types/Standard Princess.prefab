@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 8229841046246203546}
   - component: {fileID: 6789517356751126211}
   - component: {fileID: 367387919668986384}
+  - component: {fileID: 3956258133077073541}
   - component: {fileID: 1084010118691617229}
   - component: {fileID: 6923273459135690631}
   - component: {fileID: 7653054978073967670}
@@ -748,6 +749,18 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 0
+--- !u!114 &3956258133077073541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2897679248650011529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 615fa0574e3c49d588e87ac86301170e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1084010118691617229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -787,6 +800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df6bff31507419ca33cee81c90b33b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isHero: 0
   _orderNumber: {fileID: 1550506246990943934}
   _hands: {fileID: 3509492201050412270}
 --- !u!114 &2453188263931797200

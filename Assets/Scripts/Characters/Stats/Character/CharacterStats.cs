@@ -1,28 +1,39 @@
 ﻿using System;
 using GameData.Stats.Types;
+using Sirenix.OdinInspector;
 using StatSystem;
+using UnityEngine;
 
 namespace Characters.Stats.Character
 {
+    [Serializable]
     public class CharacterStats
     {
-        public Stat<CharacterStat> MaxHealth { get; }
-        public Stat<CharacterStat> MovementSpeed { get; }
-        public Stat<CharacterStat> Armor { get; }
-        public Stat<CharacterStat> Vampirism { get; }
-        public Stat<CharacterStat> Luck { get; }
-        public Stat<CharacterStat> KnockbackStand { get; }
-        public Stat<CharacterStat> StunResistance { get; }
+        public Stat<CharacterStat> MaxHealth => _maxHealth;
+        public Stat<CharacterStat> MovementSpeed => _movementSpeed;
+        public Stat<CharacterStat> Armor => _armor;
+        public Stat<CharacterStat> Vampirism => _vampirism;
+        public Stat<CharacterStat> Luck => _luck;
+        public Stat<CharacterStat> KnockbackStand => _knockbackStand;
+        public Stat<CharacterStat> StunResistance => _stunResistance;
+
+        [SerializeField] private Stat<CharacterStat> _maxHealth;
+        [SerializeField] private Stat<CharacterStat> _movementSpeed;
+        [SerializeField] private Stat<CharacterStat> _armor;
+        [SerializeField] private Stat<CharacterStat> _vampirism;
+        [SerializeField] private Stat<CharacterStat> _luck;
+        [SerializeField] private Stat<CharacterStat> _knockbackStand;
+        [SerializeField] private Stat<CharacterStat> _stunResistance;
 
         public CharacterStats(InitialCharacterStats initialStats)
         {
-            MaxHealth = new Stat<CharacterStat>(initialStats.MaxHealth);
-            MovementSpeed = new Stat<CharacterStat>(initialStats.MovementSpeed);
-            Armor = new Stat<CharacterStat>(initialStats.Armor);
-            Vampirism = new Stat<CharacterStat>(initialStats.Vampirism);
-            Luck = new Stat<CharacterStat>(initialStats.Luck);
-            KnockbackStand = new Stat<CharacterStat>(initialStats.KnockbackStand);
-            StunResistance = new Stat<CharacterStat>(initialStats.StunResistance);
+            _maxHealth = new Stat<CharacterStat>(initialStats.MaxHealth);
+            _movementSpeed = new Stat<CharacterStat>(initialStats.MovementSpeed);
+            _armor = new Stat<CharacterStat>(initialStats.Armor);
+            _vampirism = new Stat<CharacterStat>(initialStats.Vampirism);
+            _luck = new Stat<CharacterStat>(initialStats.Luck);
+            _knockbackStand = new Stat<CharacterStat>(initialStats.KnockbackStand);
+            _stunResistance = new Stat<CharacterStat>(initialStats.StunResistance);
         }
 
         public void AddStatModifier(StatModifier<CharacterStat> statModifier)

@@ -33,7 +33,7 @@ namespace Princesses
             _stats = stats;
         }
 
-        private void FixedUpdate()
+        public void FixedTick()
         {
             _moving.UpdateVelocity(AccelerationAmount, DecelerationAmount, MovementSpeed);
         }

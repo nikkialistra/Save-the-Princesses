@@ -11,6 +11,7 @@ using UnityEngine;
 
 namespace Characters
 {
+    [RequireComponent(typeof(AllStats))]
     [RequireComponent(typeof(CharacterMoving))]
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(SpriteRenderer))]
@@ -143,6 +144,7 @@ namespace Characters
 
         private void FillComponents()
         {
+            Stats = GetComponent<AllStats>();
             Moving = GetComponent<CharacterMoving>();
 
             _animator = GetComponent<Animator>();
@@ -151,7 +153,7 @@ namespace Characters
 
         private void InitializeComponents(InitialStats initialStats)
         {
-            Stats = new AllStats(initialStats);
+            Stats.Initialize(initialStats);
 
             Moving.Initialize(this, Stats);
             Animator = new CharacterAnimator(this, _animator, Moving, Type);

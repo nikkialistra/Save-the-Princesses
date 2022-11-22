@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 911495561538457930}
   - component: {fileID: 8548177327807305003}
   m_Layer: 7
-  m_Name: Sword Attack
+  m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

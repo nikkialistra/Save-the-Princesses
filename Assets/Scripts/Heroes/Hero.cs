@@ -20,7 +20,7 @@ namespace Heroes
 {
     [RequireComponent(typeof(Character))]
     [RequireComponent(typeof(TrainCharacter))]
-    public class Hero : MonoBehaviour, ITickable, IFixedTickable
+    public class Hero : MonoBehaviour
     {
         public event Action StrokeStart;
 
@@ -157,6 +157,8 @@ namespace Heroes
         {
             Character.Initialize(CharacterType.Hero, initialStats);
             TrainCharacter.Initialize(Character, Character.Moving, _train);
+
+            _attackDirection.Initialize(this);
 
             _input = new HeroInput(_playerInput);
             _moving = new HeroMoving(_input, Character.Moving);

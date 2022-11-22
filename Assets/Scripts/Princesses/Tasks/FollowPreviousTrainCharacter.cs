@@ -28,15 +28,11 @@ namespace Princesses.Tasks
 
         protected override void OnExecute()
         {
-            _moving.Active = false;
-            _movingInTrain.enabled = true;
             _trainCharacter.TrainLeave += OnTrainLeave;
         }
 
         protected override void OnStop()
         {
-            _moving.Active = true;
-            _movingInTrain.enabled = false;
             _trainCharacter.TrainLeave -= OnTrainLeave;
         }
 
