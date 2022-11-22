@@ -97,4 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce25dd14012e46fcb5d130dcd9b05751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _trainCharacter: {fileID: 0}
+  _handsSprites: {fileID: 11400000, guid: daa3195a28755e24499a3a280d20eff9, type: 2}

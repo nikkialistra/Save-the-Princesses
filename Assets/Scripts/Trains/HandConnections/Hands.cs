@@ -19,15 +19,9 @@ namespace Trains.HandConnections
 
         private SpriteRenderer _spriteRenderer;
 
-        private HandsSprites _handsSprites;
+        [SerializeField] private HandsSprites _handsSprites;
 
         private Coroutine _waitForLinkFinishCoroutine;
-
-        [Inject]
-        public void Construct(HandsSprites handsSprites)
-        {
-            _handsSprites = handsSprites;
-        }
 
         public void Initialize(TrainCharacter trainCharacter)
         {

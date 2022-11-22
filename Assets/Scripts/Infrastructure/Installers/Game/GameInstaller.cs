@@ -1,7 +1,6 @@
 ﻿using Combat.Weapons.Services;
 using Enemies.Services;
 using Enemies.Services.Repositories;
-using GameConfig;
 using GameData.Enemies.Spawning;
 using GameData.Princesses.Appearance.Registries;
 using GameData.Princesses.Spawning;
@@ -18,7 +17,6 @@ using Saving.Saves;
 using Sirenix.OdinInspector;
 using Surrounding;
 using Surrounding.Rooms.Services;
-using Trains.HandConnections;
 using UI;
 using UI.HealthBar;
 using UnityEngine;
@@ -52,9 +50,6 @@ namespace Infrastructure.Installers.Game
         [SerializeField] private PrincessPalettesRegistry _princessPalettesRegistry;
         [SerializeField] private PrincessElementControllersRegistry _princessElementControllersRegistry;
 
-        [Title("Train System")]
-        [SerializeField] private HandsSprites _handsSprites;
-
         [Title("Game Interface")]
         [SerializeField] private HealthBarView _healthBarView;
         [SerializeField] private GoldView _goldView;
@@ -83,7 +78,6 @@ namespace Infrastructure.Installers.Game
             BindRepositories();
 
             BindPrincessesData();
-            BindTrainSystem();
 
             BindUI();
             BindGeneralControls();
@@ -130,11 +124,6 @@ namespace Infrastructure.Installers.Game
         {
             Container.BindInstance(_enemyWeaponsRegistry);
             Container.BindInstance(_weaponFactory);
-        }
-
-        private void BindTrainSystem()
-        {
-            Container.BindInstance(_handsSprites);
         }
 
         private void BindPrincessesData()
