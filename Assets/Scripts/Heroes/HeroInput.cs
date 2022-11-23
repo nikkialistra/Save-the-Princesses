@@ -1,4 +1,5 @@
-﻿using GameData.Settings;
+﻿using System;
+using GameData.Settings;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,8 @@ namespace Heroes
 {
     public class HeroInput
     {
+        public event Action SwapWeapons;
+
         public Vector2 MoveInput => _moveInput;
         public Vector2 DirectionNormalized { get; private set; }
 
@@ -20,10 +23,19 @@ namespace Heroes
         private float _lastPressY = float.NegativeInfinity;
 
         private readonly InputAction _moveAction;
+        private readonly InputAction _swapWeaponsAction;
 
         public HeroInput(PlayerInput playerInput)
         {
             _moveAction = playerInput.actions.FindAction("Move");
+            _swapWeaponsAction = playerInput.actions.FindAction("Swap Weapons");
+
+            _swapWeaponsAction.started += OnSwapWeaponsPress;
+        }
+
+        public void Dispose()
+        {
+            _swapWeaponsAction.started -= OnSwapWeaponsPress;
         }
 
         public void Tick()
@@ -63,6 +75,11 @@ namespace Heroes
 
             bool TimeBetweenYAndXInputIsSmall() => _lastPressY - _lastPressX < GameSettings.Hero.ButtonPressToleranceTime;
             bool TimeBetweenXAndYInputIsSmall() => _lastPressX - _lastPressY < GameSettings.Hero.ButtonPressToleranceTime;
+        }
+
+        private void OnSwapWeaponsPress(InputAction.CallbackContext _)
+        {
+            SwapWeapons?.Invoke();
         }
     }
 }

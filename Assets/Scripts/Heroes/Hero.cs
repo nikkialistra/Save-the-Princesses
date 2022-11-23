@@ -4,12 +4,15 @@ using Characters.Common;
 using Characters.Health;
 using Characters.Stats;
 using Combat.Weapons;
+using Combat.Weapons.Enums;
 using GameData.Settings;
 using GameData.Stats;
 using Heroes.Accumulations;
 using Heroes.Attacks;
 using Princesses.Services.Repositories;
-using Surrounding.Collectables;
+using Surrounding.Interactables;
+using Surrounding.Interactables.Types;
+using Surrounding.Interactables.Types.Accumulations;
 using Trains;
 using Trains.Characters;
 using UnityEngine;
@@ -34,7 +37,7 @@ namespace Heroes
 
         public Train Train { get; private set; }
 
-        public HeroCollector Collector { get; private set; } = new();
+        public HeroAccumulations Accumulations { get; private set; } = new();
 
         public AllStats Stats => Character.Stats;
 
@@ -47,6 +50,7 @@ namespace Heroes
         private HeroInput _input;
         private HeroMoving _moving;
         private HeroAnimator _animator;
+        private HeroWeapons _weapons;
         private HeroAttacker _attacker;
 
         private HeroTrainStatEffects _trainStatEffects;
@@ -73,12 +77,16 @@ namespace Heroes
 
             Character.SetCustomHitInvulnerabilityTime(GameSettings.Hero.HitInvulnerabilityTime);
 
+            _weapons.WeaponChanged += ChangeWeapon;
+
             _attacker.StrokeStart += OnStrokeStart;
             Character.Slain += OnSlain;
         }
 
         public void Dispose()
         {
+            _weapons.WeaponChanged -= ChangeWeapon;
+
             _attacker.StrokeStart += OnStrokeStart;
             Character.Slain -= OnSlain;
 
@@ -87,8 +95,9 @@ namespace Heroes
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.GetComponent(typeof(Collectable)) is Collectable collectable)
-                Collector.Pickup(collectable);
+            if (other.GetComponent(typeof(IInteractable)) is IInteractable interactable)
+                Interact(interactable);
+
         }
 
         public void ChangeWeapon(Weapon weapon)
@@ -138,15 +147,25 @@ namespace Heroes
             _trainStatEffects.RemovePrincessStatEffects(effects);
         }
 
-        private void OnStrokeStart()
+        private void ChangeWeapon(WeaponType weaponType)
         {
-            StrokeStart?.Invoke();
+
         }
 
-        private void OnSlain()
+        private void Interact(IInteractable interactable)
         {
-            Active = false;
-            Slain?.Invoke();
+            switch (interactable.Type)
+            {
+                case InteractableType.Accumulation:
+                    Accumulations.Pickup((Accumulation)interactable);
+                    break;
+                case InteractableType.Weaponry:
+                    var weaponry = (Weaponry)interactable;
+                    _weapons.TryReplaceWeapon(weaponry.WeaponType);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         private void FillComponents()
@@ -166,9 +185,10 @@ namespace Heroes
             _input = new HeroInput(_playerInput);
             _moving = new HeroMoving(_input, Character.Moving);
             _animator = new HeroAnimator(Character.Animator);
+            _weapons = new HeroWeapons(_input);
             _attacker = new HeroAttacker(_playerInput);
 
-            Collector = new HeroCollector();
+            Accumulations = new HeroAccumulations();
 
             _trainStatEffects = new HeroTrainStatEffects(Character);
             _princessGathering = new HeroPrincessGathering(_activePrincesses, this, _playerInput);
@@ -177,10 +197,24 @@ namespace Heroes
         private void DisposeComponents()
         {
             Character.Dispose();
+
+            _input.Dispose();
+            _weapons.Dispose();
             _attacker.Dispose();
 
             _animator.Dispose();
             _princessGathering.Dispose();
+        }
+
+        private void OnStrokeStart()
+        {
+            StrokeStart?.Invoke();
+        }
+
+        private void OnSlain()
+        {
+            Active = false;
+            Slain?.Invoke();
         }
     }
 }

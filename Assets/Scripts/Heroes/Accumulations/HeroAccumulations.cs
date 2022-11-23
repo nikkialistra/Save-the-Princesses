@@ -1,32 +1,32 @@
 ﻿using System;
-using Surrounding.Collectables;
+using Surrounding.Interactables.Types.Accumulations;
 
 namespace Heroes.Accumulations
 {
-    public class HeroCollector
+    public class HeroAccumulations
     {
         public HeroGold Gold { get; } = new();
         public HeroAmmo Ammo { get; } = new();
 
-        public void Pickup(Collectable collectable)
+        public void Pickup(Accumulation accumulation)
         {
-            var collected = collectable.TryPickup();
+            var collected = accumulation.TryPickup();
 
             if (collected == null) return;
 
             if (TryUpdateAccumulations(collected))
-                collectable.MarkPickuped();
+                accumulation.MarkPickuped();
         }
 
-        private bool TryUpdateAccumulations(Collected collected)
+        private bool TryUpdateAccumulations(Accumulated accumulated)
         {
-            Func<int, bool> action = collected.Type switch {
-                CollectableType.Coin => UpdateGold,
-                CollectableType.Ammo => UpdateAmmo,
+            Func<int, bool> action = accumulated.Type switch {
+                AccumulationType.Coin => UpdateGold,
+                AccumulationType.Ammo => UpdateAmmo,
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-            return action(collected.Quantity);
+            return action(accumulated.Quantity);
         }
 
         private bool UpdateGold(int quantity)

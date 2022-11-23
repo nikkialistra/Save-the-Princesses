@@ -26,9 +26,9 @@ namespace UI
             var hero = heroesControl.First;
 
             _healthBarView.Initialize(hero.Health);
-            _ammoView = new AmmoView(_uiRoot, hero.Collector.Ammo);
+            _ammoView = new AmmoView(_uiRoot, hero.Accumulations.Ammo);
             _statsView = new StatsView(_uiRoot, hero);
-            _goldView.Initialize(hero.Collector.Gold);
+            _goldView.Initialize(hero.Accumulations.Gold);
         }
 
         public void Dispose()
