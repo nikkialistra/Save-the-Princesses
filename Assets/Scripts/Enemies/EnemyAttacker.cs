@@ -9,7 +9,7 @@ namespace Enemies
     {
         public float AttackDistance => _weapon.Attack.AttackDistance;
 
-        private Vector2 DirectionToHero => _hero.PositionCenter - (_character.Position + _weapon.Attack.CenterOffset);
+        private Vector2 DirectionToHero => _hero.PositionCenter - (_character.PositionCenter);
         private float AngleToHero => Mathf.Atan2(DirectionToHero.y, DirectionToHero.x) * Mathf.Rad2Deg;
 
         private Weapon _weapon;

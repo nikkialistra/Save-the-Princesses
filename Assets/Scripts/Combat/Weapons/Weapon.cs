@@ -15,7 +15,7 @@ namespace Combat.Weapons
         private static readonly int BlinkId = Shader.PropertyToID("_Blink");
 
         public Attack Attack => _attack;
-        public AttackLocation AttackLocation { get; private set; }
+        public float AttackRotation => _attack.Location.Rotation;
         public WeaponAnimator Animator { get; private set; }
 
         public StrokeType LastStroke => _concreteWeapon.LastStroke;
@@ -35,8 +35,6 @@ namespace Combat.Weapons
             _character = parent;
 
             FillComponents();
-
-            AttackLocation = new AttackLocation(transform);
 
             _concreteWeapon.Initialize(specs);
 

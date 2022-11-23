@@ -174,7 +174,9 @@ MonoBehaviour:
     ReferencedUnityObjects:
     - {fileID: 2453188263931797200, guid: 094c5447a4b7f7c4e8e20c66751280d3, type: 3}
     - {fileID: 11400000, guid: 19336cfcc31368e4e812056dd5ba56e0, type: 2}
+    - {fileID: 1062006250087838606, guid: d0e48a2e6df3ae54da6154966fd905c9, type: 3}
     - {fileID: 11400000, guid: 8ff660aa7e97eaa4ba97c7835dba255f, type: 2}
+    - {fileID: 7695758724357967985, guid: d43ee85c61fb2b6429680e3a1e605fc0, type: 3}
     - {fileID: 11400000, guid: a131dd1a326556c49a8f4e7b5b74dd9d, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
@@ -232,11 +234,11 @@ MonoBehaviour:
       Entry: 7
       Data: 3|GameData.Princesses.PrincessData, Scripts
     - Name: Prefab
-      Entry: 6
-      Data: 
-    - Name: InitialStats
       Entry: 10
       Data: 2
+    - Name: InitialStats
+      Entry: 10
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -253,11 +255,11 @@ MonoBehaviour:
       Entry: 7
       Data: 4|GameData.Princesses.PrincessData, Scripts
     - Name: Prefab
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 4
     - Name: InitialStats
       Entry: 10
-      Data: 3
+      Data: 5
     - Name: 
       Entry: 8
       Data: 
@@ -503,8 +505,10 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
+    - {fileID: 6877760913545033272, guid: 7ceb2cd6530529e41a39631f0d1eb73b, type: 3}
     - {fileID: 11400000, guid: 2e19e4ae7f3650d43b9e3eda3150c7d5, type: 2}
     - {fileID: 11400000, guid: 8cc69674a9c30a445b740ffcce5c8e31, type: 2}
+    - {fileID: 824360411594953427, guid: 527e99cc7fd3d254386c1a74a3c3a914, type: 3}
     - {fileID: 11400000, guid: c0d4c561e9d63e2409672c8bc8c167fc, type: 2}
     - {fileID: 11400000, guid: 54bd9a45db841c94fb0cd26982fab5fd, type: 2}
     SerializedBytesString: 
@@ -542,14 +546,14 @@ MonoBehaviour:
       Entry: 7
       Data: 2|GameData.Enemies.EnemyData, Scripts
     - Name: Prefab
-      Entry: 6
-      Data: 
-    - Name: InitialStats
       Entry: 10
       Data: 0
-    - Name: Specs
+    - Name: InitialStats
       Entry: 10
       Data: 1
+    - Name: Specs
+      Entry: 10
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -566,14 +570,14 @@ MonoBehaviour:
       Entry: 7
       Data: 3|GameData.Enemies.EnemyData, Scripts
     - Name: Prefab
-      Entry: 6
-      Data: 
-    - Name: InitialStats
-      Entry: 10
-      Data: 2
-    - Name: Specs
       Entry: 10
       Data: 3
+    - Name: InitialStats
+      Entry: 10
+      Data: 4
+    - Name: Specs
+      Entry: 10
+      Data: 5
     - Name: 
       Entry: 8
       Data: 
@@ -1714,7 +1718,6 @@ MonoBehaviour:
   _weaponFactory: {fileID: 1127293789}
   _princessPalettesRegistry: {fileID: 926162203}
   _princessElementControllersRegistry: {fileID: 926162204}
-  _handsSprites: {fileID: 0}
   _healthBarView: {fileID: 1972371814}
   _goldView: {fileID: 1972371808}
   _gameInterfaceControl: {fileID: 1972371816}

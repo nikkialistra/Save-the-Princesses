@@ -4,6 +4,7 @@ using Combat.Attacks;
 using Combat.Weapons;
 using GameData.Settings;
 using UnityEngine;
+using static Characters.CharacterAnimator;
 
 namespace Heroes
 {
@@ -11,7 +12,7 @@ namespace Heroes
     {
         private static readonly int Inverted = Animator.StringToHash("isInverted");
 
-        private AttackLocation AttackLocation => _weapon.AttackLocation;
+        private float AttackRotation => _weapon.AttackRotation;
         private WeaponAnimator WeaponAnimator => _weapon.Animator;
 
         private float Rotation => Direction9Utils.Vector2ToRotation(_direction);
@@ -42,11 +43,11 @@ namespace Heroes
             _animator.UpdateFinish -= UpdateAnimator;
         }
 
-        private void UpdateAnimator(CharacterAnimator.AnimationStatus status)
+        private void UpdateAnimator(AnimationStatus status)
         {
             _direction = status.Direction;
 
-            UpdateInversionStatus(Mathf.Abs(Mathf.DeltaAngle(Rotation, AttackLocation.Rotation)));
+            UpdateInversionStatus(Mathf.Abs(Mathf.DeltaAngle(Rotation, AttackRotation)));
 
             _animator.SetBool(Inverted, _isInverted);
             WeaponAnimator.SetBool(Inverted, _isInverted);

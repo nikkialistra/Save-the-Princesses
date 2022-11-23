@@ -19,7 +19,6 @@ namespace Infrastructure.Installers.Game
 
         [Title("Rooms")]
         [SerializeField] private RoomFrequencyRegistry _roomFrequencyRegistry;
-        [SerializeField] private GameObject _roomPrefab;
         [SerializeField] private Transform _roomsParent;
 
         public override void InstallBindings()
@@ -37,6 +36,7 @@ namespace Infrastructure.Installers.Game
         {
             Container.BindInstance(_roomFrequencyRegistry);
 
+            Container.Bind<RoomPicking>().AsSingle();
             Container.Bind<RoomGenerator>().AsSingle();
 
             Container.BindInstance(_roomsParent).WhenInjectedInto<RoomGenerator>();

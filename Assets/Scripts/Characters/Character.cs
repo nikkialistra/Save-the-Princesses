@@ -39,6 +39,8 @@ namespace Characters
         public Vector2 PositionCenter => (Vector2)transform.position + new Vector2(0, _yPosition);
         public float DirectionChangeTime { get; set; }
 
+        public bool HasImpact => Moving.HasImpact;
+
         [SerializeField] private float _yPosition;
 
         private bool _active;

@@ -13,16 +13,14 @@ namespace Combat.Attacks
         public event Action End;
 
         public AttackSpecs Specs { get; private set; }
+        public AttackLocation Location { get; private set; }
+
         public float AttackDistance => _weaponSpecs.AttackDistance;
 
         public Vector2 Position => transform.position;
-        public Vector2 CenterOffset => _centerOffset;
-
-        [SerializeField] private Vector2 _centerOffset = Vector2.zero;
 
         private AttackOrigin _origin;
 
-        private AttackLocation _location;
         private AttackAnimator _animator;
 
         private WeaponSpecs _weaponSpecs;
@@ -36,7 +34,7 @@ namespace Combat.Attacks
             _animator.Start += OnStart;
             _animator.End += OnEnd;
 
-            _location.AlignWithCharacterCenter(offset);
+            Location.AlignWithCharacterCenter(offset);
             SetAttackOrigin(characterType);
         }
 
@@ -71,7 +69,7 @@ namespace Combat.Attacks
         public void UpdateRotation(float direction)
         {
             if (!_animator.IsStroking)
-                _location.UpdateRotation(direction);
+                Location.UpdateRotation(direction);
         }
 
         private void SetAttackOrigin(CharacterType characterType)
@@ -87,7 +85,7 @@ namespace Combat.Attacks
 
         private void InitializeComponents()
         {
-            _location = new AttackLocation(transform);
+            Location = new AttackLocation(transform);
             _animator.Initialize();
         }
 

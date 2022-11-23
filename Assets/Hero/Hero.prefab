@@ -364,6 +364,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615fa0574e3c49d588e87ac86301170e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _characterStats:
+    _maxHealth:
+      _baseValue: 0
+      _statModifiers: []
+    _movementSpeed:
+      _baseValue: 0
+      _statModifiers: []
+    _armor:
+      _baseValue: 0
+      _statModifiers: []
+    _vampirism:
+      _baseValue: 0
+      _statModifiers: []
+    _luck:
+      _baseValue: 0
+      _statModifiers: []
+    _knockbackStand:
+      _baseValue: 0
+      _statModifiers: []
+    _stunResistance:
+      _baseValue: 0
+      _statModifiers: []
+  _meleeStats:
+    _attackSpeed:
+      _baseValue: 0
+      _statModifiers: []
+    _damageMultiplier:
+      _baseValue: 0
+      _statModifiers: []
+    _knockbackMultiplier:
+      _baseValue: 0
+      _statModifiers: []
+    _stunMultiplier:
+      _baseValue: 0
+      _statModifiers: []
+  _rangedStats:
+    _attackSpeed:
+      _baseValue: 0
+      _statModifiers: []
+    _attackRange:
+      _baseValue: 0
+      _statModifiers: []
+    _damageMultiplier:
+      _baseValue: 0
+      _statModifiers: []
+    _knockbackMultiplier:
+      _baseValue: 0
+      _statModifiers: []
+    _stunMultiplier:
+      _baseValue: 0
+      _statModifiers: []
 --- !u!114 &3517064352616132719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,7 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0d739270b3b464b815f0b1dc3002807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _yPosition: 0.25
+  _yPosition: 0.5
 --- !u!114 &2365866003809068119
 MonoBehaviour:
   m_ObjectHideFlags: 0

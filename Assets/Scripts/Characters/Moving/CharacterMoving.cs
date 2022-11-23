@@ -24,6 +24,8 @@ namespace Characters.Moving
         public bool ShouldLocallyAvoid => _shouldLocallyAvoid;
         public bool ShowPath => _showPath;
 
+        public bool HasImpact => _hitImpacts.HasImpact;
+
         [SerializeField] private bool _shouldLocallyAvoid;
         [Space]
         [SerializeField] private bool _showPath;
