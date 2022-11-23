@@ -1,4 +1,4 @@
-﻿namespace Combat.Weapons
+﻿namespace Combat.Weapons.Enums
 {
     public enum WeaponType
     {

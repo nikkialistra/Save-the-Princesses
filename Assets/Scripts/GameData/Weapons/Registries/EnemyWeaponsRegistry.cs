@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Combat.Weapons;
+using Combat.Weapons.Enums;
 using Enemies;
 using Sirenix.OdinInspector;
 using UnityEngine;

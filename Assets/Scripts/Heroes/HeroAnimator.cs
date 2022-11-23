@@ -33,7 +33,7 @@ namespace Heroes
             _animator.UpdateFinish += UpdateAnimator;
         }
 
-        public void SetWeapon(Weapon weapon)
+        public void ChangeWeapon(Weapon weapon)
         {
             _weapon = weapon;
         }

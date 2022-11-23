@@ -91,10 +91,10 @@ namespace Heroes
                 Collector.Pickup(collectable);
         }
 
-        public void SetWeapon(Weapon weapon)
+        public void ChangeWeapon(Weapon weapon)
         {
-            _attacker.SetWeapon(weapon);
-            _animator.SetWeapon(weapon);
+            _attacker.ChangeWeapon(weapon);
+            _animator.ChangeWeapon(weapon);
         }
 
         public void Tick()

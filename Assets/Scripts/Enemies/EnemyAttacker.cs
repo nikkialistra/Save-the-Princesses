@@ -38,7 +38,7 @@ namespace Enemies
             _weapon.Tick();
         }
 
-        public void SetWeapon(Weapon weapon)
+        public void ChangeWeapon(Weapon weapon)
         {
             _weapon = weapon;
         }

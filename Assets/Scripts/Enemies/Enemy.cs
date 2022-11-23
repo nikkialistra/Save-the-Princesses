@@ -79,9 +79,9 @@ namespace Enemies
             Character.FixedTick();
         }
 
-        public void SetWeapon(Weapon weapon)
+        public void ChangeWeapon(Weapon weapon)
         {
-            Attacker.SetWeapon(weapon);
+            Attacker.ChangeWeapon(weapon);
         }
 
         public void PlaceInRoom(Room room)

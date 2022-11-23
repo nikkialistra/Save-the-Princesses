@@ -27,7 +27,7 @@ namespace Heroes.Attacks
             _weapon.Dispose();
         }
 
-        public void SetWeapon(Weapon weapon)
+        public void ChangeWeapon(Weapon weapon)
         {
             _weapon = weapon;
         }

@@ -1,4 +1,5 @@
 ﻿using Combat.Weapons;
+using Combat.Weapons.Enums;
 using Combat.Weapons.Services;
 using GameData.Heroes;
 using Sirenix.OdinInspector;
@@ -50,7 +51,7 @@ namespace Heroes.Services
             hero.Initialize(train, _initialStats.InitialStats);
 
             var weapon = _weaponFactory.Create(weaponType, hero.Character);
-            hero.SetWeapon(weapon);
+            hero.ChangeWeapon(weapon);
         }
     }
 }
