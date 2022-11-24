@@ -5,6 +5,7 @@ using Characters.Health;
 using Characters.Stats;
 using Combat.Weapons;
 using Combat.Weapons.Enums;
+using Combat.Weapons.Services;
 using GameData.Settings;
 using GameData.Stats;
 using Heroes.Accumulations;
@@ -58,13 +59,15 @@ namespace Heroes
 
         private PrincessActiveRepository _activePrincesses;
 
+        private WeaponFactory _weaponFactory;
+
         private PlayerInput _playerInput;
 
         [Inject]
-        public void Construct(PrincessActiveRepository activePrincesses, PlayerInput playerInput)
+        public void Construct(PrincessActiveRepository activePrincesses, WeaponFactory weaponFactory, PlayerInput playerInput)
         {
             _activePrincesses = activePrincesses;
-
+            _weaponFactory = weaponFactory;
             _playerInput = playerInput;
         }
 
@@ -77,7 +80,7 @@ namespace Heroes
 
             Character.SetCustomHitInvulnerabilityTime(GameSettings.Hero.HitInvulnerabilityTime);
 
-            _weapons.WeaponChanged += ChangeWeapon;
+            _weapons.ActiveWeaponChanged += ChangeActiveWeapon;
 
             _attacker.StrokeStart += OnStrokeStart;
             Character.Slain += OnSlain;
@@ -85,7 +88,7 @@ namespace Heroes
 
         public void Dispose()
         {
-            _weapons.WeaponChanged -= ChangeWeapon;
+            _weapons.ActiveWeaponChanged -= ChangeActiveWeapon;
 
             _attacker.StrokeStart += OnStrokeStart;
             Character.Slain -= OnSlain;
@@ -97,13 +100,11 @@ namespace Heroes
         {
             if (other.GetComponent(typeof(IInteractable)) is IInteractable interactable)
                 Interact(interactable);
-
         }
 
-        public void ChangeWeapon(Weapon weapon)
+        public void SetWeapon(WeaponType weaponType)
         {
-            _attacker.ChangeWeapon(weapon);
-            _animator.ChangeWeapon(weapon);
+            _weapons.TryReplaceWeapon(weaponType);
         }
 
         public void Tick()
@@ -147,9 +148,9 @@ namespace Heroes
             _trainStatEffects.RemovePrincessStatEffects(effects);
         }
 
-        private void ChangeWeapon(WeaponType weaponType)
+        private void ChangeActiveWeapon(Weapon weapon)
         {
-
+            _animator.ChangeWeapon(weapon);
         }
 
         private void Interact(IInteractable interactable)
@@ -185,8 +186,8 @@ namespace Heroes
             _input = new HeroInput(_playerInput);
             _moving = new HeroMoving(_input, Character.Moving);
             _animator = new HeroAnimator(Character.Animator);
-            _weapons = new HeroWeapons(_input);
-            _attacker = new HeroAttacker(_playerInput);
+            _weapons = new HeroWeapons(Character, _weaponFactory);
+            _attacker = new HeroAttacker(_weapons, _playerInput);
 
             Accumulations = new HeroAccumulations();
 
@@ -199,8 +200,6 @@ namespace Heroes
             Character.Dispose();
 
             _input.Dispose();
-            _weapons.Dispose();
-            _attacker.Dispose();
 
             _animator.Dispose();
             _princessGathering.Dispose();

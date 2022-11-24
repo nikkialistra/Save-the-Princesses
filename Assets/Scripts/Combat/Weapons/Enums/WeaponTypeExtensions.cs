@@ -9,9 +9,9 @@ namespace Combat.Weapons.Enums
         {
             return weaponType switch
             {
-                WeaponType.NoWeapon => Melee,
-                WeaponType.Sword => Melee,
-                WeaponType.Fork => Melee,
+                WeaponType.NoWeapon => MeleeCategory,
+                WeaponType.Sword => MeleeCategory,
+                WeaponType.Fork => MeleeCategory,
                 _ => throw new ArgumentOutOfRangeException()
             };
         }

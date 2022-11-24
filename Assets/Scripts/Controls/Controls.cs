@@ -48,9 +48,18 @@ namespace Controls
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Attack"",
+                    ""name"": ""Melee Attack"",
                     ""type"": ""Button"",
                     ""id"": ""549b517b-d68d-485e-b65c-21e6b18aacf2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ranged Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""9a61bd54-c1c4-4c62-ac12-8aaa68d3f7bd"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -213,7 +222,7 @@ namespace Controls
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardAndMouse"",
-                    ""action"": ""Attack"",
+                    ""action"": ""Melee Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -224,7 +233,7 @@ namespace Controls
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Attack"",
+                    ""action"": ""Melee Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -304,6 +313,28 @@ namespace Controls
                     ""action"": ""Toggle Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bdbd42e4-b661-4ea7-98f1-53cabede75a9"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardAndMouse"",
+                    ""action"": ""Ranged Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dda166fc-1291-4c2d-9106-812b0d47db15"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Ranged Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -342,7 +373,8 @@ namespace Controls
             m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
             m_Game_Move = m_Game.FindAction("Move", throwIfNotFound: true);
             m_Game_Look = m_Game.FindAction("Look", throwIfNotFound: true);
-            m_Game_Attack = m_Game.FindAction("Attack", throwIfNotFound: true);
+            m_Game_MeleeAttack = m_Game.FindAction("Melee Attack", throwIfNotFound: true);
+            m_Game_RangedAttack = m_Game.FindAction("Ranged Attack", throwIfNotFound: true);
             m_Game_Interact = m_Game.FindAction("Interact", throwIfNotFound: true);
             m_Game_ShowTrainOrderNumbers = m_Game.FindAction("Show Train Order Numbers", throwIfNotFound: true);
             m_Game_ToggleMenu = m_Game.FindAction("Toggle Menu", throwIfNotFound: true);
@@ -407,7 +439,8 @@ namespace Controls
         private IGameActions m_GameActionsCallbackInterface;
         private readonly InputAction m_Game_Move;
         private readonly InputAction m_Game_Look;
-        private readonly InputAction m_Game_Attack;
+        private readonly InputAction m_Game_MeleeAttack;
+        private readonly InputAction m_Game_RangedAttack;
         private readonly InputAction m_Game_Interact;
         private readonly InputAction m_Game_ShowTrainOrderNumbers;
         private readonly InputAction m_Game_ToggleMenu;
@@ -417,7 +450,8 @@ namespace Controls
             public GameActions(@Controls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Game_Move;
             public InputAction @Look => m_Wrapper.m_Game_Look;
-            public InputAction @Attack => m_Wrapper.m_Game_Attack;
+            public InputAction @MeleeAttack => m_Wrapper.m_Game_MeleeAttack;
+            public InputAction @RangedAttack => m_Wrapper.m_Game_RangedAttack;
             public InputAction @Interact => m_Wrapper.m_Game_Interact;
             public InputAction @ShowTrainOrderNumbers => m_Wrapper.m_Game_ShowTrainOrderNumbers;
             public InputAction @ToggleMenu => m_Wrapper.m_Game_ToggleMenu;
@@ -436,9 +470,12 @@ namespace Controls
                     @Look.started -= m_Wrapper.m_GameActionsCallbackInterface.OnLook;
                     @Look.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnLook;
                     @Look.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnLook;
-                    @Attack.started -= m_Wrapper.m_GameActionsCallbackInterface.OnAttack;
-                    @Attack.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnAttack;
-                    @Attack.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnAttack;
+                    @MeleeAttack.started -= m_Wrapper.m_GameActionsCallbackInterface.OnMeleeAttack;
+                    @MeleeAttack.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnMeleeAttack;
+                    @MeleeAttack.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnMeleeAttack;
+                    @RangedAttack.started -= m_Wrapper.m_GameActionsCallbackInterface.OnRangedAttack;
+                    @RangedAttack.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnRangedAttack;
+                    @RangedAttack.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnRangedAttack;
                     @Interact.started -= m_Wrapper.m_GameActionsCallbackInterface.OnInteract;
                     @Interact.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnInteract;
                     @Interact.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnInteract;
@@ -458,9 +495,12 @@ namespace Controls
                     @Look.started += instance.OnLook;
                     @Look.performed += instance.OnLook;
                     @Look.canceled += instance.OnLook;
-                    @Attack.started += instance.OnAttack;
-                    @Attack.performed += instance.OnAttack;
-                    @Attack.canceled += instance.OnAttack;
+                    @MeleeAttack.started += instance.OnMeleeAttack;
+                    @MeleeAttack.performed += instance.OnMeleeAttack;
+                    @MeleeAttack.canceled += instance.OnMeleeAttack;
+                    @RangedAttack.started += instance.OnRangedAttack;
+                    @RangedAttack.performed += instance.OnRangedAttack;
+                    @RangedAttack.canceled += instance.OnRangedAttack;
                     @Interact.started += instance.OnInteract;
                     @Interact.performed += instance.OnInteract;
                     @Interact.canceled += instance.OnInteract;
@@ -496,7 +536,8 @@ namespace Controls
         {
             void OnMove(InputAction.CallbackContext context);
             void OnLook(InputAction.CallbackContext context);
-            void OnAttack(InputAction.CallbackContext context);
+            void OnMeleeAttack(InputAction.CallbackContext context);
+            void OnRangedAttack(InputAction.CallbackContext context);
             void OnInteract(InputAction.CallbackContext context);
             void OnShowTrainOrderNumbers(InputAction.CallbackContext context);
             void OnToggleMenu(InputAction.CallbackContext context);

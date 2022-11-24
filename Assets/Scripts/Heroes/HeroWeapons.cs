@@ -1,42 +1,53 @@
 ﻿using System;
+using Characters;
+using Combat.Weapons;
 using Combat.Weapons.Enums;
+using Combat.Weapons.Services;
 using static Combat.Weapons.Enums.WeaponCategory;
 
 namespace Heroes
 {
     public class HeroWeapons
     {
-        public event Action<WeaponType> WeaponChanged;
+        public event Action<Weapon> ActiveWeaponChanged;
 
-        private WeaponCategory _activeCategory = Melee;
+        public bool HasMelee => Melee != null;
+        public bool HasRanged => Ranged != null;
 
-        private WeaponType _melee;
-        private WeaponType _ranged;
+        public Weapon Melee { get; private set; }
+        public Weapon Ranged { get; private set; }
 
-        private readonly HeroInput _input;
+        private WeaponCategory _activeCategory = MeleeCategory;
 
-        public HeroWeapons(HeroInput input)
+        private readonly Character _parent;
+
+        private readonly WeaponFactory _weaponFactory;
+
+        public HeroWeapons(Character parent, WeaponFactory weaponFactory)
         {
-            _input = input;
-
-            _input.SwapWeapons += TrySwapWeapons;
+            _parent = parent;
+            _weaponFactory = weaponFactory;
         }
 
-        public void Dispose()
+        public void Tick()
         {
-            _input.SwapWeapons -= TrySwapWeapons;
+            if (Melee != null)
+                Melee.Tick();
+
+            if (Ranged != null)
+                Ranged.Tick();
         }
 
         public WeaponType TryReplaceWeapon(WeaponType weaponType)
         {
-            return weaponType.Category() == Melee
+            return weaponType.Category() == MeleeCategory
                 ? TryReplaceMeleeWeapon(weaponType)
                 : TryReplaceRangedWeapon(weaponType);
         }
 
         private void TrySwapWeapons()
         {
-            if (_activeCategory == Melee)
+            if (_activeCategory == MeleeCategory)
                 TrySwapToRanged();
             else
                 TrySwapToMelee();
@@ -44,46 +55,60 @@ namespace Heroes
 
         private WeaponType TryReplaceMeleeWeapon(WeaponType weaponType)
         {
-            if (_melee == weaponType) return WeaponType.NoWeapon;
+            if (Melee.Type == weaponType) return WeaponType.NoWeapon;
 
-            var previous = _melee;
-            _melee = weaponType;
-
-            if (_activeCategory == Melee)
-                WeaponChanged?.Invoke(_melee);
+            var previous = Melee.Type;
+            UpdateMeleeWeapon(weaponType);
 
             return previous;
         }
 
         private WeaponType TryReplaceRangedWeapon(WeaponType weaponType)
         {
-            if (_ranged == weaponType) return WeaponType.NoWeapon;
+            if (Ranged.Type == weaponType) return WeaponType.NoWeapon;
 
-            var previous = _ranged;
-            _ranged = weaponType;
-
-            if (_activeCategory == Ranged)
-                WeaponChanged?.Invoke(_ranged);
+            var previous = Ranged.Type;
+            UpdateRangedWeapon(weaponType);
 
             return previous;
         }
 
+        private void UpdateMeleeWeapon(WeaponType weaponType)
+        {
+            Melee.Dispose();
+
+            Melee = _weaponFactory.Create(weaponType, _parent);
+
+            if (_activeCategory == MeleeCategory)
+                ActiveWeaponChanged?.Invoke(Melee);
+        }
+
+        private void UpdateRangedWeapon(WeaponType weaponType)
+        {
+            Ranged.Dispose();
+
+            Ranged = _weaponFactory.Create(weaponType, _parent);
+
+            if (_activeCategory == MeleeCategory)
+                ActiveWeaponChanged?.Invoke(Ranged);
+        }
+
         private void TrySwapToMelee()
         {
-            if (_melee == WeaponType.NoWeapon) return;
+            if (Melee.Type == WeaponType.NoWeapon) return;
 
-            _activeCategory = Melee;
+            _activeCategory = MeleeCategory;
 
-            WeaponChanged?.Invoke(_melee);
+            ActiveWeaponChanged?.Invoke(Melee);
         }
 
         private void TrySwapToRanged()
         {
-            if (_ranged == WeaponType.NoWeapon) return;
+            if (Ranged.Type == WeaponType.NoWeapon) return;
 
-            _activeCategory = Ranged;
+            _activeCategory = RangedCategory;
 
-            WeaponChanged?.Invoke(_ranged);
+            ActiveWeaponChanged?.Invoke(Ranged);
         }
     }
 }

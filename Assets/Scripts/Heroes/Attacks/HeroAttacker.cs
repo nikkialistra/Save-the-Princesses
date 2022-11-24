@@ -1,6 +1,8 @@
 ﻿using System;
 using Combat.Attacks;
 using Combat.Weapons;
+using GameData.Settings;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Heroes.Attacks
@@ -15,29 +17,27 @@ namespace Heroes.Attacks
 
         private Hero _hero;
 
-        private readonly InputAction _attackAction;
+        private readonly HeroWeapons _weapons;
 
-        public HeroAttacker(PlayerInput playerInput)
-        {
-            _attackAction = playerInput.actions.FindAction("Attack");
-        }
+        private readonly InputAction _meleeAttackAction;
+        private readonly InputAction _rangedAttackAction;
 
-        public void Dispose()
+        public HeroAttacker(HeroWeapons weapons, PlayerInput playerInput)
         {
-            _weapon.Dispose();
-        }
+            _weapons = weapons;
 
-        public void ChangeWeapon(Weapon weapon)
-        {
-            _weapon = weapon;
+            _meleeAttackAction = playerInput.actions.FindAction("Melee Attack");
+            _rangedAttackAction = playerInput.actions.FindAction("Ranged Attack");
         }
 
         public void Tick()
         {
-            _weapon.Tick();
+            _weapons.Tick();
 
-            if (_attackAction.IsPressed())
-                TryStroke();
+            if (_meleeAttackAction.IsPressed() && _weapons.HasMelee)
+                TryMeleeStroke();
+            else if (_rangedAttackAction.IsPressed() && _weapons.HasRanged)
+                TryRangedStroke();
         }
 
         public void UpdateAttackRotation(float direction)
@@ -45,13 +45,40 @@ namespace Heroes.Attacks
             Attack.UpdateRotation(direction);
         }
 
-        private void TryStroke()
+        private void TryMeleeStroke()
         {
-            if (_weapon.TryStroke())
+            if (RangedWeaponHitRecently()) return;
+
+            if (_weapons.Melee.TryStroke())
             {
                 Attack.Do(_weapon.LastStroke);
                 StrokeStart?.Invoke();
             }
+        }
+
+        private void TryRangedStroke()
+        {
+            if (MeleeWeaponHitRecently()) return;
+
+            if (_weapons.Ranged.TryStroke())
+            {
+                Attack.Do(_weapon.LastStroke);
+                StrokeStart?.Invoke();
+            }
+        }
+
+        private bool RangedWeaponHitRecently()
+        {
+            if (_weapons.HasRanged == false) return false;
+
+            return Time.time - _weapons.Ranged.AttackEndTime < GameSettings.Hero.TimeAfterLastAttackToChangeWeapon;
+        }
+
+        private bool MeleeWeaponHitRecently()
+        {
+            if (_weapons.HasMelee == false) return false;
+
+            return Time.time - _weapons.Melee.AttackEndTime < GameSettings.Hero.TimeAfterLastAttackToChangeWeapon;
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     public enum WeaponCategory
     {
-        Melee,
-        Ranged
+        MeleeCategory,
+        RangedCategory
     }
 }

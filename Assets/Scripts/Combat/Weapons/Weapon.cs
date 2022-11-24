@@ -1,6 +1,7 @@
 ﻿using Characters;
 using Combat.Attacks;
 using Combat.Weapons.Concrete;
+using Combat.Weapons.Enums;
 using GameData.Weapons;
 using UnityEngine;
 using static Characters.CharacterAnimator;
@@ -14,11 +15,13 @@ namespace Combat.Weapons
     {
         private static readonly int BlinkId = Shader.PropertyToID("_Blink");
 
+        public WeaponType Type => _concreteWeapon.Type;
         public Attack Attack => _attack;
         public float AttackRotation => _attack.Location.Rotation;
         public WeaponAnimator Animator { get; private set; }
 
         public StrokeType LastStroke => _concreteWeapon.LastStroke;
+        public float AttackEndTime => _concreteWeapon.AttackEndTime;
 
         [SerializeField] private Attack _attack;
 

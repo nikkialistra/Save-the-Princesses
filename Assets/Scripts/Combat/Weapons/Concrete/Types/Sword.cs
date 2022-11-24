@@ -1,4 +1,5 @@
 ﻿using System;
+using Combat.Weapons.Enums;
 using GameData.Weapons;
 using UnityEngine;
 using static Combat.StrokeType;
@@ -7,7 +8,9 @@ namespace Combat.Weapons.Concrete.Types
 {
     public class Sword : ConcreteWeapon
     {
+        public override WeaponType Type => WeaponType.Sword;
         public override StrokeType LastStroke => _lastStroke;
+        public override float AttackEndTime { get; set;  }
 
         [SerializeField] private float _timeToContinueSeries = 0.75f;
 
@@ -34,7 +37,10 @@ namespace Combat.Weapons.Concrete.Types
             };
 
             if (strokeStarted)
+            {
                 _timeOfLastStroke = Time.time;
+                AttackEndTime = _timeOfLastStroke + _specs.AttackSpeed;
+            }
 
             return strokeStarted;
         }
