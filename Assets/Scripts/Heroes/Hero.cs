@@ -12,8 +12,6 @@ using Heroes.Accumulations;
 using Heroes.Attacks;
 using Princesses.Services.Repositories;
 using Surrounding.Interactables;
-using Surrounding.Interactables.Types;
-using Surrounding.Interactables.Types.Accumulations;
 using Trains;
 using Trains.Characters;
 using UnityEngine;
@@ -32,27 +30,29 @@ namespace Heroes
 
         public bool Active { get; set; }
 
-        public CharacterHealth Health => Character.Health;
-        public Character Character { get; private set; }
+        public CharacterHealth Health => _character.Health;
         public TrainCharacter TrainCharacter { get; private set; }
 
         public Train Train { get; private set; }
 
         public HeroAccumulations Accumulations { get; private set; } = new();
 
-        public AllStats Stats => Character.Stats;
+        public AllStats Stats => _character.Stats;
 
-        public Vector2 Position => Character.Position;
-        public Vector2 PositionCenter => Character.PositionCenter;
-        public Vector2 PositionCenterOffset => Character.PositionCenterOffset;
+        public Vector2 Position => _character.Position;
+        public Vector2 PositionCenter => _character.PositionCenter;
+        public Vector2 PositionCenterOffset => _character.PositionCenterOffset;
 
         [SerializeField] private HeroAttackDirection _attackDirection;
+
+        private Character _character;
 
         private HeroInput _input;
         private HeroMoving _moving;
         private HeroAnimator _animator;
         private HeroWeapons _weapons;
         private HeroAttacker _attacker;
+        private HeroInteractor _interactor;
 
         private HeroTrainStatEffects _trainStatEffects;
         private HeroPrincessGathering _princessGathering;
@@ -78,12 +78,12 @@ namespace Heroes
             FillComponents();
             InitializeComponents(initialStats);
 
-            Character.SetCustomHitInvulnerabilityTime(GameSettings.Hero.HitInvulnerabilityTime);
+            _character.SetCustomHitInvulnerabilityTime(GameSettings.Hero.HitInvulnerabilityTime);
 
             _weapons.ActiveWeaponChanged += ChangeActiveWeapon;
 
             _attacker.StrokeStart += OnStrokeStart;
-            Character.Slain += OnSlain;
+            _character.Slain += OnSlain;
         }
 
         public void Dispose()
@@ -91,7 +91,7 @@ namespace Heroes
             _weapons.ActiveWeaponChanged -= ChangeActiveWeapon;
 
             _attacker.StrokeStart += OnStrokeStart;
-            Character.Slain -= OnSlain;
+            _character.Slain -= OnSlain;
 
             DisposeComponents();
         }
@@ -99,7 +99,7 @@ namespace Heroes
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.GetComponent(typeof(IInteractable)) is IInteractable interactable)
-                Interact(interactable);
+                _interactor.Do(interactable);
         }
 
         public void SetWeapon(WeaponType weaponType)
@@ -111,7 +111,7 @@ namespace Heroes
         {
             if (!Active) return;
 
-            Character.Tick();
+            _character.Tick();
 
             _input.Tick();
             _moving.Tick();
@@ -125,7 +125,7 @@ namespace Heroes
         {
             if (!Active) return;
 
-            Character.FixedTick();
+            _character.FixedTick();
         }
 
         public void PlaceAt(Vector3 position)
@@ -150,54 +150,39 @@ namespace Heroes
 
         private void ChangeActiveWeapon(Weapon weapon)
         {
-            _animator.ChangeWeapon(_weapons.Active);
-        }
-
-        private void Interact(IInteractable interactable)
-        {
-            switch (interactable.Type)
-            {
-                case InteractableType.Accumulation:
-                    Accumulations.Pickup((Accumulation)interactable);
-                    break;
-                case InteractableType.Weaponry:
-                    var weaponry = (Weaponry)interactable;
-                    _weapons.TryReplaceWeapon(weaponry.WeaponType);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            _animator.ChangeWeapon(weapon);
         }
 
         private void FillComponents()
         {
-            Character = GetComponent<Character>();
+            _character = GetComponent<Character>();
             TrainCharacter = GetComponent<TrainCharacter>();
         }
 
         private void InitializeComponents(InitialStats initialStats)
         {
-            Character.Initialize(CharacterType.Hero, initialStats);
-            TrainCharacter.Initialize(Character, Character.Moving);
+            _character.Initialize(CharacterType.Hero, initialStats);
+            TrainCharacter.Initialize(_character, _character.Moving);
             TrainCharacter.SetTrain(Train);
 
             _attackDirection.Initialize(this);
 
             _input = new HeroInput(_playerInput);
-            _moving = new HeroMoving(_input, Character.Moving);
-            _animator = new HeroAnimator(Character.Animator);
-            _weapons = new HeroWeapons(Character, _weaponFactory);
-            _attacker = new HeroAttacker(_weapons, _playerInput);
+            _moving = new HeroMoving(_input, _character.Moving);
+            _animator = new HeroAnimator(_character.Animator);
 
             Accumulations = new HeroAccumulations();
+            _weapons = new HeroWeapons(_character, _weaponFactory);
+            _attacker = new HeroAttacker(_weapons, _playerInput);
+            _interactor = new HeroInteractor(Accumulations, _weapons, _weaponFactory);
 
-            _trainStatEffects = new HeroTrainStatEffects(Character);
+            _trainStatEffects = new HeroTrainStatEffects(_character);
             _princessGathering = new HeroPrincessGathering(_activePrincesses, this, _playerInput);
         }
 
         private void DisposeComponents()
         {
-            Character.Dispose();
+            _character.Dispose();
 
             _input.Dispose();
 

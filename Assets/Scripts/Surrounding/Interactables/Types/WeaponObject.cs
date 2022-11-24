@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace Surrounding.Interactables.Types
 {
-    public class Weaponry : MonoBehaviour, IInteractable
+    public class WeaponObject : MonoBehaviour, IInteractable
     {
-        public InteractableType Type => InteractableType.Weaponry;
+        public InteractableType Type => InteractableType.Weapon;
 
         public WeaponType WeaponType => _weaponType;
 

@@ -3,6 +3,6 @@
     public enum InteractableType
     {
         Accumulation,
-        Weaponry
+        Weapon
     }
 }
