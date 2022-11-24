@@ -150,7 +150,7 @@ namespace Heroes
 
         private void ChangeActiveWeapon(Weapon weapon)
         {
-            _animator.ChangeWeapon(weapon);
+            _animator.ChangeWeapon(_weapons.Active);
         }
 
         private void Interact(IInteractable interactable)

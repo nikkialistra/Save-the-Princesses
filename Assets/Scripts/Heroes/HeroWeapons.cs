@@ -17,7 +17,17 @@ namespace Heroes
         public Weapon Melee { get; private set; }
         public Weapon Ranged { get; private set; }
 
-        private WeaponCategory _activeCategory = MeleeCategory;
+        private Weapon Active
+        {
+            get => _active;
+            set
+            {
+                _active = value;
+                ActiveWeaponChanged?.Invoke(_active);
+            }
+        }
+
+        private Weapon _active;
 
         private readonly Character _parent;
 
@@ -45,12 +55,38 @@ namespace Heroes
                 : TryReplaceRangedWeapon(weaponType);
         }
 
-        private void TrySwapWeapons()
+        public bool TryMeleeStroke()
         {
-            if (_activeCategory == MeleeCategory)
-                TrySwapToRanged();
-            else
-                TrySwapToMelee();
+            if (!HasMelee) return false;
+
+            if (Melee.TryStroke())
+            {
+                Active = Melee;
+                Melee.Attack.Do(Melee.LastStroke);
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool TryRangedStroke()
+        {
+            if (!HasRanged) return false;
+
+            if (Ranged.TryStroke())
+            {
+                Active = Ranged;
+                Ranged.Attack.Do(Ranged.LastStroke);
+                return true;
+            }
+
+            return false;
+        }
+
+        public void UpdateRotation(float direction)
+        {
+            if (Active != null)
+                Active.Attack.UpdateRotation(direction);
         }
 
         private WeaponType TryReplaceMeleeWeapon(WeaponType weaponType)
@@ -76,39 +112,26 @@ namespace Heroes
         private void UpdateMeleeWeapon(WeaponType weaponType)
         {
             Melee.Dispose();
-
             Melee = _weaponFactory.Create(weaponType, _parent);
 
-            if (_activeCategory == MeleeCategory)
-                ActiveWeaponChanged?.Invoke(Melee);
+            UpdateActiveIf(MeleeCategory);
         }
 
         private void UpdateRangedWeapon(WeaponType weaponType)
         {
             Ranged.Dispose();
-
             Ranged = _weaponFactory.Create(weaponType, _parent);
 
-            if (_activeCategory == MeleeCategory)
-                ActiveWeaponChanged?.Invoke(Ranged);
+            UpdateActiveIf(RangedCategory);
         }
 
-        private void TrySwapToMelee()
+        private void UpdateActiveIf(WeaponCategory category)
         {
-            if (Melee.Type == WeaponType.NoWeapon) return;
+            if (_active.Type.Category() != category) return;
 
-            _activeCategory = MeleeCategory;
-
-            ActiveWeaponChanged?.Invoke(Melee);
-        }
-
-        private void TrySwapToRanged()
-        {
-            if (Ranged.Type == WeaponType.NoWeapon) return;
-
-            _activeCategory = RangedCategory;
-
-            ActiveWeaponChanged?.Invoke(Ranged);
+            Active = category == MeleeCategory
+                ? Melee
+                : Ranged;
         }
     }
 }

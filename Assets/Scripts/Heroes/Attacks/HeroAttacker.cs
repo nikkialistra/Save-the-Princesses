@@ -1,5 +1,4 @@
 ﻿using System;
-using Combat.Attacks;
 using Combat.Weapons;
 using GameData.Settings;
 using UnityEngine;
@@ -10,8 +9,6 @@ namespace Heroes.Attacks
     public class HeroAttacker
     {
         public event Action StrokeStart;
-
-        private Attack Attack => _weapon.Attack;
 
         private Weapon _weapon;
 
@@ -34,37 +31,31 @@ namespace Heroes.Attacks
         {
             _weapons.Tick();
 
-            if (_meleeAttackAction.IsPressed() && _weapons.HasMelee)
+            if (_meleeAttackAction.IsPressed())
                 TryMeleeStroke();
-            else if (_rangedAttackAction.IsPressed() && _weapons.HasRanged)
+            else if (_rangedAttackAction.IsPressed())
                 TryRangedStroke();
         }
 
         public void UpdateAttackRotation(float direction)
         {
-            Attack.UpdateRotation(direction);
+            _weapons.UpdateRotation(direction);
         }
 
         private void TryMeleeStroke()
         {
             if (RangedWeaponHitRecently()) return;
 
-            if (_weapons.Melee.TryStroke())
-            {
-                Attack.Do(_weapon.LastStroke);
+            if (_weapons.TryMeleeStroke())
                 StrokeStart?.Invoke();
-            }
         }
 
         private void TryRangedStroke()
         {
             if (MeleeWeaponHitRecently()) return;
 
-            if (_weapons.Ranged.TryStroke())
-            {
-                Attack.Do(_weapon.LastStroke);
+            if (_weapons.TryRangedStroke())
                 StrokeStart?.Invoke();
-            }
         }
 
         private bool RangedWeaponHitRecently()
