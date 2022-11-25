@@ -6,12 +6,12 @@ using Characters.Stats.Character;
 using Characters.Stats.Melee;
 using Characters.Stats.Ranged;
 using Combat.Weapons;
-using Entities;
 using GameData.Enemies;
 using GameData.Stats;
 using Heroes;
 using Heroes.Services;
-using Surrounding.Rooms;
+using Rooms;
+using Rooms.Entities;
 using UnityEngine;
 using Zenject;
 

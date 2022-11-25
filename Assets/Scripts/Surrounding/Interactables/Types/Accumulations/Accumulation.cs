@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using Rooms.Items;
+using UnityEngine;
 
 namespace Surrounding.Interactables.Types.Accumulations
 {
-    public class Accumulation : MonoBehaviour, IInteractable
+    public class Accumulation : MonoBehaviour, IItem, IInteractable
     {
         public InteractableType Type => InteractableType.Accumulation;
 
@@ -10,6 +11,12 @@ namespace Surrounding.Interactables.Types.Accumulations
         [SerializeField] private int _quantity;
 
         private bool _accumulated;
+
+        public void SetPosition(Vector3 position, Transform parent)
+        {
+            transform.position = position;
+            transform.parent = parent;
+        }
 
         public Accumulated TryPickup()
         {

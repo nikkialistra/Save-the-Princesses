@@ -1,10 +1,9 @@
 ﻿using Dungeons;
 using GameData.Rooms;
 using Infrastructure.Bootstrap;
+using Rooms.Services;
 using Sirenix.OdinInspector;
-using Surrounding.Rooms;
-using Surrounding.Rooms.Services;
-using Surrounding.Staging;
+using Staging;
 using UnityEngine;
 using Zenject;
 

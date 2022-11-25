@@ -1,6 +1,5 @@
 ﻿using System;
 using GameData.Stats.Types;
-using Sirenix.OdinInspector;
 using StatSystem;
 using UnityEngine;
 

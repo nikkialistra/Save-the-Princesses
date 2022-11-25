@@ -1,6 +1,4 @@
 ﻿using Controls.Gamepads;
-using Heroes;
-using Heroes.Services;
 using Infrastructure.Controls;
 using UnityEngine;
 using UnityEngine.InputSystem;

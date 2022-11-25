@@ -6,7 +6,7 @@ using Characters.Stats;
 using Combat.Attacks;
 using GameData.Settings;
 using GameData.Stats;
-using Surrounding.Rooms;
+using Rooms;
 using UnityEngine;
 
 namespace Characters

@@ -1,9 +1,9 @@
 ﻿using GameData.Princesses.Spawning;
 using GameData.Princesses.Spawning.Frequencies;
-using Princesses.Services.Repositories;
 using Princesses.Types;
+using Rooms.Services.RepositoryTypes.Princesses;
+using Staging;
 using SuperTiled2Unity;
-using Surrounding.Staging;
 using UnityEngine;
 
 namespace Princesses.Services

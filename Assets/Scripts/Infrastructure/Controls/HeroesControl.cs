@@ -1,5 +1,4 @@
-﻿using Combat.Weapons;
-using Combat.Weapons.Enums;
+﻿using Combat.Weapons.Enums;
 using GameSystems;
 using GameSystems.Parameters;
 using Heroes;

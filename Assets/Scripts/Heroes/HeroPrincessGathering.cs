@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using GameData.Settings;
 using Princesses;
-using Princesses.Services.Repositories;
-using Trains;
+using Rooms.Services.RepositoryTypes.Princesses;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

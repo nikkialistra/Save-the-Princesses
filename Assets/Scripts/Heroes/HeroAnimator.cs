@@ -1,6 +1,5 @@
 ﻿using Characters;
 using Characters.Common;
-using Combat.Attacks;
 using Combat.Weapons;
 using GameData.Settings;
 using UnityEngine;

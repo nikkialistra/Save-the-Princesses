@@ -1,11 +1,11 @@
 ﻿using Enemies.Services;
-using Enemies.Services.Repositories;
-using Entities.Containers;
 using Infrastructure.Bootstrap;
 using Princesses.Services;
-using Princesses.Services.Repositories;
-using Surrounding.Rooms;
-using Surrounding.Rooms.Services;
+using Rooms;
+using Rooms.Entities.Containers.Types;
+using Rooms.Services;
+using Rooms.Services.RepositoryTypes.Enemies;
+using Rooms.Services.RepositoryTypes.Princesses;
 using UnityEngine;
 using Zenject;
 

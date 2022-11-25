@@ -4,7 +4,6 @@ using GameConfig;
 using GameData.Settings;
 using Trains.Characters;
 using UnityEngine;
-using Zenject;
 
 namespace Trains.HandConnections
 {

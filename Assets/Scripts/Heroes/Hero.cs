@@ -10,7 +10,8 @@ using GameData.Settings;
 using GameData.Stats;
 using Heroes.Accumulations;
 using Heroes.Attacks;
-using Princesses.Services.Repositories;
+using Rooms;
+using Rooms.Services.RepositoryTypes.Princesses;
 using Surrounding.Interactables;
 using Trains;
 using Trains.Characters;
@@ -29,6 +30,7 @@ namespace Heroes
         public event Action Slain;
 
         public bool Active { get; set; }
+        public Room Room => _character.Room;
 
         public CharacterHealth Health => _character.Health;
         public TrainCharacter TrainCharacter { get; private set; }
@@ -174,7 +176,7 @@ namespace Heroes
             Accumulations = new HeroAccumulations();
             _weapons = new HeroWeapons(_character, _weaponFactory);
             _attacker = new HeroAttacker(_weapons, _playerInput);
-            _interactor = new HeroInteractor(Accumulations, _weapons, _weaponFactory);
+            _interactor = new HeroInteractor(this, Accumulations, _weapons, _weaponFactory);
 
             _trainStatEffects = new HeroTrainStatEffects(_character);
             _princessGathering = new HeroPrincessGathering(_activePrincesses, this, _playerInput);

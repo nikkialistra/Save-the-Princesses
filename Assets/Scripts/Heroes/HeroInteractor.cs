@@ -9,12 +9,14 @@ namespace Heroes
 {
     public class HeroInteractor
     {
+        private Hero _hero;
         private readonly HeroAccumulations _accumulations;
         private readonly HeroWeapons _weapons;
         private readonly WeaponFactory _weaponFactory;
 
-        public HeroInteractor(HeroAccumulations accumulations, HeroWeapons weapons, WeaponFactory weaponFactory)
+        public HeroInteractor(Hero hero, HeroAccumulations accumulations, HeroWeapons weapons, WeaponFactory weaponFactory)
         {
+            _hero = hero;
             _accumulations = accumulations;
             _weapons = weapons;
             _weaponFactory = weaponFactory;
@@ -43,7 +45,7 @@ namespace Heroes
             var replacedWeaponType = _weapons.TryReplaceWeapon(weaponObject.WeaponType);
 
             if (replacedWeaponType != WeaponType.NoWeapon)
-                _weaponFactory.CreateWeaponObject(replacedWeaponType, null);
+                _weaponFactory.CreateWeaponObject(replacedWeaponType, _hero.Room, _hero.PositionCenter);
         }
     }
 }

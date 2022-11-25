@@ -2,6 +2,7 @@
 using Characters;
 using Combat.Weapons.Enums;
 using GameData.Weapons;
+using Rooms;
 using Sirenix.OdinInspector;
 using Surrounding.Interactables.Types;
 using UnityEngine;
@@ -33,13 +34,15 @@ namespace Combat.Weapons.Services
             return weapon;
         }
 
-        public void CreateWeaponObject(WeaponType weaponType, Transform parent)
+        public void CreateWeaponObject(WeaponType weaponType, Room room, Vector2 position)
         {
             var weaponData = _weaponsMap[weaponType];
 
             var weaponObject = _diContainer.InstantiatePrefabForComponent<WeaponObject>(weaponData.ObjectPrefab);
 
             weaponObject.name = weaponType.ToString();
+
+            room.Repositories.WeaponObjects.Add(weaponObject, position);
         }
     }
 }

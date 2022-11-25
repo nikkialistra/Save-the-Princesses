@@ -1,7 +1,6 @@
-﻿using Enemies.Services.Repositories;
-using Surrounding.Rooms;
-using Princesses.Services.Repositories;
-using Surrounding.Rooms.Services;
+﻿using Rooms.Services;
+using Rooms.Services.RepositoryTypes.Enemies;
+using Rooms.Services.RepositoryTypes.Princesses;
 
 namespace Surrounding
 {

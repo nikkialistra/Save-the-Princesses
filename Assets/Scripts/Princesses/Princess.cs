@@ -2,12 +2,12 @@
 using Characters;
 using Characters.Common;
 using Characters.Moving;
-using Entities;
 using GameData.Stats;
 using Heroes;
 using Heroes.Services;
 using Princesses.Types;
-using Surrounding.Rooms;
+using Rooms;
+using Rooms.Entities;
 using Trains;
 using Trains.Characters;
 using Trains.HandConnections;

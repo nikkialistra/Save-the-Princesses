@@ -2,7 +2,6 @@
 using Heroes;
 using Trains.Characters;
 using UnityEngine;
-using Zenject;
 
 namespace Princesses.Types
 {

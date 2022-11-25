@@ -1,5 +1,4 @@
 ﻿using System;
-using Heroes.Services;
 using Hubs;
 using Infrastructure.Controls;
 using Surrounding;

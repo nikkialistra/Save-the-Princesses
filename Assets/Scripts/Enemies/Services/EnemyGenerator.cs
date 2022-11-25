@@ -1,6 +1,6 @@
-﻿using Enemies.Services.Repositories;
-using GameData.Enemies.Spawning;
+﻿using GameData.Enemies.Spawning;
 using GameData.Enemies.Spawning.Frequencies;
+using Rooms.Services.RepositoryTypes.Enemies;
 using SuperTiled2Unity;
 using UnityEngine;
 

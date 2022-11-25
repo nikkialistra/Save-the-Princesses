@@ -1,6 +1,6 @@
 ﻿using System;
 using GameData.Chances;
-using Surrounding.Rooms;
+using Rooms;
 
 namespace GameData.Rooms.Frequencies
 {

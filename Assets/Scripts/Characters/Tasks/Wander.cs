@@ -4,7 +4,7 @@ using NodeCanvas.Framework;
 using ParadoxNotion;
 using ParadoxNotion.Design;
 using Pathfinding;
-using Surrounding.Staging.Content;
+using Staging.Content;
 using UnityEngine;
 
 namespace Characters.Tasks

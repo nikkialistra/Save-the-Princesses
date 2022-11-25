@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
-using UnityEngine;
 using UnityEngine.InputSystem;
-using Zenject;
 
 namespace Controls
 {

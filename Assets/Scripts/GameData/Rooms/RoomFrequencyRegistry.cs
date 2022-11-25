@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using GameData.Rooms.Frequencies;
+using Rooms;
 using Sirenix.OdinInspector;
-using Surrounding.Rooms;
-using Surrounding.Staging;
+using Staging;
 using UnityEngine;
 
 namespace GameData.Rooms

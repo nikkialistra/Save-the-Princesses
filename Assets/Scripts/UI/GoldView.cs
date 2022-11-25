@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using Heroes.Accumulations;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UIElements;
 
