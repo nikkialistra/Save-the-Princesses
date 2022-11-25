@@ -186,8 +186,6 @@ namespace Heroes
         {
             _character.Dispose();
 
-            _input.Dispose();
-
             _animator.Dispose();
             _princessGathering.Dispose();
         }
